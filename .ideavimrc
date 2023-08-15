@@ -1,0 +1,60 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set nu
+set hls
+set so=5
+set showmode
+set incsearch
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings with leader --------------------
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(RenameElement)
+map <leader>c <Action>(Stop)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <S-Space> <Action>(GotoNextError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+
+""" Mappings without leader -----------------
+" normal mode
+nnoremap K o<Esc>k
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+" visual mode
+vnoremap <C-c> "+y<Esc>
+vnoremap <Tab> >
+vnoremap <S-Tab> <
+" normal and visual mode
+nnoremap ß :noh<CR>
+vnoremap ß :noh<CR>
+
+nnoremap ü :tabp<CR>
+vnoremap ü :tabp<CR>
+
+nnoremap + :tabn<CR>
+vnoremap + :tabn<CR>
+
+nnoremap ö ^
+vnoremap ö ^
+
+nnoremap ä $
+vnoremap ä $
