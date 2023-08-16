@@ -173,6 +173,7 @@ in {
     baobab # disk usage analyzer
     gnome.gnome-keyring # for authentication in vscode
     # to be replaced gnome stuff
+    gnome.cheese # camera
     gnome.totem # video player
     rhythmbox # audio player
     gnome.eog # image viewer
