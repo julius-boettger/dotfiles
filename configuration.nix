@@ -327,7 +327,7 @@ in {
     tty_input = no
     x11_input = yes
     max_cpu_load = 1.0
-    process_block = ^dd$,^rsync$,^cp$,^mv$,^balena-etcher.bin$,^gparted$,^nixos-rebuild$,^nix-channel$,^nix-collect-garbage$,^nix-env$
+    process_block = ^dd$,^rsync$,^cp$,^mv$,^balena-etcher.bin$,^gparted$,^nixos-rebuild$,^nix-channel$,^nix-collect-garbage$,^git$,^gh$,^FreeFileSync$,^veracrypt$
     [actions]
     idle_time = 5m
     on_idle = "systemctl suspend"
