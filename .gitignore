@@ -2,10 +2,6 @@ hardware-configuration.nix
 
 nix-update/last-run-date
 
-# replace with submodules
-awesome/freedesktop
-awesome/lain
-
 # other awesome themes
 awesome/themes/*/
 !awesome/themes/mytheme
