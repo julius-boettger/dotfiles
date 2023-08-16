@@ -190,6 +190,7 @@ in {
     wget
     tree
     neofetch
+    gphoto2fs # mount camera
     appimage-run # run app images on nixos
     cbonsai # ascii art bonsai
     asciiquarium # ascii art aquarium
