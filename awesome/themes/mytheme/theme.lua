@@ -7,28 +7,40 @@
 
 -- color scheme based on vscode theme "monokai pro (filter spectrum)"
 local colors = {
-    red     = "#FC618D",
-    green   = "#7BD88F",
-    yellow  = "#FD9353",
-    blue    = "#5AA0E6",
-    magenta = "#948AE3",
-    cyan    = "#5AD4E6",
+    "#FC618D", -- r
+    "#7BD88F", -- g
+    "#FD9353", -- y
+    "#5AA0E6", -- b
+    "#948AE3", -- m
+    "#5AD4E6"  -- c
 }
 
--- theming variants
-local variants = {
-    { accent_color = colors.red     },
-    { accent_color = colors.green   },
-    { accent_color = colors.yellow  },
-    { accent_color = colors.blue    },
-    { accent_color = colors.magenta },
-    { accent_color = colors.cyan    }
+-- available .png wallpapers in themedir/wallpapers/
+local wallpapers = {
+    "rb",
+    "ry",
+    "rb",
+    "rm",
+    "rc",
+    "gy",
+    "gb",
+    "gm",
+    "gc",
+    "yb",
+    "ym",
+    "yc",
+    "bm",
+    "bc",
+    "mc"
 }
 
 -- set random seed based on time
 math.randomseed(os.time())
--- choose random variant
-local variant = variants[math.random(1, #variants)]
+-- choose random theming variant
+local variant = {
+    accent_color = colors    [math.random(1, #colors    )],
+    wallpaper    = wallpapers[math.random(1, #wallpapers)]
+}
 
 local gears = require("gears")
 local lain  = require("lain")
@@ -42,7 +54,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
-theme.wallpaper                                 = theme.dir .. "/wallpapers/nixos.png"
+theme.wallpaper                                 = theme.dir .. "/wallpapers/" .. variant.wallpaper .. ".png"
 theme.font                                      = "FiraCode Nerd Font 12"
 theme.bg_urgent                                 = "#FFFFFF"
 theme.taglist_fg_focus                          = "#EBEBFF"
