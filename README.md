@@ -32,6 +32,14 @@ cp -r dotfiles/* /etc/nixos
 ```
 Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`. Then rebuild your system (e.g. `sudo nixos-rebuild switch`).
 
+Now create symbolic links to put the dotfiles in the right locations:
+```shell
+ln -s /etc/nixos/.ideavimrc ~
+ln -s /etc/nixos/awesome ~/.config
+ln -s /etc/nixos/picom.conf ~/.config
+ln -s /etc/nixos/autokey-phrases ~/.config/autokey/phrases
+```
+
 As setting GTK themes with home-manager didn't work for me, I set them with `lxappearance`. Go ahead and do that.
 
 If you want to use [circadian](https://github.com/mrmekon/circadian), I found it easiest to manually build it and place the executable under `~/.local/bin`. My `configuration.nix` should take care of the rest (writing a config file and setting up a systemd-service).

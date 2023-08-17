@@ -404,12 +404,6 @@ in {
     };
   };
 
-  ### other configuration files
-  # link local files
-  home.file.".ideavimrc".source              = "/etc/nixos/.ideavimrc";
-  home.file.".config/awesome".source         = "/etc/nixos/awesome";
-  home.file.".config/picom.conf".source      = "/etc/nixos/picom.conf";
-  home.file.".config/autokey/phrases".source = "/etc/nixos/autokey-phrases";
   # onedrive configuration
   home.file.".config/onedrive/config".text = ''
     # try to download changes from onedrive every x seconds
@@ -419,4 +413,18 @@ in {
     # minimum number of downloaded changes to trigger desktop notification
     min_notify_changes = "1"   
   '';
+
+  ### create symlinks to put dotfiles in the right locations
+  # the following lines create symlinks of dotfiles of a
+  # specific nixos generation to their right locations.
+  # this means that you have to rebuild your nixos
+  # configuration to make changes to these dotfiles
+  # effective, which can become pretty annoying. the
+  # alternative approach is to manually create symlinks
+  # independent of nixos, like:
+  # ln -s /etc/nixos/picom.conf ~/.config
+  #home.file.".ideavimrc".source              = "/etc/nixos/.ideavimrc";
+  #home.file.".config/awesome".source         = "/etc/nixos/awesome";
+  #home.file.".config/picom.conf".source      = "/etc/nixos/picom.conf";
+  #home.file.".config/autokey/phrases".source = "/etc/nixos/autokey-phrases";
 };}
