@@ -1,9 +1,34 @@
 --[[
 
-     Rainbow Awesome WM theme 2.0
-     github.com/lcpz
+     Theme of github.com/julius-boettger
+     Based on: Rainbow Awesome WM theme 2.0 of github.com/lcpz
 
 --]]
+
+-- color scheme based on vscode theme "monokai pro (filter spectrum)"
+local colors = {
+    red     = "#FC618D",
+    green   = "#7BD88F",
+    yellow  = "#FD9353",
+    blue    = "#5AA0E6",
+    magenta = "#948AE3",
+    cyan    = "#5AD4E6",
+}
+
+-- theming variants
+local variants = {
+    { accent_color = colors.red     },
+    { accent_color = colors.green   },
+    { accent_color = colors.yellow  },
+    { accent_color = colors.blue    },
+    { accent_color = colors.magenta },
+    { accent_color = colors.cyan    }
+}
+
+-- set random seed based on time
+math.randomseed(os.time())
+-- choose random variant
+local variant = variants[math.random(1, #variants)]
 
 local gears = require("gears")
 local lain  = require("lain")
@@ -171,7 +196,7 @@ theme.volume = lain.widget.alsabar({
     colors = {
         background = theme.bg_normal,
         mute = theme.fg_normal,
-        unmute = "#948AE3"
+        unmute = variant.accent_color
     }
 })
 -- doesnt work?
