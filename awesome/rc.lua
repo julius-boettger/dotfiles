@@ -262,20 +262,20 @@ globalkeys = mytable.join(
             if julius_monitor_toggle then
                 -- turn off second screen
                 awful.spawn("xrandr --output HDMI-0 --off")
-                -- picom may get messed with => force a restart
+                -- picom may get messed with => try to start it (only works if not running)
                 awful.spawn.with_shell("sleep 1 && picom --experimental-backend")
             else
-                -- turn on second screen by restarting
-                awesome.restart()
+                -- turn on second screen (by applying the right config)
+                awful.spawn.with_shell("xrandr --output HDMI-0 --mode 1920x1080 --pos 0x150 --rate 60 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 143.86 --primary --preferred")
             end
             -- flip toggle variable
             julius_monitor_toggle = not julius_monitor_toggle
         end,
-        {description = "toggle second screen", group = "screen"}
+        {description = "toggle second screen", group = "awesome"}
     ),
     -- open file manager
     awful.key({ modkey }, "e", function () awful.spawn.with_shell("pcmanfm &") end,
-              {description="open file manager", group="launcher"}),
+              {description="file manager", group="launcher"}),
     -- ulauncher
     awful.key({ modkey }, "r", function () awful.spawn("ulauncher-toggle") end,
               {description="toggle ulauncher", group="launcher"}),
@@ -370,9 +370,9 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
+              {description = "focus the next screen", group = "client"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
+              {description = "focus the previous screen", group = "client"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
@@ -401,25 +401,25 @@ globalkeys = mytable.join(
 
     -- On-the-fly useless gaps change
     awful.key({ modkey }, "+", function () lain.util.useless_gaps_resize(1) end,
-              {description = "increment useless gaps", group = "tag"}),
+              {description = "increment useless gaps", group = "layout"}),
     awful.key({ modkey }, "-", function () lain.util.useless_gaps_resize(-1) end,
-              {description = "decrement useless gaps", group = "tag"}),
+              {description = "decrement useless gaps", group = "layout"}),
 
     -- Dynamic tagging
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag() end,
               {description = "add new tag", group = "tag"}),
     awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag() end,
               {description = "rename tag", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end,
-              {description = "move tag to the left", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
-              {description = "move tag to the right", group = "tag"}),
+    --awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end,
+    --          {description = "move tag to the left", group = "tag"}),
+    --awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
+    --          {description = "move tag to the right", group = "tag"}),
     awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end,
               {description = "delete tag", group = "tag"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
+              {description = "terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control", "Shift" }, "l", awesome.quit,
@@ -438,9 +438,9 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
+              {description = "select next layout", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
+              {description = "select previous layout", group = "layout"}),
 
     awful.key({ modkey }, "n", function ()
         local c = awful.client.restore()
@@ -474,13 +474,13 @@ globalkeys = mytable.join(
             os.execute(string.format("amixer -q set %s 5%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
-        {description = "volume up", group = "hotkeys"}),
+        {description = "volume up", group = "awesome"}),
     awful.key({ modkey }, "Down",
         function ()
             os.execute(string.format("amixer -q set %s 5%%-", beautiful.volume.channel))
             beautiful.volume.update()
         end,
-        {description = "volume down", group = "hotkeys"}),
+        {description = "volume down", group = "awesome"}),
     --awful.key({ altkey }, "m",
     --    function ()
     --        os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
@@ -548,7 +548,7 @@ globalkeys = mytable.join(
 
     -- User programs
     awful.key({ modkey }, "b", function () awful.spawn(browser) end,
-              {description = "run browser", group = "launcher"}),
+              {description = "browser", group = "launcher"}),
 
     -- Default
     --[[ Menubar
@@ -573,7 +573,7 @@ globalkeys = mytable.join(
     --]]
     -- Prompt
     awful.key({ modkey }, "x", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"})
+              {description = "run prompt", group = "awesome"})
 
     --awful.key({ modkey }, "x",
     --          function ()
@@ -669,18 +669,18 @@ for i = 1, 9 do
                           end
                      end
                   end,
-                  {description = "move focused client to tag #"..i, group = "tag"}),
+                  {description = "move focused client to tag #"..i, group = "tag"})
         -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:toggle_tag(tag)
-                          end
-                      end
-                  end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+        --awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        --          function ()
+        --              if client.focus then
+        --                  local tag = client.focus.screen.tags[i]
+        --                  if tag then
+        --                      client.focus:toggle_tag(tag)
+        --                  end
+        --              end
+        --          end,
+        --          {description = "toggle focused client on tag #" .. i, group = "tag"})
     )
 end
 
