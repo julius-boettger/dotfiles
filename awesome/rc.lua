@@ -139,18 +139,18 @@ awful.util.taglist_buttons = mytable.join(
 )
 
 awful.util.tasklist_buttons = mytable.join(
-     awful.button({ }, 1, function(c)
-         if c == client.focus then
-             c.minimized = true
-         else
-             c:emit_signal("request::activate", "tasklist", { raise = true })
-         end
-     end),
-     awful.button({ }, 3, function()
-         awful.menu.client_list({ theme = { width = 250 } })
-     end),
-     awful.button({ }, 5, function() awful.client.focus.byidx(1) end),
-     awful.button({ }, 4, function() awful.client.focus.byidx(-1) end)
+    awful.button({ }, 1, function(c)
+        if c == client.focus then
+            --c.minimized = true
+        else
+            c:emit_signal("request::activate", "tasklist", { raise = true })
+        end
+    end),
+    --awful.button({ }, 3, function()
+    --    awful.menu.client_list({ theme = { width = 250 } })
+    --end),
+    awful.button({ }, 5, function() awful.client.focus.byidx(1) end),
+    awful.button({ }, 4, function() awful.client.focus.byidx(-1) end)
 )
 
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
@@ -423,7 +423,7 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control", "Shift" }, "l", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+              {description = "log out", group = "awesome"}),
 
     awful.key({ modkey            }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -442,7 +442,7 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
-    awful.key({ modkey, "Control" }, "n", function ()
+    awful.key({ modkey }, "n", function ()
         local c = awful.client.restore()
         -- Focus restored client
         if c then
@@ -607,13 +607,13 @@ clientkeys = mytable.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
+    --awful.key({ modkey,           }, "n",
+    --    function (c)
+    --        -- The client currently has the input focus, so it cannot be
+    --        -- minimized, since minimized clients can't have the focus.
+    --        c.minimized = true
+    --    end ,
+    --    {description = "minimize", group = "client"}),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized = not c.maximized
