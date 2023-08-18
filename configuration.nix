@@ -213,8 +213,6 @@ in {
     lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
-    acpilight # for xbacklight, controls display brightness
-    xsel # awesome-copycats dependency (might be unecessary)
     # circadian dependencies
     unstable.xssstate
     xprintidle
