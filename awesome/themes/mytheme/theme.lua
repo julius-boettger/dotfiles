@@ -67,6 +67,7 @@ theme.border_normal                             = "#262527"
 theme.taglist_bg_focus                          = "#262527"
 theme.fg_urgent                                 = "#201F21"
 theme.border_width                              = dpi(1)
+theme.systray_icon_spacing                      = dpi(5)
 theme.useless_gap                               = dpi(5)
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
@@ -384,7 +385,7 @@ function theme.at_screen_connect(s)
 
             spr,
 
-            wibox.widget.systray(),
+            wibox.container.margin(wibox.widget.systray(), 0, 0, dpi(3), dpi(3)),
             --theme.mpd.widget,
             --theme.mail.widget,
             --theme.fs.widget,
