@@ -92,9 +92,9 @@ awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.max,
-    awful.layout.suit.floating,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.floating,
+    --awful.layout.suit.max,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
@@ -437,10 +437,10 @@ globalkeys = mytable.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next layout", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous layout", group = "layout"}),
+    --awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
+    --          {description = "select next layout", group = "layout"}),
+    --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+    --          {description = "select previous layout", group = "layout"}),
 
     awful.key({ modkey }, "n", function ()
         local c = awful.client.restore()
@@ -597,9 +597,9 @@ clientkeys = mytable.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey }, "q", function (c) c:kill()                         end,
+    awful.key({ modkey            }, "q", function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ modkey,           }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),

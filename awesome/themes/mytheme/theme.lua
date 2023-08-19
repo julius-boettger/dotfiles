@@ -391,7 +391,7 @@ function theme.at_screen_connect(s)
 
             spr,
 
-            s.mytxtlayoutbox,
+            --s.mytxtlayoutbox,
             volumewidget,
             mytextclock,
 
