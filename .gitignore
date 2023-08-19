@@ -2,6 +2,8 @@ hardware-configuration.nix
 
 nix-update/last-run-date
 
+ulauncher-theme/generated.css
+
 # other awesome themes
 awesome/themes/*/
 !awesome/themes/mytheme

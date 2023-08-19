@@ -34,15 +34,32 @@ Make sure to carefully inspect `configuration.nix` and edit it as needed before 
 
 Now create symbolic links to put the dotfiles in the right locations:
 ```shell
+mkdir -p ~/.config/ulauncher/user-themes
 ln -s /etc/nixos/.ideavimrc ~
 ln -s /etc/nixos/awesome ~/.config
 ln -s /etc/nixos/picom.conf ~/.config
 ln -s /etc/nixos/autokey-phrases ~/.config/autokey/phrases
+ln -s /etc/nixos/ulauncher-theme ~/.config/ulauncher/user-themes/mytheme
 ```
 
-As setting GTK themes with home-manager didn't work for me, I set them with `lxappearance`. Go ahead and do that.
+As setting GTK themes with home-manager didn't work for me, I set them with `lxappearance`. Go ahead and set:
+- Widget: Fluent-Dark
+- Icon Theme: Papirus-Dark
+- Mouse Cursor: Capitaine Cursors
 
 If you want to use [circadian](https://github.com/mrmekon/circadian), I found it easiest to manually build it and place the executable under `~/.local/bin`. My `configuration.nix` should take care of the rest (writing a config file and setting up a systemd-service).
+
+Finally some Ulauncher customization: Open Ulauncher with `Super+R` and click on the little gear to access the settings.
+- Preferences
+    - Click on "Hotkey" and press `ESC` to delete the hotkey, Awesome manages that
+    - Click on "Color Theme" and select "My Theme"
+    - Turn off "Show Indicator Icon"
+- Extensions: Install the following extensions by clicking on "Add extension" and entering a Github-link
+```
+https://github.com/Ulauncher/ulauncher-emoji
+https://github.com/iboyperson/ulauncher-system
+https://github.com/ulauncher-extensions/ulauncher-conversion
+```
 
 # Overview
 

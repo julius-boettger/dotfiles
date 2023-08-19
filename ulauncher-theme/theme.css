@@ -1,0 +1,45 @@
+/* color scheme */
+@define-color text_focus  #F7F1FF;
+@define-color text_normal #8C8A8F;
+@define-color bg_focus    #403E42;
+@define-color bg_normal   #262527;
+
+/* set here and use in theme-gtk-3.20.css */
+@define-color caret-color @text_focus;
+
+.app, .selected.item-box {
+    border-radius: 15px;
+}
+
+/* little gear icon for settings */
+.prefs-btn:hover {
+    background-color: @text_focus;
+}
+
+.app {
+    border-color: @bg_focus;
+    background-color: @bg_normal;
+}
+
+.item-text,
+.item-name,
+.item-shortcut
+{
+    color: @text_normal;
+}
+
+.input,
+.selected.item-box .item-text,
+.selected.item-box .item-name,
+.selected.item-box .item-shortcut
+{
+    color: @text_focus;
+}
+
+.selected.item-box,
+.input *:selected,
+.input *:focus,
+*:selected:focus
+{
+    background-color: @bg_focus;
+}
