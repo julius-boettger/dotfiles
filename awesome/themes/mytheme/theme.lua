@@ -57,15 +57,15 @@ theme.dir                                       = os.getenv("HOME") .. "/.config
 theme.wallpaper                                 = theme.dir .. "/wallpapers/" .. variant.wallpaper .. ".png"
 theme.font                                      = "FiraCode Nerd Font 12"
 theme.bg_urgent                                 = "#FFFFFF"
-theme.taglist_fg_focus                          = "#EBEBFF"
-theme.fg_focus                                  = "#EBEBFF"
-theme.border_focus                              = "#EBEBFF"
-theme.fg_normal                                 = "#9E9E9E"
-theme.bg_normal                                 = "#242424"
-theme.bg_focus                                  = "#242424"
-theme.border_normal                             = "#242424"
-theme.taglist_bg_focus                          = "#242424"
-theme.fg_urgent                                 = "#000000"
+theme.taglist_fg_focus                          = "#F7F1FF"
+theme.fg_focus                                  = "#F7F1FF"
+theme.border_focus                              = "#F7F1FF"
+theme.fg_normal                                 = "#8C8A8F"
+theme.bg_normal                                 = "#262527"
+theme.bg_focus                                  = "#262527"
+theme.border_normal                             = "#262527"
+theme.taglist_bg_focus                          = "#262527"
+theme.fg_urgent                                 = "#201F21"
 theme.border_width                              = dpi(1)
 theme.useless_gap                               = dpi(5)
 theme.menu_height                               = dpi(16)
@@ -313,7 +313,19 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(
+        s,
+        awful.widget.tasklist.filter.currenttags,
+        awful.util.tasklist_buttons,
+        {
+            align = "center",
+            bg_normal = theme.fg_urgent,
+            bg_focus = theme.fg_urgent,
+            shape = gears.shape.rectangle,
+            shape_border_color = theme.bg_normal,
+            shape_border_width = 3,
+        }
+    )
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(25), bg = theme.bg_normal, fg = theme.fg_normal })
@@ -344,6 +356,8 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+
+            spr,
 
             wibox.widget.systray(),
             --theme.mpd.widget,
