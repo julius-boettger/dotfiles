@@ -81,6 +81,8 @@ theme.awesome_icon                              = theme.dir .."/icons/awesome.pn
 theme.menu_submenu_icon                         = theme.dir .."/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
+theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
+theme.widget_mem                                = theme.dir .. "/icons/mem.png"
 theme.layout_txt_tile                           = "[t]"
 theme.layout_txt_tileleft                       = "[l]"
 theme.layout_txt_tilebottom                     = "[b]"
@@ -256,7 +258,6 @@ local first = wibox.widget.textbox(markup.font("Terminess Nerd Font 4", " "))
 local spr   = wibox.widget.textbox(" ")
 local bar   = wibox.widget.textbox(markup.fontfg(theme.font, theme.fg_focus, "|"))
 
-
 local function update_txt_layoutbox(s)
     -- Writes a string representation of the current layout in a textbox widget
     local txt_l = theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))] or ""
@@ -264,19 +265,37 @@ local function update_txt_layoutbox(s)
 end
 
 -- Memory
---local memicon = wibox.widget.imagebox(theme.widget_mem)
+local memicon = wibox.container.margin(wibox.widget.imagebox(theme.widget_mem), 0, 0, dpi(4), dpi(4))
 local memory = lain.widget.mem({
     settings = function()
-        --widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, mem_now.used .. "MiB"))
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, math.floor(mem_now.used * ((2^20) / (10^6))) .. "MB"))
+        local mem = math.floor(mem_now.used * ((2^20) / (10^6)))
+        widget:set_markup(markup.font(theme.font, markup(theme.fg_focus, mem) .. "MB"))
     end
 })
 
 -- CPU
---local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widget.cpu({
+local cpuicon = wibox.container.margin(wibox.widget.imagebox(theme.widget_cpu), 0, 0, dpi(5), dpi(5))
+local cpu = lain.widget.sysload({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, cpu_now.usage .. "%"))
+        -- cpu load average over 1 minute with 2 decimals
+        local current_load = tonumber(load_1)
+        -- set to 0 if nil
+        if not current_load then
+            current_load = 0
+        end
+
+        -- display 2 decimals
+        local text = string.format("%.2f", current_load)
+
+        -- round to 1 decimal if >= 10
+        if current_load >= 10 then
+            text = string.format("%.1f", current_load)
+            -- display no decimals if rounded to 100%
+            if current_load >= 99.95 then
+                text = string.format("%.0f", current_load)
+            end
+        end
+        widget:set_markup(markup.font(theme.font, markup(theme.fg_focus, text) .. "%"))
     end
 })
 
@@ -296,7 +315,10 @@ function theme.at_screen_connect(s)
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+    s.mypromptbox = awful.widget.prompt({
+        prompt = "> ",
+        --with_shell = true
+    })
 
     -- Textual layoutbox
     s.mytxtlayoutbox = wibox.widget.textbox(theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
@@ -339,22 +361,24 @@ function theme.at_screen_connect(s)
             first,
             s.mytaglist,
 
-            spr, bar, spr,
+            spr,
 
-            --cpuicon,
+            cpuicon, spr,
             cpu.widget,
 
             spr, spr, spr,
 
-            --memicon,
+            memicon, spr,
             memory.widget,
 
-            spr, bar, spr,
+            spr, spr,
 
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
+            spr,
+
             layout = wibox.layout.fixed.horizontal,
 
             spr,
