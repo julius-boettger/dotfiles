@@ -72,10 +72,11 @@ theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
 theme.ocol                                      = "<span color='" .. theme.fg_normal .. "'>"
 theme.tasklist_floating                         = theme.ocol .. "*</span>"
+theme.tasklist_maximized                        = theme.ocol .. "+</span>"
+theme.tasklist_maximized_horizontal             = theme.ocol .. "+</span>"
+theme.tasklist_maximized_vertical               = theme.ocol .. "+</span>"
 theme.tasklist_sticky                           = theme.ocol .. "[s] </span>"
 theme.tasklist_ontop                            = theme.ocol .. "[t] </span>"
-theme.tasklist_maximized_horizontal             = theme.ocol .. "[m] </span>"
-theme.tasklist_maximized_vertical               = ""
 theme.tasklist_disable_icon                     = true
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
 theme.menu_submenu_icon                         = theme.dir .."/icons/submenu.png"
@@ -340,7 +341,7 @@ function theme.at_screen_connect(s)
         awful.widget.tasklist.filter.currenttags,
         awful.util.tasklist_buttons,
         {
-            align = "center",
+            align = "left",
             bg_normal = theme.fg_urgent,
             bg_focus = theme.fg_urgent,
             shape = gears.shape.rectangle,
