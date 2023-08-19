@@ -7,12 +7,12 @@
 
 -- color scheme based on vscode theme "monokai pro (filter spectrum)"
 local colors = {
-    "#FC618D", -- r
-    "#7BD88F", -- g
-    "#FD9353", -- y
-    "#5AA0E6", -- b
-    "#948AE3", -- m
-    "#5AD4E6"  -- c
+    r = "#FC618D",
+    g = "#7BD88F",
+    y = "#FD9353",
+    b = "#5AA0E6",
+    m = "#948AE3",
+    c = "#5AD4E6"
 }
 
 -- available .png wallpapers in themedir/wallpapers/
@@ -38,9 +38,29 @@ local wallpapers = {
 math.randomseed(os.time())
 -- choose random theming variant
 local variant = {
-    accent_color = colors    [math.random(1, #colors    )],
-    wallpaper    = wallpapers[math.random(1, #wallpapers)]
+    -- random wallpaper
+    wallpaper = wallpapers[math.random(1, #wallpapers)]
 }
+
+-- get array of color names (keys of color table)
+local color_names = {}
+for key, _ in pairs(colors) do
+  table.insert(color_names, key)
+end
+
+-- choose a random accent color
+-- until its not in the wallpaper
+while true do
+    -- choose a random color
+    local color_name = color_names[math.random(1, #color_names)]
+    -- if its not in the wallpaper
+    if not string.find(variant.wallpaper, color_name) then
+        -- use it as accent color
+        variant.accent_color = colors[color_name]
+        -- stop loop
+        break
+    end
+end
 
 local gears = require("gears")
 local lain  = require("lain")
