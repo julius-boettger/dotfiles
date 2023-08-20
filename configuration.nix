@@ -181,7 +181,8 @@ in {
     lxappearance
     fluent-gtk-theme # theme
     capitaine-cursors # cursors
-    papirus-icon-theme # icons
+    # icon theme ("black" is folder color)
+    (papirus-icon-theme.override { color = "black"; })
     
     ### cli
     gh # github
