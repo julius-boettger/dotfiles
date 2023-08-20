@@ -247,7 +247,7 @@ theme.volume.bar:buttons(my_table.join(
         theme.volume.update()
     end),
     awful.button({}, 2, function()
-        os.execute(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
+        os.execute(string.format("%s set %s 50%%", theme.volume.cmd, theme.volume.channel))
         theme.volume.update()
     end),
     awful.button({}, 3, function()
@@ -264,7 +264,7 @@ theme.volume.bar:buttons(my_table.join(
     end)
 ))
 local volumebg = wibox.container.background(theme.volume.bar, theme.fg_normal, gears.shape.rectangle)
-local volumewidget = wibox.container.margin(volumebg, dpi(7), dpi(7), dpi(5), dpi(5))
+local volumewidget = wibox.container.rotate(wibox.container.margin(volumebg, dpi(7), dpi(7), dpi(5), dpi(5)), "south")
 
 -- Weather
 --[[ to be set before use
