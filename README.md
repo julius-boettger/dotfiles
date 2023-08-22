@@ -5,10 +5,23 @@
 - My [awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats), which I then modified to fit my taste and needs
 - My wallpaper is a modified version of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
-# Installation & Usage
+# Content overview
+> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. Also see the commands to create corresponding symbolic links under [Installation & usage](#installation--usage).
+
+| File or directory | Recommended directory | Description |
+|-------------------|-----------------------|-------------|
+| `configuration.nix` | `/etc/nixos/` | [NixOS](https://nixos.org) configuration |
+| `nix-update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
+| `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
+| `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
+| `ulauncher-theme/` | `~/.config/ulauncher/user-themes/` | Custom color theme for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) |
+| `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
+| `autokey-phrases/` | `~/.config/autokey/` | Phrases for [AutoKey](https://github.com/autokey/autokey) to make `Ctrl+Alt` act like `AltGr` for some keys like they do on Windows with a German keyboard layout |
+
+# Installation & usage
 
 - Most of these dotfiles can be used independently of the others, like `picom.conf` for configuring [picom](https://github.com/jonaburg/picom). You are free to use just parts the parts you like as they suit you.
-    - See [Overview](#overview) for explanations of files and directories.
+    - See [Content overview](#content-overview) for explanations of files and directories.
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
 - 🚨 This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
 - 🚨 There is some stuff in here that is not prepared to be used by anyone else besides me, so you are **strongly advised** to look through these files on your own before using them.
@@ -55,16 +68,3 @@ https://github.com/Ulauncher/ulauncher-emoji
 https://github.com/iboyperson/ulauncher-system
 https://github.com/ulauncher-extensions/ulauncher-conversion
 ```
-
-# Content Overview
-> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. Also see the commands to create corresponding symbolic links under "Installation & Usage".
-
-| File or directory | Recommended directory | Description |
-|-------------------|-----------------------|-------------|
-| `configuration.nix` | `/etc/nixos/` | [NixOS](https://nixos.org) configuration |
-| `nix-update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
-| `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
-| `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
-| `ulauncher-theme/` | `~/.config/ulauncher/user-themes/` | Custom color theme for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) |
-| `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
-| `autokey-phrases/` | `~/.config/autokey/` | Phrases for [AutoKey](https://github.com/autokey/autokey) to make `Ctrl+Alt` act like `AltGr` for some keys like they do on Windows with a German keyboard layout |
