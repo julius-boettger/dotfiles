@@ -57,6 +57,7 @@ https://github.com/ulauncher-extensions/ulauncher-conversion
 ```
 
 # Content Overview
+> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. Also see the commands to create corresponding symbolic links under "Installation & Usage".
 
 | File or directory | Recommended directory | Description |
 |-------------------|-----------------------|-------------|
