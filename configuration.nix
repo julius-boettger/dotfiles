@@ -144,6 +144,7 @@ in {
   environment.systemPackages = with pkgs; [
     ### gui
     #etcher # currently has insecure dependency
+    obs-studio
     unstable.stacer
     autokey
     font-manager
