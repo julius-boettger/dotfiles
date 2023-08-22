@@ -42,11 +42,6 @@ ln -s /etc/nixos/autokey-phrases ~/.config/autokey/phrases
 ln -s /etc/nixos/ulauncher-theme ~/.config/ulauncher/user-themes/mytheme
 ```
 
-As setting GTK themes with home-manager didn't work for me, I set them with `lxappearance`. Go ahead and set:
-- Widget: Fluent-Dark
-- Icon Theme: Papirus-Dark
-- Mouse Cursor: Capitaine Cursors
-
 If you want to use [circadian](https://github.com/mrmekon/circadian), I found it easiest to manually build it and place the executable under `~/.local/bin`. My `configuration.nix` should take care of the rest (writing a config file and setting up a systemd-service).
 
 Finally some Ulauncher customization: Open Ulauncher with `Super+R` and click on the little gear to access the settings.

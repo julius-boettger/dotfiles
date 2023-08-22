@@ -175,11 +175,9 @@ in {
     gnome.totem # video player
     rhythmbox # audio player
     gnome.eog # image viewer
-    # for gtk theming
-    lxappearance
-    fluent-gtk-theme # theme
-    capitaine-cursors # cursors
-    # icon theme ("black" is folder color)
+    # gtk theme
+    fluent-gtk-theme
+    # gtk icon theme ("black" is folder color)
     (papirus-icon-theme.override { color = "black"; })
     
     ### cli
@@ -347,6 +345,21 @@ in {
   home.stateVersion = config.system.stateVersion;
   # i dont know what this does?
   programs.home-manager.enable = true;
+
+  # gtk theming
+  gtk = {
+    enable = true;
+    iconTheme.name = "Papirus-Dark";
+    theme.name = "Fluent-Dark";
+    font.name = "Noto Sans";
+    font.size = 10;
+  };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.capitaine-cursors;
+    name = "Capitaine Cursors";
+    size = 32;
+  };
 
   # flameshot (for screenshots)
   services.flameshot.enable = true;
