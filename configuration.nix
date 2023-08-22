@@ -129,16 +129,14 @@ in {
 
   # fonts to install
   fonts.fonts = with pkgs; [
-    noto-fonts # ~200 standard fonts for all kinds of languages
+    noto-fonts # ~200 standard modern fonts for all kinds of languages
     noto-fonts-cjk-sans # for asian characters
-    manrope # modern text
+    aileron # modern text with 16 variations
     # install only specific nerd fonts
     (nerdfonts.override { fonts = [
-      "Iosevka"
-      "FiraCode"
-      "Terminus"
-      "RobotoMono"
-      "DroidSansMono" # vscode font
+      "Terminus"   # very square
+      "FiraCode"   # good for code
+      "RobotoMono" # good for code
     ]; } )
   ];
 
