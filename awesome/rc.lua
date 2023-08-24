@@ -285,6 +285,13 @@ globalkeys = mytable.join(
     -- flameshot screenshot
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn("flameshot gui") end,
               {description="screenshot with flameshot", group="launcher"}),
+    -- onedrive
+    awful.key({ modkey,            "Shift" }, "o", function ()
+        awful.spawn.with_shell(terminal .. " -e journalctl --user -xeft onedrive") end,
+        {description="onedrive logs", group="launcher"}),
+    awful.key({ modkey, "Control", "Shift" }, "o", function ()
+        awful.spawn.with_shell("systemctl --user restart onedrive@onedrive") end,
+        {description="manually sync onedrive", group="launcher"}),
 
 
     ---- awesome (copycats) key bindings
