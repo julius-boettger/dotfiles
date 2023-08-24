@@ -17,21 +17,21 @@ local colors = {
 
 -- available .png wallpapers in themedir/wallpapers/
 local wallpapers = {
-    "rb",
-    "ry",
-    "rb",
-    "rm",
-    "rc",
-    "gy",
-    "gb",
-    "gm",
-    "gc",
-    "yb",
-    "ym",
-    "yc",
-    "bm",
-    "bc",
-    "mc"
+    "rg", "gr",
+    "ry", "yr",
+    "rb", "br",
+    "rm", "mr",
+    "rc", "cr",
+    "gy", "yg",
+    "gb", "bg",
+    "gm", "mg",
+    "gc", "cg",
+    "yb", "by",
+    "ym", "my",
+    "yc", "cy",
+    "bm", "mb",
+    "bc", "cb",
+    "mc", "cm",
 }
 
 -- set random seed based on time
