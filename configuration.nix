@@ -201,6 +201,9 @@ in {
     rustup
     nodejs_20
     python3Full
+    (python3.withPackages (python-pkgs: with python-pkgs; [
+      virtualenv
+    ]))
 
     ### custom xorg desktop
     picom-jonaburg # compositor
