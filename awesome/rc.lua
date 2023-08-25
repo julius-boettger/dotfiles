@@ -22,6 +22,9 @@ local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- }}}
 
+-- start background programs (if they are not already running)
+awful.spawn.with_shell("$HOME/.config/awesome/autostart.sh &")
+
 -- {{{ Error handling
 
 -- Check if awesome encountered an error during startup and fell back to
@@ -868,6 +871,3 @@ client.connect_signal("unmanage", backham)
 tag.connect_signal("property::selected", backham)
 
 -- }}}
-
--- start background programs (if they are not already running)
-awful.spawn.with_shell("$HOME/.config/awesome/autostart.sh &")

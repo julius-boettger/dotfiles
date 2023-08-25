@@ -22,6 +22,10 @@ run() {
 #    fi
 #}
 
+# focus primary screen
+printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
+
+# start background programs
 run lxpolkit
 run lxqt-powermanagement
 run unclutter --start-hidden --jitter 0 --timeout 3
