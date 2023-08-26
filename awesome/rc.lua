@@ -85,7 +85,7 @@ awful.spawn.with_shell(
 local chosen_theme = "mytheme"
 local editor       = "code"
 local terminal     = "alacritty"
-local browser      = "firefox-devedition"
+local browser      = "firefox"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275

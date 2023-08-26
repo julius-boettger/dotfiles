@@ -151,7 +151,7 @@ in {
     pick-colour-picker
     refind
     vscode
-    firefox-devedition-bin
+    firefox-devedition
     obsidian
     libreoffice
     barrier
