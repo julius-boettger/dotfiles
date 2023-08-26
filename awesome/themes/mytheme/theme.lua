@@ -286,38 +286,30 @@ local function update_txt_layoutbox(s)
     s.mytxtlayoutbox:set_text(txt_l)
 end
 
+local widget_timeout = 1
 -- Memory
 local memicon = wibox.container.margin(wibox.widget.imagebox(theme.widget_mem), 0, 0, dpi(4), dpi(4))
 local memory = lain.widget.mem({
+    timeout = widget_timeout,
     settings = function()
+        -- calculate MB from MiB
         local mem = math.floor(mem_now.used * ((2^20) / (10^6)))
         widget:set_markup(markup.font(theme.font, markup(theme.fg_focus, mem) .. "MB"))
     end
 })
-
 -- CPU
 local cpuicon = wibox.container.margin(wibox.widget.imagebox(theme.widget_cpu), 0, 0, dpi(5), dpi(5))
-local cpu = lain.widget.sysload({
+local cpu = lain.widget.cpu({
+    timeout = widget_timeout,
     settings = function()
-        -- cpu load average over 1 minute with 2 decimals
-        local current_load = tonumber(load_1)
-        -- set to 0 if nil
-        if not current_load then
-            current_load = 0
+        local current_load = tonumber(cpu_now.usage)
+        if not current_load  then current_load =  0 end
+        if current_load > 99 then current_load = 99 end
+        local text = markup(theme.fg_focus, current_load)
+        if current_load < 10 then
+            text = "0" .. text
         end
-
-        -- display 2 decimals
-        local text = string.format("%.2f", current_load)
-
-        -- round to 1 decimal if >= 10
-        if current_load >= 10 then
-            text = string.format("%.1f", current_load)
-            -- display no decimals if rounded to 100%
-            if current_load >= 99.95 then
-                text = string.format("%.0f", current_load)
-            end
-        end
-        widget:set_markup(markup.font(theme.font, markup(theme.fg_focus, text) .. "%"))
+        widget:set_markup(markup.font(theme.font, text .. "%"))
     end
 })
 
