@@ -178,8 +178,19 @@ in {
     gnome.eog # image viewer
     # gtk theme
     fluent-gtk-theme
-    # gtk icon theme ("black" is folder color)
-    (papirus-icon-theme.override { color = "black"; })
+    ### gtk icon theme
+    ((papirus-icon-theme.override { /*folder-*/color = "black"; })
+    # replace default firefox icons with firefox developer edition icons
+    .overrideAttrs (attrs: {
+      postInstall = (attrs.postInstall or "") + ''
+        ln -sf $out/share/icons/Papirus/16x16/apps/firefox-developer-icon.svg $out/share/icons/Papirus/16x16/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/22x22/apps/firefox-developer-icon.svg $out/share/icons/Papirus/22x22/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/24x24/apps/firefox-developer-icon.svg $out/share/icons/Papirus/24x24/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/32x32/apps/firefox-developer-icon.svg $out/share/icons/Papirus/32x32/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/48x48/apps/firefox-developer-icon.svg $out/share/icons/Papirus/48x48/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/64x64/apps/firefox-developer-icon.svg $out/share/icons/Papirus/64x64/apps/firefox.svg
+      '';
+    }))
     
     ### cli
     gh # github
