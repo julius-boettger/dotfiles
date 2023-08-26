@@ -220,17 +220,16 @@ screen.connect_signal("property::geometry", function(s)
     end
 end)
 
--- No borders when rearranging only 1 non-floating or maximized client
---screen.connect_signal("arrange", function (s)
---    local only_one = #s.tiled_clients == 1
---    for _, c in pairs(s.clients) do
---        if only_one and not c.floating or c.maximized or c.fullscreen then
---            c.border_width = 0
---        else
---            c.border_width = beautiful.border_width
---        end
---    end
---end)
+-- No borders for maximized clients and Ulauncher
+screen.connect_signal("arrange", function (s)
+    for _, c in pairs(s.clients) do
+        if c.maximized or c.class == "Ulauncher" then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
@@ -718,7 +717,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { --border_width = beautiful.border_width,
+      properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      callback = awful.client.setslave,
                      focus = awful.client.focus.filter,
@@ -729,14 +728,6 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.centered,
                      size_hints_honor = false
      }
-    },
-
-    -- Blacklist for Borders
-    { rule = { },
-        except_any = { class = {
-            "Ulauncher",
-        } },
-        properties = { border_width = beautiful.border_width }
     },
 
     -- Floating clients.

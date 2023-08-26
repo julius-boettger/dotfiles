@@ -367,7 +367,7 @@ function theme.at_screen_connect(s)
             bg_focus = theme.fg_urgent,
             shape = gears.shape.rectangle,
             shape_border_color = theme.bg_normal,
-            shape_border_width = 3,
+            shape_border_width = theme.border_width,
         }
     )
 
