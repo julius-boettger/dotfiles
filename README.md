@@ -14,6 +14,7 @@
 | `nix-update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
+| `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `ulauncher-theme/` | `~/.config/ulauncher/user-themes/` | Custom color theme for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `autokey-phrases/` | `~/.config/autokey/` | Phrases for [AutoKey](https://github.com/autokey/autokey) to make `Ctrl+Alt` act like `AltGr` for some keys like they do on Windows with a German keyboard layout |
@@ -47,13 +48,19 @@ Make sure to carefully inspect `configuration.nix` and edit it as needed before 
 
 Now create symbolic links to put the dotfiles in the right locations:
 ```shell
-mkdir -p ~/.config/ulauncher/user-themes
 ln -s /etc/nixos/.ideavimrc ~
 ln -s /etc/nixos/awesome ~/.config
 ln -s /etc/nixos/picom.conf ~/.config
 ln -s /etc/nixos/autokey-phrases ~/.config/autokey/phrases
+# ulauncher theme
+mkdir -p ~/.config/ulauncher/user-themes
 ln -s /etc/nixos/ulauncher-theme ~/.config/ulauncher/user-themes/mytheme
+# firefox theme (adjust paths to point to your profile!)
+mkdir -p ~/.mozilla/firefox/[YOUR-PROFILE]/chrome
+ln -s /etc/nixos/firefox.css ~/.mozilla/firefox/[YOUR-PROFILE]/chrome/userChrome.css
 ```
+
+Also make sure to set `toolkit.legacyUserProfileCustomizations.stylesheets = true` on `about:config` to apply the Firefox theme (more info [here](https://www.userchrome.org/how-create-userchrome-css.html#aboutconfig)).
 
 If you want to use [circadian](https://github.com/mrmekon/circadian), I found it easiest to manually build it and place the executable under `~/.local/bin`. My `configuration.nix` should take care of the rest (writing a config file and setting up a systemd-service).
 

@@ -1,0 +1,40 @@
+:root {
+    --my-bg:      #262527;
+    --my-bg-dark: #201F21;
+    --toolbar-bgcolor: var(--my-bg) !important;
+    --urlbar-box-bgcolor: transparent !important;
+    --urlbar-box-focus-bgcolor: transparent !important;
+}
+
+:root[sizemode="normal"] body {
+    border-bottom-left-radius:  10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+
+#titlebar {
+    background-color: var(--my-bg-dark) !important;
+}
+
+#urlbar[open] > #urlbar-background {
+    background: var(--my-bg) !important;
+}
+
+#urlbar-background {
+    background-color: transparent !important;
+    outline: none !important;
+}
+
+#navigator-toolbox,
+#urlbar-background,
+#tabbrowser-tabs
+{
+    border: none !important;
+}
+
+hbox.titlebar-spacer,
+hbox.titlebar-buttonbox-container,
+#alltabs-button,
+#identity-icon-label
+{
+    display: none !important;
+}
