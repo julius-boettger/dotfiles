@@ -293,7 +293,8 @@ in {
     # add ~/.local/bin to PATH
     export PATH="$PATH:$HOME/.local/bin" 
     # greeting
-    fortune | lolcat
+    neofetch --colors $(random 1 6) 7 7 $(random 1 6) --ascii_colors $(random 1 6) --ascii_distro nixos_small --package_managers off --os_arch off --distro_shorthand tiny --shell_version off --color_blocks off --disable theme --disable icons --disable font --disable resolution --disable cpu --disable gpu --disable memory
+    fortune -sn 200
     # use starship prompt
     starship init fish | source
   '';
