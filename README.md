@@ -5,6 +5,12 @@
 - My [awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats), which I then modified to fit my taste and needs
 - My wallpaper is a modified version of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
+# Screenshots
+<p align="middle">
+  <img src=".github/assets/screenshot1.png" width="49%" />
+  <img src=".github/assets/screenshot2.png" width="49%" /> 
+</p>
+
 # Content overview
 > Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. Also see the commands to create corresponding symbolic links under [Installation & usage](#installation--usage).
 
