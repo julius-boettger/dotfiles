@@ -291,7 +291,7 @@ globalkeys = mytable.join(
         awful.spawn.with_shell(terminal .. " -e journalctl --user -xeft onedrive") end,
         {description="onedrive logs", group="launcher"}),
     awful.key({ modkey, "Control", "Shift" }, "o", function ()
-        awful.spawn.with_shell("systemctl --user restart onedrive@onedrive") end,
+        awful.spawn.with_shell("systemctl --user restart onedrive") end,
         {description="manually sync onedrive", group="launcher"}),
 
 
