@@ -24,6 +24,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `ulauncher-theme/` | `~/.config/ulauncher/user-themes/` | Custom color theme for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) |
+| `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | Configuration for [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `autokey-phrases/` | `~/.config/autokey/` | Phrases for [AutoKey](https://github.com/autokey/autokey) to make `Ctrl+Alt` act like `AltGr` for some keys like they do on Windows with a German keyboard layout |
 

@@ -10,6 +10,7 @@ let
   # my own packages
   mypkgs = {
     circadian = pkgs.callPackage ./nix-packages/circadian.nix {};
+    sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
   };
 in {
   # import other nix files
@@ -237,6 +238,9 @@ in {
     unstable.xssstate
     xprintidle
     pulseaudio # for pactl
+    # sddm theme + dependencies
+    mypkgs.sddm-sugar-candy
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 
   ###########################################
@@ -253,19 +257,21 @@ in {
     # window manager / desktop environment
     windowManager.awesome.enable = true;
     desktopManager.gnome.enable = true;
-    #desktopManager.plasma5.enable = true;
 
     # monitor config
     displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x150 --rate 60 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 143.86 --primary --preferred";
     # mouse sens config
     libinput.mouse.accelSpeed = "-0.7";
     # display manager
-    displayManager.defaultSession = "none+awesome"; # somehow has to be this exact value?
+    displayManager.defaultSession = "awesome";
+    displayManager.session = [{
+      name = "awesome";
+      start = "awesome";
+      manage = "desktop";
+    }];
     displayManager.sddm = {
       enable = true;
-      #theme = "corners";
-      #theme = "aerial-sddm";
-      #theme = "sugar-candy";
+      theme = "sugar-candy";
     };
   };
 
