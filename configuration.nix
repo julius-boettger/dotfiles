@@ -340,6 +340,7 @@ in {
     [heuristics]
     tty_input = no
     x11_input = yes
+    audio_block = yes
     max_cpu_load = 1.0
     process_block = ^dd$,^rsync$,^cp$,^mv$,^balena-etcher.bin$,^gparted$,^nixos-rebuild$,^nix-channel$,^nix-collect-garbage$,^git$,^gh$,^FreeFileSync$,^veracrypt$
     [actions]
