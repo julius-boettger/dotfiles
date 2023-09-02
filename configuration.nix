@@ -7,6 +7,10 @@ let
   displayname = "Julius";
   # for using unstable packages
   unstableTarball = fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz;
+  # my own packages
+  mypkgs = {
+    circadian = pkgs.callPackage ./nix-packages/circadian.nix {};
+  };
 in {
   # import other nix files
   imports = [
@@ -226,7 +230,10 @@ in {
     lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
-    # circadian dependencies
+
+    ### my own packages
+    # circadian + dependencies
+    mypkgs.circadian
     unstable.xssstate
     xprintidle
     pulseaudio # for pactl
@@ -320,8 +327,8 @@ in {
     };
   };
 
-  ### circadian (needs to be manually installed first!)
-  # create own systemd service
+  ### circadian (my own package)
+  # create systemd service
   systemd.services.circadian = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
@@ -329,7 +336,7 @@ in {
     serviceConfig = {
       Type = "simple";
       User = "root";
-      ExecStart = "${config.users.users."${username}".home}/.local/bin/circadian";
+      ExecStart = "${mypkgs.circadian}/bin/circadian";
       Restart = "on-failure";
       # modify path for root user to find to nix binaries
       Environment="PATH=/run/current-system/sw/bin";

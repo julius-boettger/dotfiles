@@ -19,6 +19,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 |-------------------|-----------------------|-------------|
 | `configuration.nix` | `/etc/nixos/` | [NixOS](https://nixos.org) configuration |
 | `nix-update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
+| `nix-packages/` | `/etc/nixos/` | Self-written derivations for Nix packages |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
@@ -31,7 +32,8 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 - Most of these dotfiles can be used independently of the others, like `picom.conf` for configuring [picom](https://github.com/jonaburg/picom). You are free to use just parts the parts you like as they suit you.
     - See [Content overview](#content-overview) for explanations of files and directories.
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
-- 🚨 This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
+- ⚠️ Knowledge of basic [NixOS](https://nixos.org/) usage is needed. Try it out first before attempting to follow this guide.
+- ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
 - 🚨 There is some stuff in here that is not prepared to be used by anyone else besides me, so you are **strongly advised** to look through these files on your own before using them.
 
 Add channels for a stable NixOS release and [home-manager](https://github.com/nix-community/home-manager) (versions like `23.05` might need adjustment):
@@ -68,8 +70,6 @@ ln -s /etc/nixos/firefox.css ~/.mozilla/firefox/[YOUR-PROFILE]/chrome/userChrome
 ```
 
 Also make sure to set `toolkit.legacyUserProfileCustomizations.stylesheets = true` on `about:config` to apply the Firefox theme (more info [here](https://www.userchrome.org/how-create-userchrome-css.html#aboutconfig)).
-
-If you want to use [circadian](https://github.com/mrmekon/circadian), I found it easiest to manually build it and place the executable under `~/.local/bin`. My `configuration.nix` should take care of the rest (writing a config file and setting up a systemd-service).
 
 Finally some Ulauncher customization: Open Ulauncher with `Super+R` and click on the little gear to access the settings.
 - Preferences
