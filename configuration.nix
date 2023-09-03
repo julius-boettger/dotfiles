@@ -2,18 +2,18 @@
 
 # variable definitions
 let
+  # nixos state and home-manager version
+  version = "23.05";
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
-  # nixos state and home-manager version
-  version = "23.05";
   # firefox profile to customize (directory in ~/.mozilla/firefox/)
   firefoxProfile = "h5hep79f.dev-edition-default";
   # my own packages
   mypkgs = {
-    circadian = pkgs.callPackage ./nix-packages/circadian.nix {};
+    circadian        = pkgs.callPackage ./nix-packages/circadian.nix        {};
     sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
-    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix { inherit firefoxProfile; };
+    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix { inherit firefoxProfile username; };
   };
 in {
   # import other nix files
@@ -101,10 +101,8 @@ in {
   };
 
   ### user account and groups
-  # create new groups
-  users.groups = {
-    "${username}" = {};
-  };
+  # create new group with username
+  users.groups."${username}" = {};
   # create user
   users.users."${username}" = {
     isNormalUser = true;
@@ -372,8 +370,7 @@ in {
   home-manager.useUserPackages = true;
   home-manager.users."${username}" = {
 
-  # should be the same as current nixos and home-manager channel versions
-  home.stateVersion = config.system.stateVersion;
+  home.stateVersion = version;
   # i dont know what this does?
   programs.home-manager.enable = true;
 
