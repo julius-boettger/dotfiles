@@ -5,12 +5,13 @@ let
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
-  # for using unstable packages
-  unstableTarball = fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz;
+  # firefox profile to customize (directory in ~/.mozilla/firefox/)
+  firefoxProfile = "h5hep79f.dev-edition-default";
   # my own packages
   mypkgs = {
     circadian = pkgs.callPackage ./nix-packages/circadian.nix {};
     sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
+    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix { inherit firefoxProfile; };
   };
 in {
   # import other nix files
@@ -113,8 +114,6 @@ in {
       "users"
       "wheel"
       "networkmanager"
-      "docker"
-      "storage"
     ];
   };
 
@@ -127,7 +126,7 @@ in {
   # use packages from the unstable channel by prefixing them
   # with "unstable.", like "pkgs.unstable.onedrive"
   nixpkgs.config.packageOverrides = pkgs: with pkgs; {
-    unstable = import unstableTarball {
+    unstable = import (fetchTarball "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz") {
       config = config.nixpkgs.config;
     };
   };
@@ -233,6 +232,8 @@ in {
     alsa-utils # control volume
 
     ### my own packages
+    # command to create symlinks for dotfiles
+    mypkgs.symlink-dotfiles
     # circadian + dependencies
     mypkgs.circadian
     unstable.xssstate
@@ -455,17 +456,8 @@ in {
     min_notify_changes = "1"   
   '';
 
-  ### create symlinks to put dotfiles in the right locations
-  # the following lines create symlinks of dotfiles of a
-  # specific nixos generation to their right locations.
-  # this means that you have to rebuild your nixos
-  # configuration to make changes to these dotfiles
-  # effective, which can become pretty annoying. the
-  # alternative approach is to manually create symlinks
-  # independent of nixos, like:
-  # ln -s /etc/nixos/picom.conf ~/.config
-  #home.file.".ideavimrc".source              = "/etc/nixos/.ideavimrc";
-  #home.file.".config/awesome".source         = "/etc/nixos/awesome";
-  #home.file.".config/picom.conf".source      = "/etc/nixos/picom.conf";
-  #home.file.".config/autokey/phrases".source = "/etc/nixos/autokey-phrases";
+  # firefox user.js to enable css theming
+  home.file.".mozilla/firefox/${firefoxProfile}/user.js".text = ''
+    user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+  '';
 };}

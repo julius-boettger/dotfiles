@@ -37,6 +37,8 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 - ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
 - 🚨 There is some stuff in here that is not prepared to be used by anyone else besides me, so you are **strongly advised** to look through these files on your own before using them.
 
+First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
+
 Add channels for a stable NixOS release and [home-manager](https://github.com/nix-community/home-manager) (versions like `23.05` might need adjustment):
 ```shell
 # check subscribed channels
@@ -48,29 +50,26 @@ sudo nix-channel --add https://github.com/nix-community/home-manager/archive/rel
 sudo nix-channel --update
 sudo nixos-rebuild switch
 ```
-Place the content of this repository inside `/etc/nixos`. A rough way to do this (assuming you have the necessary permissions) is:
+Place the content of this repository inside `/etc/nixos`. This is necessary as many paths in the configuration rely on it. A possible way to do this (assuming you have the necessary permissions) is:
 ```shell
 cd /tmp
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 cp -r dotfiles/* /etc/nixos
 ```
-Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`. Then rebuild your system (e.g. `sudo nixos-rebuild switch`).
+Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
 
-Now create symbolic links to put the dotfiles in the right locations:
+Other configuration files may also contain hardware specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
+
+Then:
 ```shell
-ln -s /etc/nixos/.ideavimrc ~
-ln -s /etc/nixos/awesome ~/.config
-ln -s /etc/nixos/picom.conf ~/.config
-ln -s /etc/nixos/autokey-phrases ~/.config/autokey/phrases
-# ulauncher theme
-mkdir -p ~/.config/ulauncher/user-themes
-ln -s /etc/nixos/ulauncher-theme ~/.config/ulauncher/user-themes/mytheme
-# firefox theme (adjust paths to point to your profile!)
-mkdir -p ~/.mozilla/firefox/[YOUR-PROFILE]/chrome
-ln -s /etc/nixos/firefox.css ~/.mozilla/firefox/[YOUR-PROFILE]/chrome/userChrome.css
+# rebuild your system, e.g.
+sudo nixos-rebuild switch
+# create symlinks to put dotfiles in their respective locations
+# this runs a script that I've written, see nix-packages/symlink-dotfiles.nix
+symlink-dotfiles 
+# reboot for good measure
+reboot
 ```
-
-Also make sure to set `toolkit.legacyUserProfileCustomizations.stylesheets = true` on `about:config` to apply the Firefox theme (more info [here](https://www.userchrome.org/how-create-userchrome-css.html#aboutconfig)).
 
 Finally some Ulauncher customization: Open Ulauncher with `Super+R` and click on the little gear to access the settings.
 - Preferences
