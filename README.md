@@ -39,18 +39,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
 
-Add channels for a stable NixOS release and [home-manager](https://github.com/nix-community/home-manager) (versions like `23.05` might need adjustment):
-```shell
-# check subscribed channels
-sudo nix-channel --list # should show that no channels are subscribed (otherwise you should remove them)
-# add channels
-sudo nix-channel --add https://nixos.org/channels/nixos-23.05 nixos
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
-# update
-sudo nix-channel --update
-sudo nixos-rebuild switch
-```
-Place the content of this repository inside `/etc/nixos`. This is necessary as many paths in the configuration rely on it. A possible way to do this (assuming you have the necessary permissions) is:
+Then place the content of this repository inside `/etc/nixos`. This is necessary as many paths in the configuration rely on it. A possible way to do this (assuming you have the necessary permissions) is:
 ```shell
 cd /tmp
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
@@ -73,6 +62,7 @@ reboot
 ```
 
 Finally some [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extensions: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS and install the following extensions by clicking on "Add extension" and entering a Github-link:
+> If anyone knows how to automate this, please tell me!
 ```
 https://github.com/Ulauncher/ulauncher-emoji
 https://github.com/iboyperson/ulauncher-system

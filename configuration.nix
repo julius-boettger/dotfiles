@@ -5,6 +5,8 @@ let
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
+  # nixos state and home-manager version
+  version = "23.05";
   # firefox profile to customize (directory in ~/.mozilla/firefox/)
   firefoxProfile = "h5hep79f.dev-edition-default";
   # my own packages
@@ -18,12 +20,9 @@ in {
   imports = [
     # results of automatic hardware scan
     ./hardware-configuration.nix
-    # home-manager (channel has to be added first!)
-    <home-manager/nixos>
+    # home-manager
+    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz"}/nixos"
   ];
-
-  # version should be the same as channel versions (nixos and home-manager)
-  system.stateVersion = "23.05";
 
   # self-explaining one-liners
   console.keyMap = "de";
@@ -33,6 +32,7 @@ in {
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   networking.networkmanager.enable = true;
   nixpkgs.config.allowUnfree = true;
+  system.stateVersion = version;
   #services.printing.enable = true;
 
   # bootloader
