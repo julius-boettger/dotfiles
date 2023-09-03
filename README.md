@@ -13,7 +13,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 </p>
 
 # Content overview
-> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. Also see the commands to create corresponding symbolic links under [Installation & usage](#installation--usage).
+> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/nixos/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See [`nix-packages/symlink-dotfiles.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix-packages/symlink-dotfiles.nix) for the script that should create those symlinks.
 
 | File or directory | Recommended directory | Description |
 |-------------------|-----------------------|-------------|
@@ -22,8 +22,8 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `nix-packages/` | `/etc/nixos/` | Self-written derivations for Nix packages |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
+| `ulauncher/` | `~/.config/` | Configuration for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) including a custom color theme |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
-| `ulauncher-theme/` | `~/.config/ulauncher/user-themes/` | Custom color theme for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) |
 | `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | Configuration for [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `autokey-phrases/` | `~/.config/autokey/` | Phrases for [AutoKey](https://github.com/autokey/autokey) to make `Ctrl+Alt` act like `AltGr` for some keys like they do on Windows with a German keyboard layout |
@@ -54,7 +54,7 @@ Place the content of this repository inside `/etc/nixos`. This is necessary as m
 ```shell
 cd /tmp
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
-cp -r dotfiles/* /etc/nixos
+cp -rf dotfiles/* /etc/nixos
 ```
 Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
 
@@ -66,19 +66,18 @@ Then:
 sudo nixos-rebuild switch
 # create symlinks to put dotfiles in their respective locations
 # this runs a script that I've written, see nix-packages/symlink-dotfiles.nix
+# if this outputs something like "cannot overwrite directory" you might need to manually remove that directory and try again
 symlink-dotfiles 
 # reboot for good measure
 reboot
 ```
 
-Finally some Ulauncher customization: Open Ulauncher with `Super+R` and click on the little gear to access the settings.
-- Preferences
-    - Click on "Hotkey" and press `ESC` to delete the hotkey, Awesome manages that
-    - Click on "Color Theme" and select "My Theme"
-    - Turn off "Show Indicator Icon"
-- Extensions: Install the following extensions by clicking on "Add extension" and entering a Github-link
+Finally some [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extensions: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS and install the following extensions by clicking on "Add extension" and entering a Github-link:
 ```
 https://github.com/Ulauncher/ulauncher-emoji
 https://github.com/iboyperson/ulauncher-system
 https://github.com/ulauncher-extensions/ulauncher-conversion
 ```
+You might need to click on "Reload the list" or restart Ulauncher (`pkill ulauncher && ulauncher &`) for the changes to take effect.
+
+And then you should be all set up! Feel free to reach out if there's something missing, misleading or incorrect in this installation guide.
