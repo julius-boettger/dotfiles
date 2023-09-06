@@ -7,7 +7,7 @@ ln -sf /etc/nixos/picom.conf /home/${username}/.config
 
 # autokey phrases
 mkdir -p /home/${username}/.config/autokey/phrases
-ln -sf /etc/nixos/autokey-phrases/* /home/${username}/.config/autokey/phrases/
+ln -sf /etc/nixos/autokey-phrases/{*,.*} /home/${username}/.config/autokey/phrases/
 
 # firefox theme
 mkdir -p /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome
