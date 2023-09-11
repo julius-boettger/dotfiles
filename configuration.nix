@@ -168,11 +168,10 @@ in {
     gparted
     veracrypt
     freefilesync
-    spotify # use spotifywm for wm's? this is fine so far
+    spotify
     dconf # needed for home-manager gtk theming
     sioyek # pdf reader, also available as configurable program
     baobab # disk usage analyzer
-    gnome.gnome-keyring # for authentication in vscode
     # to be replaced gnome stuff
     gnome.cheese # camera
     gnome.totem # video player
@@ -255,7 +254,6 @@ in {
 
     # window manager / desktop environment
     windowManager.awesome.enable = true;
-    desktopManager.gnome.enable = true;
 
     # monitor config
     displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x150 --rate 60 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 143.86 --primary --preferred";
@@ -276,6 +274,13 @@ in {
 
   # bluez bluetooth gui
   services.blueman.enable = true;
+
+  # for vscode github account login
+  services.gnome.gnome-keyring.enable = true;
+
+  # for mounting usb sticks and stuff
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
