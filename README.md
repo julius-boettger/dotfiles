@@ -49,17 +49,13 @@ Make sure to carefully inspect `configuration.nix` and edit it as needed before 
 
 Other configuration files may also contain hardware specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
 
-Then:
-```shell
-# rebuild your system, e.g.
-sudo nixos-rebuild switch
-# create symlinks to put dotfiles in their respective locations
-# this runs a script that I've written, see nix-packages/symlink-dotfiles.nix
-# if this outputs something like "cannot overwrite directory" you might need to manually remove that directory and try again
-symlink-dotfiles 
-# reboot for good measure
-reboot
-```
+Then rebuild your system, e.g. with `sudo nixos-rebuild switch`.
+
+Start AutoKey (`autokey-gtk`) and create a new folder `~/.config/autokey/phrases`. My AutoKey phrases will be linked to that directory in the next step, but it needs to be created like this first.
+
+Now run `symlink-dotfiles` to create symlinks to put dotfiles in their respective locations. This runs a script that I've written, see `nix-packages/symlink-dotfiles.nix` for more information. If this outputs something like "cannot overwrite directory" you might need to manually remove that directory and try again.
+
+Next: `reboot` for good measure.
 
 Finally some [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extensions: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS and install the following extensions by clicking on "Add extension" and entering a Github-link:
 > If anyone knows how to automate this, please tell me!
