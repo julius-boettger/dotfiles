@@ -57,12 +57,10 @@ Now run `symlink-dotfiles` to create symlinks to put dotfiles in their respectiv
 
 Next: `reboot` for good measure.
 
-Finally some [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extensions: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS and install the following extensions by clicking on "Add extension" and entering a Github-link:
+Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
 > If anyone knows how to automate this, please tell me!
 ```
 https://github.com/Ulauncher/ulauncher-emoji
-https://github.com/iboyperson/ulauncher-system
-https://github.com/ulauncher-extensions/ulauncher-conversion
 ```
 You might need to click on "Reload the list" or restart Ulauncher (`pkill ulauncher && ulauncher &`) for the changes to take effect.
 

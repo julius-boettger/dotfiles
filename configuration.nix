@@ -220,7 +220,6 @@ in {
     ### custom xorg desktop
     picom-jonaburg # compositor
     ulauncher # launcher
-    units # dependency of ulauncher-conversion extension
     pcmanfm # file manager
     unclutter-xfixes # hide mouse on inactivity
     lxde.lxmenu-data # required for awesome and pcmanfm to discover applications
