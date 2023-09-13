@@ -159,7 +159,7 @@ in {
     barrier
     discord
     bitwarden
-    gitkraken
+    gitnuro
     unstable.darktable
     gimp-with-plugins
     inkscape-with-extensions
