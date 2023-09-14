@@ -196,7 +196,6 @@ in {
     ### cli
     gh # github
     git
-    dotnet-sdk_7
     bash
     wget
     tree
