@@ -152,7 +152,7 @@ in {
     font-manager
     pick-colour-picker
     refind
-    vscode
+    unstable.vscode
     firefox-devedition
     obsidian
     libreoffice
@@ -196,6 +196,7 @@ in {
     ### cli
     gh # github
     git
+    dotnet-sdk_7
     bash
     wget
     tree

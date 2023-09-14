@@ -19,6 +19,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 |-------------------|-----------------------|-------------|
 | `configuration.nix` | `/etc/nixos/` | [NixOS](https://nixos.org) configuration |
 | `nix-update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
+| `gitnuro.json` | `/etc/nixos/` | Custom theme for [Gitnuro](https://github.com/JetpackDuba/Gitnuro) |
 | `nix-packages/` | `/etc/nixos/` | Self-written derivations for Nix packages |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (`jonaburg`-fork)](https://github.com/jonaburg/picom) |
@@ -51,17 +52,22 @@ Other configuration files may also contain hardware specific code, like `xrandr`
 
 Then rebuild your system, e.g. with `sudo nixos-rebuild switch`.
 
-Start AutoKey (`autokey-gtk`) and create a new folder `~/.config/autokey/phrases`. My AutoKey phrases will be linked to that directory in the next step, but it needs to be created like this first.
+Prepare [AutoKey](https://github.com/autokey/autokey) phrase directory: Run AutoKey (`autokey-gtk`) and create a new folder `~/.config/autokey/phrases`. My AutoKey phrases will be linked to that directory in the next step, but it needs to be created like this first.
 
 Now run `symlink-dotfiles` to create symlinks to put dotfiles in their respective locations. This runs a script that I've written, see `nix-packages/symlink-dotfiles.nix` for more information. If this outputs something like "cannot overwrite directory" you might need to manually remove that directory and try again.
 
 Next: `reboot` for good measure.
 
-Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Open Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
-> If anyone knows how to automate this, please tell me!
+Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/nixos/gitnuro.json` and click on "Accept".
+
+Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Run Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
 ```
 https://github.com/Ulauncher/ulauncher-emoji
 ```
 You might need to click on "Reload the list" or restart Ulauncher (`pkill ulauncher && ulauncher &`) for the changes to take effect.
 
-And then you should be all set up! Feel free to reach out if there's something missing, misleading or incorrect in this installation guide.
+### And then you should be all set up!
+
+Feel free to reach out if there's something missing, misleading or incorrect in this installation guide.
+
+> Also reach out if you know how to automate any step of this setup further!
