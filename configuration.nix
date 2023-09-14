@@ -194,8 +194,8 @@ in {
     }))
     
     ### cli
+    gitFull
     gh # github
-    git
     bash
     wget
     tree
