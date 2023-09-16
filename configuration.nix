@@ -227,6 +227,7 @@ in {
     picom-jonaburg # compositor
     ulauncher # launcher
     pcmanfm # file manager
+    xarchiver # archive manager (zip, tar, ...)
     unclutter-xfixes # hide mouse on inactivity
     lxde.lxmenu-data # required for awesome and pcmanfm to discover applications
     lxqt.lxqt-powermanagement # turn off monitors on idle
