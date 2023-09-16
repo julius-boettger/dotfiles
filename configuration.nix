@@ -175,6 +175,7 @@ in {
     veracrypt
     freefilesync
     spotify
+    #unstable.git-credential-manager # gui authentication for git
     dconf # needed for home-manager gtk theming
     sioyek # pdf reader, also available as configurable program
     baobab # disk usage analyzer
@@ -200,7 +201,6 @@ in {
     }))
     
     ### cli
-    gitFull
     gh # github
     bash
     wget
@@ -400,6 +400,24 @@ in {
     package = pkgs.capitaine-cursors;
     name = "Capitaine Cursors";
     size = 32;
+  };
+
+  # git
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    extraConfig.init.defaultBranch = "main";
+    extraConfig.credential = {
+      ### different authenication methods
+      # using gh (github)
+      helper = "${pkgs.gh}/bin/gh auth git-credential";
+      # built-in
+      #credentialStore = "secretservice";
+      #helper = "libsecret";
+      # using git-credential-manager gui
+      #credentialStore = "secretservice";
+      #helper = "${pkgs.unstable.git-credential-manager}/bin/git-credential-manager";
+    };
   };
 
   # flameshot (for screenshots)
