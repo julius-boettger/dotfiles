@@ -11,6 +11,7 @@ let
   firefoxProfile = "h5hep79f.dev-edition-default";
   # my own packages
   mypkgs = {
+    gitnuro          = pkgs.callPackage ./nix-packages/gitnuro.nix          {};
     circadian        = pkgs.callPackage ./nix-packages/circadian.nix        {};
     sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
     symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix { inherit firefoxProfile username; };
@@ -159,7 +160,6 @@ in {
     barrier
     discord
     bitwarden
-    gitnuro
     unstable.darktable
     gimp-with-plugins
     inkscape-with-extensions
@@ -230,6 +230,8 @@ in {
     ### my own packages
     # command to create symlinks for dotfiles
     mypkgs.symlink-dotfiles
+    # updated version of gitnuro of nixpkgs
+    mypkgs.gitnuro
     # circadian + dependencies
     mypkgs.circadian
     unstable.xssstate
