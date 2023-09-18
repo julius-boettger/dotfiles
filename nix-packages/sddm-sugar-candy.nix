@@ -12,7 +12,7 @@ rec {
     owner = "Kangie";
     repo = "sddm-sugar-candy";
     rev = "v${version}";
-    sha256 = "18wsl2p9zdq2jdmvxl4r56lir530n73z9skgd7dssgq18lipnrx7";
+    hash = "sha256-p2d7I0UBP63baW/q9MexYJQcqSmZ0L5rkwK3n66gmqM=";
   };
 
   installPhase = ''

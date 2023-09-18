@@ -12,7 +12,7 @@ rec {
     owner = "mrmekon";
     repo = "circadian";
     rev = "v${version}";
-    sha256 = "ab5k/101jpuRDtD8aMBcNbOLbmUj0s9yJC7LS88oiLE=";
+    hash = "sha256-ab5k/101jpuRDtD8aMBcNbOLbmUj0s9yJC7LS88oiLE=";
   };
 
   cargoLock.lockFile = "${src.outPath}/Cargo.lock";
