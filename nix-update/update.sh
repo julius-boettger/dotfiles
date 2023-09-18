@@ -10,13 +10,24 @@ if test "$response" != "y"
     exit
 end
 
-sudo echo "starting update..."
+# ask for root password only once while this script is running
+sudo --validate
 
-# fetch newest infos about packages and their versions
-sudo nix-channel --update
+set_color green
+echo "starting update..."
+set_color white
+
 # build a new configuration with the newest available versions of packages
 sudo nixos-rebuild switch --upgrade-all
+
+set_color green
+echo "completed update. cleaning up..."
+set_color white
+
+# delete nix generations older than 7 days
+sudo nix-collect-garbage --delete-older-than 7d
 # clean up
 sudo nix-collect-garbage
 
-set_color green; echo "done! you can close this terminal :)"
+set_color green
+echo "done! you can close this terminal :)"
