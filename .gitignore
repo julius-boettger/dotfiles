@@ -1,8 +1,10 @@
-hardware-configuration.nix
-
 nix-update/last-run-date
 
-# ulaunhcer
+# system specific nix stuff
+secrets.nix
+hardware-configuration.nix
+
+# ulauncher
 ulauncher/ext_preferences
 ulauncher/extensions.json
 ulauncher/user-themes/mytheme/generated.css

@@ -12,5 +12,6 @@ ln -sf /etc/nixos/autokey-phrases/{*,.*} /home/${username}/.config/autokey/phras
 # firefox theme
 mkdir -p /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome
 ln -sf /etc/nixos/firefox.css /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome/userChrome.css
+echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);' > /home/${username}/.mozilla/firefox/${firefoxProfile}/user.js
 
 ''

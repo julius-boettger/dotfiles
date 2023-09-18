@@ -46,11 +46,24 @@ cd /tmp
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 cp -rf dotfiles/* /etc/nixos
 ```
+
+Create `/etc/nixos/secrets.nix` and adjust its content to your liking. Template:
+```nix
+{
+    # you can leave this on "test" for now, we will set it later.
+    firefox.profile = "test";
+}
+```
+
 Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
 
 Other configuration files may also contain hardware specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
 
+> If you already have Firefox set up you can skip the next line and go straight to the Firefox customization.
+
 Then rebuild your system, e.g. with `sudo nixos-rebuild switch`.
+
+Prepare Firefox customization: Run Firefox and set it up to your liking (but don't choose a theme, you will load my own one later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefox.profile` in `/etc/nixos/secrets.nix` instead of `"test"` and rebuild your system, e.g. with `sudo nixos-rebuild switch`.
 
 Prepare [AutoKey](https://github.com/autokey/autokey) phrase directory: Run AutoKey (`autokey-gtk`) and create a new folder `~/.config/autokey/phrases`. My AutoKey phrases will be linked to that directory in the next step, but it needs to be created like this first.
 

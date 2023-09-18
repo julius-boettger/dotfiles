@@ -2,19 +2,22 @@
 
 # variable definitions
 let
+  # very system specific or personal stuff
+  secrets = import ./secrets.nix;
   # nixos state and home-manager version
   version = "23.05";
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
-  # firefox profile to customize (directory in ~/.mozilla/firefox/)
-  firefoxProfile = "h5hep79f.dev-edition-default";
   # my own packages
   mypkgs = {
     gitnuro          = pkgs.callPackage ./nix-packages/gitnuro.nix          {};
     circadian        = pkgs.callPackage ./nix-packages/circadian.nix        {};
     sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
-    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix { inherit firefoxProfile username; };
+    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix {
+      inherit username;
+      firefoxProfile = secrets.firefox.profile;
+    };
   };
 in {
   # import other nix files
