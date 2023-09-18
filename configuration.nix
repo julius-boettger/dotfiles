@@ -178,6 +178,7 @@ in {
     veracrypt
     freefilesync
     spotify
+    clipster
     unstable.git-credential-manager # gui authentication for git
     vlc # video player
     qview # image viewer
@@ -478,5 +479,13 @@ in {
     [credential]
       credentialStore = secretservice
       helper = ${pkgs.unstable.git-credential-manager}/bin/git-credential-manager
+  '';
+
+  # clipster configuration
+  home.file.".config/clipster/clipster.ini".text = ''
+    [clipster]
+    sync_selections = yes
+    history_size = 0
+    history_update_interval = 0
   '';
 };}
