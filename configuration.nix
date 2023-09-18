@@ -179,14 +179,13 @@ in {
     freefilesync
     spotify
     unstable.git-credential-manager # gui authentication for git
+    vlc # video player
+    qview # image viewer
+    audacious # audio player
+    guvcview # camera
     dconf # needed for home-manager gtk theming
-    sioyek # pdf reader, also available as configurable program
+    sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
-    # to be replaced gnome stuff
-    gnome.cheese # camera
-    gnome.totem # video player
-    rhythmbox # audio player
-    gnome.eog # image viewer
     # gtk theme
     fluent-gtk-theme
     ### gtk icon theme
