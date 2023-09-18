@@ -178,7 +178,7 @@ in {
     veracrypt
     freefilesync
     spotify
-    #unstable.git-credential-manager # gui authentication for git
+    unstable.git-credential-manager # gui authentication for git
     dconf # needed for home-manager gtk theming
     sioyek # pdf reader, also available as configurable program
     baobab # disk usage analyzer
@@ -204,7 +204,7 @@ in {
     }))
     
     ### cli
-    gh # github
+    git
     bash
     wget
     tree
@@ -405,24 +405,6 @@ in {
     size = 32;
   };
 
-  # git
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    extraConfig.init.defaultBranch = "main";
-    extraConfig.credential = {
-      ### different authenication methods
-      # using gh (github)
-      helper = "${pkgs.gh}/bin/gh auth git-credential";
-      # built-in
-      #credentialStore = "secretservice";
-      #helper = "libsecret";
-      # using git-credential-manager gui
-      #credentialStore = "secretservice";
-      #helper = "${pkgs.unstable.git-credential-manager}/bin/git-credential-manager";
-    };
-  };
-
   # flameshot (for screenshots)
   services.flameshot.enable = true;
   services.flameshot.settings.General = {
@@ -487,8 +469,15 @@ in {
     min_notify_changes = "1"   
   '';
 
-  # firefox user.js to enable css theming
-  home.file.".mozilla/firefox/${firefoxProfile}/user.js".text = ''
-    user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+  # git config mainly for credential stuff
+  home.file.".gitconfig".text = ''
+    [user]
+      name = ${secrets.git.name}
+      email = ${secrets.git.email}
+    [init]
+      defaultBranch = main
+    [credential]
+      credentialStore = secretservice
+      helper = ${pkgs.unstable.git-credential-manager}/bin/git-credential-manager
   '';
 };}

@@ -50,6 +50,8 @@ cp -rf dotfiles/* /etc/nixos
 Create `/etc/nixos/secrets.nix` and adjust its content to your liking. Template:
 ```nix
 {
+    git.name = "username";
+    git.email = "example@provider.com";
     # you can leave this on "test" for now, we will set it later.
     firefox.profile = "test";
 }
@@ -70,6 +72,8 @@ Prepare [AutoKey](https://github.com/autokey/autokey) phrase directory: Run Auto
 Now run `symlink-dotfiles` to create symlinks to put dotfiles in their respective locations. This runs a script that I've written, see `nix-packages/symlink-dotfiles.nix` for more information. If this outputs something like "cannot overwrite directory" you might need to manually remove that directory and try again.
 
 Next: `reboot` for good measure.
+
+Set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
 
 Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/nixos/gitnuro.json` and click on "Accept".
 
