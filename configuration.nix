@@ -376,6 +376,29 @@ in {
     on_idle = "systemctl suspend"
   '';
 
+  # openrgb
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+    package = pkgs.openrgb-with-all-plugins;
+  };
+  systemd.services.openrgb-sleep-wrapper = {
+    enable = true;
+    description = "turn off rgb before entering sleep and turn it back on when waking up";
+    unitConfig = {
+      Before = "sleep.target";
+      StopWhenUnneeded = "yes";
+    };
+    serviceConfig = {
+      User = username;
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStart = "-${pkgs.openrgb-with-all-plugins}/bin/openrgb -p off";
+      ExecStop  = "-${pkgs.openrgb-with-all-plugins}/bin/openrgb -p default";
+    };
+    wantedBy = [ "sleep.target" ];
+  };
+
   ############################################
   ############################################
   ############### HOME-MANAGER ###############

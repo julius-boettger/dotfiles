@@ -38,5 +38,8 @@ run clipster --daemon
 #run input-remapper-control --command autoload
 #run $HOME/AppImages/OneDriveGUI-1.0.2.AppImage
 
+# set default rgb profile
+openrgb --profile default &
+
 # ask for update on saturdays
 python3 /etc/nixos/nix-update/update_on_saturday.py &
