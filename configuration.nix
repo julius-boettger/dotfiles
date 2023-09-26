@@ -303,7 +303,12 @@ in {
     hinting.style = "hintfull"; # may cause loss of shape, try lower value?
   };
 
-  # onedrive
+  # use gtk file chooser and stuff
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   services.onedrive = {
     enable = true;
     package = pkgs.unstable.onedrive;
