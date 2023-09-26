@@ -30,16 +30,19 @@ in {
 
   # self-explaining one-liners
   console.keyMap = "de";
-  networking.hostName = "nixos";
   time.timeZone = "Europe/Berlin";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
-  networking.networkmanager.enable = true;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = version;
   #services.printing.enable = true;
 
-  # bootloader
+  networking = {
+    hostName = "nixos";
+    firewall.enable = true;
+    networkmanager.enable = true;
+  };
+
   boot.loader = {
     timeout = 1;
     systemd-boot.enable = true;
@@ -54,7 +57,6 @@ in {
     driSupport32Bit = true;
   };
 
-  # locale stuff
   i18n.defaultLocale  = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -93,7 +95,6 @@ in {
     alsa.support32Bit = true;
   };
 
-  # bluetooth
   hardware.bluetooth = {
     enable = true;
     package = pkgs.bluezFull;
