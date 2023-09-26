@@ -290,6 +290,9 @@ in {
   # for vscode github account login
   services.gnome.gnome-keyring.enable = true;
 
+  # default application for opening directories
+  xdg.mime.defaultApplications."inode/directory" = "pcmanfm.desktop";
+
   # for mounting usb sticks and stuff
   services.gvfs.enable = true;
   services.udisks2.enable = true;
