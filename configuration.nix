@@ -380,7 +380,6 @@ in {
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
-    package = pkgs.openrgb-with-all-plugins;
   };
   systemd.services.openrgb-sleep-wrapper = {
     enable = true;
@@ -393,8 +392,8 @@ in {
       User = username;
       Type = "oneshot";
       RemainAfterExit = "yes";
-      ExecStart = "-${pkgs.openrgb-with-all-plugins}/bin/openrgb -p off";
-      ExecStop  = "-${pkgs.openrgb-with-all-plugins}/bin/openrgb -p default";
+      ExecStart = "-${pkgs.openrgb}/bin/openrgb -p off";
+      ExecStop  = "-${pkgs.openrgb}/bin/openrgb -p default";
     };
     wantedBy = [ "sleep.target" ];
   };
