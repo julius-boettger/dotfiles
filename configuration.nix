@@ -39,8 +39,13 @@ in {
 
   networking = {
     hostName = "nixos";
-    firewall.enable = true;
     networkmanager.enable = true;
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ secrets.barrier.port ];
+    allowedUDPPorts = [];
   };
 
   boot.loader = {

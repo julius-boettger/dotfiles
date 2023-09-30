@@ -53,6 +53,7 @@ Create `/etc/nixos/secrets.nix` and adjust its content to your liking. Template:
 {
     git.name = "username";
     git.email = "example@provider.com";
+    barrier.port = 20000;
     # you can leave this on "test" for now, we will set it later.
     firefox.profile = "test";
 }
