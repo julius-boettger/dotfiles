@@ -54,7 +54,7 @@ in {
     efi.canTouchEfiVariables = true;
   };
 
-  # nvidia stuff
+  # for nvidia gpu
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
   hardware.opengl = {
@@ -163,11 +163,8 @@ in {
     ### gui
     #etcher # currently has insecure dependency
     obs-studio
-    unstable.stacer
-    autokey
     font-manager
     pick-colour-picker
-    refind
     unstable.vscode
     firefox-devedition
     obsidian
@@ -175,16 +172,18 @@ in {
     barrier
     discord
     bitwarden
-    unstable.darktable
     gimp-with-plugins
-    inkscape-with-extensions
     virtualbox
     jetbrains.idea-ultimate
     gparted
-    veracrypt
-    freefilesync
     spotify
-    clipster
+    unstable.stacer # system monitor
+    autokey # x11 desktop automation
+    unstable.darktable # photo editor and raw developer
+    inkscape-with-extensions # vector graphic editor
+    veracrypt # disk encryption
+    freefilesync # file backup
+    clipster # clipboard manager
     unstable.git-credential-manager # gui authentication for git
     vlc # video player
     qview # image viewer
