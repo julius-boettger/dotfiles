@@ -36,6 +36,10 @@ in {
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = version;
   #services.printing.enable = true;
+  boot.extraModprobeConfig = ''
+    # for focusrite usb audio interface
+    ${secrets.modprobe.focusrite}
+  '';
 
   networking = {
     hostName = "nixos";
@@ -184,6 +188,7 @@ in {
     veracrypt # disk encryption
     freefilesync # file backup
     clipster # clipboard manager
+    alsa-scarlett-gui # control center for focusrite usb audio interface
     unstable.git-credential-manager # gui authentication for git
     vlc # video player
     qview # image viewer

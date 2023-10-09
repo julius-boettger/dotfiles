@@ -51,10 +51,14 @@ cp -rf dotfiles/* /etc/nixos
 Create `/etc/nixos/secrets.nix` and adjust its content to your liking. Template:
 ```nix
 {
+    # global git config
     git.name = "username";
     git.email = "example@provider.com";
+    # server port for barrier (can stay like this)
     barrier.port = 20000;
-    # you can leave this on "test" for now, we will set it later.
+    # modprobe config for focusrite usb audio interfaces (can stay like this)
+    modprobe.focusrite = "";
+    # firefox profile to customize (can stay like this for now, will be set later)
     firefox.profile = "test";
 }
 ```
@@ -62,6 +66,8 @@ Create `/etc/nixos/secrets.nix` and adjust its content to your liking. Template:
 Make sure to carefully inspect `configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
 
 Other configuration files may also contain hardware specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
+
+If you are using a USB audio interface from Focusrite: Run `dmesg | grep Focusrite`. If this outputs something like "device disabled, put ... in modprobe.d to enable", then copy the given modprobe config (something like `options snd_usb_audio vid=0x0000 pid=0x0000 device_setup=0`) and use it as the `modprobe.focusrite` string in `/etc/nixos/secrets.nix`.
 
 > If you already have Firefox set up you can skip the next line and go straight to the Firefox customization.
 
