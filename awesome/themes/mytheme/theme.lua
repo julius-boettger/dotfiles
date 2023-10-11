@@ -62,11 +62,12 @@ while true do
     end
 end
 
-local gears = require("gears")
-local lain  = require("lain")
-local awful = require("awful")
-local wibox = require("wibox")
-local dpi   = require("beautiful.xresources").apply_dpi
+local lain    = require("lain")
+local gears   = require("gears")
+local awful   = require("awful")
+local wibox   = require("wibox")
+local naughty = require("naughty")
+local dpi     = require("beautiful.xresources").apply_dpi
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -75,6 +76,7 @@ local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper                                 = theme.dir .. "/wallpapers/" .. variant.wallpaper .. ".png"
+theme.notification_sound                        = theme.dir .. "/notification.wav"
 theme.font                                      = "FiraCode Nerd Font 12"
 theme.border_focus                              = variant.accent_color
 theme.bg_urgent                                 = "#FFFFFF"
@@ -146,6 +148,12 @@ theme.layout_txt_termfair                       = "[termfair]"
 theme.layout_txt_centerfair                     = "[centerfair]"
 
 local markup = lain.util.markup
+
+-- play sound on notification
+function naughty.config.notify_callback(args)
+    awful.spawn.with_shell("aplay " .. theme.notification_sound)
+    return args
+end
 
 -- Textclock
 local mytextclock = wibox.widget.textclock(markup(theme.fg_focus, "%H:%M"))
