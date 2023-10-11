@@ -93,6 +93,12 @@ theme.systray_icon_spacing                      = dpi(5)
 theme.useless_gap                               = dpi(5)
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
+theme.notification_icon_size                    = dpi(100)
+theme.notification_spacing                      = dpi(14)
+theme.notification_bg                           = theme.bg_normal .. "66" -- lower opacity
+theme.notification_fg                           = theme.fg_focus
+theme.notification_border_color                 = colors[variant.wallpaper:sub(2, 2)] -- use second color from background
+theme.notification_shape                        = gears.shape.rounded_rect
 theme.ocol                                      = "<span color='" .. theme.fg_normal .. "'>"
 theme.tasklist_floating                         = theme.ocol .. "*</span>"
 theme.tasklist_maximized                        = theme.ocol .. "+</span>"
@@ -154,6 +160,10 @@ function naughty.config.notify_callback(args)
     awful.spawn.with_shell("aplay " .. theme.notification_sound)
     return args
 end
+
+-- set notification spacing
+naughty.config.padding = theme.notification_spacing
+naughty.config.spacing = theme.notification_spacing
 
 -- Textclock
 local mytextclock = wibox.widget.textclock(markup(theme.fg_focus, "%H:%M"))

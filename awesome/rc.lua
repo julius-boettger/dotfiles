@@ -24,6 +24,8 @@ local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- start background programs (if they are not already running)
 awful.spawn.with_shell("$HOME/.config/awesome/autostart.sh &")
+-- set path to pixmaps on nixos
+naughty.config.icon_dirs = { "/run/current-system/sw/share/pixmaps" }
 
 -- {{{ Error handling
 
