@@ -33,6 +33,7 @@ in {
   time.timeZone = "Europe/Berlin";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
+  boot.kernelParams = [ "quiet" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = version;
   #services.printing.enable = true;
