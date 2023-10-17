@@ -11,10 +11,10 @@ let
   displayname = "Julius";
   # my own packages
   mypkgs = {
-    gitnuro          = pkgs.callPackage ./nix-packages/gitnuro.nix          {};
-    circadian        = pkgs.callPackage ./nix-packages/circadian.nix        {};
-    sddm-sugar-candy = pkgs.callPackage ./nix-packages/sddm-sugar-candy.nix {};
-    symlink-dotfiles = pkgs.callPackage ./nix-packages/symlink-dotfiles.nix {
+    gitnuro          = pkgs.callPackage ./pkgs/gitnuro.nix          {};
+    circadian        = pkgs.callPackage ./pkgs/circadian.nix        {};
+    sddm-sugar-candy = pkgs.callPackage ./pkgs/sddm-sugar-candy.nix {};
+    symlink-dotfiles = pkgs.callPackage ./pkgs/symlink-dotfiles.nix {
       inherit username;
       firefoxProfile = secrets.firefox.profile;
     };
@@ -26,6 +26,13 @@ in {
     ./hardware-configuration.nix
     # home-manager
     "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz"}/nixos"
+  ];
+
+  # set path to configuration.nix
+  nix.nixPath = [
+    "nixos-config=/etc/nixos/nix/configuration.nix"
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
   # self-explaining one-liners
