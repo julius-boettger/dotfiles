@@ -52,6 +52,8 @@ cp -rf dotfiles/* /etc/nixos
 Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Template:
 ```nix
 {
+    # networking host name of this device
+    networking.hostName = "nixos";
     # global git config
     git.name = "username";
     git.email = "example@provider.com";

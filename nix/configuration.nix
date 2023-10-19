@@ -32,7 +32,7 @@ in {
   '';
 
   networking = {
-    hostName = "nixos";
+    hostName = variables.secrets.networking.hostName;
     networkmanager.enable = true;
   };
 
