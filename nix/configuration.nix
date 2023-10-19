@@ -131,7 +131,6 @@ in {
   # packages to install
   environment.systemPackages = with pkgs; [
     ### gui
-    #etcher # currently has insecure dependency
     obs-studio
     font-manager
     pick-colour-picker
@@ -147,6 +146,7 @@ in {
     jetbrains.idea-ultimate
     gparted
     spotify
+    ventoy # create bootable usb sticks
     unstable.stacer # system monitor
     autokey # x11 desktop automation
     unstable.darktable # photo editor and raw developer
