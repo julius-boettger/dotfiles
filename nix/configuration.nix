@@ -9,6 +9,8 @@ in {
     ./hardware-configuration.nix
     # home-manager
     "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
+    # device specific config
+    ./extra-config.nix
   ];
 
   # set path to configuration.nix
@@ -26,10 +28,6 @@ in {
   boot.kernelParams = [ "quiet" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
-  boot.extraModprobeConfig = ''
-    # for focusrite usb audio interface
-    ${variables.secrets.modprobe.focusrite}
-  '';
 
   networking = {
     hostName = variables.secrets.networking.hostName;
@@ -48,14 +46,6 @@ in {
     efi.canTouchEfiVariables = true;
   };
 
-  # for nvidia gpu
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.modesetting.enable = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
-
   i18n.defaultLocale  = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -67,20 +57,6 @@ in {
     LC_PAPER          = "de_DE.UTF-8";
     LC_NAME           = "de_DE.UTF-8";
     LC_TIME           = "de_DE.UTF-8";
-  };
-
-  ### mount data partition
-  # make sure exfat is supported!
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-label/DATA";
-    fsType = "exfat";
-    options = [
-      "nodev"
-      "nosuid"
-	    "nofail"
-      "uid=1000"
-      "gid=100"
-    ];
   };
 
   # sound with pipewire
@@ -266,10 +242,6 @@ in {
     # window manager / desktop environment
     windowManager.awesome.enable = true;
 
-    # monitor config
-    displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x150 --rate 60 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 143.86 --primary --preferred";
-    # mouse sens config
-    libinput.mouse.accelSpeed = "-0.7";
     # display manager
     displayManager.defaultSession = "awesome";
     displayManager.session = [{

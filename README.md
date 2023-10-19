@@ -49,6 +49,8 @@ git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 cp -rf dotfiles/* /etc/nixos
 ```
 
+Take a look at `/etc/nixos/nix/variables.nix` and adjust it to your liking.
+
 Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Template:
 ```nix
 {
@@ -59,18 +61,14 @@ Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Templ
     git.email = "example@provider.com";
     # server port for barrier (can stay like this)
     barrier.port = 20000;
-    # modprobe config for focusrite usb audio interfaces (can stay like this)
-    modprobe.focusrite = "";
     # firefox profile to customize (can stay like this for now, will be set later)
     firefox.profile = "test";
 }
 ```
 
-Make sure to carefully inspect `nix/configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
+Also make sure to either create `/etc/nixos/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/nixos/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
 
 Other configuration files may also contain device specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
-
-If you are using a USB audio interface from Focusrite: Run `dmesg | grep Focusrite`. If this outputs something like "device disabled, put ... in modprobe.d to enable", then copy the given modprobe config (something like `options snd_usb_audio vid=0x0000 pid=0x0000 device_setup=0`) and use it as the `modprobe.focusrite` string in `/etc/nixos/nix/secrets.nix`.
 
 Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/nixos/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
 
