@@ -1,31 +1,14 @@
 { config, pkgs, ... }:
 
-# variable definitions
-let
-  # very system specific or personal stuff
-  secrets = import ./secrets.nix;
-  # nixos state and home-manager version
-  version = "23.05";
-  # username and displayname of only user
-  username = "julius";
-  displayname = "Julius";
-  # my own packages
-  mypkgs = {
-    gitnuro          = pkgs.callPackage ./pkgs/gitnuro.nix          {};
-    circadian        = pkgs.callPackage ./pkgs/circadian.nix        {};
-    sddm-sugar-candy = pkgs.callPackage ./pkgs/sddm-sugar-candy.nix {};
-    symlink-dotfiles = pkgs.callPackage ./pkgs/symlink-dotfiles.nix {
-      inherit username;
-      firefoxProfile = secrets.firefox.profile;
-    };
-  };
+# import config variables that are shared by all of my devices
+let variables = import ./variables.nix pkgs.callPackage;
 in {
   # import other nix files
   imports = [
     # results of automatic hardware scan
     ./hardware-configuration.nix
     # home-manager
-    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${version}.tar.gz"}/nixos"
+    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
   ];
 
   # set path to configuration.nix
@@ -42,11 +25,10 @@ in {
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   boot.kernelParams = [ "quiet" ];
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = version;
-  #services.printing.enable = true;
+  system.stateVersion = variables.version;
   boot.extraModprobeConfig = ''
     # for focusrite usb audio interface
-    ${secrets.modprobe.focusrite}
+    ${variables.secrets.modprobe.focusrite}
   '';
 
   networking = {
@@ -56,7 +38,7 @@ in {
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ secrets.barrier.port ];
+    allowedTCPPorts = [ variables.secrets.barrier.port ];
     allowedUDPPorts = [];
   };
 
@@ -124,13 +106,13 @@ in {
 
   ### user account and groups
   # create new group with username
-  users.groups."${username}" = {};
+  users.groups."${variables.username}" = {};
   # create user
-  users.users."${username}" = {
+  users.users."${variables.username}" = {
     isNormalUser = true;
-    description = displayname;
+    description = variables.displayname;
     extraGroups = [ # add user to groups (if they exist)
-      username
+      variables.username
       "users"
       "wheel"
       "networkmanager"
@@ -257,16 +239,16 @@ in {
 
     ### my own packages
     # command to create symlinks for dotfiles
-    mypkgs.symlink-dotfiles
+    variables.pkgs.symlink-dotfiles
     # updated version of gitnuro of nixpkgs
-    mypkgs.gitnuro
+    variables.pkgs.gitnuro
     # circadian + dependencies
-    mypkgs.circadian
+    variables.pkgs.circadian
     unstable.xssstate
     xprintidle
     pulseaudio # for pactl
     # sddm theme + dependencies
-    mypkgs.sddm-sugar-candy
+    variables.pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
   ];
 
@@ -383,7 +365,7 @@ in {
     serviceConfig = {
       Type = "simple";
       User = "root";
-      ExecStart = "${mypkgs.circadian}/bin/circadian";
+      ExecStart = "${variables.pkgs.circadian}/bin/circadian";
       Restart = "on-failure";
       # modify path for root user to find to nix binaries
       Environment="PATH=/run/current-system/sw/bin";
@@ -415,7 +397,7 @@ in {
       StopWhenUnneeded = "yes";
     };
     serviceConfig = {
-      User = username;
+      User = variables.username;
       Type = "oneshot";
       RemainAfterExit = "yes";
       ExecStart = "-${pkgs.openrgb}/bin/openrgb -p off";
@@ -432,9 +414,9 @@ in {
   # manage stuff in /home/username/
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users."${username}" = {
+  home-manager.users."${variables.username}" = {
 
-  home.stateVersion = version;
+  home.stateVersion = variables.version;
   # i dont know what this does?
   programs.home-manager.enable = true;
 
@@ -520,8 +502,8 @@ in {
   # git config mainly for credential stuff
   home.file.".gitconfig".text = ''
     [user]
-      name = ${secrets.git.name}
-      email = ${secrets.git.email}
+      name = ${variables.secrets.git.name}
+      email = ${variables.secrets.git.email}
     [init]
       defaultBranch = main
     [credential]

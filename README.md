@@ -66,7 +66,7 @@ Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Templ
 
 Make sure to carefully inspect `nix/configuration.nix` and edit it as needed before rebuilding, as you may not want e.g. NVIDIA drivers or the username `julius`.
 
-Other configuration files may also contain hardware specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
+Other configuration files may also contain device specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
 
 If you are using a USB audio interface from Focusrite: Run `dmesg | grep Focusrite`. If this outputs something like "device disabled, put ... in modprobe.d to enable", then copy the given modprobe config (something like `options snd_usb_audio vid=0x0000 pid=0x0000 device_setup=0`) and use it as the `modprobe.focusrite` string in `/etc/nixos/nix/secrets.nix`.
 

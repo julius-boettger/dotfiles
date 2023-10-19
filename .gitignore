@@ -1,6 +1,6 @@
 nix/update/last-run-date
 
-# system specific nix stuff
+# device specific nix stuff
 nix/secrets.nix
 nix/extra-config.nix
 nix/hardware-configuration.nix
