@@ -6,7 +6,7 @@ in {
   # import other nix files
   imports = [
     # results of automatic hardware scan
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     # home-manager
     "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
     # device specific config
@@ -15,7 +15,7 @@ in {
 
   # set path to configuration.nix
   nix.nixPath = [
-    "nixos-config=/etc/nixos/nix/configuration.nix"
+    "nixos-config=/etc/dotfiles/nix/configuration.nix"
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];

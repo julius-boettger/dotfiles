@@ -13,15 +13,15 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 </p>
 
 # Content overview
-> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/nixos/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See [`nix/pkgs/symlink-dotfiles.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix/pkgs/symlink-dotfiles.nix) for the script that should create those symlinks.
+> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/dotfiles/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See [`nix/pkgs/symlink-dotfiles.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix/pkgs/symlink-dotfiles.nix) for the script that should create those symlinks.
 
 | File or directory | Recommended directory | Description |
 |-------------------|-----------------------|-------------|
-| `nix/` | `/etc/nixos/` | All about [NixOS](https://nixos.org) |
-| `nix/configuration.nix` | `/etc/nixos/` | [NixOS](https://nixos.org) configuration |
-| `nix/update/` | `/etc/nixos/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
-| `nix/pkgs/` | `/etc/nixos/` | Local Nix packages |
-| `gitnuro.json` | `/etc/nixos/` | Custom theme for [Gitnuro](https://github.com/JetpackDuba/Gitnuro) |
+| `nix/` | `/etc/dotfiles/` | All about [NixOS](https://nixos.org) |
+| `nix/configuration.nix` | `/etc/dotfiles/` | [NixOS](https://nixos.org) configuration |
+| `nix/update/` | `/etc/dotfiles/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
+| `nix/pkgs/` | `/etc/dotfiles/` | Local Nix packages |
+| `gitnuro.json` | `/etc/dotfiles/` | Custom theme for [Gitnuro](https://github.com/JetpackDuba/Gitnuro) |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (jonaburg-fork)](https://github.com/jonaburg/picom) |
 | `ulauncher/` | `~/.config/` | Configuration for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) including a custom color theme |
@@ -38,20 +38,23 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
 - ⚠️ Knowledge of basic [NixOS](https://nixos.org/) usage is needed. Try it out first before attempting to follow this guide.
 - ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
-- 🚨 There is some stuff in here that is not prepared to be used by anyone else besides me, so you are **strongly advised** to look through these files on your own before using them.
+- ⚠️ There might be some stuff in here that is not prepared to be used by anyone else besides me, so you are advised to look through these files on your own before using them.
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
 
-Then place the content of this repository inside `/etc/nixos/`. This is necessary as many paths in the configuration rely on it. A possible way to do this (assuming you have the necessary permissions) is:
+Then place the content of this repository inside `/etc/dotfiles/`:
 ```shell
 cd /tmp
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
-cp -rf dotfiles/* /etc/nixos
+mkdir -p /etc/dotfiles
+chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
+chmod -R 755 /etc/dotfiles
+cp -rf /tmp/dotfiles/* /etc/dotfiles
 ```
 
-Take a look at `/etc/nixos/nix/variables.nix` and adjust it to your liking.
+Take a look at `/etc/dotfiles/nix/variables.nix` and adjust it to your liking.
 
-Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Template:
+Create `/etc/dotfiles/nix/secrets.nix` and adjust its content to your liking. Template:
 ```nix
 {
     # networking host name of this device
@@ -66,13 +69,13 @@ Create `/etc/nixos/nix/secrets.nix` and adjust its content to your liking. Templ
 }
 ```
 
-Also make sure to either create `/etc/nixos/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/nixos/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
+Also make sure to either create `/etc/dotfiles/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/dotfiles/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
 
 Other configuration files may also contain device specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
 
-Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/nixos/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
+Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/dotfiles/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
 
-Prepare Firefox customization: Run Firefox and set it up to your liking (but don't choose a theme, you will load my own one later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefox.profile` in `/etc/nixos/nix/secrets.nix` instead of `"test"` and rebuild your system, e.g. with `sudo nixos-rebuild switch`.
+Prepare Firefox customization: Run Firefox and set it up to your liking (but don't choose a theme, you will load my own one later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefox.profile` in `/etc/dotfiles/nix/secrets.nix` instead of `"test"` and rebuild your system, e.g. with `sudo nixos-rebuild switch`.
 
 Prepare [AutoKey](https://github.com/autokey/autokey) phrase directory: Run AutoKey (`autokey-gtk`) and create a new folder `~/.config/autokey/phrases`. My AutoKey phrases will be linked to that directory in the next step, but it needs to be created like this first.
 
@@ -82,7 +85,7 @@ Next: `reboot` for good measure.
 
 Set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
 
-Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/nixos/gitnuro.json` and click on "Accept".
+Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/gitnuro.json` and click on "Accept".
 
 Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Run Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
 ```

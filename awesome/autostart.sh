@@ -42,4 +42,4 @@ run clipster --daemon
 openrgb --profile default &
 
 # ask for update on saturdays
-python /etc/nixos/nix/update/update_on_saturday.py &
+python /etc/dotfiles/nix/update/update_on_saturday.py &
