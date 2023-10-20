@@ -38,7 +38,7 @@ run clipster --daemon
 #run input-remapper-control --command autoload
 #run $HOME/AppImages/OneDriveGUI-1.0.2.AppImage
 
-# set default rgb profile
+# set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default &
 
 # ask for update on saturdays

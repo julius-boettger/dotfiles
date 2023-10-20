@@ -44,12 +44,10 @@ First install [NixOS](https://nixos.org/) and set it up far enough to have `git`
 
 Then place the content of this repository inside `/etc/dotfiles/`:
 ```shell
-cd /tmp
-git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
-mkdir -p /etc/dotfiles
+cd /etc
+sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
-chmod -R 755 /etc/dotfiles
-cp -rf /tmp/dotfiles/* /etc/dotfiles
+chmod -R 755 /etc/dotfiles # should already be set like this
 ```
 
 Take a look at `/etc/dotfiles/nix/variables.nix` and adjust it to your liking.
@@ -71,7 +69,7 @@ Create `/etc/dotfiles/nix/secrets.nix` and adjust its content to your liking. Te
 
 Also make sure to either create `/etc/dotfiles/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/dotfiles/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
 
-Other configuration files may also contain device specific code, like `xrandr` commands in `awesome/rc.lua`, which are for my specific monitor setup. These shouldn't break anything right away though (famous last words), so you may fix them as you go.
+If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
 
 Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/dotfiles/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
 
