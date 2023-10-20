@@ -35,6 +35,7 @@ run flameshot # not necessary, but makes startup faster
 run discord --start-minimized
 run autokey-gtk
 run clipster --daemon
+run nm-applet
 #run input-remapper-control --command autoload
 #run $HOME/AppImages/OneDriveGUI-1.0.2.AppImage
 

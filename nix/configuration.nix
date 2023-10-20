@@ -146,6 +146,7 @@ in {
     jetbrains.idea-ultimate
     gparted
     spotify
+    networkmanagerapplet # tray icon for networking connection
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
     autokey # x11 desktop automation
