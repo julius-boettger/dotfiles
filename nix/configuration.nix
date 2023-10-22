@@ -275,11 +275,11 @@ in {
     hinting.style = "hintfull"; # may cause loss of shape, try lower value?
   };
 
-  # use gtk file chooser and stuff
-  xdg.portal = {
+  # use gtk file chooser and stuff (if gnome is not enabled)
+  xdg.portal = if !config.services.xserver.desktopManager.gnome.enable then {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  } else {};
 
   services.onedrive = {
     enable = true;
