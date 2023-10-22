@@ -25,9 +25,8 @@ run() {
 # focus primary screen
 printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
 
-# start background programs
+### start background programs
 run lxpolkit
-run lxqt-powermanagement
 run unclutter --start-hidden --jitter 0 --timeout 3
 run ulauncher --hide-window
 run picom --experimental-backend
@@ -38,6 +37,8 @@ run clipster --daemon
 run nm-applet
 #run input-remapper-control --command autoload
 #run $HOME/AppImages/OneDriveGUI-1.0.2.AppImage
+# has built-in prevention for running more than once
+lxqt-powermanagement &
 
 # set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default &
