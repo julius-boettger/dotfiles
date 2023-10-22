@@ -46,6 +46,11 @@ in {
     efi.canTouchEfiVariables = true;
   };
 
+  # loading animation during boot with plymouth
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze";
+  boot.initrd.systemd.enable = true; # run plymouth early
+
   i18n.defaultLocale  = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_IDENTIFICATION = "de_DE.UTF-8";
