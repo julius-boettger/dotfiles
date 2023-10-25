@@ -1,42 +1,39 @@
 #!/bin/sh
 
 # only run commands if they are not running
-run() {
+run_once() {
     # if there is no process running under the name [first argument]
     if ! pgrep -f "$1"; then
-        # execute all arguments in order
-        "$@" &
+        "$@" & # execute all arguments
     fi
 }
 
 # only run commands if they are not running,
 # but specify the process name to search for
-#run_with_process_name() {
-#    # if there is no process running under the name [first argument]
-#    if ! pgrep -f "$1"; then
-#        ### execute all arguments except for the first one
-#        # remove first argument
-#        shift 1
-#        # execute all arguments
-#        "$@" &
-#    fi
-#}
+run_once_with_pname() {
+    # if there is no process running under the name [first argument]
+    if ! pgrep -f "$1"; then
+        ### execute all arguments except for the first one
+        shift 1 # remove first argument
+        "$@" & # execute all arguments
+    fi
+}
 
 # focus primary screen
 printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
 
-### start background programs
-run lxpolkit
-run unclutter --start-hidden --jitter 0 --timeout 3
-run ulauncher --hide-window
-run picom --experimental-backend
-run flameshot # not necessary, but makes startup faster
-run discord --start-minimized
-run autokey-gtk
-run clipster --daemon
-run nm-applet
-#run input-remapper-control --command autoload
-#run $HOME/AppImages/OneDriveGUI-1.0.2.AppImage
+# start background programs
+run_once lxpolkit
+run_once unclutter --start-hidden --jitter 0 --timeout 3
+run_once ulauncher --hide-window
+run_once picom --experimental-backend
+run_once flameshot # not necessary, but makes startup faster
+run_once autokey-gtk
+run_once clipster --daemon
+run_once nm-applet
+#run_once input-remapper-control --command autoload
+
+# running with "run" is not reliable +
 # has built-in prevention for running more than once
 lxqt-powermanagement &
 
