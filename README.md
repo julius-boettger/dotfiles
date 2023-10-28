@@ -1,3 +1,5 @@
+# This is a development branch for adding Wayland support! You should probably stick to `main` for now.
+
 # [NixOS](https://nixos.org/) configuration and other dotfiles
 > These dotfiles are what I daily drive at home, so you can be sure that they (kind of) work
 
