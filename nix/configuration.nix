@@ -348,7 +348,7 @@ in {
   ### circadian (my own package)
   # create systemd service
   systemd.services.circadian = {
-    enable = true;
+    enable = false; # temporarily disabled because of wayland issues
     wantedBy = [ "multi-user.target" ];
     description = "Circadian power management service";
     serviceConfig = {
