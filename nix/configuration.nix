@@ -299,6 +299,13 @@ in {
     platformTheme = "gtk2";
   };
 
+  # tiling wayland compositor
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    package = pkgs.unstable.hyprland;
+  };
+
   # fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
