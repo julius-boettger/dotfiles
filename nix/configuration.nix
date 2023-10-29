@@ -138,7 +138,6 @@ in {
     ### gui
     obs-studio
     font-manager
-    pick-colour-picker
     unstable.vscode
     firefox-devedition
     obsidian
@@ -154,12 +153,10 @@ in {
     networkmanagerapplet # tray icon for networking connection
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
-    autokey # x11 desktop automation
     unstable.darktable # photo editor and raw developer
     inkscape-with-extensions # vector graphic editor
     veracrypt # disk encryption
     freefilesync # file backup
-    clipster # clipboard manager
     alsa-scarlett-gui # control center for focusrite usb audio interface
     unstable.git-credential-manager # gui authentication for git
     vlc # video player
@@ -192,7 +189,6 @@ in {
     tree
     neofetch
     gphoto2fs # mount camera
-    appimage-run # run app images on nixos
     cbonsai # ascii art bonsai
     asciiquarium # ascii art aquarium
     starship # shell prompt, install as program and package to set PATH
@@ -209,16 +205,21 @@ in {
       virtualenv
     ]))
 
-    ### custom xorg desktop
-    picom-jonaburg # compositor
+    # custom desktop
     ulauncher # launcher
     pcmanfm # file manager
     xarchiver # archive manager (zip, tar, ...)
-    unclutter-xfixes # hide mouse on inactivity
     lxde.lxmenu-data # required for awesome and pcmanfm to discover applications
     lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
+
+    # xorg
+    clipster # clipboard manager
+    autokey # x11 desktop automation
+    picom-jonaburg # compositor
+    unclutter-xfixes # hide mouse on inactivity
+    pick-colour-picker
 
     ### my own packages
     # command to create symlinks for dotfiles
