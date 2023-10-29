@@ -25,7 +25,6 @@ in {
   time.timeZone = "Europe/Berlin";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
-  boot.kernelParams = [ "quiet" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
 
@@ -221,6 +220,10 @@ in {
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
 
+    # wayland
+    xorg.xwininfo # check for xwayland
+    libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
+
     ### my own packages
     # command to create symlinks for dotfiles
     variables.pkgs.symlink-dotfiles
@@ -300,7 +303,9 @@ in {
     platformTheme = "gtk2";
   };
 
-  # tiling wayland compositor
+  ### hyprland (tiling wayland compositor)
+  # make chromium / electron apps use wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
