@@ -1,9 +1,10 @@
 nix/update/last-run-date
 
-# device specific nix stuff
+# device specific configuration
 nix/secrets.nix
 nix/extra-config.nix
 nix/hardware-configuration.nix
+hyprland/extra-config.conf
 
 # ulauncher
 ulauncher/ext_preferences

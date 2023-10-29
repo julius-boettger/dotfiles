@@ -9,6 +9,10 @@ ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
 mkdir -p /home/${username}/.config/neofetch
 ln -sf /etc/dotfiles/neofetch.conf /home/${username}/.config/neofetch/config.conf
 
+# hyprland
+mkdir -p /home/${username}/.config/hypr
+ln -sf /etc/dotfiles/hyprland/hyprland.conf /home/${username}/.config/hypr
+
 # autokey phrases
 mkdir -p /home/${username}/.config/autokey/phrases
 ln -sf /etc/dotfiles/autokey-phrases/{*,.*} /home/${username}/.config/autokey/phrases/
