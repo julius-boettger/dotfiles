@@ -19,21 +19,32 @@ run_once_with_pname() {
     fi
 }
 
-# focus primary screen
-printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
+### only run some commands on xorg/wayland
+# check if number of arguments is >= 1
+if [ $# -ge 1 ]; then
+  if [ "$1" = "xorg" ]; then
+    ### only run on xorg
+    # focus primary screen
+    printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
+    run_once unclutter --start-hidden --jitter 0 --timeout 3
+    run_once clipster --daemon
+    run_once autokey-gtk
+    run_once picom --experimental-backend
+  elif [ "$1" = "wayland" ]; then
+    ### only run on wayland
+    echo "coming soon :)"
+  fi
+fi
 
-# start background programs
+### run display server agnostic commands
+# run programs in background
 run_once lxpolkit
-run_once unclutter --start-hidden --jitter 0 --timeout 3
 run_once ulauncher --hide-window
-run_once picom --experimental-backend
 run_once flameshot # not necessary, but makes startup faster
-run_once autokey-gtk
-run_once clipster --daemon
 run_once nm-applet
 #run_once input-remapper-control --command autoload
 
-# running with "run" is not reliable +
+# running with "run_once" is not reliable +
 # has built-in prevention for running more than once
 lxqt-powermanagement &
 
