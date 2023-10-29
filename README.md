@@ -28,6 +28,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (jonaburg-fork)](https://github.com/jonaburg/picom) |
 | `ulauncher/` | `~/.config/` | Configuration for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) including a custom color theme |
+| `hyprland/hyprland.conf` | `~/.config/hypr/` | [Hyprland](https://hyprland.org/) configuration |
 | `neofetch.conf` | `~/.config/neofetch/` | `config.conf` for configuring [neofetch](https://github.com/dylanaraps/neofetch) |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | Configuration for [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) |
@@ -40,8 +41,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
     - See [Content overview](#content-overview) for explanations of files and directories.
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
 - ⚠️ Knowledge of basic [NixOS](https://nixos.org/) usage is needed. Try it out first before attempting to follow this guide.
-- ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them.
-- ⚠️ There might be some stuff in here that is not prepared to be used by anyone else besides me, so you are advised to look through these files on your own before using them.
+- ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them (specifically the `symlink-dotfiles` command, see what it does [here](https://github.com/julius-boettger/dotfiles/blob/main/nix/pkgs/symlink-dotfiles.nix)).
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
 
@@ -72,7 +72,11 @@ Create `/etc/dotfiles/nix/secrets.nix` and adjust its content to your liking. Te
 
 Also make sure to either create `/etc/dotfiles/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/dotfiles/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
 
+I use a similar `extra-config` file for Hyprland, which you will need to create. You can put your device specific configuration (e.g. [monitor config](https://wiki.hyprland.org/Configuring/Monitors/)) in there or simply keep the file empty, but make sure to create it: `touch /etc/dotfiles/hyprland/extra-config.conf`
+
 If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
+
+It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `/etc/dotfiles/hyprland/extra-config.conf`. If you really want to use it, you will figure it out.
 
 Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/dotfiles/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
 
