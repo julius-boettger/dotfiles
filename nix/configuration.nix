@@ -149,6 +149,7 @@ in {
     jetbrains.idea-ultimate
     gparted
     spotify
+    variables.pkgs.gitnuro # newer version compared to nixpkgs
     networkmanagerapplet # tray icon for networking connection
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
@@ -165,6 +166,9 @@ in {
     dconf # needed for home-manager gtk theming
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
+    # sddm theme + dependency
+    variables.pkgs.sddm-sugar-candy
+    libsForQt5.qt5.qtgraphicaleffects
     # gtk theme
     fluent-gtk-theme
     ### gtk icon theme
@@ -187,6 +191,7 @@ in {
     wget
     tree
     neofetch
+    variables.pkgs.symlink-dotfiles
     gphoto2fs # mount camera
     cbonsai # ascii art bonsai
     asciiquarium # ascii art aquarium
@@ -194,7 +199,7 @@ in {
     fortune # random quote
     lolcat # make things rainbow colored
     pkg-config # https://github.com/sfackler/rust-openssl/issues/1663
-    # languages
+    # compilers + interpreters
     gcc
     jdk
     rustup
@@ -204,7 +209,7 @@ in {
       virtualenv
     ]))
 
-    # custom desktop
+    ### custom desktop
     ulauncher # launcher
     pcmanfm # file manager
     xarchiver # archive manager (zip, tar, ...)
@@ -213,29 +218,20 @@ in {
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
 
-    # xorg
+    ### xorg
     clipster # clipboard manager
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
-
-    # wayland
-    xorg.xwininfo # check for xwayland
-    libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
-
-    ### my own packages
-    # command to create symlinks for dotfiles
-    variables.pkgs.symlink-dotfiles
-    # updated version of gitnuro of nixpkgs
-    variables.pkgs.gitnuro
-    # circadian + dependencies (xorg only)
+    # circadian + dependencies
     variables.pkgs.circadian
     unstable.xssstate
     xprintidle
     pulseaudio # for pactl
-    # sddm theme + dependencies
-    variables.pkgs.sddm-sugar-candy
-    libsForQt5.qt5.qtgraphicaleffects
+
+    ### wayland
+    xorg.xwininfo # check for xwayland
+    libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
   ];
 
   ###########################################
