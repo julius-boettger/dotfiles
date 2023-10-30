@@ -28,7 +28,6 @@ if [ $# -ge 1 ]; then
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
     run_once clipster --daemon
-    run_once autokey-gtk
     run_once picom --experimental-backend
   elif [ "$1" = "wayland" ]; then
     ### only run on wayland
@@ -42,7 +41,6 @@ run_once lxpolkit
 run_once ulauncher --hide-window
 run_once flameshot # not necessary, but makes startup faster
 run_once nm-applet
-#run_once input-remapper-control --command autoload
 
 # running with "run_once" is not reliable +
 # has built-in prevention for running more than once
