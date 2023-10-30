@@ -13,10 +13,6 @@ ln -sf /etc/dotfiles/neofetch.conf /home/${username}/.config/neofetch/config.con
 mkdir -p /home/${username}/.config/hypr
 ln -sf /etc/dotfiles/hyprland/hyprland.conf /home/${username}/.config/hypr
 
-# autokey phrases
-mkdir -p /home/${username}/.config/autokey/phrases
-ln -sf /etc/dotfiles/autokey-phrases/{*,.*} /home/${username}/.config/autokey/phrases/
-
 # firefox theme
 mkdir -p /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome
 ln -sf /etc/dotfiles/firefox.css /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome/userChrome.css

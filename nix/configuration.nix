@@ -215,7 +215,6 @@ in {
 
     # xorg
     clipster # clipboard manager
-    autokey # x11 desktop automation
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
@@ -304,6 +303,18 @@ in {
     enable = true;
     xwayland.enable = true;
     package = pkgs.unstable.hyprland;
+  };
+
+  # use keyd to emulate ctrl+alt being equal to altgr,
+  # like it is using a german keyboard layout on windows
+  services.keyd.enable = true;
+  services.keyd.settings."control+alt" = {
+    "7" = "G-7"; # C-A-7 => {
+    "8" = "G-8"; # C-A-8 => [
+    "9" = "G-9"; # C-A-9 => ]
+    "0" = "G-0"; # C-A-0 => }
+    "-" = "G--"; # C-A-ß => \
+    "]" = "G-]"; # C-A-+ => ~
   };
 
   # fish shell
