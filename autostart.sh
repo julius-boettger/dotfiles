@@ -24,7 +24,7 @@ run_once_with_pname() {
 if [ $# -ge 1 ]; then
   if [ "$1" = "xorg" ]; then
     ### only run on xorg
-    # focus primary screen
+    # focus primary screen on awesome
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
     run_once clipster --daemon
@@ -32,7 +32,7 @@ if [ $# -ge 1 ]; then
     run_once flameshot # not necessary, but makes startup faster
   elif [ "$1" = "wayland" ]; then
     ### only run on wayland
-    echo "coming soon :)"
+    run_once swaync
   fi
 fi
 
