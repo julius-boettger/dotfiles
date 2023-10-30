@@ -29,6 +29,7 @@ if [ $# -ge 1 ]; then
     run_once unclutter --start-hidden --jitter 0 --timeout 3
     run_once clipster --daemon
     run_once picom --experimental-backend
+    run_once flameshot # not necessary, but makes startup faster
   elif [ "$1" = "wayland" ]; then
     ### only run on wayland
     echo "coming soon :)"
@@ -39,7 +40,6 @@ fi
 # run programs in background
 run_once lxpolkit
 run_once ulauncher --hide-window
-run_once flameshot # not necessary, but makes startup faster
 run_once nm-applet
 
 # running with "run_once" is not reliable +
