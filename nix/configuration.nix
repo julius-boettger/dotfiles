@@ -228,7 +228,7 @@ in {
     variables.pkgs.symlink-dotfiles
     # updated version of gitnuro of nixpkgs
     variables.pkgs.gitnuro
-    # circadian + dependencies
+    # circadian + dependencies (xorg only)
     variables.pkgs.circadian
     unstable.xssstate
     xprintidle
@@ -305,6 +305,14 @@ in {
     package = pkgs.unstable.hyprland;
   };
 
+  ### use gtk desktop portal (if gnome is not enabled)
+  # gnome will try to set a conflicting portal if enabled
+  # using gtk desktop portal alongside hyprland desktop portal is also recommended
+  xdg.portal = if !config.services.xserver.desktopManager.gnome.enable then {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  } else {};
+
   # use keyd to emulate ctrl+alt being equal to altgr,
   # like it is using a german keyboard layout on windows
   services.keyd.enable = true;
@@ -356,7 +364,7 @@ in {
     };
   };
 
-  ### circadian (my own package)
+  ### circadian (idle detection on xorg, my own package)
   # create systemd service
   systemd.services.circadian = {
     enable = false; # temporarily disabled because of wayland issues
@@ -413,7 +421,7 @@ in {
     size = 32;
   };
 
-  # flameshot (for screenshots)
+  # flameshot (screenshots on xorg)
   services.flameshot.enable = true;
   services.flameshot.settings.General = {
             uiColor  = "#FC618D";
@@ -489,7 +497,7 @@ in {
       helper = ${pkgs.unstable.git-credential-manager}/bin/git-credential-manager
   '';
 
-  # clipster configuration
+  # clipster (xorg) configuration
   home.file.".config/clipster/clipster.ini".text = ''
     [clipster]
     sync_selections = yes
