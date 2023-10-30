@@ -253,12 +253,7 @@ in {
     windowManager.awesome.enable = true;
 
     # display manager
-    displayManager.defaultSession = "awesome";
-    displayManager.session = [{
-      name = "awesome";
-      start = "awesome";
-      manage = "desktop";
-    }];
+    displayManager.defaultSession = "hyprland";
     displayManager.sddm = {
       enable = true;
       theme = "sugar-candy";
