@@ -231,6 +231,7 @@ in {
     unstable.swww # wallpaper switching with animations
     unstable.waybar # status bar
     unstable.eww-wayland # build custom widgets
+    unstable.grimblast # screenshot
   ];
 
   ###########################################
