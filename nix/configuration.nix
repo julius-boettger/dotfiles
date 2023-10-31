@@ -136,13 +136,11 @@ in {
     firefox-devedition
     obsidian
     libreoffice
-    barrier
     discord
     bitwarden
     gimp-with-plugins
     virtualbox
     jetbrains.idea-ultimate
-    gparted
     spotify
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     networkmanagerapplet # tray icon for networking connection
@@ -204,16 +202,18 @@ in {
       virtualenv
     ]))
 
-    ### custom desktop
+    ### only used with window manager
     ulauncher # launcher
     pcmanfm # file manager
-    xarchiver # archive manager (zip, tar, ...)
-    lxde.lxmenu-data # required for awesome and pcmanfm to discover applications
+    xarchiver # archive manager with pcmanfm integration
+    lxde.lxmenu-data # required to discover applications
     lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
 
-    ### xorg
+    ### only used on xorg
+    barrier
+    gparted
     clipster # clipboard manager
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
@@ -224,8 +224,7 @@ in {
     xprintidle
     pulseaudio # for pactl
 
-    ### wayland
-    xorg.xwininfo # check for xwayland
+    ### only used on wayland
     libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
     variables.pkgs.hyprsome # awesome-like workspaces
     unstable.swaynotificationcenter
