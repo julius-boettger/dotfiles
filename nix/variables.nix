@@ -11,6 +11,7 @@ callPackage: rec {
   # my own packages
   pkgs = {
     gitnuro          = callPackage ./pkgs/gitnuro.nix          {};
+    hyprsome         = callPackage ./pkgs/hyprsome.nix         {};
     circadian        = callPackage ./pkgs/circadian.nix        {};
     sddm-sugar-candy = callPackage ./pkgs/sddm-sugar-candy.nix {};
     symlink-dotfiles = callPackage ./pkgs/symlink-dotfiles.nix {

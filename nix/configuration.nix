@@ -232,6 +232,7 @@ in {
     ### wayland
     xorg.xwininfo # check for xwayland
     libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
+    variables.pkgs.hyprsome # awesome-like workspaces
     unstable.swaynotificationcenter
   ];
 
