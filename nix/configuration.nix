@@ -232,6 +232,7 @@ in {
     unstable.waybar # status bar
     unstable.eww-wayland # build custom widgets
     unstable.grimblast # screenshot
+    unstable.swayosd # osd for volume changes
   ];
 
   ###########################################
