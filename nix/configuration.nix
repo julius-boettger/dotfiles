@@ -114,6 +114,9 @@ in {
     };
   };
 
+  # cant rebuild without this :( some package seems to need it
+  nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
+
   # fonts to install
   fonts.fonts = with pkgs; [
     noto-fonts # ~200 standard modern fonts for all kinds of languages
@@ -155,7 +158,7 @@ in {
     vlc # video player
     qview # image viewer
     audacious # audio player
-    guvcview # camera
+    gnome.cheese # camera
     dconf # needed for home-manager gtk theming
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
