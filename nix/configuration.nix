@@ -159,7 +159,7 @@ in {
     qview # image viewer
     audacious # audio player
     gnome.cheese # camera
-    dconf # needed for home-manager gtk theming
+    gnome.dconf-editor # needed for home-manager gtk theming
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
     # sddm theme + dependency
@@ -207,8 +207,9 @@ in {
 
     ### only used with window manager
     ulauncher # launcher
-    pcmanfm # file manager
-    xarchiver # archive manager with pcmanfm integration
+    gnome.nautilus # file manager
+    gnome.sushi # thumbnails in nautilus
+    xarchiver # archive manager
     lxde.lxmenu-data # required to discover applications
     lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
@@ -268,7 +269,7 @@ in {
   services.gnome.gnome-keyring.enable = true;
 
   # default application for opening directories
-  xdg.mime.defaultApplications."inode/directory" = "pcmanfm.desktop";
+  xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
 
   # for mounting usb sticks and stuff
   services.gvfs.enable = true;
