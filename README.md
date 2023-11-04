@@ -90,6 +90,8 @@ Set your `git` credentials using [`git-credential-manager`](https://github.com/g
 
 Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/gitnuro.json` and click on "Accept".
 
+Set GTK cursor theme for [Hyprland](https://hyprland.org/): Run `nwg-look`, go to "Mouse cursor", select "Capitaine Cursors" and hit "Apply". Don't do anything else! `configuration.nix` should have taken care of it, even if it doesn't show in `nwg-look`.
+
 Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Run Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
 ```
 https://github.com/Ulauncher/ulauncher-emoji
