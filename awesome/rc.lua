@@ -277,7 +277,7 @@ globalkeys = mytable.join(
         {description = "toggle second screen", group = "awesome"}
     ),
     -- open file manager
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("pcmanfm &") end,
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("nautilus &") end,
               {description="file manager", group="launcher"}),
     -- ulauncher
     awful.key({ modkey }, "r", function () awful.spawn("ulauncher-toggle") end,
