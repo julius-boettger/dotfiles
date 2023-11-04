@@ -236,6 +236,7 @@ in {
     unstable.eww-wayland # build custom widgets
     unstable.grimblast # screenshot
     unstable.swayosd # osd for volume changes
+    unstable.nwg-look # set gtk cursor theme
   ];
 
   ###########################################
@@ -401,7 +402,7 @@ in {
   # i dont know what this does?
   programs.home-manager.enable = true;
 
-  # gtk theming
+  ### gtk theming
   gtk = {
     enable = true;
     iconTheme.name = "Papirus-Dark";
@@ -409,8 +410,14 @@ in {
     font.name = "Noto Sans";
     font.size = 10;
   };
+  # cursor
+  gtk.cursorTheme = {
+    name = "Capitaine Cursors";
+    size = 32;
+  };
   home.pointerCursor = {
     gtk.enable = true;
+    x11.enable = true;
     package = pkgs.capitaine-cursors;
     name = "Capitaine Cursors";
     size = 32;
