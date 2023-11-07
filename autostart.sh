@@ -40,11 +40,11 @@ fi
 run_once lxpolkit
 run_once ulauncher --hide-window
 run_once nm-applet
-run_once copyq --start-server hide
 
 # running with "run_once" is not reliable +
 # has built-in prevention for running more than once
 lxqt-powermanagement &
+copyq --start-server hide
 
 # set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default &

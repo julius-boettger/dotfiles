@@ -13,6 +13,10 @@ ln -sf /etc/dotfiles/neofetch.conf /home/${username}/.config/neofetch/config.con
 mkdir -p /home/${username}/.config/hypr
 ln -sf /etc/dotfiles/hyprland/hyprland.conf /home/${username}/.config/hypr
 
+# copyq
+mkdir -p /home/${username}/.config/copyq
+ln -sf /etc/dotfiles/copyq.conf /home/${username}/.config/copyq
+
 # firefox theme
 mkdir -p /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome
 ln -sf /etc/dotfiles/firefox.css /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome/userChrome.css
