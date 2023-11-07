@@ -271,7 +271,6 @@ in {
   xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
 
   # for mounting usb sticks and stuff
-  services.gvfs.enable = true;
   services.udisks2.enable = true;
 
   # make some stuff in alacritty look better...? probably subjective
@@ -421,6 +420,14 @@ in {
   gtk.cursorTheme = {
     name = "capitaine-cursors";
     size = 32;
+  };
+
+  # automatically mount usb sticks with notification and tray icon
+  services.udiskie = {
+    enable = true;
+    automount = true;
+    tray = "never"; # necessary when not having a tray
+    notify = true;
   };
 
   # flameshot (screenshots on xorg)
