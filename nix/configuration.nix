@@ -231,6 +231,7 @@ in {
     ### only used on wayland
     libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
     variables.pkgs.hyprsome # awesome-like workspaces
+    unstable.hyprpicker # color picker
     unstable.swaynotificationcenter
     unstable.swww # wallpaper switching with animations
     unstable.waybar # status bar
@@ -428,6 +429,12 @@ in {
     automount = true;
     tray = "never"; # necessary when not having a tray
     notify = true;
+  };
+
+  # rofi (application launcher)
+  programs.rofi = {
+    enable = true;
+    package = pkgs.unstable.rofi-wayland; # wayland support
   };
 
   # flameshot (screenshots on xorg)
