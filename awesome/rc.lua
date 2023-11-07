@@ -282,8 +282,8 @@ globalkeys = mytable.join(
     -- ulauncher
     awful.key({ modkey }, "r", function () awful.spawn("ulauncher-toggle") end,
               {description="toggle ulauncher", group="launcher"}),
-    -- clipboard history with clipster
-    awful.key({ modkey }, "v", function () awful.spawn("clipster -s") end,
+    -- clipboard history with copyq
+    awful.key({ modkey }, "v", function () awful.spawn("copyq toggle") end,
               {description="clipboard history", group="launcher"}),
     -- suspend
     awful.key({ modkey, "Control", "Shift" }, "s", function () awful.spawn("systemctl suspend") end,

@@ -145,6 +145,7 @@ in {
     virtualbox
     jetbrains.idea-ultimate
     spotify
+    copyq # clipboard manager
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     networkmanagerapplet # tray icon for networking connection
     ventoy # create bootable usb sticks
@@ -218,7 +219,6 @@ in {
     ### only used on xorg
     barrier
     gparted
-    clipster # clipboard manager
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
@@ -504,13 +504,5 @@ in {
     [credential]
       credentialStore = secretservice
       helper = ${pkgs.unstable.git-credential-manager}/bin/git-credential-manager
-  '';
-
-  # clipster (xorg) configuration
-  home.file.".config/clipster/clipster.ini".text = ''
-    [clipster]
-    sync_selections = yes
-    history_size = 0
-    history_update_interval = 0
   '';
 };}

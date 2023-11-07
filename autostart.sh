@@ -27,7 +27,6 @@ if [ $# -ge 1 ]; then
     # focus primary screen on awesome
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
-    run_once clipster --daemon
     run_once picom --experimental-backend
     run_once flameshot # not necessary, but makes startup faster
   elif [ "$1" = "wayland" ]; then
@@ -41,6 +40,7 @@ fi
 run_once lxpolkit
 run_once ulauncher --hide-window
 run_once nm-applet
+run_once copyq --start-server hide
 
 # running with "run_once" is not reliable +
 # has built-in prevention for running more than once
