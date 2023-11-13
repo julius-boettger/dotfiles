@@ -135,7 +135,6 @@ in {
     ### gui
     obs-studio
     font-manager
-    unstable.vscode
     firefox-devedition
     obsidian
     libreoffice
@@ -309,7 +308,7 @@ in {
   # bluez bluetooth gui
   services.blueman.enable = true;
 
-  # for vscode github account login
+  # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
 
   # default application for opening directories
@@ -508,7 +507,7 @@ in {
             italic.style = "Light";
               bold.style = "Bold";
     };
-    # color scheme based on vscode theme "monokai pro (filter spectrum)"
+    # color scheme based on vscodium theme "monokai pro (filter spectrum)"
     colors.primary = {
       background = "#1A191A";
       foreground = "#F7F1FF";
