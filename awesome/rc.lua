@@ -85,7 +85,7 @@ awful.spawn.with_shell(
 
 -- name of directory with theme.lua ("mytheme" => "~/.config/awesome/themes/mytheme/theme.lua")
 local chosen_theme = "mytheme"
-local editor       = "code"
+local editor       = "codium"
 local terminal     = "alacritty"
 local browser      = "firefox"
 local modkey       = "Mod4"
