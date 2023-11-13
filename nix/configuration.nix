@@ -145,6 +145,9 @@ in {
     virtualbox
     jetbrains.idea-ultimate
     spotify
+    gnome.gnome-disk-utility
+    ghdl # vhdl simulator
+    digital # digital circuit simulator
     copyq # clipboard manager
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     networkmanagerapplet # tray icon for networking connection
