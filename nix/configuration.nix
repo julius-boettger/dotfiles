@@ -170,6 +170,48 @@ in {
     # sddm theme + dependency
     variables.pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
+    # codium with extensions
+    (vscode-with-extensions.override {
+      vscode = unstable.vscodium;
+      vscodeExtensions = with vscode-extensions; [
+        # for syntax highlighting / language support
+        bbenoist.nix
+        ms-python.python 
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
+        coolbear.systemd-unit-file
+        ms-azuretools.vscode-docker
+        matthewpi.caddyfile-support
+        # other stuff
+        vscodevim.vim # vim :)
+        ritwickdey.liveserver # quick webserver for testing
+        esbenp.prettier-vscode # code formatter
+        naumovs.color-highlight # highlight color codes with their color
+        ms-python.vscode-pylance # more python
+        christian-kohler.path-intellisense # auto complete paths
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        # solve leetcode problems
+        { name = "vscode-leetcode";
+          publisher = "LeetCode";
+          version = "0.18.1";
+          sha256 = "Ym9Gi9nL0b5dJq0yXbX2NvSW89jIr3UFBAjfGT9BExM="; }
+        # monokai theme
+        { name = "theme-monokai-pro-vscode";
+          publisher = "monokai";
+          version = "1.2.1";
+          sha256 = "tRMuAqI6zqjvOCoESbJfD4fjgnA93pQ06ppvPDuwceQ="; }
+        # view diff between two files => partial diff
+        { name = "partial-diff";
+          publisher = "ryu1kn";
+          version = "1.4.3";
+          sha256 = "0Oiw9f+LLGkUrs2fO8vs7ITSR5TT+5T0yU81ouyedHQ="; }
+        # vhdl syntax highlighting => Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
+        { name = "VerilogHDL";
+          publisher = "mshr-h";
+          version = "1.13.0";
+          sha256 = "axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA="; }
+      ];
+    })
     # gtk icon theme
     ((papirus-icon-theme.override { /*folder-*/color = "black"; })
       # replace default firefox icons with firefox developer edition icons
