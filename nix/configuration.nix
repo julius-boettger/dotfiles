@@ -187,6 +187,7 @@ in {
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
         ms-python.vscode-pylance # more python
+        pkief.material-icon-theme # file icon theme
         christian-kohler.path-intellisense # auto complete paths
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # solve leetcode problems
