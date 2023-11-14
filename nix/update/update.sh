@@ -26,8 +26,6 @@ set_color white
 
 # delete nix generations older than 7 days
 sudo nix-collect-garbage --delete-older-than 7d
-# clean up
-sudo nix-collect-garbage
 
 set_color green
 echo "done! you can close this terminal :)"
