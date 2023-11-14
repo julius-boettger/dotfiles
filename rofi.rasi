@@ -1,15 +1,14 @@
 /* Inspired by rounded theme of https://github.com/lr-tech/rofi-themes-collection */
 
 * {
-    font:    "FiraCode Nerd Font 12";
-    accent0: #948AE3;
-    accent1: #5AD4E6;
-    color1:  #363537;
-    color2:  #262527;
-    color3:  #F7F1FF;
+    accent: #948AE3;
+    color1: #262527;
+    color2: #363537;
+    color3: #F7F1FF;
 
+    font: "FiraCode Nerd Font 12";
+    text-color: @color3;
     background-color: transparent;
-    text-color:       @color3;
 
     margin:  0px;
     padding: 0px;
@@ -20,16 +19,16 @@ window {
     location: center;
     width:    600;
 
-    border-color:   @color1;
+    border-color:   @color2;
     border-radius:  15px;
     border:         3px;
     
-    background-color: @color2;
+    background-color: @color1;
 }
 
 inputbar {
     border-radius:    15px;
-    background-color: @accent0;
+    background-color: @accent;
 
     padding:  20px 20px;
     spacing:  8px;
@@ -37,13 +36,13 @@ inputbar {
 }
 
 entry {
-    text-color: @color2;
+    text-color: @color1;
 }
 
 message {
     margin:        12px 0 0;
     border-radius: 15px;
-    border-color:  @color2;
+    border-color:  @color1;
 }
 
 textbox {
@@ -62,7 +61,7 @@ listview {
 scrollbar {
     cursor:       pointer;
     handle-width: 5px;
-    handle-color: @color1;
+    handle-color: @color2;
 }
 
 element {
@@ -72,7 +71,7 @@ element {
 }
 
 element selected normal, element selected active {
-    background-color: @color1;
+    background-color: @color2;
 }
 
 element-text {
