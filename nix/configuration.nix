@@ -134,7 +134,6 @@ in {
   environment.systemPackages = with pkgs; [
     ### gui
     obs-studio
-    font-manager
     firefox-devedition
     obsidian
     libreoffice
@@ -144,12 +143,9 @@ in {
     virtualbox
     jetbrains.idea-ultimate
     spotify
-    gnome.gnome-disk-utility
     ghdl # vhdl simulator
     digital # digital circuit simulator
-    copyq # clipboard manager
     variables.pkgs.gitnuro # newer version compared to nixpkgs
-    networkmanagerapplet # tray icon for networking connection
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
     unstable.darktable # photo editor and raw developer
@@ -159,10 +155,6 @@ in {
     alsa-scarlett-gui # control center for focusrite usb audio interface
     unstable.git-credential-manager # gui authentication for git
     vlc # video player
-    qview # image viewer
-    audacious # audio player
-    gnome.cheese # camera
-    gnome.dconf-editor # needed for home-manager gtk theming
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
     fluent-gtk-theme # gtk theme
@@ -200,12 +192,12 @@ in {
           publisher = "monokai";
           version = "1.2.1";
           sha256 = "tRMuAqI6zqjvOCoESbJfD4fjgnA93pQ06ppvPDuwceQ="; }
-        # view diff between two files => partial diff
+        # view diff between two files
         { name = "partial-diff";
           publisher = "ryu1kn";
           version = "1.4.3";
           sha256 = "0Oiw9f+LLGkUrs2fO8vs7ITSR5TT+5T0yU81ouyedHQ="; }
-        # vhdl syntax highlighting => Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
+        # vhdl syntax highlighting
         { name = "VerilogHDL";
           publisher = "mshr-h";
           version = "1.13.0";
@@ -255,8 +247,15 @@ in {
       virtualenv
     ]))
 
-    ### only used with window manager
-    ulauncher # launcher
+    ### only used without desktop environment
+    font-manager
+    copyq # clipboard manager
+    networkmanagerapplet # tray icon for networking connection
+    qview # image viewer
+    audacious # audio player
+    gnome.cheese # camera
+    gnome.dconf-editor # needed for home-manager gtk theming
+    gnome.gnome-disk-utility
     gnome.nautilus # file manager
     gnome.sushi # thumbnails in nautilus
     xarchiver # archive manager
@@ -501,6 +500,7 @@ in {
 
   # alacritty (terminal)
   programs.alacritty.enable = true;
+  programs.alacritty.package = pkgs.unstable.alacritty;
   programs.alacritty.settings = {
     window.padding.x = 7;
     window.padding.y = 7;
