@@ -28,10 +28,10 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `wallpapers/nixos/` | `/etc/dotfiles/` | NixOS logo wallpapers in all kinds of color combinations |
 | `awesome/` | `~/.config/` | Configuration for [Awesome](https://github.com/awesomeWM/awesome) including a theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | Configuration for [picom (jonaburg-fork)](https://github.com/jonaburg/picom) |
-| `ulauncher/` | `~/.config/` | Configuration for [Ulauncher](https://github.com/Ulauncher/Ulauncher/) including a custom color theme |
 | `copyq.conf` | `~/.config/copyq/` | [CopyQ](https://github.com/hluk/CopyQ) configuration with custom theme |
 | `hyprland/hyprland.conf` | `~/.config/hypr/` | [Hyprland](https://hyprland.org/) configuration |
 | `neofetch.conf` | `~/.config/neofetch/` | `config.conf` for configuring [neofetch](https://github.com/dylanaraps/neofetch) |
+| `rofi.rasi` | `~/.local/share/rofi/themes/` | Theme for [Rofi](https://github.com/lbonn/rofi) (Wayland fork) |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | Configuration for [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
@@ -92,12 +92,6 @@ Set your `git` credentials using [`git-credential-manager`](https://github.com/g
 Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/gitnuro.json` and click on "Accept".
 
 If you notice that the mouse cursor looks different when hovering over some apps, try setting it with `nwg-look` (Wayland) or `lxappearance` (Xorg).
-
-Finally install a [Ulauncher](https://github.com/Ulauncher/Ulauncher/) extension for emojis: Run Ulauncher with `Super+R` and click on the little gear to access the settings. Then go to the tab EXTENSIONS, click on "Add extension" and entering the following URL: 
-```
-https://github.com/Ulauncher/ulauncher-emoji
-```
-You might need to click on "Reload the list" or restart Ulauncher (`pkill ulauncher && ulauncher &`) for the changes to take effect.
 
 ### And then you should be all set up!
 

@@ -7,11 +7,6 @@ nix/hardware-configuration.nix
 hyprland/extra-config.conf
 wallpapers/other
 
-# ulauncher
-ulauncher/ext_preferences
-ulauncher/extensions.json
-ulauncher/user-themes/mytheme/generated.css
-
 # other awesome themes
 awesome/themes/*/
 !awesome/themes/mytheme

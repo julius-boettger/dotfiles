@@ -210,6 +210,11 @@ in {
           publisher = "mshr-h";
           version = "1.13.0";
           sha256 = "axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA="; }
+        # rasi syntax highlighting
+        { name = "rasi";
+          publisher = "dlasagno";
+          version = "1.0.0";
+          sha256 = "s60alej3cNAbSJxsRlIRE2Qha6oAsmcOBbWoqp+w6fk="; }
       ];
     })
     # gtk icon theme
@@ -478,7 +483,9 @@ in {
   # rofi (application launcher)
   programs.rofi = {
     enable = true;
+    theme = "rofi"; # own theme
     package = pkgs.unstable.rofi-wayland; # wayland support
+    terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
   };
 
   # flameshot (screenshots on xorg)

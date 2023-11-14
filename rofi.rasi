@@ -1,0 +1,85 @@
+/* Inspired by rounded theme of https://github.com/lr-tech/rofi-themes-collection */
+
+* {
+    font:    "FiraCode Nerd Font 12";
+    accent0: #948AE3;
+    accent1: #5AD4E6;
+    color1:  #363537;
+    color2:  #262527;
+    color3:  #F7F1FF;
+
+    background-color: transparent;
+    text-color:       @color3;
+
+    margin:  0px;
+    padding: 0px;
+    spacing: 0px;
+}
+
+window {
+    location: center;
+    width:    600;
+
+    border-color:   @color1;
+    border-radius:  15px;
+    border:         3px;
+    
+    background-color: @color2;
+}
+
+inputbar {
+    border-radius:    15px;
+    background-color: @accent0;
+
+    padding:  20px 20px;
+    spacing:  8px;
+    children: [ entry ];
+}
+
+entry {
+    text-color: @color2;
+}
+
+message {
+    margin:        12px 0 0;
+    border-radius: 15px;
+    border-color:  @color2;
+}
+
+textbox {
+    padding: 8px 24px;
+}
+
+listview {
+    margin:  10px 0;
+    lines:   5;
+    columns: 2;
+    cycle:        false;
+    scrollbar:    true;
+    fixed-height: true;
+}
+
+scrollbar {
+    cursor:       pointer;
+    handle-width: 5px;
+    handle-color: @color1;
+}
+
+element {
+    padding:       12px 16px;
+    spacing:       8px;
+    border-radius: 15px;
+}
+
+element selected normal, element selected active {
+    background-color: @color1;
+}
+
+element-text {
+    highlight: bold;
+}
+
+element-icon {
+    size:           1em;
+    vertical-align: 0.5;
+}
