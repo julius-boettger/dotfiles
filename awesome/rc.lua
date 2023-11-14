@@ -222,10 +222,10 @@ screen.connect_signal("property::geometry", function(s)
     end
 end)
 
--- No borders for maximized clients and Ulauncher
+-- No borders for maximized clients
 screen.connect_signal("arrange", function (s)
     for _, c in pairs(s.clients) do
-        if c.maximized or c.class == "Ulauncher" then
+        if c.maximized then
             c.border_width = 0
         else
             c.border_width = beautiful.border_width
@@ -279,9 +279,9 @@ globalkeys = mytable.join(
     -- open file manager
     awful.key({ modkey }, "e", function () awful.spawn.with_shell("nautilus -w &") end,
               {description="file manager", group="launcher"}),
-    -- ulauncher
-    awful.key({ modkey }, "r", function () awful.spawn("ulauncher-toggle") end,
-              {description="toggle ulauncher", group="launcher"}),
+    -- rofi
+    awful.key({ modkey }, "r", function () awful.spawn.with_shell("rofi -show drun -show-icons") end,
+              {description="run rofi", group="launcher"}),
     -- clipboard history with copyq
     awful.key({ modkey }, "v", function () awful.spawn("copyq toggle") end,
               {description="clipboard history", group="launcher"}),

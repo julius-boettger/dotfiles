@@ -38,7 +38,6 @@ fi
 ### run display server agnostic commands
 # run programs in background
 run_once lxpolkit
-run_once ulauncher --hide-window
 run_once nm-applet
 
 # running with "run_once" is not reliable +
