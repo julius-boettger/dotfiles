@@ -4,7 +4,8 @@
 > These dotfiles are what I daily drive at home, so you can be sure that they (kind of) work
 
 ### Credit
-- My [awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats), which I then modified to fit my taste and needs
+- My [Awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats)
+- My [Rofi](https://github.com/lbonn/rofi) theme is based on the "rounded" theme of [rofi-themes-collection](https://github.com/newmanls/rofi-themes-collection)
 - The wallpapers in `wallpapers/nixos/` are modified versions of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
 # Screenshots / Showcase (version [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0))
