@@ -135,7 +135,7 @@ in {
     ### gui
     obs-studio
     firefox-devedition
-    obsidian
+    unstable.obsidian
     libreoffice
     discord
     bitwarden
@@ -148,7 +148,7 @@ in {
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
-    unstable.darktable # photo editor and raw developer
+    darktable # photo editor and raw developer
     inkscape-with-extensions # vector graphic editor
     veracrypt # disk encryption
     freefilesync # file backup
@@ -265,11 +265,13 @@ in {
     alsa-utils # control volume
 
     ### only used on xorg
-    barrier
-    gparted
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
+    # could/should work on wayland, but doesnt for now :(
+    unstable.insomnia # rest api client
+    barrier
+    gparted
     # circadian + dependencies
     variables.pkgs.circadian
     unstable.xssstate
@@ -282,7 +284,6 @@ in {
     unstable.hyprpicker # color picker
     unstable.swaynotificationcenter
     unstable.swww # wallpaper switching with animations
-    unstable.waybar # status bar
     unstable.eww-wayland # build custom widgets
     unstable.grimblast # screenshot
     unstable.swayosd # osd for volume changes
