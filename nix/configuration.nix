@@ -113,9 +113,6 @@ in {
     };
   };
 
-  # cant rebuild without this :( some package seems to need it
-  nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
-
   # fonts to install
   fonts.packages = with pkgs; [
     noto-fonts # ~200 standard modern fonts for all kinds of languages
