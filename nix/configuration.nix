@@ -71,7 +71,6 @@ in {
 
   hardware.bluetooth = {
     enable = true;
-    package = pkgs.bluezFull;
     settings.General = {
       Experimental = "true"; # "enables dbus experimental interfaces"
       FastConnectable = "true"; # connect faster but draw more power
@@ -118,7 +117,7 @@ in {
   nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
 
   # fonts to install
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts # ~200 standard modern fonts for all kinds of languages
     noto-fonts-cjk-sans # for asian characters
     aileron # modern text with 16 variations
@@ -327,7 +326,7 @@ in {
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
     subpixel.rgba = "vrgb";
-    hinting.style = "hintfull"; # may cause loss of shape, try lower value?
+    hinting.style = "full"; # may cause loss of shape, try lower value?
   };
 
   services.onedrive = {
@@ -362,13 +361,16 @@ in {
   # use keyd to emulate ctrl+alt being equal to altgr,
   # like it is using a german keyboard layout on windows
   services.keyd.enable = true;
-  services.keyd.settings."control+alt" = {
-    "7" = "G-7"; # C-A-7 => {
-    "8" = "G-8"; # C-A-8 => [
-    "9" = "G-9"; # C-A-9 => ]
-    "0" = "G-0"; # C-A-0 => }
-    "-" = "G--"; # C-A-ß => \
-    "]" = "G-]"; # C-A-+ => ~
+  services.keyd.keyboards.default = {
+      ids = [ "*" ];
+      settings."control+alt" = {
+        "7" = "G-7"; # C-A-7 => {
+        "8" = "G-8"; # C-A-8 => [
+        "9" = "G-9"; # C-A-9 => ]
+        "0" = "G-0"; # C-A-0 => }
+        "-" = "G--"; # C-A-ß => \
+        "]" = "G-]"; # C-A-+ => ~
+      };
   };
 
   # fish shell
