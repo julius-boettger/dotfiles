@@ -4,7 +4,7 @@ callPackage: rec {
   # import device specific or personal stuff
   secrets = import ./secrets.nix;
   # nixos state and home-manager version
-  version = "23.05";
+  version = "23.11";
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
