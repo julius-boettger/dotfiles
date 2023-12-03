@@ -21,7 +21,13 @@ set_color white
 sudo nixos-rebuild switch --upgrade-all
 
 set_color green
-echo "completed update. cleaning up..."
+echo "completed update."
+set_color white
+
+read --silent --prompt-str "type any character to start cleaning up: " -n 1
+
+set_color green
+echo "cleaning up..."
 set_color white
 
 # delete nix generations older than 7 days
