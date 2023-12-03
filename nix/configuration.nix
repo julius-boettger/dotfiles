@@ -143,6 +143,7 @@ in {
     virtualbox
     jetbrains.idea-ultimate
     spotify
+    octaveFull # matlab alternative
     ghdl # vhdl simulator
     digital # digital circuit simulator
     variables.pkgs.gitnuro # newer version compared to nixpkgs
@@ -224,10 +225,10 @@ in {
       }))
     
     ### cli
+    jq
     git
+    vim
     bash
-    wget
-    tree
     neofetch
     variables.pkgs.symlink-dotfiles
     gphoto2fs # mount camera
