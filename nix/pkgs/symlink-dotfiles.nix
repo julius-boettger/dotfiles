@@ -4,9 +4,9 @@ ln -sf /etc/dotfiles/.ideavimrc /home/${username}
 ln -sf /etc/dotfiles/awesome    /home/${username}/.config
 ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
 
-# neofetch
-mkdir -p /home/${username}/.config/neofetch
-ln -sf /etc/dotfiles/neofetch.conf /home/${username}/.config/neofetch/config.conf
+# fastfetch
+mkdir -p /home/${username}/.config/fastfetch
+ln -sf /etc/dotfiles/fastfetch/default.jsonc /home/${username}/.config/fastfetch/config.jsonc
 
 # hyprland
 mkdir -p /home/${username}/.config/hypr
