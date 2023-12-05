@@ -31,7 +31,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `picom.conf` | `~/.config/` | Configuration for [picom (jonaburg-fork)](https://github.com/jonaburg/picom) |
 | `copyq.conf` | `~/.config/copyq/` | [CopyQ](https://github.com/hluk/CopyQ) configuration with custom theme |
 | `hyprland/hyprland.conf` | `~/.config/hypr/` | [Hyprland](https://hyprland.org/) configuration |
-| `neofetch.conf` | `~/.config/neofetch/` | `config.conf` for configuring [neofetch](https://github.com/dylanaraps/neofetch) |
+| `fastfetch/` | `~/.config/fastfetch/` | [fastfetch](https://github.com/fastfetch-cli/fastfetch) configurations |
 | `rofi.rasi` | `~/.local/share/rofi/themes/` | Theme for [Rofi](https://github.com/lbonn/rofi) (Wayland fork) |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | Configuration for [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) |
