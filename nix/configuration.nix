@@ -306,6 +306,8 @@ in {
     };
   };
 
+  services.flatpak.enable = true;
+
   # bluez bluetooth gui
   services.blueman.enable = true;
 
