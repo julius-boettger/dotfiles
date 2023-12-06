@@ -24,6 +24,14 @@
     }
   },
 
+  "scripts": {
+    "sound": {
+      "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/notification.wav",
+      "run-on": "receive",
+      "body": "^(?!.*OBSIDIANTEST).*"
+    }
+  },
+
   "widgets": [
     "title",
     "mpris",
@@ -36,13 +44,6 @@
     "mpris": {
       "image-size": 64,
       "image-radius": 10
-    }
-  },
-
-  "scripts": {
-    "sound": {
-      "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/notification.wav",
-      "run-on": "receive"
     }
   }
 }
