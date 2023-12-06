@@ -4,6 +4,10 @@ ln -sf /etc/dotfiles/.ideavimrc /home/${username}
 ln -sf /etc/dotfiles/awesome    /home/${username}/.config
 ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
 
+# swaynotificationcenter
+mkdir -p /home/${username}/.config/swaync
+ln -sf /etc/dotfiles/swaync/* /home/${username}/.config/swaync
+
 # fastfetch
 mkdir -p /home/${username}/.config/fastfetch
 ln -sf /etc/dotfiles/fastfetch/default.jsonc /home/${username}/.config/fastfetch/config.jsonc
