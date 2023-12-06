@@ -16,19 +16,10 @@
   "hide-on-clear": true,
   "hide-on-action": false,
 
-  "notification-visibility": {
-    ".OBSIDIANTEST": {
-      "state": "ignored",
-      "summary": "^.*OneDrive.*$",
-      "body": "^.*OBSIDIANTEST.*$"
-    }
-  },
-
   "scripts": {
     "sound": {
       "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/notification.wav",
-      "run-on": "receive",
-      "body": "^(?!.*OBSIDIANTEST).*"
+      "run-on": "receive"
     }
   },
 
