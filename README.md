@@ -26,6 +26,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `nix/pkgs/` | `/etc/dotfiles/` | Local Nix packages |
 | `gitnuro.json` | `/etc/dotfiles/` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
 | `autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by Xorg window manager or Wayland compositor on startup) |
+| `notification.wav` | `/etc/dotfiles/` | Notification sound |
 | `wallpapers/nixos/` | `/etc/dotfiles/` | NixOS logo wallpapers in all kinds of color combinations |
 | `awesome/` | `~/.config/` | [Awesome](https://github.com/awesomeWM/awesome) configuration including a custom theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `picom.conf` | `~/.config/` | [picom (jonaburg-fork)](https://github.com/jonaburg/picom) configuration |
