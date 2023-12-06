@@ -308,6 +308,9 @@ in {
 
   services.flatpak.enable = true;
 
+  # needed for trash to work in nautilus
+  services.gvfs.enable = true;
+
   # bluez bluetooth gui
   services.blueman.enable = true;
 
