@@ -517,12 +517,14 @@ in {
     window.dynamic_title = true;
     scrolling.multiplier = 5;
     cursor.style.shape = "Underline";
+    # fix interactive features on remote ssh sessions that dont know about alacritty
+    env.TERM = "xterm-256color";
     font = {
       normal.family = "FiraCode Nerd Font";
+           normal.style = "Regular";
+             bold.style = "Bold";
+           italic.style = "Light";
       bold_italic.style = "Bold";
-            normal.style = "Regular";
-            italic.style = "Light";
-              bold.style = "Bold";
     };
     # color scheme based on vscodium theme "monokai pro (filter spectrum)"
     colors.primary = {
