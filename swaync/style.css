@@ -1,0 +1,63 @@
+@define-color cc-bg #262527;
+
+@define-color noti-border-color   #363537;
+@define-color noti-bg             #262527;
+@define-color noti-bg-darker      #262527;
+@define-color noti-bg-hover       #262527;
+@define-color noti-bg-focus       #262527;
+@define-color noti-close-bg       transparent;
+@define-color noti-close-bg-hover #363537;
+
+@define-color text-color #F7F1FF;
+@define-color text-color-disabled #69676C;
+
+@define-color bg-selected #4ECA69;
+
+.notification {
+  border-radius: 15px;
+  box-shadow: none;
+}
+
+.notification-content {
+  padding: 5px 8px;
+  border: 3px solid @noti-border-color;
+}
+
+.notification-row:first-child {
+  margin-top: 7px;
+}
+
+.notification-row:focus,
+.notification-row:hover,
+.blank-window {
+  background: transparent;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.8;
+}
+
+.time {
+  font-size: 15px;
+  background: transparent;
+  margin-right: 15px;
+}
+
+.widget-title {
+  margin: 20px 15px 5px 15px;
+  font-size: 30px;
+}
+.widget-title > button {
+  font-size: 15px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+}
+.widget-title > button:hover {
+  background: @noti-close-bg-hover;
+}
+
+.widget-mpris-player {
+  padding: 8px;
+  margin: 15px 10px 0px 10px;
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://github.com/ErikReider/SwayNotificationCenter/raw/deaf9a68b7425e0a0945a029bcbac767a7a72ae4/src/configSchema.json",
+
+  "positionX": "center",
+  "positionY": "top",
+  "cssPriority": "user",
+  "layer": "overlay",
+  "control-center-layer": "overlay",
+  "control-center-width": 800,
+  "notification-window-width": 600,
+
+  "timeout": 5,
+  "timeout-low": 2,
+  "timeout-critical": 0,
+  "image-visibility": "when-available",
+  "hide-on-clear": true,
+  "hide-on-action": false,
+
+  "notification-visibility": {
+    ".OBSIDIANTEST": {
+      "state": "ignored",
+      "summary": "^.*OneDrive.*$",
+      "body": "^.*OBSIDIANTEST.*$"
+    }
+  },
+
+  "widgets": [
+    "title",
+    "mpris",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "button-text": "Clear"
+    },
+    "mpris": {
+      "image-size": 64,
+      "image-radius": 10
+    }
+  }
+}
