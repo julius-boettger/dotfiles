@@ -225,6 +225,7 @@ in {
     bash
     fastfetch
     variables.pkgs.symlink-dotfiles
+    dunst # for better notify-send with dunstify
     gphoto2fs # mount camera
     cbonsai # ascii art bonsai
     asciiquarium # ascii art aquarium
