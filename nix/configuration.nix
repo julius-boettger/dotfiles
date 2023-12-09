@@ -139,6 +139,7 @@ in {
     virtualbox
     jetbrains.idea-ultimate
     spotify
+    pdfstudio2023
     octaveFull # matlab alternative
     ghdl # vhdl simulator
     digital # digital circuit simulator
