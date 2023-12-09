@@ -14,6 +14,7 @@ callPackage: rec {
     hyprsome         = callPackage ./pkgs/hyprsome.nix         {};
     circadian        = callPackage ./pkgs/circadian.nix        {};
     sddm-sugar-candy = callPackage ./pkgs/sddm-sugar-candy.nix {};
+    swaylock-effects = callPackage ./pkgs/swaylock-effects.nix {};
     symlink-dotfiles = callPackage ./pkgs/symlink-dotfiles.nix {
       inherit username;
       firefoxProfile = secrets.firefox.profile;

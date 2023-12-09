@@ -283,6 +283,9 @@ in {
     unstable.eww-wayland # build custom widgets
     unstable.grimblast # screenshot
     unstable.swayosd # osd for volume changes
+    # lockscreen
+    variables.pkgs.swaylock-effects
+    unstable.swaylock-effects
   ];
 
   ###########################################
@@ -308,6 +311,9 @@ in {
   };
 
   services.flatpak.enable = true;
+
+  # necessary for swaylock-effects
+  security.pam.services.swaylock = {};
 
   # needed for trash to work in nautilus
   services.gvfs.enable = true;
@@ -429,8 +435,8 @@ in {
       User = "root";
       ExecStart = "${variables.pkgs.circadian}/bin/circadian";
       Restart = "on-failure";
-      # modify path for root user to find to nix binaries
-      Environment="PATH=/run/current-system/sw/bin";
+      # modify path for systemd to find to nix binaries
+      Environment = "PATH=/run/current-system/sw/bin";
     };
   };
   # config file
