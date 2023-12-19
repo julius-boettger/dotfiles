@@ -276,15 +276,24 @@ globalkeys = mytable.join(
         end,
         {description = "toggle second screen", group = "awesome"}
     ),
+    -- obsidian
+    awful.key({ modkey }, "o", function () awful.spawn("obsidian") end,
+              {description="obsidian", group="launcher"}),
     -- open file manager
     awful.key({ modkey }, "e", function () awful.spawn.with_shell("nautilus -w &") end,
               {description="file manager", group="launcher"}),
+    -- codium
+    awful.key({ modkey }, "c", function () awful.spawn("codium") end,
+              {description="codium", group="launcher"}),
     -- rofi
     awful.key({ modkey }, "r", function () awful.spawn.with_shell("rofi -show drun -show-icons") end,
-              {description="run rofi", group="launcher"}),
+              {description="rofi", group="launcher"}),
     -- clipboard history with copyq
     awful.key({ modkey }, "v", function () awful.spawn("copyq toggle") end,
               {description="clipboard history", group="launcher"}),
+    -- play/pause current media player
+    awful.key({ modkey }, "dead_acute", function () awful.spawn.with_shell("playerctl play-pause") end,
+              {description="play/pause media", group="awesome"}),
     -- suspend
     awful.key({ modkey, "Control", "Shift" }, "s", function () awful.spawn("systemctl suspend") end,
               {description="suspend", group="awesome"}),
@@ -619,7 +628,7 @@ clientkeys = mytable.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey, "Control" }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
