@@ -27,6 +27,11 @@ in {
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # drivers for aio liquid coolers
+  boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
+  boot.kernelModules = [ "liquidtux" ];
 
   networking = {
     hostName = variables.secrets.networking.hostName;
@@ -140,12 +145,17 @@ in {
     jetbrains.idea-ultimate
     spotify
     pdfstudio2023
+    piper # configure gaming mice graphically with ratbagd
+    protonup-qt # easy ge-proton setup for steam
+    unigine-valley # gpu stress test and benchmark
     octaveFull # matlab alternative
     ghdl # vhdl simulator
     digital # digital circuit simulator
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
     unstable.stacer # system monitor
+    psensor # gui for (lm_)sensors to display system temperatures
+    nvidia-system-monitor-qt # monitor nvidia gpu stuff
     darktable # photo editor and raw developer
     inkscape-with-extensions # vector graphic editor
     veracrypt # disk encryption
@@ -226,6 +236,10 @@ in {
     bash
     fastfetch
     variables.pkgs.symlink-dotfiles
+    playerctl # pause media with mpris
+    liquidctl # liquid cooler control
+    mprime # cpu stress test
+    lm_sensors # system temperature sensor info
     dunst # for better notify-send with dunstify
     gphoto2fs # mount camera
     cbonsai # ascii art bonsai
@@ -312,6 +326,20 @@ in {
   };
 
   services.flatpak.enable = true;
+
+  ### steam
+  programs.steam = {
+    enable = true;
+    package = pkgs.unstable.steam;
+  };
+  # currently needs this
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
+
+  # for configuring gaming mice with piper
+  services.ratbagd.enable = true;
+
+  # remove background noise from mic
+  programs.noisetorch.enable = true;
 
   # necessary for swaylock-effects
   security.pam.services.swaylock = {};
@@ -487,6 +515,9 @@ in {
     name = "capitaine-cursors";
     size = 32;
   };
+
+  # for play/pause current media player (and remembering last active player)
+  services.playerctld.enable = true;
 
   # automatically mount usb sticks with notification and tray icon
   services.udiskie = {

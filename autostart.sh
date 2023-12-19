@@ -43,10 +43,23 @@ run_once nm-applet
 # running with "run_once" is not reliable +
 # has built-in prevention for running more than once
 lxqt-powermanagement &
-copyq --start-server hide
+copyq --start-server hide &
 
 # set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default &
 
 # ask for update on saturdays
 python /etc/dotfiles/nix/update/update_on_saturday.py &
+
+# set nzxt kraken aio pump speed curve
+liquidctl --match kraken initialize
+liquidctl --match kraken set pump speed 30 55 45 100
+
+### set up virtual microphone with noise reduction
+sleep 3 # wait for other sound stuff
+# only execute if noisetorch is not yet active (grep finds 1 result)
+if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -eq 1 ]; then
+  noisetorch -i # init
+  # get wireplumber id of noisetorch mic and set as default
+  wpctl set-default $(wpctl status | grep "NoiseTorch Microphone" | sed "s/[^0-9]*\([0-9]\{2\}\).*/\1/")
+fi
