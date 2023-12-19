@@ -96,6 +96,8 @@ Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open t
 
 If you notice that the mouse cursor looks different when hovering over some apps, try setting it with `nwg-look` (Wayland) or `lxappearance` (Xorg).
 
+You also probably need to set `"window.titleBarStyle": "custom"` in [VSCodium](https://github.com/VSCodium/vscodium)s settings to prevent it from crashing on Wayland (see [this issue](https://github.com/microsoft/vscode/issues/184124)).
+
 ### And then you should be all set up!
 
 Feel free to reach out if there's something missing, misleading or incorrect in this installation guide.
