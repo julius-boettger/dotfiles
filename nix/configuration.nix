@@ -145,6 +145,8 @@ in {
     jetbrains.idea-ultimate
     spotify
     pdfstudio2023
+    pitivi # video editor
+    tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
     protonup-qt # easy ge-proton setup for steam
     unigine-valley # gpu stress test and benchmark
@@ -271,7 +273,6 @@ in {
     gnome.sushi # thumbnails in nautilus
     xarchiver # archive manager
     lxde.lxmenu-data # required to discover applications
-    lxqt.lxqt-powermanagement # turn off monitors on idle
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
     alsa-utils # control volume
 
@@ -283,11 +284,6 @@ in {
     unstable.insomnia # rest api client
     barrier
     gparted
-    # circadian + dependencies
-    variables.pkgs.circadian
-    unstable.xssstate
-    xprintidle
-    pulseaudio # for pactl
 
     ### only used on wayland
     libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
@@ -452,34 +448,6 @@ in {
       read_only_style = "black";
     };
   };
-
-  ### circadian (idle detection on xorg, my own package)
-  # create systemd service
-  systemd.services.circadian = {
-    enable = false; # temporarily disabled because of wayland issues
-    wantedBy = [ "multi-user.target" ];
-    description = "Circadian power management service";
-    serviceConfig = {
-      Type = "simple";
-      User = "root";
-      ExecStart = "${variables.pkgs.circadian}/bin/circadian";
-      Restart = "on-failure";
-      # modify path for systemd to find to nix binaries
-      Environment = "PATH=/run/current-system/sw/bin";
-    };
-  };
-  # config file
-  environment.etc."circadian.conf".text = ''
-    [heuristics]
-    tty_input = no
-    x11_input = yes
-    audio_block = yes
-    max_cpu_load = 1.0
-    process_block = ^dd$,^rsync$,^cp$,^mv$,^balena-etcher.bin$,^gparted$,^nixos-rebuild$,^nix-channel$,^nix-collect-garbage$,^git$,^gh$,^FreeFileSync$,^veracrypt$
-    [actions]
-    idle_time = 5m
-    on_idle = "systemctl suspend"
-  '';
 
   ############################################
   ############################################
