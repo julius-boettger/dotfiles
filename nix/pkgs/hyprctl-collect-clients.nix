@@ -5,7 +5,8 @@
 target_workspace=11
 
 # result string for hyptctl --batch
-result="dispatch workspace $target_workspace;"
+# also switch to target workspace and first workspace for other monitor
+result="dispatch workspace 1; dispatch workspace $target_workspace;"
 
 # for every hyprland client address
 for address in $(hyprctl clients -j | jq -r ".[] | select (.workspace.id != $target_workspace and .workspace.id != -1) | .address"); do
