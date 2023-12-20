@@ -286,7 +286,8 @@ in {
     gparted
 
     ### only used on wayland
-    libsForQt5.qt5.qtwayland qt6.qtwayland  # hyprland must-haves
+    libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
+    variables.pkgs.hyprctl-collect-clients # bring all clients to one workspace
     variables.pkgs.hyprsome # awesome-like workspaces
     unstable.hyprpicker # color picker
     unstable.swaynotificationcenter

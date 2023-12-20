@@ -1,33 +1,33 @@
 { writeShellScriptBin }: writeShellScriptBin "swaylock-effects" ''
-    swaylock \
-    --screenshots \
-    --clock \
-    --indicator \
-    --indicator-idle-visible \
-    --no-unlock-indicator \
-    --ignore-empty-password \
-    --disable-caps-lock-text \
-    --font "FiraCode Nerd Font" \
-    --effect-blur 12x3 \
-    --indicator-radius 210 \
-    --indicator-thickness 10 \
-            --line-color 262527 \
-      --line-clear-color 262527 \
-        --line-ver-color 262527 \
-      --line-wrong-color 262527 \
-       --separator-color 262527 \
-          --inside-color 1A191A77 \
-    --inside-clear-color 1A191A77 \
-      --inside-ver-color 1A191A77 \
-    --inside-wrong-color 1A191A77 \
-            --text-color F7F1FF \
-      --text-clear-color F7F1FF \
-        --text-ver-color F7F1FF \
-      --text-wrong-color F7F1FF \
-            --ring-color 5AD4E6 \
-      --ring-clear-color 5AD4E6 \
-        --ring-ver-color 5AD4E6 \
-           --bs-hl-color FC618D \
-      --ring-wrong-color FC618D \
-          --key-hl-color 948AE3
+swaylock \
+--screenshots \
+--clock \
+--indicator \
+--indicator-idle-visible \
+--no-unlock-indicator \
+--ignore-empty-password \
+--disable-caps-lock-text \
+--font "FiraCode Nerd Font" \
+--effect-blur 12x3 \
+--indicator-radius 210 \
+--indicator-thickness 10 \
+        --line-color 262527 \
+  --line-clear-color 262527 \
+    --line-ver-color 262527 \
+  --line-wrong-color 262527 \
+    --separator-color 262527 \
+      --inside-color 1A191A77 \
+--inside-clear-color 1A191A77 \
+  --inside-ver-color 1A191A77 \
+--inside-wrong-color 1A191A77 \
+        --text-color F7F1FF \
+  --text-clear-color F7F1FF \
+    --text-ver-color F7F1FF \
+  --text-wrong-color F7F1FF \
+        --ring-color 5AD4E6 \
+  --ring-clear-color 5AD4E6 \
+    --ring-ver-color 5AD4E6 \
+        --bs-hl-color FC618D \
+  --ring-wrong-color FC618D \
+      --key-hl-color 948AE3
 ''
