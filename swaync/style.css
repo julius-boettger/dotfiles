@@ -14,13 +14,15 @@
 @define-color bg-selected #4ECA69;
 
 .notification {
+  font-family: 'FiraCode Nerd Font';
   border-radius: 15px;
   box-shadow: none;
+  border: 3px solid @noti-border-color;
 }
 
 .notification-content {
   padding: 5px 8px;
-  border: 3px solid @noti-border-color;
+  border-bottom: 3px solid @noti-border-color;
 }
 
 .notification-row:first-child {
@@ -31,6 +33,10 @@
 .notification-row:hover,
 .blank-window {
   background: transparent;
+}
+
+.control-center {
+  font-family: 'FiraCode Nerd Font';
 }
 
 .control-center-list-placeholder {
@@ -60,4 +66,21 @@
 .widget-mpris-player {
   padding: 8px;
   margin: 15px 10px 0px 10px;
+}
+
+.notification-default-action,
+.notification-action {
+  border: none;
+}
+
+.notification-action:not(:last-child) {
+  border-right: 3px solid @noti-border-color;
+}
+
+.notification-action:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.notification-action:last-child {
+  border-bottom-right-radius: 12px;
 }
