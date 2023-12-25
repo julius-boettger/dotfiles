@@ -55,7 +55,6 @@ liquidctl --match kraken initialize
 liquidctl --match kraken set pump speed 30 55 45 100
 
 ### set up virtual microphone with noise reduction
-sleep 3 # wait for other sound stuff
 # only execute if noisetorch is not yet active (grep finds 1 result)
 if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -eq 1 ]; then
   noisetorch -i # init
