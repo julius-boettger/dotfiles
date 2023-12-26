@@ -22,7 +22,6 @@
 
 .notification-content {
   padding: 5px 8px;
-  border-bottom: 3px solid @noti-border-color;
 }
 
 .notification-row:first-child {
@@ -73,14 +72,18 @@
   border: none;
 }
 
+.notification-action {
+  border-top: 3px solid @noti-border-color;
+}
+
 .notification-action:not(:last-child) {
   border-right: 3px solid @noti-border-color;
 }
 
 .notification-action:first-child {
-  border-bottom-left-radius: 12px;
+  border-bottom-left-radius: 18px;
 }
 
 .notification-action:last-child {
-  border-bottom-right-radius: 12px;
+  border-bottom-right-radius: 18px;
 }
