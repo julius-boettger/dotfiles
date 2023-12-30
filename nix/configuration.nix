@@ -141,7 +141,6 @@ in {
     discord
     bitwarden
     gimp-with-plugins
-    virtualbox
     jetbrains.idea-ultimate
     spotify
     pdfstudio2023
@@ -152,6 +151,7 @@ in {
     unigine-valley # gpu stress test and benchmark
     octaveFull # matlab alternative
     ghdl # vhdl simulator
+    gtkwave # inspect waveforms created by ghdl
     digital # digital circuit simulator
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
@@ -277,6 +277,7 @@ in {
     alsa-utils # control volume
 
     ### only used on xorg
+    lxappearance # manage gtk theming stuff if homemanager fails
     picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
@@ -286,6 +287,7 @@ in {
     gparted
 
     ### only used on wayland
+    nwg-look # manage gtk theming stuff if homemanager fails
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
     variables.pkgs.hyprctl-collect-clients # bring all clients to one workspace
     variables.pkgs.hyprsome # awesome-like workspaces
@@ -324,14 +326,6 @@ in {
 
   services.flatpak.enable = true;
 
-  ### steam
-  programs.steam = {
-    enable = true;
-    package = pkgs.unstable.steam;
-  };
-  # currently needs this
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
   # for configuring gaming mice with piper
   services.ratbagd.enable = true;
 
@@ -356,6 +350,10 @@ in {
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
+  # vm's with virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ variables.username ];
+
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
     subpixel.rgba = "vrgb";
@@ -373,6 +371,14 @@ in {
     style = "gtk2";
     platformTheme = "gtk2";
   };
+
+  ### steam
+  programs.steam = {
+    enable = true;
+    package = pkgs.unstable.steam;
+  };
+  # currently needs this
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
   ### hyprland (tiling wayland compositor)
   # make chromium / electron apps use wayland
@@ -472,7 +478,7 @@ in {
     font.name = "Noto Sans";
     font.size = 10;
   };
-  # cursor (mind the different spelling to set the same theme!)
+  # cursor
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
