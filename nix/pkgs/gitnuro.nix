@@ -6,6 +6,8 @@
 , copyDesktopItems
 , makeDesktopItem
 , jre
+, lib
+, libGL
 }:
 
 stdenv.mkDerivation rec {
@@ -18,7 +20,7 @@ stdenv.mkDerivation rec {
   };
 
   icon = fetchurl {
-    url = "https://raw.githubusercontent.com/JetpackDuba/Gitnuro/main/icons/logo.svg";
+    url = "https://raw.githubusercontent.com/JetpackDuba/Gitnuro/4cfc45069c176f807d9bfb1a7cba410257078d3c/icons/logo.svg";
     hash = "sha256-QGJcWTSJesIpDArOWiS3Kn1iznzeMFzvqS+CuNXh3as=";
   };
 
@@ -31,8 +33,13 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    makeWrapper ${jre}/bin/java $out/bin/gitnuro --add-flags "-jar $src"
+
+    makeWrapper ${jre}/bin/java $out/bin/gitnuro \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ libGL ]}" \
+      --add-flags "-jar $src"
+
     install -Dm444 $icon $out/share/icons/hicolor/scalable/apps/com.jetpackduba.Gitnuro.svg
+
     runHook postInstall
   '';
 
