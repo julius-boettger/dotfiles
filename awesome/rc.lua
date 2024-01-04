@@ -285,6 +285,9 @@ globalkeys = mytable.join(
     -- codium
     awful.key({ modkey }, "c", function () awful.spawn("codium") end,
               {description="codium", group="launcher"}),
+    -- gitnuro
+    awful.key({ modkey }, "g", function () awful.spawn("gitnuro") end,
+              {description="gitnuro", group="launcher"}),
     -- rofi
     awful.key({ modkey }, "r", function () awful.spawn.with_shell("rofi -show drun -show-icons") end,
               {description="rofi", group="launcher"}),
@@ -414,15 +417,15 @@ globalkeys = mytable.join(
         {description = "cycle with previous/go back", group = "client"}),
 
     -- Show/hide wibox
-    awful.key({ modkey }, "g", function ()
-            for s in screen do
-                s.mywibox.visible = not s.mywibox.visible
-                if s.mybottomwibox then
-                    s.mybottomwibox.visible = not s.mybottomwibox.visible
-                end
-            end
-        end,
-        {description = "toggle bar", group = "awesome"}),
+    --awful.key({ modkey }, "g", function ()
+    --        for s in screen do
+    --            s.mywibox.visible = not s.mywibox.visible
+    --            if s.mybottomwibox then
+    --                s.mybottomwibox.visible = not s.mybottomwibox.visible
+    --            end
+    --        end
+    --    end,
+    --    {description = "toggle bar", group = "awesome"}),
 
     -- On-the-fly useless gaps change
     awful.key({ modkey }, "+", function () lain.util.useless_gaps_resize(1) end,
