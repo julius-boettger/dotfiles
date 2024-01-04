@@ -144,6 +144,7 @@ in {
     jetbrains.idea-ultimate
     spotify
     pdfstudio2023
+    bottles # run windows software easily
     pitivi # video editor
     tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
