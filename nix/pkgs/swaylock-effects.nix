@@ -1,5 +1,6 @@
 { writeShellScriptBin }: writeShellScriptBin "swaylock-effects" ''
 swaylock \
+--daemonize \
 --screenshots \
 --clock \
 --indicator \
