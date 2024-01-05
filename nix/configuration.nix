@@ -46,8 +46,11 @@ in {
 
   boot.loader = {
     timeout = 1;
-    systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 20; # number of generations to show
+    };
   };
 
   i18n.defaultLocale  = "en_US.UTF-8";
