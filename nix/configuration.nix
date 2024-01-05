@@ -267,7 +267,7 @@ in {
     networkmanagerapplet # tray icon for networking connection
     qview # image viewer
     audacious # audio player
-    gnome.cheese # camera
+    snapshot # camera
     gnome.dconf-editor # needed for home-manager gtk theming
     gnome.gnome-disk-utility
     gnome.nautilus # file manager
