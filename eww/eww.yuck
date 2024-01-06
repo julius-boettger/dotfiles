@@ -1,0 +1,48 @@
+(defpoll time :interval "1s"
+  "date +%R")
+
+(defpoll date :interval "1s"
+  "date +%d.%m.%y")
+
+(defpoll day :interval "1s"
+  "LC_TIME=en_US.UTF-8 date +%A")
+
+;(defpoll visibility :interval "0.1s" :initial "0"
+;  "hyprctl clients | grep -c 'fullscreen: 1' | { grep -v grep || true; }")
+
+(defwindow desktop-0
+  :monitor 0
+  :stacking "bottom" ; below other sutff / on desktop
+  :exclusive false ; dont reserve WM space
+  :focusable false ; does not need keyboard input
+  :geometry (geometry
+              :anchor "center"
+              ; small window, stretches to fit content
+              :width  "1%"
+              :height "1%")
+  (desktop))
+
+; same window for other monitor, 
+(defwindow desktop-1
+  :monitor 1
+  :stacking "bottom"
+  :exclusive false
+  :focusable false
+  :geometry (geometry
+              :anchor "center"
+              :width  "1%"
+              :height "1%")
+  (desktop))
+
+(defwidget desktop []
+  (box
+    :class "main-box"
+    :space-evenly false
+    :orientation "v"
+    ;:visible {visibility == "0"}
+    (label :class "time" :text time)
+    (box :spacing -35
+      (label :text day )
+      (label :text "" )
+      (label :text date))
+  ))

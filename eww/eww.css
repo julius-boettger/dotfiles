@@ -1,0 +1,15 @@
+window {
+    border-radius: 15px;
+    border: 4px solid rgba(26, 25, 26, 0.1);
+    background-color: rgba(26, 25, 26, 0.01);
+    font-family: "FiraCode Nerd Font";
+    font-size: 25px;
+}
+
+.main-box {
+    margin: 40px;
+}
+
+.time {
+    font-size: 125px;
+}

@@ -221,6 +221,11 @@ in {
           publisher = "dlasagno";
           version = "1.0.0";
           sha256 = "s60alej3cNAbSJxsRlIRE2Qha6oAsmcOBbWoqp+w6fk="; }
+        # yuck syntax highlighting
+        { name = "yuck";
+          publisher = "eww-yuck";
+          version = "0.0.3";
+          sha256 = "DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM="; }
       ];
     })
     # gtk icon theme

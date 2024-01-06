@@ -3,10 +3,8 @@
 ln -sf /etc/dotfiles/.ideavimrc /home/${username}
 ln -sf /etc/dotfiles/awesome    /home/${username}/.config
 ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
-
-# swaynotificationcenter
-mkdir -p /home/${username}/.config/swaync
-ln -sf /etc/dotfiles/swaync/* /home/${username}/.config/swaync
+ln -sf /etc/dotfiles/swaync     /home/${username}/.config
+ln -sf /etc/dotfiles/eww        /home/${username}/.config
 
 # fastfetch
 mkdir -p /home/${username}/.config/fastfetch
