@@ -2,7 +2,7 @@
 
 * {
     accent: #948AE3;
-    color1: #262527;
+    color1: #26252788;
     color2: #363537;
     color3: #F7F1FF;
 
@@ -19,7 +19,7 @@ window {
     location: center;
     width:    600;
 
-    border-color:   @color2;
+    border-color:   @accent;
     border-radius:  15px;
     border:         3px;
     
@@ -28,19 +28,12 @@ window {
 
 inputbar {
     border-radius:    15px;
-    background-color: @accent;
-
     padding:  20px 20px;
     spacing:  8px;
     children: [ entry ];
 }
 
-entry {
-    text-color: @color1;
-}
-
 message {
-    margin:        12px 0 0;
     border-radius: 15px;
     border-color:  @color1;
 }
@@ -50,7 +43,6 @@ textbox {
 }
 
 listview {
-    margin:  10px 0;
     lines:   5;
     columns: 2;
     cycle:        false;
@@ -61,7 +53,7 @@ listview {
 scrollbar {
     cursor:       pointer;
     handle-width: 5px;
-    handle-color: @color2;
+    handle-color: @color1;
 }
 
 element {
@@ -71,7 +63,7 @@ element {
 }
 
 element selected normal, element selected active {
-    background-color: @color2;
+    background-color: @color1;
 }
 
 element-text {
