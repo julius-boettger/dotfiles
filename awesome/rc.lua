@@ -295,7 +295,7 @@ globalkeys = mytable.join(
     awful.key({ modkey }, "v", function () awful.spawn("copyq toggle") end,
               {description="clipboard history", group="launcher"}),
     -- play/pause current media player
-    awful.key({ modkey }, "dead_acute", function () awful.spawn.with_shell("playerctl play-pause") end,
+    awful.key({ modkey }, "pause", function () awful.spawn.with_shell("playerctl play-pause") end,
               {description="play/pause media", group="awesome"}),
     -- suspend
     awful.key({ modkey, "Control", "Shift" }, "s", function () awful.spawn("systemctl suspend") end,
