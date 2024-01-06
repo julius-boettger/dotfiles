@@ -13,3 +13,15 @@ window {
 .time {
     font-size: 125px;
 }
+
+.workspace {
+    color: #fff;
+}
+
+.workspace.occupied {
+    color: #00f;
+}
+
+.workspace.current {
+    color: #f0f;
+}

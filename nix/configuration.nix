@@ -296,6 +296,7 @@ in {
     gparted
 
     ### only used on wayland
+    socat # for hyprland workspaces with eww
     nwg-look # manage gtk theming stuff if homemanager fails
     wev ydotool # find out / send keycodes
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves

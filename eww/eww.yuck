@@ -3,8 +3,17 @@
   ; returns json which eww can parse automatically
   `LC_TIME=en_US.UTF-8 date '+{"time":"%R","date":"%d.%m.%y","day":"%A"}'`) 
 
-(defwindow desktop-0
-  :monitor 0
+(deflisten workspaces
+  ; json array
+  :initial "[]"
+  "~/.config/eww/scripts/workspaces/get-all.sh")
+
+(deflisten current_workspace
+  ; simple number
+  :initial "1"
+  "~/.config/eww/scripts/workspaces/get-active.sh")
+
+(defwindow desktop-0 :monitor 0
   :stacking "bottom" ; below other sutff / on desktop
   :exclusive false ; dont reserve WM space
   :focusable false ; does not need keyboard input
@@ -17,8 +26,7 @@
 
 ; same window for other monitor, because ; spawning on other
 ; monitor with `eww open desktop-0 --screen 1` doesn't work...?
-(defwindow desktop-1
-  :monitor 1
+(defwindow desktop-1 :monitor 1
   :stacking "bottom"
   :exclusive false
   :focusable false
@@ -33,9 +41,22 @@
     :class "main-box"
     :space-evenly false
     :orientation "v"
+    (workspaces)
     (label :class "time" :text {date.time})
     (box :spacing -35
       (label :text {date.day})
       (label :text "") ; nixos snowflake nerdfont character
       (label :text {date.date}))
   ))
+
+(defwidget workspaces []
+  (eventbox
+    ;:class "workspaces"
+    :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current_workspace}"
+    (box
+      (for workspace in workspaces
+        (eventbox
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box
+            :class "workspace ${workspace.id == current_workspace ? "current" : workspace.windows > 0 ? "occupied" : ""}"
+            (label :text "${workspace.id}")))))))
