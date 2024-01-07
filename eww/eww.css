@@ -1,7 +1,7 @@
 window {
     border-radius: 15px;
     border: 4px solid rgba(26, 25, 26, 0.1);
-    background-color: rgba(26, 25, 26, 0.01);
+    background-color: rgba(26, 25, 26, 0.005);
     font-family: "FiraCode Nerd Font";
     font-size: 25px;
 }
@@ -12,16 +12,4 @@ window {
 
 .time {
     font-size: 125px;
-}
-
-.workspace.empty {
-    color: #0ff;
-}
-
-.workspace.occupied {
-    color: #00f;
-}
-
-.workspace.current {
-    color: #f0f;
 }

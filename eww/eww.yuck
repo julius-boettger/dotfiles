@@ -7,7 +7,7 @@
   :initial "[]"
   "~/.config/eww/scripts/workspaces/get-all.sh")
 
-(deflisten current_workspace
+(deflisten current-workspace
   ; current hyprland workspace as integer
   :initial 1
   "~/.config/eww/scripts/workspaces/get-active.sh")
@@ -51,11 +51,11 @@
 ; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
 (defwidget workspaces [digits]
   (eventbox
-    :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current_workspace}"
+    :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current-workspace}"
     (box
       (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box
-            :class "workspace ${workspace.id == current_workspace ? "current" : workspace.occupied ? "occupied" : "empty"}"
-            (label :text "${workspace.id}")))))))
+          :cursor "pointer"
+          :class "workspace"
+          (label :text {workspace.id == current-workspace ? "󰟒" : workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
