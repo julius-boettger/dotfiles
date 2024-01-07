@@ -1,16 +1,15 @@
 (defpoll date :interval "1s"
-  ; ` = ' = "
-  ; returns json which eww can parse automatically
+  ; json string which eww can parse automatically (` = ' = ")
   `LC_TIME=en_US.UTF-8 date '+{"time":"%R","date":"%d.%m.%y","day":"%A"}'`) 
 
 (deflisten workspaces
-  ; json array
+  ; json array with info about all hyprland workspaces
   :initial "[]"
   "~/.config/eww/scripts/workspaces/get-all.sh")
 
 (deflisten current_workspace
-  ; simple number
-  :initial "1"
+  ; current hyprland workspace as integer
+  :initial 1
   "~/.config/eww/scripts/workspaces/get-active.sh")
 
 (defwindow desktop-0 :monitor 0
@@ -22,9 +21,9 @@
               ; small window, stretches to fit content
               :width  "1%"
               :height "1%")
-  (desktop))
+  (desktop :workspace-digits 1)) ; hyprsome workspaces 1-9
 
-; same window for other monitor, because ; spawning on other
+; same window for other monitor, because spawning on other
 ; monitor with `eww open desktop-0 --screen 1` doesn't work...?
 (defwindow desktop-1 :monitor 1
   :stacking "bottom"
@@ -34,29 +33,29 @@
               :anchor "center"
               :width  "1%"
               :height "1%")
-  (desktop))
+  (desktop :workspace-digits 2)) ; hyprsome workspaces 11-19
 
-(defwidget desktop []
+; workspace-digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
+(defwidget desktop [workspace-digits] 
   (box
     :class "main-box"
     :space-evenly false
     :orientation "v"
-    (workspaces)
+    (workspaces :digits workspace-digits)
     (label :class "time" :text {date.time})
     (box :spacing -35
       (label :text {date.day})
       (label :text "") ; nixos snowflake nerdfont character
-      (label :text {date.date}))
-  ))
+      (label :text {date.date}))))
 
-(defwidget workspaces []
+; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
+(defwidget workspaces [digits]
   (eventbox
-    ;:class "workspaces"
     :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current_workspace}"
     (box
-      (for workspace in workspaces
+      (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
           (box
-            :class "workspace ${workspace.id == current_workspace ? "current" : workspace.windows > 0 ? "occupied" : ""}"
+            :class "workspace ${workspace.id == current_workspace ? "current" : workspace.occupied ? "occupied" : "empty"}"
             (label :text "${workspace.id}")))))))

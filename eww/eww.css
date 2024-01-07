@@ -14,8 +14,8 @@ window {
     font-size: 125px;
 }
 
-.workspace {
-    color: #fff;
+.workspace.empty {
+    color: #0ff;
 }
 
 .workspace.occupied {
