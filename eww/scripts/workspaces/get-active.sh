@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # from https://wiki.hyprland.org/0.34.0/Useful-Utilities/Status-Bars/#configuration
 
 hyprctl monitors -j | jq '.[] | select(.focused) | .activeWorkspace.id'
