@@ -3,13 +3,22 @@ window {
     border: 4px solid rgba(26, 25, 26, 0.1);
     background-color: rgba(26, 25, 26, 0.005);
     font-family: "FiraCode Nerd Font";
-    font-size: 25px;
+    font-size: 22.5px;
+    color: #363537;
 }
 
 .main-box {
-    margin: 40px;
+    margin: 20px 80px;
 }
 
 .time {
-    font-size: 125px;
+    font-size: 100px;
+}
+
+.inner-circle {
+    color: transparent;
+}
+
+.outer-circle {
+    background: rgba(26, 25, 26, 0.1);
 }

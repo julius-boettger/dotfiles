@@ -2,6 +2,11 @@
   ; json string which eww can parse automatically (` = ' = ")
   `LC_TIME=en_US.UTF-8 date '+{"time":"%R","date":"%d.%m.%y","day":"%A"}'`) 
 
+(defpoll ram :interval "1s"
+  ; in MB and percent
+  :initial '{"total":0,"used":0,"used_percent":0}'
+  "~/.config/eww/scripts/ram-usage.sh") 
+
 (deflisten workspaces
   ; json array with info about all hyprland workspaces
   :initial "[]"
@@ -43,9 +48,10 @@
     :orientation "v"
     (workspaces :digits workspace-digits)
     (label :class "time" :text {date.time})
-    (box :spacing -35
+    (box :spacing -10
       (label :text {date.day})
-      (label :text "") ; nixos snowflake nerdfont character
+      (ram)
+      ;(label :text "" :style "margin-right: 0.4em") ; nixos snowflake nerdfont character
       (label :text {date.date}))))
 
 ; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
@@ -56,6 +62,20 @@
       (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
-          :cursor "pointer"
           :class "workspace"
           (label :text {workspace.id == current-workspace ? "󰟒" : workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
+
+(defwidget ram []
+  (overlay
+    :tooltip "${ram.used} / ${ram.total} MB"
+    (circular-progress
+      :class "inner-circle"
+      :value 100
+      :thickness 30)
+    (circular-progress
+      :class "outer-circle"
+      :value {ram.used_percent}
+      :start-at 75
+      :thickness 5)
+    (label :text "" :class "circle-text" :style "margin-right: 0.3em") ; memory chip nerdfont character
+  ))
