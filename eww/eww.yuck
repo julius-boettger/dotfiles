@@ -7,6 +7,11 @@
   :initial '{"total":0,"used":0,"used_percent":0}'
   "~/.config/eww/scripts/ram-usage.sh") 
 
+(defpoll cpu :interval "1s"
+  ; in percent
+  :initial '{"actual":0,"logarithmic":0}'
+  "~/.config/eww/scripts/cpu-usage.sh") 
+
 (deflisten workspaces
   ; json array with info about all hyprland workspaces
   :initial "[]"
@@ -50,8 +55,15 @@
     (label :class "time" :text {date.time})
     (box :spacing -10
       (label :text {date.day})
-      (ram)
+      (circular-progress-fancy
+        :tooltip "${ram.used} / ${ram.total} MB"
+        :value {ram.used_percent}
+        :text "" :style "margin-right: 0.3em") ; memory chip nerdfont character
       ;(label :text "" :style "margin-right: 0.4em") ; nixos snowflake nerdfont character
+      (circular-progress-fancy
+        :tooltip "${cpu.actual}%"
+        :value {cpu.logarithmic}
+        :text "" :style "margin-right: 0.35em") ; cpu nerdfont character
       (label :text {date.date}))))
 
 ; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
@@ -65,17 +77,16 @@
           :class "workspace"
           (label :text {workspace.id == current-workspace ? "󰟒" : workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
 
-(defwidget ram []
+(defwidget circular-progress-fancy [tooltip value text style]
   (overlay
-    :tooltip "${ram.used} / ${ram.total} MB"
+    :tooltip tooltip
     (circular-progress
       :class "inner-circle"
       :value 100
-      :thickness 30)
+      :thickness 25)
     (circular-progress
       :class "outer-circle"
-      :value {ram.used_percent}
+      :value value
       :start-at 75
-      :thickness 5)
-    (label :text "" :class "circle-text" :style "margin-right: 0.3em") ; memory chip nerdfont character
-  ))
+      :thickness 3)
+    (label :class "circle-text" :text text :style style)))
