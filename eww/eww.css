@@ -7,6 +7,11 @@ window {
     color: #262527;
 }
 
+.circle-condition-text {
+    font-size: 15px;
+    margin-top: 2.5px;
+}
+
 .main-box {
     margin: 20px;
 }
