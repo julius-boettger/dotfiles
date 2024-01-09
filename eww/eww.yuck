@@ -49,33 +49,46 @@
 (defwidget desktop [workspace-digits] 
   (box
     :class "main-box"
-    :space-evenly false
     :orientation "v"
-    (workspaces :digits workspace-digits)
-    (label :class "time" :text {date.time})
-    (box :spacing -10
-      (label :text {date.day})
-      (circular-progress-fancy
-        :tooltip "${ram.used} / ${ram.total} MB"
-        :value {ram.used_percent}
-        :text "" :style "margin-right: 0.3em") ; memory chip nerdfont character
-      ;(label :text "" :style "margin-right: 0.4em") ; nixos snowflake nerdfont character
-      (circular-progress-fancy
-        :tooltip "${cpu.actual}%"
-        :value {cpu.logarithmic}
-        :text "" :style "margin-right: 0.35em") ; cpu nerdfont character
-      (label :text {date.date}))))
+    :space-evenly false
+    :spacing -10
+    (box
+      :space-evenly false
+      :spacing 15
+      (box
+        :space-evenly false
+        :spacing 10
+        (circular-progress-fancy
+          :tooltip "${cpu.actual}%"
+          :value {cpu.logarithmic}
+          :text "" :style "padding-right: 0.35em") ; cpu nerdfont character
+        (circular-progress-fancy
+          :tooltip "${ram.used} / ${ram.total} MB"
+          :value {ram.used_percent}
+          :text "" :style "padding-right: 0.3em")) ; memory chip nerdfont character
+      (label :class "time" :text {date.time})
+      (box
+        :orientation "v"
+        :spacing -50
+        (label :text {date.day})
+        (label :text {date.date})))
+    (workspaces :digits workspace-digits)))
 
 ; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
 (defwidget workspaces [digits]
   (eventbox
     :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current-workspace}"
     (box
+      :halign "center"
+      :space-evenly false
+      :spacing 28 ; try to align first workspace with cpu usage icon above
       (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
           :class "workspace"
-          (label :text {workspace.id == current-workspace ? "󰟒" : workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
+          (label
+            :style "padding-right: 0.25em"
+            :text {workspace.id == current-workspace ? "󰟒" : workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
 
 (defwidget circular-progress-fancy [tooltip value text style]
   (overlay

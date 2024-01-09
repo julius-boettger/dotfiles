@@ -4,11 +4,11 @@ window {
     background-color: rgba(26, 25, 26, 0.005);
     font-family: "FiraCode Nerd Font";
     font-size: 22.5px;
-    color: #363537;
+    color: #262527;
 }
 
 .main-box {
-    margin: 20px 80px;
+    margin: 20px;
 }
 
 .time {
