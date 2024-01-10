@@ -1,17 +1,17 @@
-(defpoll date :interval "1s"
+(defpoll date :interval "1m"
   ; json string which eww can parse automatically (` = ' = ")
-  :initial '{"time":"00:00","date":"01.01.2000","day":"Monday"}'
-  `LC_TIME=en_US.UTF-8 date '+{"time":"%R","date":"%d.%m.%y","day":"%A"}'`) 
+  :initial '{"date":"01.01.2000","day":"Monday"}'
+  `LC_TIME=en_US.UTF-8 date '+{"date":"%d.%m.%y","day":"%A"}'`) 
 
 (defpoll ram :interval "1s"
   ; in MB and percent
   :initial '{"total":0,"used":0,"used_percent":0}'
   "~/.config/eww/scripts/ram-usage.sh") 
 
-(defpoll cpu :interval "1s"
+(defpoll logarithmic-cpu :interval "1s"
   ; in percent
-  :initial '{"actual":0,"logarithmic":0}'
-  "~/.config/eww/scripts/cpu-usage.sh") 
+  :initial 0
+  "~/.config/eww/scripts/logarithmic-cpu.sh") 
 
 (deflisten workspaces
   ; json array with info about all hyprland workspaces
@@ -60,18 +60,21 @@
         :space-evenly false
         :spacing 15
         (circular-progress-fancy
-          :tooltip "${cpu.actual}%"
-          :value {cpu.logarithmic}
+          :tooltip "${round(EWW_CPU.avg, 2)}%"
+          :value logarithmic-cpu
           :text "" :style "padding-right: 0.35em" ; cpu nerdfont character
-          :condition        {cpu.actual < 10}
-          :condition-text "${cpu.actual}%")
+          :condition       {EWW_CPU.avg < 10}
+          :condition-text "${round(EWW_CPU.avg, 1)}%")
         (circular-progress-fancy
           :tooltip "${ram.used} / ${ram.total} MB"
           :value {ram.used_percent}
           :text "" :style "padding-right: 0.3em" ; memory chip nerdfont character
           :condition      {ram.used < 1000}
           :condition-text {ram.used}))
-      (label :class "time" :text {date.time})
+      (label
+        :class "time"
+        :text {formattime(EWW_TIME, "%R")}
+        :tooltip {formattime(EWW_TIME, "%T")})
       (box
         :orientation "v"
         :spacing -50
