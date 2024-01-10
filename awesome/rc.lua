@@ -269,7 +269,7 @@ globalkeys = mytable.join(
                 awful.spawn.with_shell("sleep 1 && picom --experimental-backend")
             else
                 -- turn on second screen (by applying the right config)
-                awful.spawn.with_shell("xrandr --output HDMI-0 --mode 1920x1080 --pos 0x150 --rate 60 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 143.86 --primary --preferred")
+                awful.spawn.with_shell("xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred")
             end
             -- flip toggle variable
             julius_monitor_toggle = not julius_monitor_toggle
