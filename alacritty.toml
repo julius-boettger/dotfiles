@@ -1,0 +1,50 @@
+# color scheme based on vscodium theme "monokai pro (filter spectrum)"
+[colors.primary]
+background = "#262527"
+foreground = "#F7F1FF"
+[colors.normal]
+black   = "#262527"
+blue    = "#5AA0E6"
+cyan    = "#5AD4E6"
+green   = "#7BD88F"
+magenta = "#948AE3"
+red     = "#FC618D"
+white   = "#F7F1FF"
+yellow  = "#FD9353"
+[colors.bright]
+black   = "#99979B"
+blue    = "#2180DE"
+cyan    = "#37CBE1"
+green   = "#4ECA69"
+magenta = "#7C6FDC"
+red     = "#FB376F"
+white   = "#FFFFFF"
+yellow  = "#FD721C"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+[font.italic]
+style = "Light"
+[font.bold]
+style = "Bold"
+[font.bold_italic]
+style = "Bold"
+
+[cursor.style]
+shape = "Underline"
+
+[env]
+# fix interactive features on remote ssh sessions that dont know about alacritty
+TERM = "xterm-256color"
+
+[scrolling]
+multiplier = 5
+
+[window]
+dynamic_title = true
+opacity = 0.53
+
+[window.padding]
+x = 7
+y = 7

@@ -147,6 +147,7 @@ in {
     jetbrains.idea-ultimate
     spotify
     pdfstudio2023
+    unstable.alacritty # terminal
     bottles # run windows software easily
     pitivi # video editor
     tenacity # audio recorder and editor
@@ -530,52 +531,6 @@ in {
     showHelp         = false;
     startupLaunch    = false;
     disabledTrayIcon = true;
-  };
-
-  # alacritty (terminal)
-  programs.alacritty.enable = true;
-  programs.alacritty.package = pkgs.unstable.alacritty;
-  programs.alacritty.settings = {
-    window.padding.x = 7;
-    window.padding.y = 7;
-    window.opacity = 0.5;
-    window.dynamic_title = true;
-    scrolling.multiplier = 5;
-    cursor.style.shape = "Underline";
-    # fix interactive features on remote ssh sessions that dont know about alacritty
-    env.TERM = "xterm-256color";
-    font = {
-      normal.family = "FiraCode Nerd Font";
-           normal.style = "Regular";
-             bold.style = "Bold";
-           italic.style = "Light";
-      bold_italic.style = "Bold";
-    };
-    # color scheme based on vscodium theme "monokai pro (filter spectrum)"
-    colors.primary = {
-      background = "#1A191A";
-      foreground = "#F7F1FF";
-    };
-    colors.normal = {
-      black   = "#363537";
-      red     = "#FC618D";
-      green   = "#7BD88F";
-      yellow  = "#FD9353";
-      blue    = "#5AA0E6";
-      magenta = "#948AE3";
-      cyan    = "#5AD4E6";
-      white   = "#F7F1FF";
-    };
-    colors.bright = {
-      black   = "#69676C";
-      red     = "#FB376F";
-      green   = "#4ECA69";
-      yellow  = "#FD721C";
-      blue    = "#2180DE";
-      magenta = "#7C6FDC";
-      cyan    = "#37CBE1";
-      white   = "#F7F1FF";
-    };
   };
 
   # onedrive configuration

@@ -6,6 +6,10 @@ ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
 ln -sf /etc/dotfiles/swaync     /home/${username}/.config
 ln -sf /etc/dotfiles/eww        /home/${username}/.config
 
+# alacritty
+mkdir -p /home/${username}/.config/alacritty
+ln -sf /etc/dotfiles/alacritty.toml /home/${username}/.config/alacritty
+
 # fastfetch
 mkdir -p /home/${username}/.config/fastfetch
 ln -sf /etc/dotfiles/fastfetch/default.jsonc /home/${username}/.config/fastfetch/config.jsonc
