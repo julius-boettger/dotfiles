@@ -58,7 +58,7 @@
       :spacing 15
       (box
         :space-evenly false
-        :spacing 25
+        :spacing 12
         (circular-progress-fancy
           :tooltip "${round(EWW_CPU.avg, 2)}%"
           :value logarithmic-cpu
