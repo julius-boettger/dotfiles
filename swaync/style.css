@@ -1,23 +1,26 @@
-@define-color cc-bg #262527;
-
-@define-color noti-border-color   #363537;
-@define-color noti-bg             #262527;
-@define-color noti-bg-darker      #262527;
-@define-color noti-bg-hover       #262527;
-@define-color noti-bg-focus       #262527;
+@define-color cc-bg               rgba(36, 35, 37, 0.53);
+@define-color actual-noti-bg      rgba(36, 35, 37, 0.53);
+@define-color noti-close-bg-hover rgba(36, 35, 37, 0.2);
+@define-color noti-action-bg      rgba(36, 35, 37, 0.2);
+@define-color noti-center-border  rgba(255, 255, 255, 0.2);
 @define-color noti-close-bg       transparent;
-@define-color noti-close-bg-hover #363537;
+@define-color noti-bg             transparent;
+@define-color noti-bg-darker      transparent;
+@define-color noti-bg-hover       transparent;
+@define-color noti-bg-focus       transparent;
 
 @define-color text-color #F7F1FF;
 @define-color text-color-disabled #69676C;
 
-@define-color bg-selected #4ECA69;
+@define-color noti-border-color  #5AA0E6;
+@define-color bg-selected        #5AA0E6;
 
 .notification {
   font-family: 'FiraCode Nerd Font';
   border-radius: 15px;
   box-shadow: none;
   border: 3px solid @noti-border-color;
+  background: @actual-noti-bg;
 }
 
 .notification-content {
@@ -27,25 +30,42 @@
 .notification-row:first-child {
   margin-top: 7px;
 }
-
+.notification *,
+.control-center .notification,
 .notification-row:focus,
 .notification-row:hover,
 .blank-window {
   background: transparent;
 }
 
-.control-center {
-  font-family: 'FiraCode Nerd Font';
+.notification-default-action,
+.notification-action {
+  border: none;
 }
 
-.control-center-list-placeholder {
-  opacity: 0.8;
+.notification-action:not(:last-child) {
+  margin-right: 3px;
+}
+
+.notification-action {
+  border-radius: 10px;
+  background: @noti-action-bg;
 }
 
 .time {
   font-size: 15px;
   background: transparent;
   margin-right: 15px;
+}
+
+.control-center {
+  font-family: 'FiraCode Nerd Font';
+  border-left:  3px solid @noti-center-border;
+  border-right: 3px solid @noti-center-border;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.8;
 }
 
 .widget-title {
@@ -66,24 +86,6 @@
   padding: 8px;
   margin: 15px 10px 0px 10px;
 }
-
-.notification-default-action,
-.notification-action {
-  border: none;
-}
-
-.notification-action {
-  border-top: 3px solid @noti-border-color;
-}
-
-.notification-action:not(:last-child) {
-  border-right: 3px solid @noti-border-color;
-}
-
-.notification-action:first-child {
-  border-bottom-left-radius: 18px;
-}
-
-.notification-action:last-child {
-  border-bottom-right-radius: 18px;
+.widget-mpris-player button {
+  background: transparent;
 }
