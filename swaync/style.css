@@ -1,7 +1,7 @@
 @define-color cc-bg               rgba(36, 35, 37, 0.53);
 @define-color actual-noti-bg      rgba(36, 35, 37, 0.53);
 @define-color noti-close-bg-hover rgba(36, 35, 37, 0.2);
-@define-color noti-action-bg      rgba(36, 35, 37, 0.2);
+@define-color noti-action-bg      rgba(255, 255, 255, 0.1);
 @define-color noti-center-border  rgba(255, 255, 255, 0.2);
 @define-color noti-close-bg       transparent;
 @define-color noti-bg             transparent;
