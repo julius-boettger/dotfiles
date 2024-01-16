@@ -365,6 +365,9 @@ in {
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
+  # https://github.com/sfackler/rust-openssl/issues/1663
+  environment.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+
   # vm's with virtualbox
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ variables.username ];
@@ -430,10 +433,11 @@ in {
   # fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
+  environment.sessionVariables = {
+    fish_color_error = "magenta";
+    fish_color_autosuggestion = "white";
+  };
   programs.fish.shellInit = ''
-    # https://github.com/sfackler/rust-openssl/issues/1663
-    set -x PKG_CONFIG_PATH ${pkgs.openssl.dev}/lib/pkgconfig
-
     # greeting (only in interactive shell)
     function fish_greeting
 
