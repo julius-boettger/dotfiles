@@ -3,9 +3,8 @@
 * {
     accent: #948AE3;
     color1: #26252788;
-    color2: #363537;
+    color2: #FFFFFF1A;
     color3: #F7F1FF;
-    color4: #FFFFFF1A;
 
     font: "FiraCode Nerd Font 12";
     text-color: @color3;
@@ -54,7 +53,7 @@ listview {
 scrollbar {
     cursor:       pointer;
     handle-width: 5px;
-    handle-color: @color4;
+    handle-color: @color2;
 }
 
 element {
@@ -64,7 +63,7 @@ element {
 }
 
 element selected normal, element selected active {
-    background-color: @color4;
+    background-color: @color2;
 }
 
 element-text {

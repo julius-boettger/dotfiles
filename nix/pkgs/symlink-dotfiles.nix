@@ -24,7 +24,7 @@ ln -sf /etc/dotfiles/copyq.conf /home/${username}/.config/copyq
 
 # rofi
 mkdir -p /home/${username}/.local/share/rofi/themes
-ln -sf /etc/dotfiles/rofi.rasi /home/${username}/.local/share/rofi/themes
+ln -sf /etc/dotfiles/rofi/* /home/${username}/.local/share/rofi/themes
 
 # firefox theme
 mkdir -p /home/${username}/.mozilla/firefox/${firefoxProfile}/chrome

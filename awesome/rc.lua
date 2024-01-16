@@ -289,7 +289,7 @@ globalkeys = mytable.join(
     awful.key({ modkey }, "g", function () awful.spawn("gitnuro") end,
               {description="gitnuro", group="launcher"}),
     -- rofi
-    awful.key({ modkey }, "r", function () awful.spawn.with_shell("rofi -show drun -show-icons") end,
+    awful.key({ modkey }, "r", function () awful.spawn.with_shell("rofi -show drun -show-icons -theme opaque") end,
               {description="rofi", group="launcher"}),
     -- clipboard history with copyq
     awful.key({ modkey }, "v", function () awful.spawn("copyq toggle") end,

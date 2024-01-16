@@ -521,7 +521,7 @@ in {
   # rofi (application launcher)
   programs.rofi = {
     enable = true;
-    theme = "rofi"; # own theme
+    theme = "transparent"; # own theme
     package = pkgs.unstable.rofi-wayland; # wayland support
     terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
   };
