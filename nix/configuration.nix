@@ -172,7 +172,10 @@ in {
     vlc # video player
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
-    fluent-gtk-theme # gtk theme
+    # gtk themes
+    fluent-gtk-theme
+    (orchis-theme.override { border-radius = 10; })
+    (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
     # sddm theme + dependency
     variables.pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
@@ -482,15 +485,16 @@ in {
   # i dont know what this does?
   programs.home-manager.enable = true;
 
-  ### gtk theming
-  gtk = {
-    enable = true;
-    iconTheme.name = "Papirus-Dark";
-    theme.name = "Fluent-Dark";
-    font.name = "Noto Sans";
-    font.size = 10;
-  };
-  # cursor
+  ### theming
+  gtk.enable = true;
+  # gtk theme
+  gtk.theme.name = "Orchis-Dark";
+  # icon theme
+  gtk.iconTheme.name = "Papirus-Dark";
+  # font config
+  gtk.font.name = "Noto Sans";
+  gtk.font.size = 10;
+  # cursor theme
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
