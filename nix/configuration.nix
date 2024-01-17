@@ -139,21 +139,21 @@ in {
     ### gui
     obs-studio
     firefox-devedition
-    unstable.obsidian
     libreoffice
-    discord
     bitwarden
     gimp-with-plugins
-    jetbrains.idea-ultimate
-    spotify
-    pdfstudio2023
+    discord # PROPRIETARY
+    spotify # PROPRIETARY
+    pdfstudio2023 # PROPRIETARY
+    unstable.obsidian # PROPRIETARY
+    jetbrains.idea-ultimate # PROPRIETARY
+    unigine-valley # PROPRIETARY gpu stress test and benchmark
     unstable.alacritty # terminal
     bottles # run windows software easily
     pitivi # video editor
     tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
     protonup-qt # easy ge-proton setup for steam
-    unigine-valley # gpu stress test and benchmark
     octaveFull # matlab alternative
     ghdl # vhdl simulator
     gtkwave # inspect waveforms created by ghdl
@@ -196,7 +196,7 @@ in {
         ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
-        ms-python.vscode-pylance # more python
+        ms-python.vscode-pylance # more python (PROPRIETARY)
         pkief.material-icon-theme # file icon theme
         christian-kohler.path-intellisense # auto complete paths
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -205,7 +205,7 @@ in {
           publisher = "LeetCode";
           version = "0.18.1";
           sha256 = "Ym9Gi9nL0b5dJq0yXbX2NvSW89jIr3UFBAjfGT9BExM="; }
-        # monokai theme
+        # monokai theme (PROPRIETARY)
         { name = "theme-monokai-pro-vscode";
           publisher = "monokai";
           version = "1.2.1";
@@ -251,9 +251,9 @@ in {
     bash
     fastfetch
     variables.pkgs.symlink-dotfiles
+    mprime # PROPRIETARY cpu stress test
     playerctl # pause media with mpris
     liquidctl # liquid cooler control
-    mprime # cpu stress test
     lm_sensors # system temperature sensor info
     dunst # for better notify-send with dunstify
     gphoto2fs # mount camera
@@ -390,7 +390,7 @@ in {
     platformTheme = "gtk2";
   };
 
-  ### steam
+  ### steam (PROPRIETARY)
   programs.steam = {
     enable = true;
     package = pkgs.unstable.steam;
