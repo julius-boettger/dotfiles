@@ -137,17 +137,12 @@ in {
   # packages to install
   environment.systemPackages = with pkgs; [
     ### gui
-    obs-studio
-    firefox-devedition
-    libreoffice
-    bitwarden
-    gimp-with-plugins
-    discord # PROPRIETARY
-    spotify # PROPRIETARY
-    pdfstudio2023 # PROPRIETARY
-    unstable.obsidian # PROPRIETARY
-    jetbrains.idea-ultimate # PROPRIETARY
-    unigine-valley # PROPRIETARY gpu stress test and benchmark
+    bitwarden # password manager
+    obs-studio # video recording
+    libreoffice # office suite
+    gimp-with-plugins # image editor
+    firefox-devedition # browser
+    jetbrains.idea-community # java ide
     unstable.alacritty # terminal
     bottles # run windows software easily
     pitivi # video editor
@@ -172,14 +167,19 @@ in {
     vlc # video player
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
+    discord # PROPRIETARY
+    spotify # PROPRIETARY
+    pdfstudio2023 # PROPRIETARY
+    unstable.obsidian # PROPRIETARY
+    unigine-valley # PROPRIETARY gpu stress test and benchmark
     # gtk themes
     fluent-gtk-theme
     (orchis-theme.override { border-radius = 10; })
     (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
-    # sddm theme + dependency
+    # sddm theme + dependency (login manager)
     variables.pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
-    # codium with extensions
+    # codium with extensions (text editor)
     (vscode-with-extensions.override {
       vscode = unstable.vscodium;
       vscodeExtensions = with vscode-extensions; [
