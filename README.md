@@ -3,7 +3,7 @@
 ### Credit
 - My [Awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats)
 - My [Rofi](https://github.com/lbonn/rofi) themes are based on the "rounded" theme of [rofi-themes-collection](https://github.com/newmanls/rofi-themes-collection)
-- The wallpapers in `wallpapers/nixos/` are modified versions of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
+- The wallpapers in `wallpapers/nixos/` as well as `wallpapers/login.png` are modified versions of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
 # Screenshots / Showcase (version [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0))
 https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8cc9-b1298d3d5de2
@@ -42,7 +42,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `fastfetch/` | `~/.config/fastfetch/` | [fastfetch](https://github.com/fastfetch-cli/fastfetch) configurations |
 | `rofi/*` | `~/.local/share/rofi/themes/` | [Rofi](https://github.com/lbonn/rofi) (Wayland fork) themes |
 | `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for theming [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
-| `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
+| `sddm-sugar-candy.conf` | `/usr/share/sddm/themes/sugar-candy/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 
 # Installation
