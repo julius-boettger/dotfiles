@@ -1,9 +1,8 @@
 # [NixOS](https://nixos.org/) configuration and other dotfiles
-> These dotfiles are what I daily drive at home, so you can be sure that they (kind of) work
 
 ### Credit
 - My [Awesome](https://awesomewm.org/) config is based on the "rainbow" theme of [awesome-copycats](https://github.com/lcpz/awesome-copycats)
-- My [Rofi](https://github.com/lbonn/rofi) theme is based on the "rounded" theme of [rofi-themes-collection](https://github.com/newmanls/rofi-themes-collection)
+- My [Rofi](https://github.com/lbonn/rofi) themes are based on the "rounded" theme of [rofi-themes-collection](https://github.com/newmanls/rofi-themes-collection)
 - The wallpapers in `wallpapers/nixos/` are modified versions of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
 # Screenshots / Showcase (version [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0))
@@ -12,6 +11,13 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
   <img src=".github/assets/screenshot1.png" width="49%" />
   <img src=".github/assets/screenshot2.png" width="49%" /> 
 </p>
+
+# About this repo
+- This repo contains configuration files I daily drive on a private machine at home. Its purpose is:
+    - providing version control for my config files
+    - serving as documentation and inspiration for customizing your system
+- See [Content overview](#content-overview) for explanations of files and directories in this repo
+- If (for some reason) you would like to replicate my exact system, see [Installation](#installation)
 
 # Content overview
 > Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/dotfiles/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See [`nix/pkgs/symlink-dotfiles.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix/pkgs/symlink-dotfiles.nix) for the script that should create those symlinks.
@@ -39,20 +45,22 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `sddm-sugar-candy/` | `/usr/share/sddm/themes/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 | `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 
-# Installation & usage
+# Installation
 
-- Most of these dotfiles can be used independently of the others, like `picom.conf` for configuring [picom](https://github.com/jonaburg/picom). You are free to use just parts the parts you like as they suit you.
-    - See [Content overview](#content-overview) for explanations of files and directories.
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
 - ⚠️ Knowledge of basic [NixOS](https://nixos.org/) usage is needed. Try it out first before attempting to follow this guide.
 - ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override or delete them (specifically the `symlink-dotfiles` command, see what it does [here](https://github.com/julius-boettger/dotfiles/blob/main/nix/pkgs/symlink-dotfiles.nix)).
+- ⚠️ I try to make the config files in this repo modular and hardware independent, but you might still have to change some things to make it work with your hardware. The current configuration assumes:
+    - a dual-monitor setup
+    - a stationary/dektop system (you _could_ try it out on a portable system, but would probably miss things like a battery or wifi indicator)
+- If you still want to try setting this up, here you go...
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
 
 Then place the content of this repository inside `/etc/dotfiles/`:
 ```shell
 cd /etc
-sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
 chmod -R 755 /etc/dotfiles # should already be set like this
 ```
