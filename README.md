@@ -57,10 +57,17 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
 
-Then place the content of this repository inside `/etc/dotfiles/`:
+If you know your way around [Nix channels](https://nixos.wiki/wiki/Nix_channels), then do your thing, I had the best experience when `nix-channel --list` showed nothing and `sudo nix-channel --list` showed just one stable channel called `nixos` (if you don't have that add it with something like `sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos`).
+
+Place the content of this repository inside `/etc/dotfiles/`:
 ```shell
 cd /etc
-git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+
+# clone specific release (recommended)
+git clone --branch v1.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+# OR clone current commit (unstable)
+git clone --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+
 chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
 chmod -R 755 /etc/dotfiles # should already be set like this
 ```
