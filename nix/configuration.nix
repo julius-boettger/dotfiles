@@ -430,50 +430,15 @@ in {
       };
   };
 
-  # fish shell
+  ### fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   environment.sessionVariables = {
     fish_color_error = "magenta";
     fish_color_autosuggestion = "white";
   };
-  programs.fish.shellInit = ''
-    # greeting (only in interactive shell)
-    function fish_greeting
-
-      set key_color   $(shuf -n 1 -e cyan magenta blue yellow green red)
-      set title_color $(shuf -n 1 -e cyan magenta blue yellow green red)
-      set logo_color  $(shuf -n 1 -e cyan magenta blue yellow green red)
-      fastfetch -c /etc/dotfiles/fastfetch/short.jsonc --color-keys $key_color --color-title $title_color --logo-color-1 $logo_color
-
-      fortune -sn 200
-
-      # use starship prompt
-      starship init fish | source
-
-    end
-  '';
-
-  # starship prompt for fish
-  programs.starship.enable = true;
-  programs.starship.settings = {
-    format = "$all$directory$character";
-    add_newline = false;
-    character = {
-      # 𝈳 ᗇ ❯
-      success_symbol = "[𝈳](purple)";
-      error_symbol = "[𝈳](purple)";
-    };
-    cmd_duration = {
-      min_time = 1000; # milliseconds
-      format = "[[$duration](bold bright-black) execution time](bright-black)";
-    };
-    directory = {
-      truncation_length = 1;
-      truncate_to_repo = false;
-      read_only_style = "black";
-    };
-  };
+  # config file location for starship prompt
+  environment.sessionVariables.STARSHIP_CONFIG = "/etc/dotfiles/starship.toml";
 
   ############################################
   ############################################

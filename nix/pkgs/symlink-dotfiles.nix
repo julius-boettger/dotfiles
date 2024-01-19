@@ -6,6 +6,10 @@ ln -sf /etc/dotfiles/picom.conf /home/${username}/.config
 ln -sf /etc/dotfiles/swaync     /home/${username}/.config
 ln -sf /etc/dotfiles/eww        /home/${username}/.config
 
+# fish
+mkdir -p /home/${username}/.config/fish
+ln -sf /etc/dotfiles/fish-init.fish /home/${username}/.config/fish/config.fish
+
 # alacritty
 mkdir -p /home/${username}/.config/alacritty
 ln -sf /etc/dotfiles/alacritty.toml /home/${username}/.config/alacritty
