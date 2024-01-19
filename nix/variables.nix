@@ -15,9 +15,5 @@ callPackage: rec {
     sddm-sugar-candy        = callPackage ./pkgs/sddm-sugar-candy.nix        {};
     swaylock-effects        = callPackage ./pkgs/swaylock-effects.nix        {};
     hyprctl-collect-clients = callPackage ./pkgs/hyprctl-collect-clients.nix {};
-    symlink-dotfiles        = callPackage ./pkgs/symlink-dotfiles.nix        {
-      inherit username;
-      firefoxProfile = secrets.firefox.profile;
-    };
   };
 }
