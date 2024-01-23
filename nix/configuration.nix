@@ -433,7 +433,10 @@ in {
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   environment.sessionVariables = {
-    fish_color_error = "magenta";
+    fish_color_param = "blue";
+    fish_color_error = "yellow";
+    fish_color_option = "cyan";
+    fish_color_command = "green";
     fish_color_autosuggestion = "white";
   };
   # config file location for starship prompt
