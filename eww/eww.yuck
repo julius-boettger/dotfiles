@@ -58,7 +58,7 @@
       :spacing 15
       (box
         :space-evenly false
-        :spacing 12
+        :spacing 25
         (circular-progress-fancy
           :tooltip "${round(EWW_CPU.avg, 2)}%"
           :value logarithmic-cpu
@@ -78,7 +78,12 @@
       (box
         :orientation "v"
         :spacing -50
-        (label :text {date.day})
+        (overlay
+          ; overlay with transparent longest possible value
+          ; => visible box size always stays the same
+          ; => no centering problems
+          (label :text "Wednesday" :style "color: transparent")
+          (label :text {date.day}))
         (label :text {date.date})))
     (workspaces :digits workspace-digits)))
 
@@ -88,8 +93,9 @@
     :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current-workspace[0]}"
     (box
       :halign "center"
+      :style "margin-left: -1px" ; better centering below ":" of time
       :space-evenly false
-      :spacing 37
+      :spacing 39
       (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
