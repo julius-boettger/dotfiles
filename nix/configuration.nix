@@ -184,8 +184,10 @@ in {
       vscode = unstable.vscodium;
       vscodeExtensions = with vscode-extensions; [
         # for syntax highlighting / language support
+        twxs.cmake
         bbenoist.nix
         ms-python.python 
+        ms-vscode.cpptools
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         coolbear.systemd-unit-file
@@ -193,6 +195,7 @@ in {
         matthewpi.caddyfile-support
         # other stuff
         vscodevim.vim # vim :)
+        ms-vscode.cmake-tools # for building c/c++ projects
         ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
@@ -250,6 +253,7 @@ in {
     vim
     bash
     fastfetch
+    cmake gnumake gdb # for building c/c++ projects
     mprime # PROPRIETARY cpu stress test
     playerctl # pause media with mpris
     liquidctl # liquid cooler control
