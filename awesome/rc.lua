@@ -280,7 +280,7 @@ globalkeys = mytable.join(
     awful.key({ modkey }, "o", function () awful.spawn("obsidian") end,
               {description="obsidian", group="launcher"}),
     -- open file manager
-    awful.key({ modkey }, "e", function () awful.spawn.with_shell("nautilus -w &") end,
+    awful.key({ modkey }, "e", function () awful.spawn.with_shell("GTK_THEME=Orchis-Green-Dark nautilus -w &") end,
               {description="file manager", group="launcher"}),
     -- codium
     awful.key({ modkey }, "c", function () awful.spawn("codium") end,
