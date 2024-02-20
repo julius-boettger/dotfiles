@@ -149,13 +149,9 @@ in {
     tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
     protonup-qt # easy ge-proton setup for steam
-    octaveFull # matlab alternative
-    ghdl # vhdl simulator
-    gtkwave # inspect waveforms created by ghdl
-    digital # digital circuit simulator
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
-    unstable.stacer # system monitor
+    monitor # system monitor
     psensor # gui for (lm_)sensors to display system temperatures
     nvidia-system-monitor-qt # monitor nvidia gpu stuff
     darktable # photo editor and raw developer
@@ -264,7 +260,6 @@ in {
     asciiquarium # ascii art aquarium
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
-    lolcat # make things rainbow colored
     pkg-config # https://github.com/sfackler/rust-openssl/issues/1663
     # compilers + interpreters
     gcc
