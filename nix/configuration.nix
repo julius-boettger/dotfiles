@@ -151,7 +151,7 @@ in {
     protonup-qt # easy ge-proton setup for steam
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
-    monitor # system monitor
+    unstable.resources # system monitor
     psensor # gui for (lm_)sensors to display system temperatures
     nvidia-system-monitor-qt # monitor nvidia gpu stuff
     darktable # photo editor and raw developer
