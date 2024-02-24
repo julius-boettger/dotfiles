@@ -169,13 +169,25 @@ in {
     pdfstudio2023 # PROPRIETARY
     unstable.obsidian # PROPRIETARY
     unigine-valley # PROPRIETARY gpu stress test and benchmark
+    # sddm theme + dependency (login manager)
+    variables.pkgs.sddm-sugar-candy
+    libsForQt5.qt5.qtgraphicaleffects
     # gtk themes
     fluent-gtk-theme
     (orchis-theme.override { border-radius = 10; })
     (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
-    # sddm theme + dependency (login manager)
-    variables.pkgs.sddm-sugar-candy
-    libsForQt5.qt5.qtgraphicaleffects
+    # icon themes
+    gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
+    ((papirus-icon-theme.override { /*folder-*/color = "black"; })
+      # replace default firefox icons with firefox developer edition icons
+      .overrideAttrs (attrs: { postInstall = (attrs.postInstall or "") + ''
+        ln -sf $out/share/icons/Papirus/16x16/apps/firefox-developer-icon.svg $out/share/icons/Papirus/16x16/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/22x22/apps/firefox-developer-icon.svg $out/share/icons/Papirus/22x22/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/24x24/apps/firefox-developer-icon.svg $out/share/icons/Papirus/24x24/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/32x32/apps/firefox-developer-icon.svg $out/share/icons/Papirus/32x32/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/48x48/apps/firefox-developer-icon.svg $out/share/icons/Papirus/48x48/apps/firefox.svg
+        ln -sf $out/share/icons/Papirus/64x64/apps/firefox-developer-icon.svg $out/share/icons/Papirus/64x64/apps/firefox.svg
+    ''; }))
     # codium with extensions (text editor)
     (vscode-with-extensions.override {
       vscode = unstable.vscodium;
@@ -232,17 +244,6 @@ in {
           sha256 = "DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM="; }
       ];
     })
-    # gtk icon theme
-    ((papirus-icon-theme.override { /*folder-*/color = "black"; })
-      # replace default firefox icons with firefox developer edition icons
-      .overrideAttrs (attrs: { postInstall = (attrs.postInstall or "") + ''
-        ln -sf $out/share/icons/Papirus/16x16/apps/firefox-developer-icon.svg $out/share/icons/Papirus/16x16/apps/firefox.svg
-        ln -sf $out/share/icons/Papirus/22x22/apps/firefox-developer-icon.svg $out/share/icons/Papirus/22x22/apps/firefox.svg
-        ln -sf $out/share/icons/Papirus/24x24/apps/firefox-developer-icon.svg $out/share/icons/Papirus/24x24/apps/firefox.svg
-        ln -sf $out/share/icons/Papirus/32x32/apps/firefox-developer-icon.svg $out/share/icons/Papirus/32x32/apps/firefox.svg
-        ln -sf $out/share/icons/Papirus/48x48/apps/firefox-developer-icon.svg $out/share/icons/Papirus/48x48/apps/firefox.svg
-        ln -sf $out/share/icons/Papirus/64x64/apps/firefox-developer-icon.svg $out/share/icons/Papirus/64x64/apps/firefox.svg
-    ''; }))
 
     ### cli
     jq
