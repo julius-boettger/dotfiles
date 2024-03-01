@@ -309,7 +309,7 @@ in {
     unstable.hyprpicker # color picker
     unstable.swaynotificationcenter
     unstable.swww # wallpaper switching with animations
-    unstable.eww-wayland # build custom widgets
+    unstable.eww # build custom widgets
     unstable.grimblast # screenshot
     unstable.swayosd # osd for volume changes
     # lockscreen

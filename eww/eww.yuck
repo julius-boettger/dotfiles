@@ -13,10 +13,15 @@
   :initial 0
   "~/.config/eww/scripts/logarithmic-cpu.sh") 
 
-(deflisten workspaces
-  ; json array with info about all hyprland workspaces
-  :initial '[{"id":"1","occupied":false},{"id":"11","occupied":false}]'
-  "~/.config/eww/scripts/workspaces/get-all.sh")
+(deflisten workspaces-1
+  ; json array with data for hyprland workspaces 1 to 9
+  :initial '[{"id":"1","occupied":false}]'
+  "~/.config/eww/scripts/workspaces/get-all.sh 1")
+
+(deflisten workspaces-2
+  ; json array with data for hyprland workspaces 11 to 19
+  :initial '[{"id":"11","occupied":false}]'
+  "~/.config/eww/scripts/workspaces/get-all.sh 2")
 
 (deflisten current-workspace
   ; json array with current hyprland workspace per monitor
@@ -32,7 +37,7 @@
               ; small window, stretches to fit content
               :width  "1%"
               :height "1%")
-  (desktop :workspace-digits 1)) ; hyprsome workspaces 1-9
+  (desktop :workspace-data workspaces-1)) ; hyprsome workspaces 1-9
 
 ; same window for other monitor, because spawning on other
 ; monitor with `eww open desktop-0 --screen 1` doesn't work...?
@@ -44,10 +49,10 @@
               :anchor "center"
               :width  "1%"
               :height "1%")
-  (desktop :workspace-digits 2)) ; hyprsome workspaces 11-19
+  (desktop :workspace-data workspaces-2)) ; hyprsome workspaces 11-19
 
-; workspace-digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
-(defwidget desktop [workspace-digits] 
+; workspace-data: json array with data about workspaces to display
+(defwidget desktop [workspace-data] 
   (box
     :class "main-box"
     :orientation "v"
@@ -85,10 +90,10 @@
           (label :text "Wednesday" :style "color: transparent")
           (label :text {date.day}))
         (label :text {date.date})))
-    (workspaces :digits workspace-digits)))
+    (workspaces :data workspace-data)))
 
-; digits: number of digits of workspace id's to show, e.g. 1 digit => workspaces 0-9
-(defwidget workspaces [digits]
+; data: json array with data about workspaces to display
+(defwidget workspaces [data]
   (eventbox
     :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current-workspace[0]}"
     (box
@@ -96,7 +101,7 @@
       :style "margin-left: -1px" ; better centering below ":" of time
       :space-evenly false
       :spacing 39
-      (for workspace in {jq(workspaces, "[.[] | select(.id | length == ${digits})]")} ; filter workspaces by digits of id 
+      (for workspace in data
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"
           :tooltip {workspace.id > 10 ? workspace.id - 10 : workspace.id}
