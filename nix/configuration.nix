@@ -164,7 +164,7 @@ in {
     vlc # video player
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
-    discord # PROPRIETARY
+    unstable.vesktop # wayland optimized discord client
     spotify # PROPRIETARY
     pdfstudio2023 # PROPRIETARY
     unstable.obsidian # PROPRIETARY
