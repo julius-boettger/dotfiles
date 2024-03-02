@@ -246,12 +246,17 @@ in {
     })
 
     ### cli
-    jq
     git
     vim
     bash
-    fastfetch
-    cmake gnumake gdb # for building c/c++ projects
+    jq # process json
+    eza # better ls
+    bat # better cat
+    fzf # fast fuzzy finder
+    tldr # summarize man pages
+    zoxide # better cd
+    fastfetch # neofetch but fast
+    cmake gnumake # for building c/c++ projects
     mprime # PROPRIETARY cpu stress test
     playerctl # pause media with mpris
     liquidctl # liquid cooler control
@@ -263,8 +268,8 @@ in {
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
     pkg-config # https://github.com/sfackler/rust-openssl/issues/1663
-    # compilers + interpreters
-    gcc
+    # compilers, interpreters, debuggers
+    gcc gdb
     jdk
     rustup
     nodejs_20
