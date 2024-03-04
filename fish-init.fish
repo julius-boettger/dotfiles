@@ -9,11 +9,12 @@ end
 
 # other stuff to do only in interactive shells
 if status is-interactive
-    # aliases
-    alias ls eza
-    alias cat bat
     # setup zoxide to provide z as better cd
     zoxide init fish | source
     # use starship prompt
     starship init fish | source
+    # aliases
+    alias cd z
+    alias ls lsd
+    alias cat bat
 end

@@ -250,7 +250,7 @@ in {
     vim
     bash
     jq # process json
-    eza # better ls
+    lsd # better ls
     bat # better cat
     fzf # fast fuzzy finder
     tldr # summarize man pages
