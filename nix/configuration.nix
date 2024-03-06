@@ -193,7 +193,6 @@ in {
       vscode = unstable.vscodium;
       vscodeExtensions = with vscode-extensions; [
         # for syntax highlighting / language support
-        twxs.cmake
         bbenoist.nix
         ms-python.python 
         ms-vscode.cpptools
@@ -204,7 +203,6 @@ in {
         matthewpi.caddyfile-support
         # other stuff
         vscodevim.vim # vim :)
-        ms-vscode.cmake-tools # for building c/c++ projects
         ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
@@ -242,6 +240,11 @@ in {
           publisher = "eww-yuck";
           version = "0.0.3";
           sha256 = "DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM="; }
+        # meson syntax highlighting
+        { name = "mesonbuild";
+          publisher = "mesonbuild";
+          version = "1.21.0";
+          sha256 = "hsWb1ES2V/e1gp3bQML4TaOiB/XQ8QH6LCI5ZWvsm5I="; }
       ];
     })
 
@@ -256,7 +259,7 @@ in {
     tldr # summarize man pages
     zoxide # better cd
     fastfetch # neofetch but fast
-    cmake gnumake # for building c/c++ projects
+    meson ninja # for building c/c++ projects
     mprime # PROPRIETARY cpu stress test
     playerctl # pause media with mpris
     liquidctl # liquid cooler control
