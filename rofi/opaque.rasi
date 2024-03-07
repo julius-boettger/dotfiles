@@ -17,7 +17,7 @@
 
 window {
     location: center;
-    width:    600;
+    width:    650;
 
     border-color:   @accent;
     border-radius:  15px;
@@ -43,7 +43,7 @@ textbox {
 }
 
 listview {
-    lines:   5;
+    lines:   6;
     columns: 2;
     cycle:        false;
     scrollbar:    true;
