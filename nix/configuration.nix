@@ -160,7 +160,7 @@ in {
     veracrypt # disk encryption
     freefilesync # file backup
     alsa-scarlett-gui # control center for focusrite usb audio interface
-    unstable.git-credential-manager # gui authentication for git
+    git-credential-manager # gui authentication for git
     vlc # video player
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
@@ -303,7 +303,7 @@ in {
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
     # could/should work on wayland, but doesnt for now :(
-    unstable.insomnia # rest api client
+    insomnia # rest api client
     barrier
     gparted
 
@@ -386,10 +386,7 @@ in {
     hinting.style = "full"; # may cause loss of shape, try lower value?
   };
 
-  services.onedrive = {
-    enable = true;
-    package = pkgs.unstable.onedrive;
-  };
+  services.onedrive.enable = true;
 
   # qt theming (based on gtk theming)
   qt = {
@@ -502,7 +499,7 @@ in {
   programs.rofi = {
     enable = true;
     theme = "transparent"; # own theme
-    package = pkgs.unstable.rofi-wayland; # wayland support
+    package = pkgs.rofi-wayland; # wayland support
     terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
   };
 
@@ -538,7 +535,7 @@ in {
       defaultBranch = main
     [credential]
       credentialStore = secretservice
-      helper = ${pkgs.unstable.git-credential-manager}/bin/git-credential-manager
+      helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
   '';
   # firefox (allow userChrome.css)
   home.file."./.mozilla/firefox/${variables.secrets.firefox.profile}/user.js".text = ''
