@@ -409,7 +409,7 @@ in {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = pkgs.unstable.hyprland;
+    package = pkgs.hyprland;
   };
 
   ### use gtk desktop portal (if gnome is not enabled)
