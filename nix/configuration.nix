@@ -27,7 +27,9 @@ in {
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # use latest kernel (currently broken with nvidia gpu)
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # drivers for aio liquid coolers
   boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
