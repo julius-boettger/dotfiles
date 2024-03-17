@@ -544,17 +544,22 @@ in {
 
   ### symlink dotfiles
   # files in ~/.config/
-  xdg.configFile."eww" = { source                    = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/eww";     recursive = true; };
-  xdg.configFile."awesome" = { source                = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/awesome"; recursive = true; };
-  xdg.configFile."swaync".source                     = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/swaync";
-  xdg.configFile."picom.conf".source                 = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/picom.conf";
-  xdg.configFile."./fish/config.fish".source         = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fish-init.fish";
-  xdg.configFile."./copyq/copyq.conf".source         = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/copyq.conf";
-  xdg.configFile."./hypr/hyprland.conf".source       = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/hyprland/hyprland.conf";
-  xdg.configFile."./fastfetch/config.jsonc".source   = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/default.jsonc";
-  xdg.configFile."./alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/alacritty.toml";
+  xdg.configFile = {
+    "eww"                     = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/eww";     recursive = true; };
+    "awesome"                 = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/awesome"; recursive = true; };
+    "swaync"                     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/swaync";
+    "picom.conf"                 .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/picom.conf";
+    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fish-init.fish";
+    "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/copyq.conf";
+    "hypr/hyprland.conf"         .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/hyprland/hyprland.conf";
+    "fastfetch/config.jsonc"     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/default.jsonc";
+    "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/alacritty.toml";
+    "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/vscodium.json";
+  };
   # files somewhere else in ~/
-  home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/.ideavimrc";
-  home.file."./.local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
-  home.file."./.mozilla/firefox/${variables.secrets.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/firefox.css";
+  home.file = {
+    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/.ideavimrc";
+    ".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
+    ".mozilla/firefox/${variables.secrets.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/firefox.css";
+  };
 };}

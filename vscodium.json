@@ -1,0 +1,109 @@
+{
+  // vim settings
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [    
+    {
+      "before": ["ß"],
+      "commands": [":noh"]
+    },
+    {
+      "before": ["ü"],
+      "commands": [":tabp"]
+    },
+    {
+      "before": ["+"],
+      "commands": [":tabn"]
+    },
+    {
+      "before": ["ö"],
+      "after": ["^"]
+    },
+    {
+      "before": ["ä"],
+      "after": ["$"]
+    },
+    {
+      "before": ["K"],
+      "after": ["o", "<ESC>", "k"]
+    },
+    {
+      "before": ["<TAB>"],
+      "after": [">", ">"]
+    },
+    {
+      "before": ["<S-TAB>"],
+      "after": ["<", "<"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["ß"],
+      "commands": [":noh"]
+    },
+    {
+      "before": ["ü"],
+      "commands": [":tabp"]
+    },
+    {
+      "before": ["+"],
+      "commands": [":tabn"]
+    },
+    {
+      "before": ["ö"],
+      "after": ["^"]
+    },
+    {
+      "before": ["ä"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<C-c>"],
+      "after": ["\"", "+", "y", "<Esc>"]
+    },
+    {
+      "before": ["<TAB>"],
+      "after": [">"]
+    },
+    {
+      "before": ["<S-TAB>"],
+      "after": ["<"]
+    }
+  ],
+
+  "leetcode.defaultLanguage": "rust",
+  "leetcode.hint.configWebviewMarkdown": false,
+  "leetcode.hint.commentDescription": false,
+  "leetcode.filePath": {
+    "rust": {
+      "folder": "./rust/src",
+      "filename": "${snake_case_name}.${ext}"
+    }
+  },
+
+  "mesonbuild.buildFolder": "build",
+  "mesonbuild.configureOnOpen": true,
+  "mesonbuild.downloadLanguageServer": false,
+  "mesonbuild.languageServer": null,
+
+  "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+  "workbench.iconTheme": "material-icon-theme",
+
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  "liveServer.settings.donotShowInfoMsg": true, 
+  "terminal.integrated.cursorStyle": "underline",
+
+  "editor.fontSize": 18,
+  "terminal.integrated.fontSize": 18,
+  "editor.fontFamily": "'FiraCode Nerd Font', Consolas, monospace",
+
+  "npm.enableRunFromFolder": true,
+  "git.openRepositoryInParentFolders": "always",
+  "update.mode": "none", // don't try to update, NixOS will do it
+  "window.titleBarStyle": "custom",
+  "git.confirmSync": false,
+}
