@@ -66,43 +66,28 @@ Place the content of this repository inside `/etc/dotfiles/`:
 ```shell
 cd /etc
 
-# clone specific release (recommended)
+# clone current commit (recommended, although you don't know what you get that well)
+git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+# OR clone specific release (you know better what you get, but might not work anymore with newer versions of configured software)
 git clone --branch v1.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
-# OR clone current commit (unstable)
-git clone --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 
 chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
 chmod -R 755 /etc/dotfiles # should already be set like this
 ```
 
-Take a look at `/etc/dotfiles/nix/variables.nix` and adjust it to your liking.
-
-Create `/etc/dotfiles/nix/secrets.nix` and adjust its content to your liking. Template:
-```nix
-{
-    # networking host name of this device
-    networking.hostName = "nixos";
-    # global git config
-    git.name = "username";
-    git.email = "example@provider.com";
-    # server port for barrier (can stay like this)
-    barrier.port = 20000;
-    # firefox profile to customize (can stay like this for now, will be set later)
-    firefox.profile = "test";
-}
-```
-
-Also make sure to either create `/etc/dotfiles/nix/extra-config.nix` (and put some expression in it) or remove the line containing `./extra-config.nix` in `/etc/dotfiles/nix/configuration.nix`. I use `extra-config.nix` for device specific configuration that I don't want to push to this repo. You could also do that or just modify `configuration.nix`, as you will probably not be pushing to this repo.
-
-I use a similar `extra-config` file for Hyprland, which you will need to create. You can put your device specific configuration (e.g. [monitor config](https://wiki.hyprland.org/Configuring/Monitors/)) in there or simply keep the file empty, but make sure to create it: `touch /etc/dotfiles/hyprland/extra-config.conf`
+There are four files you now **NEED** to take a look at and adjust them to your liking, all in `/etc/dotfiles/`:
+- `nix/secrets.nix`
+- `nix/variables.nix`
+- `nix/extra-config.nix`
+- `hyprland/extra-config.conf`
 
 If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
 
-It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `/etc/dotfiles/hyprland/extra-config.conf`. If you really want to use it, you will figure it out.
+It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `/etc/dotfiles/hyprland/extra-config.conf`. The default config there shows what works for my setup.
 
 Then rebuild your system with `sudo nixos-rebuild switch -I nixos-config=/etc/dotfiles/nix/configuration.nix`. You only need to specify the `nixos-config` path like this when rebuilding for the first time, after that it will be set by the configuration itself and just `sudo nixos-rebuild switch` will be enough.
 
-Prepare Firefox customization: Run Firefox and set it up to your liking (but don't choose a theme, you will load my own one later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefox.profile` in `/etc/dotfiles/nix/secrets.nix` instead of `"test"` and rebuild your system, e.g. with `sudo nixos-rebuild switch`.
+Prepare Firefox customization: Run Firefox and set it up to your liking (but don't choose a theme, you will load my own one later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefox.profile` in `/etc/dotfiles/nix/secrets.nix` instead of `test` and rebuild your system, e.g. with `sudo nixos-rebuild switch`.
 
 Next: `reboot` for good measure.
 
