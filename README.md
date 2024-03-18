@@ -52,7 +52,6 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 
 - The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
 - ⚠️ Knowledge of basic [NixOS](https://nixos.org/) usage is needed. Try it out first before attempting to follow this guide.
-- ⚠️ This guide assumes that you have either backed up your config files or don't care about them, as it may override them.
 - ⚠️ I try to make the config files in this repo modular and hardware independent, but you might still have to change some things to make it work with your hardware. The current configuration assumes:
     - a dual-monitor setup
     - a stationary/dektop system (you _could_ try it out on a portable system, but would probably miss things like a battery or wifi indicator)
@@ -75,11 +74,12 @@ chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more 
 chmod -R 755 /etc/dotfiles # should already be set like this
 ```
 
-There are four files you now **NEED** to take a look at and adjust them to your liking, all in `/etc/dotfiles/`:
-- `nix/secrets.nix`
+There are some files you now **NEED** to take a look at and adjust them to your liking, all in `/etc/dotfiles/`:
 - `nix/variables.nix`
-- `nix/extra-config.nix`
-- `hyprland/extra-config.conf`
+- Example files where you also need to delete the `.example` at the end of their file names (**!!!**):
+  - `nix/secrets.nix.example`
+  - `nix/extra-config.nix.example`
+  - `hyprland/extra-config.conf.example`
 
 If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
 
