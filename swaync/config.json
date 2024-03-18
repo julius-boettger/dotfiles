@@ -1,5 +1,5 @@
 {
-  "$schema": "https://github.com/ErikReider/SwayNotificationCenter/raw/deaf9a68b7425e0a0945a029bcbac767a7a72ae4/src/configSchema.json",
+  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/4275fa3915c12ad2731ff78027188b4b7ceaad64/src/configSchema.json",
 
   "cssPriority": "user",
   "image-visibility": "when-available",

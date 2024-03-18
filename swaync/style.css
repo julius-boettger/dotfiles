@@ -1,5 +1,6 @@
 @define-color cc-bg               rgba(38, 37, 39, 0.53);
 @define-color actual-noti-bg      rgba(38, 37, 39, 0.53);
+@define-color mpris-player-bg     rgba(38, 37, 39, 0.25);
 @define-color noti-close-bg-hover rgba(38, 37, 39, 0.2);
 @define-color noti-action-bg      rgba(255, 255, 255, 0.1);
 @define-color noti-center-border  rgba(255, 255, 255, 0.2);
@@ -27,9 +28,24 @@
   padding: 5px 8px;
 }
 
+/* align floating notifications with borders of hyprland clients */
 .notification-row:first-child {
   margin-top: 7px;
 }
+
+.notification-group {
+  outline: none;
+}
+
+.image {
+  border-radius: 10px;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification {
+  transition: opacity 250ms;
+  opacity: 0.25;
+}
+
 .notification *,
 .control-center .notification,
 .notification-row:focus,
@@ -62,6 +78,7 @@
   font-family: 'FiraCode Nerd Font';
   border-left:  3px solid @noti-center-border;
   border-right: 3px solid @noti-center-border;
+  border-radius: 0;
 }
 
 .control-center-list-placeholder {
@@ -84,7 +101,8 @@
 
 .widget-mpris-player {
   padding: 8px;
-  margin: 15px 10px 0px 10px;
+  box-shadow: none;
+  background: @mpris-player-bg;
 }
 .widget-mpris-player button {
   background: transparent;
