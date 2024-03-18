@@ -1,6 +1,7 @@
 :root {
-    --my-bg:      #262527;
-    --my-bg-dark: #201F21;
+    --my-bg:      #29282a;
+    --my-bg-dark: #1F1E20;
+    --arrowpanel-background: var(--my-bg) !important;
     --toolbar-bgcolor: var(--my-bg) !important;
     --urlbar-box-bgcolor: transparent !important;
     --urlbar-box-focus-bgcolor: transparent !important;
@@ -11,12 +12,18 @@
     border-bottom-right-radius: 10px !important;
 }
 
-#titlebar {
+#nav-bar {
+    box-shadow: none !important;
+}
+
+#navigator-toolbox {
     background-color: var(--my-bg-dark) !important;
 }
 
-#urlbar[open] > #urlbar-background {
-    background: var(--my-bg) !important;
+#urlbar[open] > #urlbar-background,
+.menupopup-arrowscrollbox
+{
+    background-color: var(--my-bg) !important;
 }
 
 #urlbar-background {
