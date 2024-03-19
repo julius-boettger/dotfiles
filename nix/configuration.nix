@@ -173,7 +173,7 @@ in {
     unstable.vesktop # wayland optimized discord client
     spotify # PROPRIETARY
     pdfstudio2023 # PROPRIETARY
-    unstable.obsidian # PROPRIETARY
+    obsidian # PROPRIETARY
     unigine-valley # PROPRIETARY gpu stress test and benchmark
     # sddm theme + dependency (login manager)
     variables.pkgs.sddm-sugar-candy
