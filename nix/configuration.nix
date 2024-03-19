@@ -21,7 +21,6 @@ in {
   ];
 
   # self-explaining one-liners
-  console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
@@ -51,6 +50,15 @@ in {
       enable = true;
       configurationLimit = 20; # number of generations to show
     };
+  };
+
+  console = {
+    earlySetup = true;
+    keyMap = "de";
+    colors = [
+      "000000" "FC618D" "7BD88F" "FD9353" "5AA0E6" "948AE3" "5AD4E6" "F7F1FF"
+      "99979B" "FB376F" "4ECA69" "FD721C" "2180DE" "7C6FDC" "37CBE1" "FFFFFF"
+    ];
   };
 
   i18n.defaultLocale  = "en_US.UTF-8";
@@ -387,13 +395,6 @@ in {
     subpixel.rgba = "vrgb";
     hinting.style = "full"; # may cause loss of shape, try lower value?
   };
-
-  # colors in tty (based on monokai)
-  console.colors = [
-    "000000" "FC618D" "7BD88F" "FD9353" "5AA0E6" "948AE3" "5AD4E6" "F7F1FF"
-    "99979B" "FB376F" "4ECA69" "FD721C" "2180DE" "7C6FDC" "37CBE1" "FFFFFF"
-  ];
-
 
   # qt theming (based on gtk theming)
   qt = {
