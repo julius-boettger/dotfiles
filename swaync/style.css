@@ -17,7 +17,7 @@
 @define-color bg-selected        #5AA0E6;
 
 .notification {
-  font-family: 'FiraCode Nerd Font';
+  font-family: 'JetBrainsMonoNL Nerd Font';
   border-radius: 15px;
   box-shadow: none;
   border: 3px solid @noti-border-color;
@@ -75,7 +75,7 @@
 }
 
 .control-center {
-  font-family: 'FiraCode Nerd Font';
+  font-family: 'JetBrainsMonoNL Nerd Font';
   border-left:  3px solid @noti-center-border;
   border-right: 3px solid @noti-center-border;
   border-radius: 0;

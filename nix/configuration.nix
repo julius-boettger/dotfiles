@@ -136,9 +136,7 @@ in {
     aileron # modern text with 16 variations
     # install only specific nerd fonts
     (nerdfonts.override { fonts = [
-      "Terminus"   # very square
-      "FiraCode"   # good for code
-      "RobotoMono" # good for code
+      "JetBrainsMono" # good for code
     ]; } )
   ];
 

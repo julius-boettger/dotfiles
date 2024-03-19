@@ -100,7 +100,7 @@
       :halign "center"
       :style "margin-left: -1px" ; better centering below ":" of time
       :space-evenly false
-      :spacing 39
+      :spacing 38
       (for workspace in data
         (eventbox
           :onclick "hyprctl dispatch workspace ${workspace.id}"

@@ -77,7 +77,7 @@ theme.default_dir                               = require("awful.util").get_them
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper                                 = "/etc/dotfiles/wallpapers/nixos/" .. variant.wallpaper .. ".png"
 theme.notification_sound                        = "/etc/dotfiles/notification.wav"
-theme.font                                      = "FiraCode Nerd Font 12"
+theme.font                                      = "JetBrainsMonoNL Nerd Font 12"
 theme.border_focus                              = variant.accent_color
 theme.bg_urgent                                 = "#FFFFFF"
 theme.taglist_fg_focus                          = "#F7F1FF"
@@ -226,7 +226,7 @@ theme.mail = lain.widget.imap({
 -- /home fs
 --[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
-    notification_preset = { fg = theme.fg_focus, bg = theme.bg_normal, font = "Terminus 10.5" },
+    notification_preset = { fg = theme.fg_focus, bg = theme.bg_normal, font = "JetBrainsMonoNL Nerd Font 10.5" },
     settings  = function()
         local fs_header, fs_p = "", ""
 
@@ -294,7 +294,7 @@ theme.weather = lain.widget.weather({
 --]]
 
 -- Separators
-local first = wibox.widget.textbox(markup.font("Terminess Nerd Font 4", " "))
+local first = wibox.widget.textbox(markup.font("JetBrainsMonoNL Nerd Font 4", " "))
 local spr   = wibox.widget.textbox(" ")
 local bar   = wibox.widget.textbox(markup.fontfg(theme.font, theme.fg_focus, "|"))
 

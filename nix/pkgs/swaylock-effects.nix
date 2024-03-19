@@ -13,7 +13,7 @@ swaylock \
 --indicator-idle-visible \
 --ignore-empty-password \
 --disable-caps-lock-text \
---font "FiraCode Nerd Font" \
+--font "JetBrainsMonoNL Nerd Font" \
 --font-size 200 \
 --effect-blur 12x3 \
 --indicator-radius 210 \

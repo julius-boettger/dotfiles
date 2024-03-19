@@ -6,7 +6,7 @@
     color2: #FFFFFF1A;
     color3: #F7F1FF;
 
-    font: "FiraCode Nerd Font 12";
+    font: "JetBrainsMonoNL Nerd Font 12";
     text-color: @color3;
     background-color: transparent;
 

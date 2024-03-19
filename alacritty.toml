@@ -22,14 +22,14 @@ white   = "#FFFFFF"
 yellow  = "#FD721C"
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMonoNL Nerd Font"
 style = "Regular"
 [font.italic]
-style = "Light"
+style = "Italic"
 [font.bold]
 style = "Bold"
 [font.bold_italic]
-style = "Bold"
+style = "Bold Italic"
 
 [cursor.style]
 shape = "Underline"
