@@ -69,7 +69,7 @@
           :value logarithmic-cpu
           :text "" :style "padding-right: 0.35em" ; cpu nerdfont character
           :condition       {EWW_CPU.avg < 10}
-          :condition-text "${round(EWW_CPU.avg, 1)}%")
+          :condition-text "${round(EWW_CPU.avg, 1)}")
         (circular-progress-fancy
           :tooltip "${ram.used} / ${ram.total} MB"
           :value {ram.used_percent}
