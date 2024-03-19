@@ -5,8 +5,8 @@ add_newline = false
 
 [character]
 # 𝈳 ᗇ ❯
-success_symbol = "[𝈳](purple)"
-  error_symbol = "[𝈳](purple)"
+success_symbol = "[❯](purple)"
+  error_symbol = "[❯](purple)"
 
 [cmd_duration]
 min_time = 1000 # milliseconds
