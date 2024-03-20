@@ -16,6 +16,9 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 - This repo contains configuration files I daily drive on a private machine at home. Its purpose is:
     - providing version control for my config files
     - serving as documentation and inspiration for customizing your system
+- With this repo you get two fully functional desktop sessions:
+  - [Awesome](https://github.com/awesomeWM/awesome) + [Picom](https://github.com/jonaburg/picom) (on Xorg)
+  - [Hyprland](https://hyprland.org/) (on Wayland)
 - See [Content overview](#content-overview) for explanations of files and directories in this repo
 - If (for some reason) you would like to replicate my exact system, see [Installation](#installation)
 
@@ -96,6 +99,8 @@ Set your `git` credentials using [`git-credential-manager`](https://github.com/g
 Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/gitnuro.json` and click on "Accept".
 
 If you notice that the mouse cursor looks different when hovering over some apps, try setting it with `nwg-look` (Wayland) or `lxappearance` (Xorg).
+
+By default, both the Awesome and the Hyprland session use a random wallpaper out of `/etc/dotfiles/wallpapers/nixos/` on every reload. But there's an easy way to set up your own wallpapers on Hyprland: Put just one (or multiple!)  in `/etc/dotfiles/wallpapers/other/`. A random one will be selected on each reload if you have multiple. You can also configure corresponding accent colors for each wallpaper that will be used e.g. for the client border color. To do this, ajdust `/etc/dotfiles/hyprland/wallpaper.py`. You will figure it out.
 
 ### And then you should be all set up!
 
