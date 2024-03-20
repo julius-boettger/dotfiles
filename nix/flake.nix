@@ -1,38 +1,38 @@
 {
-  #description = "";
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-23.11";
+  inputs = {                                        # update version here vvvvv
+    nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-23.11";
+    home-manager = { url = "github:nix-community/home-manager?ref=release-23.11";
+                     inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager?ref=release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = { self,
+    # take inputs as arguments
+    nixpkgs, nixpkgs-unstable, home-manager }:
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+
+    pkgs-config = {
       inherit system;
       config.allowUnfree = true;
     };
-    pkgs-unstable = import nixpkgs-unstable {
+    pkgs          = import nixpkgs          pkgs-config;
+    pkgs-unstable = import nixpkgs-unstable pkgs-config;
+
+    mkNixosConfiguration = { modules }: nixpkgs.lib.nixosSystem {
       inherit system;
-      config.allowUnfree = true;
+      modules = [
+        home-manager.nixosModules.home-manager
+        # overlay unstable packages to do something like pkgs.unstable.my-package
+        ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
+      ] ++ modules;
     };
   in
   {
     nixosConfigurations = {
-      # "nixos" is for hostname
-      # use pkgs here instead?
-      nixos = nixpkgs.lib.nixosSystem {
-        # take away the "special args"?
-        specialArgs = { inherit system; };
-        modules = [
-          # shorten this?
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-          home-manager.nixosModules.home-manager
-          ./configuration.nix
-        ];
+      # it's easiest to use the hostname of the device here 
+      nixos = mkNixosConfiguration {
+        modules = [ ./configuration.nix ];
       };
     };
   };
