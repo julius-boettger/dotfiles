@@ -261,7 +261,6 @@ in {
     jdk
     rustup
     nodejs_20
-    python3Full
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv
     ]))
