@@ -11,15 +11,6 @@ in {
     ./hardware-configuration.nix
     # device specific config
     ./extra-config.nix
-    # home-manager
-    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
-  ];
-
-  # set path to configuration.nix
-  nix.nixPath = [
-    "nixos-config=/etc/dotfiles/nix/configuration.nix"
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
   # self-explaining one-liners
@@ -116,20 +107,6 @@ in {
   ################ PACKAGES ################
   ##########################################
   ##########################################
-
-  nixpkgs.config.packageOverrides = pkgs: with pkgs; {
-    # use packages from the unstable channel by prefixing them
-    # with "unstable.", like "pkgs.unstable.onedrive"
-    unstable = import (fetchTarball "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz") {
-      config = config.nixpkgs.config;
-    };
-    # use packages from the NUR by prefixing them with with
-    # "nur.", like "pkgs.nur.repos.utybo.git-credential-manager"
-    # NUR = nix user repository, like AUR but for nix
-    nur = import (fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
 
   # fonts to install
   fonts.packages = with pkgs; [
