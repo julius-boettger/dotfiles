@@ -17,4 +17,5 @@ if status is-interactive
     alias cd z
     alias ls lsd
     alias cat bat
+    alias flake-rebuild "sudo nixos-rebuild switch --flake /etc/dotfiles/nix"
 end
