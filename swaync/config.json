@@ -23,7 +23,7 @@
   "script-fail-notify": false,
   "scripts": {
     "sound": {
-      "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/notification.wav",
+      "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/other/notification.wav",
       "run-on": "receive"
     }
   },

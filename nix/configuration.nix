@@ -430,7 +430,7 @@ in {
     fish_color_autosuggestion = "white";
   };
   # config file location for starship prompt
-  environment.sessionVariables.STARSHIP_CONFIG = "/etc/dotfiles/starship.toml";
+  environment.sessionVariables.STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
 
   ############################################
   ############################################
@@ -532,18 +532,18 @@ in {
     "eww"                     = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/eww";     recursive = true; };
     "awesome"                 = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/awesome"; recursive = true; };
     "swaync"                     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/swaync";
-    "picom.conf"                 .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/picom.conf";
-    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fish-init.fish";
-    "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/copyq.conf";
     "hypr/hyprland.conf"         .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/hyprland/hyprland.conf";
     "fastfetch/config.jsonc"     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/default.jsonc";
-    "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/alacritty.toml";
-    "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/vscodium.json";
+    "picom.conf"                 .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/picom.conf";
+    "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/copyq.conf";
+    "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/vscodium.json";
+    "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/alacritty.toml";
+    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/fish-init.fish";
   };
   # files somewhere else in ~/
   home.file = {
-    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/.ideavimrc";
+    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/.ideavimrc";
     ".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${device-specific.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/firefox.css";
+    ".mozilla/firefox/${device-specific.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/firefox.css";
   };
 };}

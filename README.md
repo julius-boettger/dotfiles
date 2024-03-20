@@ -23,33 +23,33 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 - If (for some reason) you would like to replicate my exact system, see [Installation](#installation)
 
 # Content overview
-> Note: "Recommended directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/dotfiles/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See the end of [`nix/configuration.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix/configuration.nix) for the exact symlinks that are created.
+> Note: "Typical directory" is the path to the directory where the described file (or directory) is usually located. This is either just `/etc/dotfiles/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. See the end of [`nix/configuration.nix`](https://github.com/julius-boettger/dotfiles/blob/main/nix/configuration.nix) for the exact symlinks that are created.
 
-| File or directory | Recommended directory | Description |
-|-------------------|-----------------------|-------------|
+| File or directory | Typical directory | Description |
+|-------------------|-------------------|-------------|
 | `nix/` | `/etc/dotfiles/` | All about [NixOS](https://nixos.org) |
 | `nix/configuration.nix` | `/etc/dotfiles/` | [NixOS](https://nixos.org) configuration |
 | `nix/update/` | `/etc/dotfiles/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
 | `nix/pkgs/` | `/etc/dotfiles/` | Local Nix packages |
-| `gitnuro.json` | `/etc/dotfiles/` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
-| `autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by Xorg window manager or Wayland compositor on startup) |
-| `notification.wav` | `/etc/dotfiles/` | Notification sound |
 | `wallpapers/nixos/` | `/etc/dotfiles/` | NixOS logo wallpapers in all kinds of color combinations |
 | `awesome/` | `~/.config/` | [Awesome](https://github.com/awesomeWM/awesome) configuration including a custom theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `swaync/` | `~/.config/` | [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter) configuration with custom theme |
 | `eww/` | `~/.config/` | [Eww](https://github.com/elkowar/eww) configuration with custom widgets |
-| `picom.conf` | `~/.config/` | [picom (jonaburg-fork)](https://github.com/jonaburg/picom) configuration |
-| `starship.toml` | `~/.config/` | [Starship](https://github.com/starship/starship) configuration |
-| `alacritty.toml` | `~/.config/alacritty/` | [Alacritty](https://github.com/alacritty/alacritty) configuration |
-| `copyq.conf` | `~/.config/copyq/` | [CopyQ](https://github.com/hluk/CopyQ) configuration with custom theme |
 | `hyprland/hyprland.conf` | `~/.config/hypr/` | [Hyprland](https://hyprland.org/) configuration |
 | `fastfetch/` | `~/.config/fastfetch/` | [fastfetch](https://github.com/fastfetch-cli/fastfetch) configurations |
 | `rofi/` | `~/.local/share/rofi/themes/` | [Rofi](https://github.com/lbonn/rofi) (Wayland fork) themes |
-| `fish-init.fish` | `~/.config/fish/` | `config.fish` for [Fish](https://github.com/fish-shell/fish-shell) |
-| `vscodium.json` | `~/.config/VSCodium/User/` | `settings.json` for [VSCodium](https://github.com/VSCodium/vscodium) |
-| `firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
-| `sddm-sugar-candy.conf` | `/usr/share/sddm/themes/sugar-candy/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
-| `.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
+| `other/gitnuro.json` | `/etc/dotfiles/` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
+| `other/autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by Xorg window manager or Wayland compositor on startup) |
+| `other/notification.wav` | `/etc/dotfiles/` | Notification sound |
+| `other/.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
+| `other/picom.conf` | `~/.config/` | [picom (jonaburg-fork)](https://github.com/jonaburg/picom) configuration |
+| `other/starship.toml` | `~/.config/` | [Starship](https://github.com/starship/starship) configuration |
+| `other/alacritty.toml` | `~/.config/alacritty/` | [Alacritty](https://github.com/alacritty/alacritty) configuration |
+| `other/copyq.conf` | `~/.config/copyq/` | [CopyQ](https://github.com/hluk/CopyQ) configuration with custom theme |
+| `other/fish-init.fish` | `~/.config/fish/` | `config.fish` for [Fish](https://github.com/fish-shell/fish-shell) |
+| `other/vscodium.json` | `~/.config/VSCodium/User/` | `settings.json` for [VSCodium](https://github.com/VSCodium/vscodium) |
+| `other/firefox.css` | `~/.mozilla/firefox/[YOUR-PROFILE]/chrome/` | `userChrome.css` for [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
+| `other/sddm-sugar-candy.conf` | `/usr/share/sddm/themes/sugar-candy/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 
 # Installation
 
@@ -96,7 +96,7 @@ Next: `reboot` for good measure.
 
 Set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
 
-Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/gitnuro.json` and click on "Accept".
+Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/other/gitnuro.json` and click on "Accept".
 
 If you notice that the mouse cursor looks different when hovering over some apps, try setting it with `nwg-look` (Wayland) or `lxappearance` (Xorg).
 

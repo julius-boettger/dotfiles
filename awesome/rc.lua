@@ -23,7 +23,7 @@ local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 -- }}}
 
 -- start background programs (if they are not already running)
-awful.spawn.with_shell("/etc/dotfiles/autostart.sh xorg &")
+awful.spawn.with_shell("/etc/dotfiles/other/autostart.sh xorg &")
 -- set path to pixmaps on nixos
 naughty.config.icon_dirs = { "/run/current-system/sw/share/pixmaps" }
 

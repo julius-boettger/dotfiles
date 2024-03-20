@@ -20,7 +20,7 @@ rec {
 
     mkdir -p $out/share/sddm/themes/sugar-candy
     cp -r . $out/share/sddm/themes/sugar-candy
-    ln -sf /etc/dotfiles/sddm-sugar-candy.conf $out/share/sddm/themes/sugar-candy/theme.conf
+    ln -sf /etc/dotfiles/other/sddm-sugar-candy.conf $out/share/sddm/themes/sugar-candy/theme.conf
 
     runHook postInstall
   '';
