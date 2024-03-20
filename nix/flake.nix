@@ -6,23 +6,19 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { self,
-    # take inputs as arguments
-    nixpkgs, nixpkgs-unstable, home-manager }:
+  # take inputs as arguments
+  outputs = inputs@{ self, ... }:
   let
     system = "x86_64-linux";
 
-    pkgs-config = {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    pkgs          = import nixpkgs          pkgs-config;
-    pkgs-unstable = import nixpkgs-unstable pkgs-config;
+    pkgs-config   = { inherit system; config.allowUnfree = true; };
+    pkgs          = import inputs.nixpkgs          pkgs-config;
+    pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
 
-    mkNixosConfiguration = { modules }: nixpkgs.lib.nixosSystem {
+    mkNixosConfiguration = { modules }: inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
         # overlay unstable packages to do something like pkgs.unstable.my-package
         ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
       ] ++ modules;
