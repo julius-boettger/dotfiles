@@ -1,8 +1,5 @@
-nix/update/last-run-date
-
-# device specific configuration
-nix/secrets.nix
 hyprland/extra-config.conf
+nix/update/last-run-date
 wallpapers/other
 
 # other awesome themes
