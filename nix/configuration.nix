@@ -1,16 +1,18 @@
 { config, pkgs, ... }:
 
 # import config variables that are shared by all of my devices
-let variables = import ./variables.nix pkgs.callPackage;
+let
+  variables = import ./variables.nix pkgs.callPackage;
+  device-specific = import ./device-specific.nix;
 in {
   # import other nix files
   imports = [
     # results of automatic hardware scan
-    /etc/nixos/hardware-configuration.nix
-    # home-manager
-    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
+    ./hardware-configuration.nix
     # device specific config
     ./extra-config.nix
+    # home-manager
+    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-${variables.version}.tar.gz"}/nixos"
   ];
 
   # set path to configuration.nix
@@ -33,7 +35,7 @@ in {
   boot.kernelModules = [ "liquidtux" ];
 
   networking = {
-    hostName = variables.secrets.networking.hostName;
+    hostName = device-specific.hostName;
     networkmanager.enable = true;
   };
 
@@ -535,8 +537,8 @@ in {
   # git (mainly for credential stuff)
   home.file.".gitconfig".text = ''
     [user]
-      name = ${variables.secrets.git.name}
-      email = ${variables.secrets.git.email}
+      name = ${variables.git.name}
+      email = ${variables.git.email}
     [init]
       defaultBranch = main
     [credential]
@@ -544,7 +546,7 @@ in {
       helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
   '';
   # firefox (allow userChrome.css)
-  home.file."./.mozilla/firefox/${variables.secrets.firefox.profile}/user.js".text = ''
+  home.file."./.mozilla/firefox/${device-specific.firefox.profile}/user.js".text = ''
     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
   '';
 
@@ -566,6 +568,6 @@ in {
   home.file = {
     ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/.ideavimrc";
     ".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${variables.secrets.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/firefox.css";
+    ".mozilla/firefox/${device-specific.firefox.profile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/firefox.css";
   };
 };}

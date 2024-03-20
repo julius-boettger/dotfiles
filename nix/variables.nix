@@ -8,6 +8,9 @@ callPackage: rec {
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";
+  # global git config
+  git.name = "julius-boettger";
+  git.email = "julius.btg@proton.me";
   # my own packages
   pkgs = {
     gitnuro                 = callPackage ./pkgs/gitnuro.nix                 {};
