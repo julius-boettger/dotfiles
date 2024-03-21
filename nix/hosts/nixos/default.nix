@@ -6,6 +6,18 @@
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
 
+  # drivers for aio liquid coolers
+  boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
+  boot.kernelModules = [ "liquidtux" ];
+
+  environment.systemPackages = with pkgs; [
+    nvidia-system-monitor-qt # monitor nvidia gpu stuff
+    alsa-scarlett-gui # control center for focusrite usb audio interface
+    unigine-valley # PROPRIETARY gpu stress test and benchmark
+    liquidctl # liquid cooler control
+    mprime # PROPRIETARY cpu stress test
+  ];
+
   # mount data partition
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   fileSystems."/mnt/data" = {

@@ -1,5 +1,6 @@
 { pkgs, host, variables, ... }:
 {
+  # self-explaining one-liners
   console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
   system.stateVersion = variables.version;
@@ -45,6 +46,7 @@
   # packages to install, mostly command line stuff
   environment.systemPackages = with pkgs; [
     git
+    vim
     bash
     jq # process json
     lsd # better ls
