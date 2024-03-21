@@ -14,7 +14,8 @@ echo "starting update..."
 set_color white
 
 # build a new configuration with the newest available versions of packages
-sudo nixos-rebuild switch --upgrade-all
+nix flake update /etc/dotfiles/nix
+flake-rebuild
 
 set_color green
 echo "completed update."
