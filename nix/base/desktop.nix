@@ -273,6 +273,9 @@
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
+  # shell alias for shorter fastfetch
+  environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/short.jsonc";
+
   # vm's with virtualbox
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ variables.username ];
@@ -418,7 +421,6 @@
     "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/copyq.conf";
     "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/vscodium.json";
     "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/alacritty.toml";
-    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fish/default-init.fish";
   };
   # files somewhere else in ~/
   home.file = {

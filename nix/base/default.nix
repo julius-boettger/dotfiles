@@ -4,6 +4,7 @@
   # self-explaining one-liners
   console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
+  nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -126,4 +127,8 @@
       credentialStore = secretservice
       helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
   '';
+
+  ### symlink dotfiles
+  # files in ~/.config/
+  xdg.configFile."fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/init.fish";
 };}

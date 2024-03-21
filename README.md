@@ -38,13 +38,13 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `hyprland/hyprland.conf` | `~/.config/hypr/` | [Hyprland](https://hyprland.org/) configuration |
 | `fastfetch/` | `~/.config/fastfetch/` | [fastfetch](https://github.com/fastfetch-cli/fastfetch) configurations |
 | `rofi/` | `~/.local/share/rofi/themes/` | [Rofi](https://github.com/lbonn/rofi) (Wayland fork) themes |
-| `fish/` | `~/.config/fish/` | Multiple versions of `config.fish` for [Fish](https://github.com/fish-shell/fish-shell) |
 | `other/gitnuro.json` | `/etc/dotfiles/` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
 | `other/autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by Xorg window manager or Wayland compositor on startup) |
 | `other/notification.wav` | `/etc/dotfiles/` | Notification sound |
 | `other/.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `other/picom.conf` | `~/.config/` | [picom (jonaburg-fork)](https://github.com/jonaburg/picom) configuration |
 | `other/starship.toml` | `~/.config/` | [Starship](https://github.com/starship/starship) configuration |
+| `other/init.fish` | `~/.config/fish/` | `config.fish` for [Fish](https://github.com/fish-shell/fish-shell) |
 | `other/alacritty.toml` | `~/.config/alacritty/` | [Alacritty](https://github.com/alacritty/alacritty) configuration |
 | `other/copyq.conf` | `~/.config/copyq/` | [CopyQ](https://github.com/hluk/CopyQ) configuration with custom theme |
 | `other/vscodium.json` | `~/.config/VSCodium/User/` | `settings.json` for [VSCodium](https://github.com/VSCodium/vscodium) |
