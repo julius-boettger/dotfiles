@@ -19,7 +19,7 @@ if status is-interactive
     alias cat bat
 end
 
-# use like "flake-rebuild HOST"
+# use like "flake-rebuild HOST [--impure]"
 function flake-rebuild
     # use "nixos" for $argv if not provided
     if test "x$argv" = "x"
@@ -28,6 +28,6 @@ function flake-rebuild
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
     cd /etc/dotfiles/nix
-    sudo nixos-rebuild switch --flake .\#$argv
+    eval "sudo nixos-rebuild switch --flake .#$argv"
     cd $workingDir
 end
