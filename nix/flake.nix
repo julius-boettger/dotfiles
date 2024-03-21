@@ -17,18 +17,21 @@
     pkgs          = import inputs.nixpkgs          pkgs-config;
     pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
 
-
     mkNixosConfiguration = { modules, hostName }:
       let
-        specialArgs = { inherit hostName self; };
+        # attributes like hostName can be taken as function arguments in modules like base.nix
+        specialArgs = { inherit hostName; };
       in
       inputs.nixpkgs.lib.nixosSystem {
+        # make specialArgs available for nixos system
         inherit system specialArgs;
         modules = [
+          # make home manager available
           inputs.home-manager.nixosModules.home-manager
+          # make specialArgs available for home manager
+          { home-manager.extraSpecialArgs = specialArgs; }
           # overlay unstable packages to do something like pkgs.unstable.my-package
           ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-          { home-manager.extraSpecialArgs = specialArgs; }
         ] ++ modules;
       };
   in
@@ -36,6 +39,7 @@
     nixosConfigurations = {
       # "nixos" will be built by default, others have to be used like "--flake .#NAME"
       nixos = mkNixosConfiguration {
+        hostName = "nixos";
         modules = [ ./configuration.nix ];
       };
       wsl = mkNixosConfiguration {

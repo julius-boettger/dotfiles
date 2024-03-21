@@ -107,7 +107,7 @@ in {
   # manage stuff in /home/$USER/
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.julius = { config, ... }: {
+  home-manager.users.${variables.username} = { config, ... }: {
 
   home.stateVersion = variables.version;
   # i dont know what this does?
