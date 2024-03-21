@@ -22,7 +22,7 @@ end
 # use like "flake-rebuild HOST"
 function flake-rebuild
     # use "nixos" for $argv if not provided
-    if test -z "$argv"
+    if test "x$argv" = "x"
         set argv nixos
     end
     # cd back and forth because of wsl issue
