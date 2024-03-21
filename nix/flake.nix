@@ -1,3 +1,4 @@
+# entry point of my nixos configuration
 {
   inputs = {                                        # update version here vvvvv
     nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-23.11";

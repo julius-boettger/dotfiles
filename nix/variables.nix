@@ -1,9 +1,9 @@
-### config variables that are shared by all of my devices
-# take pkgs.callPackage as function argument
-callPackage: rec {
-  # import device specific or personal stuff
+# config variables that are shared by all of my devices.
+# takes pkgs.callPackage as function argument.
+callPackage:
+{
   secrets = import ./secrets.nix;
-  # nixos state and home-manager version
+  # nixos and home-manager state version
   version = "23.11";
   # username and displayname of only user
   username = "julius";

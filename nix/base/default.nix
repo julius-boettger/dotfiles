@@ -1,3 +1,4 @@
+# this file contains basic config i want to have on every device
 { pkgs, host, variables, ... }:
 {
   # self-explaining one-liners

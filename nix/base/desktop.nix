@@ -1,3 +1,4 @@
+# this file contains shared config i want to have on desktop (gui) devices
 { config, pkgs, variables, host, ... }:
 {
   # self-explaining one-liners
@@ -204,8 +205,8 @@
     pick-colour-picker
     # could/should work on wayland, but doesnt for now :(
     insomnia # rest api client
-    barrier
-    gparted
+    barrier # kvm switch
+    gparted # partition manager
 
     ### only used on wayland
     socat # for hyprland workspaces with eww

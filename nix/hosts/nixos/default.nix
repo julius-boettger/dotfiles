@@ -1,4 +1,4 @@
-{ pkgs, variables, ... }:
+{ config, pkgs, variables, ... }:
 {
   # results of automatic hardware scan
   imports = [ ./hardware-configuration.nix ];
