@@ -17,5 +17,17 @@ if status is-interactive
     alias cd z
     alias ls lsd
     alias cat bat
-    alias flake-rebuild "sudo nixos-rebuild switch --flake /etc/dotfiles/nix"
+end
+
+# use like "flake-rebuild HOST"
+function flake-rebuild
+    # use "nixos" for $argv if not provided
+    if test -z "$argv"
+        set argv nixos
+    end
+    # cd back and forth because of wsl issue
+    set workingDir $(pwd)
+    cd /etc/dotfiles/nix
+    sudo nixos-rebuild switch --flake .\#$argv
+    cd $workingDir
 end
