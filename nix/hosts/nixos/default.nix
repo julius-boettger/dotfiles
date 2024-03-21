@@ -1,11 +1,8 @@
-/* this file is for device-specific configuration.
-   the following is some example content you might want to configure. */
+{ pkgs, variables, ... }:
+{
+  # results of automatic hardware scan
+  imports = [ ./hardware-configuration.nix ];
 
-{ config, pkgs, ... }:
-
-# import config variables that are shared by all of my devices
-let variables = import ./variables.nix pkgs.callPackage;
-in {
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
 

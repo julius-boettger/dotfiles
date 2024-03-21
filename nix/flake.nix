@@ -36,7 +36,7 @@
         # make specialArgs available for nixos system
         inherit system specialArgs;
         modules = [
-          #./base
+          ./base
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
           # make specialArgs available for home manager
@@ -53,9 +53,8 @@
         hostName = "nixos";
         firefoxProfile = "h5hep79f.dev-edition-default";
         modules = [
-          ./configuration.nix
           ./base/desktop.nix
-          #./hosts/???
+          ./hosts/nixos
         ];
       };
       wsl = mkNixosConfiguration {
@@ -63,7 +62,6 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
-          ./base
         ];
       };
     };
