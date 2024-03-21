@@ -1,6 +1,6 @@
 { pkgs, hostName, ... }:
 let
-  variables = import ./variables.nix pkgs.callPackage;
+  variables = import ../variables.nix pkgs.callPackage;
 in {
   console.keyMap = "de";
   time.timeZone = "Europe/Berlin";

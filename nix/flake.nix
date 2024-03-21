@@ -19,7 +19,7 @@
 
     mkNixosConfiguration = { modules, hostName }:
       let
-        # attributes like hostName can be taken as function arguments in modules like base.nix
+        # attributes like hostName can be taken as function arguments in modules like base/default.nix
         specialArgs = { inherit hostName; };
       in
       inputs.nixpkgs.lib.nixosSystem {
@@ -47,7 +47,7 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
-          ./base.nix
+          ./base
         ];
       };
     };

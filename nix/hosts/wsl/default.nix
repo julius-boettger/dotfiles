@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  variables = import ./../../variables.nix pkgs.callPackage;
+  variables = import ../../variables.nix pkgs.callPackage;
 in {
   wsl = {
     enable = true;
