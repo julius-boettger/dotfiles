@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostName, ... }:
 let
   variables = import ./variables.nix pkgs.callPackage;
 in {
@@ -8,7 +8,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = "HOSTNAME";
+    hostName = hostName;
     networkmanager.enable = true;
   };
 

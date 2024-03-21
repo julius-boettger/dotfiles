@@ -17,14 +17,20 @@
     pkgs          = import inputs.nixpkgs          pkgs-config;
     pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
 
-    mkNixosConfiguration = { modules }: inputs.nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        inputs.home-manager.nixosModules.home-manager
-        # overlay unstable packages to do something like pkgs.unstable.my-package
-        ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-      ] ++ modules;
-    };
+
+    mkNixosConfiguration = { modules, hostName }:
+      let
+        specialArgs = { inherit hostName self; };
+      in
+      inputs.nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+        modules = [
+          inputs.home-manager.nixosModules.home-manager
+          # overlay unstable packages to do something like pkgs.unstable.my-package
+          ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
+          { home-manager.extraSpecialArgs = specialArgs; }
+        ] ++ modules;
+      };
   in
   {
     nixosConfigurations = {
@@ -33,6 +39,7 @@
         modules = [ ./configuration.nix ];
       };
       wsl = mkNixosConfiguration {
+        hostName = "wsl";
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
