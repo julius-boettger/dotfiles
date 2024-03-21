@@ -1,14 +1,12 @@
-{ pkgs, hostName, ... }:
-let
-  variables = import ../variables.nix pkgs.callPackage;
-in {
+{ pkgs, host, variables, ... }:
+{
   console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
   system.stateVersion = variables.version;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = hostName;
+    hostName = host.name;
     networkmanager.enable = true;
   };
 

@@ -13,14 +13,24 @@
   let
     system = "x86_64-linux";
 
+    variables = import ./variables.nix pkgs.callPackage;
+
     pkgs-config   = { inherit system; config.allowUnfree = true; };
     pkgs          = import inputs.nixpkgs          pkgs-config;
     pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
 
-    mkNixosConfiguration = { modules, hostName }:
+    mkNixosConfiguration = { modules, hostName, firefoxProfile ? null }:
       let
-        # attributes like hostName can be taken as function arguments in modules like base/default.nix
-        specialArgs = { inherit hostName; };
+        # attributes of this set can be taken as function arguments in modules like base/default.nix
+        specialArgs = {
+          # shared
+          inherit variables;
+          # device specific
+          host = {
+            inherit firefoxProfile;
+            name = hostName;
+          };
+        };
       in
       inputs.nixpkgs.lib.nixosSystem {
         # make specialArgs available for nixos system
@@ -41,6 +51,7 @@
       # "nixos" will be built by default, others have to be used like "--flake .#NAME"
       nixos = mkNixosConfiguration {
         hostName = "nixos";
+        firefoxProfile = "h5hep79f.dev-edition-default";
         modules = [
           ./configuration.nix
           ./base/desktop.nix

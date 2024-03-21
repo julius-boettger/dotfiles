@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-let
-  variables = import ../../variables.nix pkgs.callPackage;
-in {
+{ pkgs, variables, ... }:
+{
   wsl = {
     enable = true;
     defaultUser = variables.username;

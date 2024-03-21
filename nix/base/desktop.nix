@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-let
-  variables = import ../variables.nix pkgs.callPackage;
-in {
+{ pkgs, variables, ... }:
+{
   home-manager.users.${variables.username} = { config, ... }: {
     ### symlink dotfiles
     # files in ~/.config/
