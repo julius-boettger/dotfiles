@@ -36,6 +36,7 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
+          ./base.nix
         ];
       };
     };
