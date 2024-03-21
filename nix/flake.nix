@@ -26,6 +26,7 @@
         # make specialArgs available for nixos system
         inherit system specialArgs;
         modules = [
+          #./base
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
           # make specialArgs available for home manager
@@ -40,7 +41,11 @@
       # "nixos" will be built by default, others have to be used like "--flake .#NAME"
       nixos = mkNixosConfiguration {
         hostName = "nixos";
-        modules = [ ./configuration.nix ];
+        modules = [
+          ./configuration.nix
+          ./base/desktop.nix
+          #./hosts/???
+        ];
       };
       wsl = mkNixosConfiguration {
         hostName = "wsl";

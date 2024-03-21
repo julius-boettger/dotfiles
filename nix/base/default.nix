@@ -125,11 +125,4 @@ in {
       credentialStore = secretservice
       helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
   '';
-
-  ### symlink dotfiles
-  # files in ~/.config/
-  xdg.configFile = {
-    "fish/config.fish".source       = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/fish-init.fish";
-    "fastfetch/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/default.jsonc";   
-  };
 };}

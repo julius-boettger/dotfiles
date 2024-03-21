@@ -538,7 +538,7 @@ in {
     "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/copyq.conf";
     "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/vscodium.json";
     "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/alacritty.toml";
-    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/fish-init.fish";
+    "fish/config.fish"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fish/default-init.fish";
   };
   # files somewhere else in ~/
   home.file = {
