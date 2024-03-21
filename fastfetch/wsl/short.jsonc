@@ -1,0 +1,52 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "data",
+        "source": "  \\\\  \\\\ //\n ==\\\\__\\\\/ //\n   //   \\\\//\n==//     //==\n //\\\\___//\n// /\\\\  \\\\==\n  // \\\\  \\\\"
+    },
+    "display": {
+        "binaryPrefix": "si",
+        "percent": {
+            "type": 1,
+            "color": {
+                "green": "white",
+                "yellow": "white",
+                "red": "white"
+            }
+        }
+    },
+    "modules": [
+        "break",
+        "title",
+        {
+            "type": "os",
+            "format": "{3}"
+        },
+        "shell",
+        {
+            "type": "battery",
+            "format": "{4}"
+        },
+        {
+            "type": "colors",
+            "symbol": "circle"
+        }
+        //{
+        //    "key": "Font",
+        //    "type": "terminalfont",
+        //    "format": "{2}"
+        //},
+        //{
+        //    "type": "memory",
+        //    "format": "{3} ({1})"
+        //},
+        //{
+        //    "type": "kernel",
+        //    "format": "{2}"
+        //},
+        //{
+        //    "type": "terminal",
+        //    "format": "{5}"
+        //},
+    ]
+}
