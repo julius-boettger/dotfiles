@@ -191,7 +191,7 @@
     snapshot # camera
     gnome.dconf-editor # needed for home-manager gtk theming
     gnome.gnome-disk-utility
-    gnome.nautilus # file manager
+    unstable.gnome.nautilus # file manager
     gnome.sushi # thumbnails in nautilus
     xarchiver # archive manager
     lxde.lxmenu-data # required to discover applications
