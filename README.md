@@ -90,14 +90,13 @@ There are some files you now **NEED** to take a look at and adjust them to your 
   - `hyprland/extra-config.conf.example` contains device-specific Hyprland configuration like the afore-mentioned monitor setup.
 - Files in `nix/`:
   - `secrets.nix` and `variables.nix` (should explain themselves)
+    - don't worry about `firefoxProfile`, we will set it later.
   - `hosts/nixos/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
-Set your networking hostname in `/etc/dotfiles/nix/flake.nix` in the line like `hostName = "...";` after `nixos = mkNixosConfiguration {`.
+Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#desktop`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
 
-Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#nixos`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
-
-**Apply Firefox customization**: Run Firefox and set it up to your liking (but don't choose a theme or a `userChrome.css`, you will load mine later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefoxProfile` in `/etc/dotfiles/nix/flake.nix` after the line `nixos = mkNixosConfiguration {` and rebuild your system, e.g. with `flake-rebuild`.
+**Apply Firefox customization**: Run Firefox and set it up to your liking (but don't choose a theme or a `userChrome.css`, you will load mine later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefoxProfile` in `/etc/dotfiles/nix/variables.nix` after the line `desktop = mkNixosConfig {` and rebuild your system, e.g. with `flake-rebuild`.
 
 Next: `reboot` for good measure.
 
@@ -146,7 +145,7 @@ nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/j
 sudo chown -R $USER:root /etc/dotfiles
 ```
 
-You now **NEED** to take a look at two files and adjust them to your liking, both in `/etc/dotfiles/nix/`: `secrets.nix` and `variables.nix`. They should explain themselves what they are for. Of course you may also want to look at and change every other file ;)
+You now should take a look at two files and adjust them to your liking, both in `/etc/dotfiles/nix/`: `secrets.nix` and `variables.nix`. They should explain themselves what they are for. Of course you may also want to look at and change every other file ;)
 
 Then rebuild your system with
 ```sh

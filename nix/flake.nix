@@ -20,51 +20,35 @@
 
     variables = pkgs.callPackage (import ./variables.nix) {};
 
-    mkNixosConfiguration = { modules, hostName, firefoxProfile ? null }:
-      let
-        # attributes of this set can be taken as function arguments in modules like base/default.nix
-        specialArgs = {
-          # shared
-          inherit variables;
-          # device specific
-          host = {
-            inherit firefoxProfile;
-            name = hostName;
-          };
+    mkNixosConfig = { modules, hostName, firefoxProfile ? null }:
+    let
+      # attributes of this set can be taken as function arguments in modules like base/default.nix
+      specialArgs = {
+        # shared
+        inherit variables;
+        # device specific
+        host = {
+          inherit firefoxProfile;
+          name = hostName;
         };
-      in
-      inputs.nixpkgs.lib.nixosSystem {
-        # make specialArgs available for nixos system
-        inherit system specialArgs;
-        modules = [
-          ./base
-          # make home manager available
-          inputs.home-manager.nixosModules.home-manager
-          # make specialArgs available for home manager
-          { home-manager.extraSpecialArgs = specialArgs; }
-          # overlay unstable packages to do something like pkgs.unstable.my-package
-          ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-        ] ++ modules;
       };
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+      # make specialArgs available for nixos system
+      inherit system specialArgs;
+      modules = [
+        # include most basic configuration
+        ./base
+        # make home manager available
+        inputs.home-manager.nixosModules.home-manager
+        # make specialArgs available for home manager
+        { home-manager.extraSpecialArgs = specialArgs; }
+        # overlay unstable packages to do something like pkgs.unstable.my-package
+        ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
+      ] ++ modules;
+    };
   in
   {
-    nixosConfigurations = {
-      # "nixos" will be built by default, others have to be used like "--flake .#NAME"
-      nixos = mkNixosConfiguration {
-        hostName = "nixos";
-        firefoxProfile = "h5hep79f.dev-edition-default";
-        modules = [
-          ./base/desktop.nix
-          ./hosts/nixos
-        ];
-      };
-      wsl = mkNixosConfiguration {
-        hostName = "wsl";
-        modules = [
-          inputs.nixos-wsl.nixosModules.wsl
-          ./hosts/wsl
-        ];
-      };
-    };
+    nixosConfigurations = variables.nixosConfigs { inherit mkNixosConfig inputs; };
   };
 }

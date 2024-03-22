@@ -21,9 +21,9 @@ end
 
 # use like "flake-rebuild HOST [--impure]"
 function flake-rebuild
-    # use "nixos" for $argv if not provided
+    # use "desktop" for $argv if not provided
     if test "x$argv" = "x"
-        set argv nixos
+        set argv desktop
     end
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
