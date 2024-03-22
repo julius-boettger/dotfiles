@@ -85,8 +85,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   # fix pkg-config by pointing it in the right way
-  # also explicitly fix https://github.com/sfackler/rust-openssl/issues/1663
-  environment.sessionVariables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig:${pkgs.openssl.dev}/lib/pkgconfig";
+  environment.sessionVariables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
 
   ### fish shell
   users.defaultUserShell = pkgs.fish;
