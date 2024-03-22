@@ -69,7 +69,7 @@
     gcc
     jdk
     rustup
-    nodejs_20
+    nodePackages_latest.nodejs
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv
     ]))
