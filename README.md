@@ -13,14 +13,18 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 </p>
 
 # About this repo
-- This repo contains configuration files I daily drive on a private machine at home. Its purpose is:
+- This repo contains configuration files I daily drive on multiple machines, including a Windows one through [WSL](https://learn.microsoft.com/en-us/windows/wsl/). Its purpose is:
     - providing version control for my config files
     - serving as documentation and inspiration for customizing your system
-- With this repo you get two fully functional desktop sessions:
-  - [Awesome](https://github.com/awesomeWM/awesome) + [Picom](https://github.com/jonaburg/picom) (on Xorg)
-  - [Hyprland](https://hyprland.org/) (on Wayland)
-- See [Content overview](#content-overview) for explanations of files and directories in this repo
-- If (for some reason) you would like to replicate my exact system, see [Installation](#installation)
+- With this repo you get a [Flake](https://nixos.wiki/wiki/Flakes)-based [NixOS](https://nixos.org) configuration that includes...
+  - two fully functional desktop sessions:
+    - [Awesome](https://github.com/awesomeWM/awesome) + [Picom](https://github.com/jonaburg/picom) (on Xorg)
+    - [Hyprland](https://hyprland.org/) (on Wayland)
+    - => See [Installation (Desktop)](#installation-desktop)
+  - a nice [WSL](https://learn.microsoft.com/en-us/windows/wsl/) setup
+    - => See [Installation (WSL)](#installation-wsl)
+- See [Content overview](#content-overview) for explanations of files and directories in this repo.
+- ⚠️ Basic knowledge of [NixOS](https://nixos.org/) usage, including [Nix flakes](https://nixos.wiki/wiki/Flakes), is needed for all of the provided installation guides.
 
 # Content overview
 > Note: "Expected directory" is the path to the directory where the described file (or directory) is usually located. This could just be `/etc/dotfiles/`, because this repository is assumed to be there, or another path, where a dotfile will be symlinked. Search for `mkOutOfStoreSymlink` in `nix/` for the exact symlinks that are created.
@@ -50,10 +54,9 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `other/sddm-sugar-candy.conf` | `/usr/share/sddm/themes/sugar-candy/` (somewhere in `/nix/store/` on NixOS) | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 | `other/gitnuro.json` | - | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
 
-# Installation
+# Installation (Desktop)
 
-- The following guide explains installation on a [NixOS](https://nixos.org/) system (which is my use case).
-- ⚠️ Knowledge of [NixOS](https://nixos.org/) usage is needed, including [Nix flakes](https://nixos.wiki/wiki/Flakes). Try it out first before attempting to follow this guide.
+- The following guide explains installation on a [NixOS](https://nixos.org/) desktop system.
 - ⚠️ I try to make the config files in this repo modular and hardware independent, but you might still have to change some things to make it work with your hardware. The current configuration assumes:
     - a dual-monitor setup
     - a stationary/dektop system (you _could_ try it out on a portable system, but would probably miss things like a battery or wifi indicator)
@@ -106,8 +109,40 @@ By default, both the Awesome and the Hyprland session use a random wallpaper out
 
 If you notice that the mouse cursor looks different when hovering over some apps, try setting it with `nwg-look` (Wayland) or `lxappearance` (Xorg).
 
-### And then you should be all set up!
+And then you should be all set up!  Feel free to reach out if there's something missing, misleading or incorrect in this installation guide. (Also reach out if you know how to automate any step of this setup further!)
 
-Feel free to reach out if there's something missing, misleading or incorrect in this installation guide.
+# Installation ([WSL](https://learn.microsoft.com/en-us/windows/wsl/))
 
-> Also reach out if you know how to automate any step of this setup further!
+> The following guide explains installation on a Windows system through [NixOS](https://nixos.org/) on [WSL](https://learn.microsoft.com/en-us/windows/wsl/).
+
+First, [setup WSL](https://learn.microsoft.com/en-us/windows/wsl/install) far enough to be able to run `wsl --update`.
+
+Then [setup a NixOS distribution](https://nixos.wiki/wiki/WSL), **but** be careful when executing a command containing a path like `.\NixOS\`, you probably want to change that to an absolute path where the installed files can reside permanently, like `C:\Users\[YOUR-USER]\Documents\WSL\NixOS\`.
+
+Now enter your NixOS WSL system with `wsl -d NixOS`, or just with `wsl` if you ran `wsl --set-default NixOS` before.
+
+Run `sudo nix-channel --update`. If you run into errors like `unable to download [...]: Couldn't resolve host name`, then run `sudo nano /etc/resolv.conf` and make sure the following are the only uncommented lines in that file:
+```
+nameserver 8.8.4.4
+nameserver 8.8.8.8
+```
+
+Now run some more commands:
+
+```shell
+# do this again if it failed before
+sudo nix-channel --update
+# rebuild system with updated channel
+sudo nixos-rebuild switch
+### start setting up my config
+cd /etc
+nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git"
+# make editing files more comfortable (don't require sudo)
+chown -R $USER:root /etc/dotfiles
+```
+
+You now **NEED** to take a look at two files and adjust them to your liking, both in `/etc/dotfiles/nix/`: `secrets.nix` and `variables.nix`. They should explain themselves what they are for. Of course you may also want to look at and change every other file ;)
+
+Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#wsl`. After you've done this once, `flake-rebuild wsl` should be available as a shorthand that serves the same purpose.
+
+Finally, you may want to set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
