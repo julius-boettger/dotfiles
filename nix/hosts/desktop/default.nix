@@ -18,7 +18,7 @@
     mprime # PROPRIETARY cpu stress test
   ];
 
-  # mount data partition
+  ### mount data partition
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-label/DATA";
@@ -30,6 +30,10 @@
       "uid=1000"
       "gid=100"
     ];
+  };
+  # symlink to home folder
+  home-manager.users."${variables.username}" = { config, ... }: {
+    home.file."Library".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Library";
   };
 
   ### for nvidia gpu
