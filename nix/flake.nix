@@ -14,11 +14,11 @@
   let
     system = "x86_64-linux";
 
-    variables = import ./variables.nix pkgs.callPackage;
-
     pkgs-config   = { inherit system; config.allowUnfree = true; };
     pkgs          = import inputs.nixpkgs          pkgs-config;
     pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
+
+    variables = pkgs.callPackage (import ./variables.nix) {};
 
     mkNixosConfiguration = { modules, hostName, firefoxProfile ? null }:
       let
