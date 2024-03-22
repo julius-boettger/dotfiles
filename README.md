@@ -143,6 +143,13 @@ chown -R $USER:root /etc/dotfiles
 
 You now **NEED** to take a look at two files and adjust them to your liking, both in `/etc/dotfiles/nix/`: `secrets.nix` and `variables.nix`. They should explain themselves what they are for. Of course you may also want to look at and change every other file ;)
 
-Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#wsl`. After you've done this once, `flake-rebuild wsl` should be available as a shorthand that serves the same purpose.
+Then rebuild your system with
+```sh
+nix-shell -p git --run "sudo nixos-rebuild switch --flake /etc/dotfiles/nix#wsl"
+```
+
+To see the effects, exit your current WSL session (e.g. with `exit`), force WSL to shutdown (to achieve a restart) with `wsl --shutdown` and then start a new session (e.g. with `wsl -d NixOS`).
+
+You should be greeted by a nice little `fastfetch` now! `flake-rebuild wsl` should also be available as a shorthand that serves the same purpose as the long rebuild command above.
 
 Finally, you may want to set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
