@@ -115,13 +115,18 @@ And then you should be all set up!  Feel free to reach out if there's something 
 
 > The following guide explains installation on a Windows system through [NixOS](https://nixos.org/) on [WSL](https://learn.microsoft.com/en-us/windows/wsl/).
 
-First, [setup WSL](https://learn.microsoft.com/en-us/windows/wsl/install) far enough to be able to run `wsl --update`.
+First, make sure WSL is installed and up to date:
+```
+wsl --install --no-distribution
+wsl --update
+```
+Also make sure to reboot your system to complete the setup (yes, that is necessary).
 
 Then [setup a NixOS distribution](https://nixos.wiki/wiki/WSL), **but** be careful when executing a command containing a path like `.\NixOS\`, you probably want to change that to an absolute path where the installed files can reside permanently, like `C:\Users\[YOUR-USER]\Documents\WSL\NixOS\`.
 
 Now enter your NixOS WSL system with `wsl -d NixOS`, or just with `wsl` if you ran `wsl --set-default NixOS` before.
 
-Run `sudo nix-channel --update`. If you run into errors like `unable to download [...]: Couldn't resolve host name`, then run `sudo nano /etc/resolv.conf` and make sure the following are the only uncommented lines in that file:
+Run `sudo nix-channel --update`. If you run into errors like `unable to download [...]: Couldn't resolve host name`: Make sure you are not connected to some regulated company network for the rest of this guide, then run `sudo nano /etc/resolv.conf` and check that the following lines are the only uncommented ones in that file:
 ```
 nameserver 8.8.4.4
 nameserver 8.8.8.8
@@ -138,7 +143,7 @@ sudo nixos-rebuild switch
 cd /etc
 nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git"
 # make editing files more comfortable (don't require sudo)
-chown -R $USER:root /etc/dotfiles
+sudo chown -R $USER:root /etc/dotfiles
 ```
 
 You now **NEED** to take a look at two files and adjust them to your liking, both in `/etc/dotfiles/nix/`: `secrets.nix` and `variables.nix`. They should explain themselves what they are for. Of course you may also want to look at and change every other file ;)
@@ -151,5 +156,7 @@ nix-shell -p git --run "sudo nixos-rebuild switch --flake /etc/dotfiles/nix#wsl"
 To see the effects, exit your current WSL session (e.g. with `exit`), force WSL to shutdown (to achieve a restart) with `wsl --shutdown` and then start a new session (e.g. with `wsl -d NixOS`).
 
 You should be greeted by a nice little `fastfetch` now! `flake-rebuild wsl` should also be available as a shorthand that serves the same purpose as the long rebuild command above.
+
+At this point it should also be fine to connect to a regulated company network again, reaching the internet should still be possible.
 
 Finally, you may want to set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
