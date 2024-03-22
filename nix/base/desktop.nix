@@ -309,14 +309,12 @@
     xwayland.enable = true;
     package = pkgs.hyprland;
   };
-
-  ### use gtk desktop portal (if gnome is not enabled)
-  # gnome will try to set a conflicting portal if enabled
-  # using gtk desktop portal alongside hyprland desktop portal is also recommended
-  xdg.portal = if !config.services.xserver.desktopManager.gnome.enable then {
+  # use gtk desktop portal
+  # (recommended for usage alongside hyprland desktop portal)
+  xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  } else {};
+  };
 
   # use keyd to emulate ctrl+alt being equal to altgr,
   # like it is using a german keyboard layout on windows
