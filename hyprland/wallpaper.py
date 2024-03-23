@@ -24,15 +24,35 @@ if os.path.isdir(OTHER_WALLPAPER_PATH) and len(os.listdir(OTHER_WALLPAPER_PATH))
 
     # set 4 accent colors in order for each wallpaper
     color_table = {
-        "dawn_on_mountain_with_tree.jpg": ["b", "g", "r", "y"],
-                "valley_with_beacon.jpg": ["y", "r", "g", "b"],
-                  "valley_with_tree.jpg": ["g", "c", "r", "m"],
-                  "dawn_on_mountain.jpg": ["y", "r", "c", "g"],
-                   "purple_mountain.jpg": ["b", "g", "c", "y"],
-                     "field_and_sky.jpg": ["m", "r", "g", "b"],
-                     "river_and_sky.jpg": ["r", "y", "m", "g"],
-                        "red_plants.jpg": ["r", "m", "g", "c"],
+                       "calm_meadow.png": ["r", "y", "m", "g"],
+                              "dawn.jpg": ["b", "c", "m", "g"],
+                       "dead_waters.jpg": ["y", "m", "g", "b"],
+                 "diamond_afternoon.jpg": ["m", "r", "y", "b"],
+                    "distant_garden.jpg": ["g", "y", "c", "r"],
+                         "enigmatic.jpg": ["b", "g", "m", "r"],
+                  "fields_of_bronze.jpg": ["y", "m", "b", "g"],
+                    "frontier_skies.jpg": ["c", "g", "y", "b"],
+                  "i_of_the_trident.jpg": ["r", "y", "g", "b"],
+                  "long_way_to_eden.jpg": ["m", "b", "g", "r"],
+                    "missed_my_ride.jpg": ["y", "c", "y", "r"],
+                            "my_sky.jpg": ["g", "c", "y", "b"],
                          "night_sky.jpg": ["g", "m", "y", "r"],
+              "paths_less_travelled.jpg": ["y", "g", "r", "m"],
+                "place_out_of_place.jpg": ["c", "g", "y", "b"],
+                   "purple_mountain.jpg": ["b", "g", "c", "y"],
+                        "red_plants.jpg": ["r", "m", "g", "c"],
+                     "river_and_sky.jpg": ["r", "y", "m", "g"],
+                         "scarecrow.jpg": ["m", "r", "g", "b"],
+                      "scifi-planet.jpg": ["c", "b", "g", "m"],
+                         "stargazer.jpg": ["r", "y", "g", "c"],
+                        "the_ritual.jpg": ["y", "r", "g", "m"],
+                           "untamed.jpg": ["b", "r", "y", "m"],
+                  "valley_with_tree.jpg": ["g", "c", "r", "m"],
+        # currently not used
+                     "field_and_sky.jpg": ["m", "r", "g", "b"],
+                  "dawn_on_mountain.jpg": ["y", "r", "c", "g"],
+                "valley_with_beacon.jpg": ["y", "r", "g", "b"],
+        "dawn_on_mountain_with_tree.jpg": ["b", "g", "r", "y"],
     }
 
     # use colors from table if possible
