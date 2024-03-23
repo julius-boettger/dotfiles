@@ -12,7 +12,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/6cf57c22-b1bf-4ba0-9
   <img src=".github/assets/v2.0.0/screenshot1.png" width="49%" />
   <img src=".github/assets/v2.0.0/screenshot2.png" width="49%" /> 
 </p>
-(also still contains the setup of [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0), but with slight modifications)
+(also still contains the setup of v1.0.0, but with slight modifications)
 
 ### [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0)
 https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8cc9-b1298d3d5de2
