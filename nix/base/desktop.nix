@@ -219,7 +219,8 @@
     unstable.swaynotificationcenter
     unstable.swww # wallpaper switching with animations
     unstable.eww # build custom widgets
-    unstable.grimblast # screenshot
+    unstable.grim # whole screen screenshot
+    unstable.grimblast # region select screenshot
     unstable.swayosd # osd for volume changes
     # lockscreen
     variables.pkgs.swaylock-effects
