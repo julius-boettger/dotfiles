@@ -20,13 +20,18 @@
 
     variables = pkgs.callPackage (import ./variables.nix) {};
 
-    mkNixosConfig = { modules, hostName, firefoxProfile ? null }:
+    mkNixosConfig = {
+      # nix configuration to include
+      modules,
+      # device specific variables
+      hostName, firefoxProfile ? null
+    }:
     let
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
-        # shared
+        # shared variables
         inherit variables;
-        # device specific
+        # device specific variables
         host = {
           inherit firefoxProfile;
           name = hostName;
