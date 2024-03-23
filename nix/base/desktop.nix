@@ -1,5 +1,5 @@
 # this file contains shared config i want to have on desktop (gui) devices
-{ config, pkgs, variables, host, ... }:
+{ config, pkgs, variables, host, hyprland-35, ... }:
 {
   # self-explaining one-liners
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
@@ -307,7 +307,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = pkgs.hyprland;
+    package = hyprland-35; # version 0.35.0
   };
   # use gtk desktop portal
   # (recommended for usage alongside hyprland desktop portal)
