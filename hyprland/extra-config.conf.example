@@ -5,8 +5,9 @@
 
 #----- configure monitor setup
 # https://wiki.hyprland.org/Configuring/Monitors/
-# ", bitdepth, 10" can help with screenshare,
+# configuring monitors with "bitdepth, 10" can help with screenshare, but can also cause issues, try it out yourself.
 # see https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580?permalink_comment_id=4720563#gistcomment-4720563
+# and https://github.com/hyprwm/Hyprland/issues/4735
 
 $second_monitor = HDMI-A-1
 $second_monitor_config = $second_monitor, 1920x1080@144, 0x100, 1, bitdepth, 10

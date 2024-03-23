@@ -7,8 +7,8 @@
     nixos-wsl = { url = "github:nix-community/NixOS-WSL";
                   inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    # for hyprland 0.35.0
-    nixpkgs-hyprland-35.url = "github:nixos/nixpkgs?ref=fcea2b6260dd566c28c894b4207a5f2b56c2cba3";
+    # for hyprland version 0.34.0
+    nixpkgs-hyprland-34.url = "github:nixos/nixpkgs?ref=160b762eda6d139ac10ae081f8f78d640dd523eb";
   };
 
   # take inputs as arguments
@@ -31,8 +31,8 @@
     let
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
-        # hyprland version 0.35.0
-        hyprland-35 = (import inputs.nixpkgs-hyprland-35 pkgs-config).hyprland;
+        # hyprland version 0.34.0
+        hyprland-34-pkgs = import inputs.nixpkgs-hyprland-34 pkgs-config;
         # shared variables
         inherit variables;
         # device specific variables

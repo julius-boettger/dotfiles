@@ -93,18 +93,18 @@
         "type": "github"
       }
     },
-    "nixpkgs-hyprland-35": {
+    "nixpkgs-hyprland-34": {
       "locked": {
-        "lastModified": 1708943256,
-        "narHash": "sha256-K9VeHrhXsigdhNMZ8hqAk7jtRy4ollqhkYYNZqbfssg=",
+        "lastModified": 1706367331,
+        "narHash": "sha256-AqgkGHRrI6h/8FWuVbnkfFmXr4Bqsr4fV23aISqj/xg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fcea2b6260dd566c28c894b4207a5f2b56c2cba3",
+        "rev": "160b762eda6d139ac10ae081f8f78d640dd523eb",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "fcea2b6260dd566c28c894b4207a5f2b56c2cba3",
+        "ref": "160b762eda6d139ac10ae081f8f78d640dd523eb",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -130,7 +130,7 @@
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-hyprland-35": "nixpkgs-hyprland-35",
+        "nixpkgs-hyprland-34": "nixpkgs-hyprland-34",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
