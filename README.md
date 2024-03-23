@@ -5,11 +5,20 @@
 - My [Rofi](https://github.com/lbonn/rofi) themes are based on the "rounded" theme of [rofi-themes-collection](https://github.com/newmanls/rofi-themes-collection)
 - The wallpapers in `wallpapers/nixos/` as well as `wallpapers/login.png` are modified versions of `nix-wallpaper-nineish-dark-gray` of [nixos-artwork](https://github.com/NixOS/nixos-artwork)
 
-# Screenshots / Showcase (version [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0))
+# Screenshots / Showcase
+### [v2.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v2.0.0)
+https://github.com/julius-boettger/dotfiles/assets/85450899/6cf57c22-b1bf-4ba0-9eb9-cc55d3327345
+<p align="middle">
+  <img src=".github/assets/v2.0.0/screenshot1.png" width="49%" />
+  <img src=".github/assets/v2.0.0/screenshot2.png" width="49%" /> 
+</p>
+(also still contains the setup of [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0), but with slight modifications)
+
+### [v1.0.0](https://github.com/julius-boettger/dotfiles/releases/tag/v1.0.0)
 https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8cc9-b1298d3d5de2
 <p align="middle">
-  <img src=".github/assets/screenshot1.png" width="49%" />
-  <img src=".github/assets/screenshot2.png" width="49%" /> 
+  <img src=".github/assets/v1.0.0/screenshot1.png" width="49%" />
+  <img src=".github/assets/v1.0.0/screenshot2.png" width="49%" /> 
 </p>
 
 # About this repo
@@ -68,10 +77,10 @@ Place the content of this repository inside `/etc/dotfiles/`:
 ```shell
 cd /etc
 
-# clone current commit (recommended, although you don't know what you get that well)
+# clone specific release (you know what you get, but v1.0.0 might not work anymore)
+git clone --branch v2.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+# clone current commit (although you don't know what you get)
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
-# OR clone specific release (you know better what you get, but might not work anymore with newer versions of configured software (at least before i switched to using flakes))
-git clone --branch v1.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 
 chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more comfortable
 chmod -R 755 /etc/dotfiles # should already be set like this
