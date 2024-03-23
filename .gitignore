@@ -1,5 +1,7 @@
-hyprland/extra-config.conf
 nix/update/last-run-date
+hyprland/extra-config.conf
+
+wallpapers/login.*
 wallpapers/other
 
 # other awesome themes
