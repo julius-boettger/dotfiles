@@ -25,7 +25,7 @@
     };
     laptop = mkNixosConfig {
       hostName = "nixos";
-      firefoxProfile = "qwe62i5o.dev-edition-default";
+      firefoxProfile = "rwe6phtm.dev-edition-default";
       modules = [
         ./base/desktop.nix
         ./hosts/laptop
