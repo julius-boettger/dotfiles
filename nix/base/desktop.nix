@@ -83,6 +83,7 @@
     protonup-qt # easy ge-proton setup for steam
     variables.pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
+    usbimager # if ventoy causes problems
     unstable.resources # system monitor (best overall)
     monitor # system monitor (best process view)
     psensor # gui for (lm_)sensors to display system temperatures
