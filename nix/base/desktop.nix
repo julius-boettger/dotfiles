@@ -138,17 +138,15 @@
         ms-python.vscode-pylance # more python (PROPRIETARY)
         pkief.material-icon-theme # file icon theme
         christian-kohler.path-intellisense # auto complete paths
+      ] ++ [
+        # monokai pro color theme from local package
+        variables.pkgs.monokai-pro-vscode
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # solve leetcode problems
         { name = "vscode-leetcode";
           publisher = "LeetCode";
           version = "0.18.1";
           sha256 = "Ym9Gi9nL0b5dJq0yXbX2NvSW89jIr3UFBAjfGT9BExM="; }
-        # monokai theme (PROPRIETARY)
-        { name = "theme-monokai-pro-vscode";
-          publisher = "monokai";
-          version = "1.2.1";
-          sha256 = "tRMuAqI6zqjvOCoESbJfD4fjgnA93pQ06ppvPDuwceQ="; }
         # vhdl syntax highlighting
         { name = "VerilogHDL";
           publisher = "mshr-h";
