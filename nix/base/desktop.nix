@@ -125,6 +125,7 @@
         bbenoist.nix
         ms-python.python 
         ms-vscode.cpptools
+        bmalehorn.vscode-fish
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         coolbear.systemd-unit-file
