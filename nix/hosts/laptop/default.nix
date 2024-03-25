@@ -1,7 +1,10 @@
 { config, pkgs, variables, ... }:
 {
+  environment.variables.NIX_FLAKE_DEFAULT_HOST = "laptop";
+
   # results of automatic hardware scan
   imports = [ ./hardware-configuration.nix ];
+
   # enable touchpad support
   services.xserver.libinput.enable = true;
   # auto generated, idk, necessary?

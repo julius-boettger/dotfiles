@@ -165,7 +165,7 @@ nix-shell -p git --run "sudo nixos-rebuild switch --flake /etc/dotfiles/nix#wsl"
 
 To see the effects, exit your current WSL session (e.g. with `exit`), force WSL to shutdown (to achieve a restart) with `wsl --shutdown` and then start a new session (e.g. with `wsl -d NixOS`).
 
-You should be greeted by a nice little `fastfetch` now! `flake-rebuild wsl` should also be available as a shorthand that serves the same purpose as the long rebuild command above.
+You should be greeted by a nice little `fastfetch` now! `flake-rebuild` should also be available as a shorthand that serves the same purpose as the long rebuild command above.
 
 At this point it should also be fine to connect to a regulated company network again, reaching the internet should still be possible.
 

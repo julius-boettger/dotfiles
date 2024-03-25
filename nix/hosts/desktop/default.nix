@@ -1,5 +1,7 @@
 { config, pkgs, variables, ... }:
 {
+  environment.variables.NIX_FLAKE_DEFAULT_HOST = "desktop";
+
   # results of automatic hardware scan
   imports = [ ./hardware-configuration.nix ];
 
