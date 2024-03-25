@@ -149,11 +149,6 @@
           publisher = "monokai";
           version = "1.2.1";
           sha256 = "tRMuAqI6zqjvOCoESbJfD4fjgnA93pQ06ppvPDuwceQ="; }
-        # view diff between two files
-        { name = "partial-diff";
-          publisher = "ryu1kn";
-          version = "1.4.3";
-          sha256 = "0Oiw9f+LLGkUrs2fO8vs7ITSR5TT+5T0yU81ouyedHQ="; }
         # vhdl syntax highlighting
         { name = "VerilogHDL";
           publisher = "mshr-h";
