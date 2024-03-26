@@ -22,8 +22,9 @@
   # for issues with company vpn
   environment.systemPackages = with pkgs; [ unstable.wsl-vpnkit ];
   environment.shellAliases = {
-    vpn-start = "sudo systemctl start wsl-vpnkit";
-    vpn-stop  = "sudo systemctl stop  wsl-vpnkit";
+    vpn-status =      "systemctl status wsl-vpnkit";
+    vpn-start  = "sudo systemctl start  wsl-vpnkit";
+    vpn-stop   = "sudo systemctl stop   wsl-vpnkit";
   };
   systemd.services.wsl-vpnkit = {
     enable = true;

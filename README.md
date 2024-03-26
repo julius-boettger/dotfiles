@@ -169,6 +169,6 @@ You should be greeted by a nice little `fastfetch` now! `flake-rebuild` should a
 
 At this point it should also be fine to connect to a regulated company network again, reaching the internet should still be possible.
 
-If using your companys VPN ever causes networking issues, use `vpn-start` and `vpn-stop` to start/stop [`wsl-vpnkit`](https://github.com/sakai135/wsl-vpnkit).
+If using your companys VPN ever causes networking issues, use `vpn-start`/`vpn-stop` to start/stop [`wsl-vpnkit`](https://github.com/sakai135/wsl-vpnkit) (`vpn-status` is also available).
 
 Finally, you may want to set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
