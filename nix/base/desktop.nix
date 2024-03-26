@@ -1,5 +1,5 @@
 # this file contains shared config i want to have on desktop (gui) devices
-{ config, pkgs, variables, host, hyprland-34-pkgs, ... }:
+{ config, pkgs, variables, host, hyprland-34-pkgs, vscode-extensions, ... }:
 {
   # self-explaining one-liners
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
@@ -120,12 +120,21 @@
     # codium with extensions (text editor)
     (vscode-with-extensions.override {
       vscode = unstable.vscodium;
-      vscodeExtensions = with vscode-extensions; [
+      vscodeExtensions =
+        with vscode-extensions.vscode-marketplace;
+        #with vscode-extensions.open-vsx; # seems to cause issues...?
+        with vscode-extensions.vscode-marketplace-release;
+        with vscode-extensions.open-vsx-release; # <-- use first if available, otherwise go up
+      [
         # for syntax highlighting / language support
         bbenoist.nix
+        dlasagno.rasi
+        eww-yuck.yuck
         ms-python.python 
+        mshr-h.veriloghdl
         ms-vscode.cpptools
         bmalehorn.vscode-fish
+        mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         coolbear.systemd-unit-file
@@ -137,37 +146,12 @@
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
         ms-python.vscode-pylance # more python (PROPRIETARY)
+        leetcode.vscode-leetcode # solve leetcode problems
         pkief.material-icon-theme # file icon theme
         christian-kohler.path-intellisense # auto complete paths
       ] ++ [
         # monokai pro color theme from local package
         variables.pkgs.monokai-pro-vscode
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        # solve leetcode problems
-        { name = "vscode-leetcode";
-          publisher = "LeetCode";
-          version = "0.18.1";
-          sha256 = "Ym9Gi9nL0b5dJq0yXbX2NvSW89jIr3UFBAjfGT9BExM="; }
-        # vhdl syntax highlighting
-        { name = "VerilogHDL";
-          publisher = "mshr-h";
-          version = "1.13.0";
-          sha256 = "axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA="; }
-        # rasi syntax highlighting
-        { name = "rasi";
-          publisher = "dlasagno";
-          version = "1.0.0";
-          sha256 = "s60alej3cNAbSJxsRlIRE2Qha6oAsmcOBbWoqp+w6fk="; }
-        # yuck syntax highlighting
-        { name = "yuck";
-          publisher = "eww-yuck";
-          version = "0.0.3";
-          sha256 = "DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM="; }
-        # meson syntax highlighting
-        { name = "mesonbuild";
-          publisher = "mesonbuild";
-          version = "1.21.0";
-          sha256 = "hsWb1ES2V/e1gp3bQML4TaOiB/XQ8QH6LCI5ZWvsm5I="; }
       ];
     })
 
