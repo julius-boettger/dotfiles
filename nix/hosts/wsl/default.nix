@@ -22,7 +22,7 @@
   # for issues with company vpn
   environment.systemPackages = with pkgs; [ unstable.wsl-vpnkit ];
   environment.shellAliases = {
-    vpn-status =      "systemctl status wsl-vpnkit";
+    vpn-status =      "systemctl status wsl-vpnkit | sed -n '/Active: /s/Active: //p' | awk '{$1=$1};1'";
     vpn-start  = "sudo systemctl start  wsl-vpnkit";
     vpn-stop   = "sudo systemctl stop   wsl-vpnkit";
   };
