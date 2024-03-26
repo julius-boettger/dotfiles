@@ -12,6 +12,13 @@
   networking.nameservers = [ "8.8.4.4" "8.8.8.8" ];
   boot.tmp.cleanOnBoot = true;
 
+  # automatic garbage collection to free space
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-old";
+  };
+
   # for issues with company vpn
   environment.systemPackages = with pkgs; [ unstable.wsl-vpnkit ];
   environment.shellAliases = {
@@ -32,9 +39,8 @@
   # shell alias for shorter fastfetch
   environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/wsl/short.jsonc";
 
+  # symlink fastfetch config to ~/.config/fastfetch/config.jsonc
   home-manager.users.${variables.username} = { config, ... }: {
-    ### symlink dotfiles
-    # files in ~/.config/
     xdg.configFile."fastfetch/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/wsl/default.jsonc";
   };
 }
