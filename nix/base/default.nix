@@ -98,11 +98,11 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   environment.sessionVariables = {
-    fish_color_param = "blue";
+    fish_color_param = "normal";
     fish_color_error = "yellow";
     fish_color_option = "cyan";
     fish_color_command = "green";
-    fish_color_autosuggestion = "white";
+    fish_color_autosuggestion = "brblack";
   };
   # config file location for starship prompt
   environment.sessionVariables.STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
