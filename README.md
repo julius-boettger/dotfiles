@@ -141,15 +141,10 @@ Run `sudo nix-channel --update`. If you run into errors like `unable to download
 nameserver 8.8.4.4
 nameserver 8.8.8.8
 ```
+Then run `sudo nix-channel --update` again.
 
-Now run some more commands:
-
+Now run some more commands to setup my config:
 ```shell
-# do this again if it failed before
-sudo nix-channel --update
-# rebuild system with updated channel
-sudo nixos-rebuild switch
-### start setting up my config
 cd /etc
 nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git"
 # make editing files more comfortable (don't require sudo)
