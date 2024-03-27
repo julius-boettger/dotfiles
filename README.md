@@ -109,8 +109,6 @@ Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/n
 
 Next: `reboot` for good measure.
 
-Set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.
-
 Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `/etc/dotfiles/other/gitnuro.json` and click on "Accept".
 
 To set a wallpaper for [SDDM](https://github.com/sddm/sddm) (the login manager) either put a `login.jpg` in `/etc/dotfiles/wallpapers/` or adjust the path to the wallpaper at the top of `/etc/dotfiles/other/sddm-sugar-candy.conf`.
@@ -165,5 +163,3 @@ You should be greeted by a nice little `fastfetch` now! `flake-rebuild` should a
 At this point it should also be fine to connect to a regulated company network again, reaching the internet should still be possible.
 
 If using your companys VPN ever causes networking issues, use `vpn-start`/`vpn-stop` to start/stop [`wsl-vpnkit`](https://github.com/sakai135/wsl-vpnkit) (`vpn-status` is also available).
-
-Finally, you may want to set your `git` credentials using [`git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager): E.g. to authenticate with Github run `git-credential-manager github login`.

@@ -57,7 +57,6 @@
     tldr # summarize man pages
     zoxide # better cd
     fastfetch # neofetch but fast
-    git-credential-manager
     librespeed-cli # speedtest
     meson ninja # for building c/c++ projects
     pkg-config # for c/c++/rust dependency management
@@ -86,6 +85,14 @@
 
   # fix pkg-config by pointing it in the right way
   environment.sessionVariables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+
+  # for git authentication with ssh keys
+  programs.ssh = {
+    startAgent = true;
+    # in order of preference
+    hostKeyAlgorithms      = [ "ssh-ed25519" "ssh-rsa" ];
+    pubkeyAcceptedKeyTypes = [ "ssh-ed25519" "ssh-rsa" ];
+  };
 
   ### fish shell
   users.defaultUserShell = pkgs.fish;
@@ -122,9 +129,6 @@
       email = ${variables.git.email}
     [init]
       defaultBranch = main
-    [credential]
-      credentialStore = secretservice
-      helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
   '';
 
   ### symlink dotfiles
