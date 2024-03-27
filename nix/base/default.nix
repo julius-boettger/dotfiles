@@ -47,7 +47,6 @@
 
   # packages to install, mostly command line stuff
   environment.systemPackages = with pkgs; [
-    git
     vim
     bash
     jq # process json
@@ -121,17 +120,13 @@
   # i dont know what this does?
   programs.home-manager.enable = true;
 
-  ### create dotfiles
-  # git config (mainly for credential stuff)
-  home.file.".gitconfig".text = ''
-    [user]
-      name = ${variables.git.name}
-      email = ${variables.git.email}
-    [init]
-      defaultBranch = main
-  '';
-
-  ### symlink dotfiles
-  # files in ~/.config/
+  # symlink fish config to ~/.config/fish/config.fish
   xdg.configFile."fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/init.fish";
+
+  programs.git = {
+    enable = true;
+    extraConfig.init.defaultBranch = "main";
+    userName = variables.git.name;
+    userEmail = variables.git.email;
+  };
 };}
