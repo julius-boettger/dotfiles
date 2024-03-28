@@ -142,6 +142,7 @@
         matthewpi.caddyfile-support
         # other stuff
         vscodevim.vim # vim :)
+        eamodio.gitlens # advanced git integration
         ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color

@@ -106,4 +106,5 @@
   "update.mode": "none", // don't try to update, NixOS will do it
   "window.titleBarStyle": "custom",
   "git.confirmSync": false,
+  "gitlens.currentLine.enabled": false,
 }
