@@ -2,5 +2,5 @@
 # values i do not want to publish publicly.
 {
     # tcp port for barrier (irrelevant on WSL)
-    barrier.port = 20000;
+    barrier.port = null;
 }

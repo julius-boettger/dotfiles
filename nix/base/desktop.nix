@@ -1,5 +1,8 @@
 # this file contains shared config i want to have on desktop (gui) devices
 { config, pkgs, variables, host, hyprland-34-pkgs, vscode-extensions, ... }:
+let
+  barrierPort = variables.secrets.barrier.port;
+in
 {
   # self-explaining one-liners
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
@@ -7,7 +10,8 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ variables.secrets.barrier.port ];
+    allowedTCPPorts = []
+      ++ (if barrierPort != null then [ barrierPort ] else []);
     allowedUDPPorts = [];
   };
 
