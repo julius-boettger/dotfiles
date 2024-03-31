@@ -1,5 +1,5 @@
 # this file contains shared config i want to have on desktop (gui) devices
-{ config, pkgs, variables, host, hyprland-34-pkgs, vscode-extensions, ... }:
+{ config, pkgs, variables, host, vscode-extensions, ... }:
 let
   barrierPort = variables.secrets.barrier.port;
 in
@@ -292,9 +292,7 @@ in
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # version 0.34.0
-          package = hyprland-34-pkgs.                   hyprland;
-    portalPackage = hyprland-34-pkgs.xdg-desktop-portal-hyprland;
+    package = pkgs.unstable.hyprland;
   };
   # use gtk desktop portal
   # (recommended for usage alongside hyprland desktop portal)
