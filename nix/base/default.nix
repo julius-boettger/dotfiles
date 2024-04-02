@@ -1,5 +1,5 @@
 # this file contains basic config i want to have on every device
-{ pkgs, host, variables, ... }:
+args@{ pkgs, variables, ... }:
 {
   # self-explaining one-liners
   console.keyMap = "de";
@@ -9,7 +9,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = host.name;
+    hostName = args.host.name;
     networkmanager.enable = true;
   };
 

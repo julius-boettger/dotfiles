@@ -1,5 +1,5 @@
 # this file contains shared config i want to have on desktop (gui) devices
-args@{ config, pkgs, local-pkgs, variables, host, vscode-extensions, ... }:
+args@{ pkgs, local-pkgs, vscode-extensions, variables, ... }:
 let
   barrierPort = args.secrets.barrier.port;
 in
@@ -125,7 +125,7 @@ in
       vscode = unstable.vscodium;
       vscodeExtensions =
         with vscode-extensions.vscode-marketplace;
-        #with vscode-extensions.open-vsx; # seems to cause issues...?
+       #with vscode-extensions.open-vsx; # seems to cause issues...?
         with vscode-extensions.vscode-marketplace-release;
         with vscode-extensions.open-vsx-release; # <-- use first if available, otherwise go up
       [
@@ -219,7 +219,7 @@ in
   # xorg
   services.xserver = {
     enable = true;
-    layout = config.console.keyMap;
+    layout = args.config.console.keyMap;
 
     # window manager / desktop environment
     windowManager.awesome.enable = true;
@@ -387,7 +387,7 @@ in
     skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
   '';
   # firefox (allow userChrome.css)
-  home.file."./.mozilla/firefox/${host.firefoxProfile}/user.js".text = ''
+  home.file."./.mozilla/firefox/${args.host.firefoxProfile}/user.js".text = ''
     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
   '';
 
@@ -408,6 +408,6 @@ in
   home.file = {
     ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/.ideavimrc";
     ".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${host.firefoxProfile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/firefox.css";
+    ".mozilla/firefox/${args.host.firefoxProfile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/firefox.css";
   };
 };}
