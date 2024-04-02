@@ -11,6 +11,10 @@ args@{
     pkgs-itsarch.gns3-gui
     wireshark
   ];
+  # wireshark permissions
+  programs.wireshark.enable = true;
+  users.extraGroups.wireshark.members = [ variables.username ];
+  # virtualbox for gns3 server
   users.extraGroups.vboxusers.members = [ variables.username ];
   virtualisation.virtualbox.host = {
     enable = true;
