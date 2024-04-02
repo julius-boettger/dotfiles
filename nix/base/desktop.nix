@@ -1,10 +1,11 @@
 # this file contains shared config i want to have on desktop (gui) devices
-args@{ pkgs, local-pkgs, vscode-extensions, variables, ... }:
+args@{ pkgs, variables, local-pkgs, ... }:
 let
   barrierPort = args.secrets.barrier.port;
 in
 {
   # self-explaining one-liners
+  imports = [ ../modules/vscodium.nix ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -120,44 +121,6 @@ in
         ln -sf $out/share/icons/Papirus/48x48/apps/firefox-developer-icon.svg $out/share/icons/Papirus/48x48/apps/firefox.svg
         ln -sf $out/share/icons/Papirus/64x64/apps/firefox-developer-icon.svg $out/share/icons/Papirus/64x64/apps/firefox.svg
     ''; }))
-    # codium with extensions (text editor)
-    (vscode-with-extensions.override {
-      vscode = unstable.vscodium;
-      vscodeExtensions =
-        with vscode-extensions.vscode-marketplace;
-       #with vscode-extensions.open-vsx; # seems to cause issues...?
-        with vscode-extensions.vscode-marketplace-release;
-        with vscode-extensions.open-vsx-release; # <-- use first if available, otherwise go up
-      [
-        # for syntax highlighting / language support
-        bbenoist.nix
-        dlasagno.rasi
-        eww-yuck.yuck
-        ms-python.python 
-        mshr-h.veriloghdl
-        ms-vscode.cpptools
-        bmalehorn.vscode-fish
-        mesonbuild.mesonbuild
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
-        coolbear.systemd-unit-file
-        ms-azuretools.vscode-docker
-        matthewpi.caddyfile-support
-        # other stuff
-        vscodevim.vim # vim :)
-        eamodio.gitlens # advanced git integration
-        ritwickdey.liveserver # quick webserver for testing
-        esbenp.prettier-vscode # code formatter
-        naumovs.color-highlight # highlight color codes with their color
-        ms-python.vscode-pylance # more python (PROPRIETARY)
-        leetcode.vscode-leetcode # solve leetcode problems
-        pkief.material-icon-theme # file icon theme
-        christian-kohler.path-intellisense # auto complete paths
-      ] ++ [
-        # monokai pro color theme from local package
-        local-pkgs.monokai-pro-vscode
-      ];
-    })
 
     ### cli
     playerctl # pause media with mpris
