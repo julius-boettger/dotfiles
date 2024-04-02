@@ -11,6 +11,9 @@ args@{
     pkgs-itsarch.gns3-gui
     wireshark
   ];
-  virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ variables.username ];
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
 }
