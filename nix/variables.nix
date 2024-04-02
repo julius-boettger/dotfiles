@@ -42,5 +42,4 @@
   };
   # include other expressions
   secrets = import ./secrets.nix;
-  pkgs = callPackage (import ./pkgs) {};
 }

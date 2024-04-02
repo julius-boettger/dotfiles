@@ -42,6 +42,7 @@
     let
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
+        local-pkgs = pkgs.callPackage (import ./pkgs) {};
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # shared variables
         inherit variables;

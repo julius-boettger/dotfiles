@@ -1,5 +1,5 @@
 # this file contains shared config i want to have on desktop (gui) devices
-{ config, pkgs, variables, host, vscode-extensions, ... }:
+{ config, pkgs, local-pkgs, variables, host, vscode-extensions, ... }:
 let
   barrierPort = variables.secrets.barrier.port;
 in
@@ -85,7 +85,7 @@ in
     tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
     protonup-qt # easy ge-proton setup for steam
-    variables.pkgs.gitnuro # newer version compared to nixpkgs
+    local-pkgs.gitnuro # newer version compared to nixpkgs
     ventoy # create bootable usb sticks
     usbimager # if ventoy causes problems
     unstable.resources # system monitor (best overall)
@@ -103,7 +103,7 @@ in
     pdfstudio2023 # PROPRIETARY
     obsidian # PROPRIETARY
     # sddm theme + dependency (login manager)
-    variables.pkgs.sddm-sugar-candy
+    local-pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
     # gtk themes
     fluent-gtk-theme
@@ -156,7 +156,7 @@ in
         christian-kohler.path-intellisense # auto complete paths
       ] ++ [
         # monokai pro color theme from local package
-        variables.pkgs.monokai-pro-vscode
+        local-pkgs.monokai-pro-vscode
       ];
     })
 
@@ -197,8 +197,8 @@ in
     nwg-look # manage gtk theming stuff if homemanager fails
     wev ydotool # find out / send keycodes
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
-    variables.pkgs.hyprctl-collect-clients # bring all clients to one workspace
-    variables.pkgs.hyprsome # awesome-like workspaces
+    local-pkgs.hyprctl-collect-clients # bring all clients to one workspace
+    local-pkgs.hyprsome # awesome-like workspaces
     unstable.hyprpicker # color picker
     unstable.swaynotificationcenter
     unstable.swww # wallpaper switching with animations
@@ -207,7 +207,7 @@ in
     unstable.grimblast # region select screenshot
     unstable.swayosd # osd for volume changes
     # lockscreen
-    variables.pkgs.swaylock-effects
+    local-pkgs.swaylock-effects
     unstable.swaylock-effects
   ];
 
