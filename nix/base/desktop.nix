@@ -10,8 +10,7 @@ in
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = []
-      ++ (if barrierPort != null then [ barrierPort ] else []);
+    allowedTCPPorts = args.lib.mkIf (barrierPort != null) [ barrierPort ];
     allowedUDPPorts = [];
   };
 
