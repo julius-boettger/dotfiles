@@ -223,10 +223,6 @@ in
   # shell alias for shorter fastfetch
   environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/short.jsonc";
 
-  # vm's with virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ variables.username ];
-
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
     subpixel.rgba = "vrgb";

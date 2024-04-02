@@ -20,6 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat"; };
+    # for ./modules/studies/itsarch.nix
+    nixpkgs-itsarch.url = "github:nixos/nixpkgs?ref=dd5621df6dcb90122b50da5ec31c411a0de3e538";
   };
 
   # take inputs as arguments
@@ -45,6 +47,8 @@
         secrets = import ./secrets.nix;
         local-pkgs = pkgs.callPackage (import ./pkgs) {};
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
+        # for ./modules/studies/itsarch.nix
+        pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
         # shared variables
         inherit variables;
         # device specific variables

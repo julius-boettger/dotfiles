@@ -2,8 +2,10 @@ args@{ pkgs, variables, ... }:
 {
   environment.variables.NIX_FLAKE_DEFAULT_HOST = "desktop";
 
-  # results of automatic hardware scan
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/studies/itsarch.nix
+  ];
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
