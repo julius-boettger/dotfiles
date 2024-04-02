@@ -320,7 +320,11 @@ in
   ############### HOME-MANAGER ###############
   ############################################
   ############################################
-  home-manager.users."${variables.username}" = { config, ... }: {
+  home-manager.users."${variables.username}" = { config, ... }:
+  let
+    symlink = config.lib.file.mkOutOfStoreSymlink;
+  in
+  {
 
   ### theming
   gtk.enable = true;
@@ -394,20 +398,20 @@ in
   ### symlink dotfiles
   # files in ~/.config/
   xdg.configFile = {
-    "eww"                     = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/eww";     recursive = true; };
-    "awesome"                 = { source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/awesome"; recursive = true; };
-    "swaync"                     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/swaync";
-    "hypr/hyprland.conf"         .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/hyprland/hyprland.conf";
-    "fastfetch/config.jsonc"     .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/default.jsonc";   
-    "picom.conf"                 .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/picom.conf";
-    "copyq/copyq.conf"           .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/copyq.conf";
-    "VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/vscodium.json";
-    "alacritty/alacritty.toml"   .source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/alacritty.toml";
+    "eww"                     = { source = symlink "/etc/dotfiles/eww";     recursive = true; };
+    "awesome"                 = { source = symlink "/etc/dotfiles/awesome"; recursive = true; };
+    "swaync"                     .source = symlink "/etc/dotfiles/swaync";
+    "hypr/hyprland.conf"         .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
+    "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/fastfetch/default.jsonc";   
+    "picom.conf"                 .source = symlink "/etc/dotfiles/other/picom.conf";
+    "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/other/copyq.conf";
+    "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/other/vscodium.json";
+    "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/other/alacritty.toml";
   };
   # files somewhere else in ~/
   home.file = {
-    ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/.ideavimrc";
-    ".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${args.host.firefoxProfile}/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/firefox.css";
+    ".ideavimrc".source = symlink "/etc/dotfiles/other/.ideavimrc";
+    ".local/share/rofi/themes".source = symlink "/etc/dotfiles/rofi";
+    ".mozilla/firefox/${args.host.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
   };
 };}
