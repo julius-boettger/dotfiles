@@ -1,7 +1,7 @@
 # this file contains shared config i want to have on desktop (gui) devices
-{ config, pkgs, local-pkgs, variables, host, vscode-extensions, ... }:
+args@{ config, pkgs, local-pkgs, variables, host, vscode-extensions, ... }:
 let
-  barrierPort = variables.secrets.barrier.port;
+  barrierPort = args.secrets.barrier.port;
 in
 {
   # self-explaining one-liners

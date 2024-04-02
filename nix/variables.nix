@@ -40,6 +40,4 @@
       ];
     };
   };
-  # include other expressions
-  secrets = import ./secrets.nix;
 }
