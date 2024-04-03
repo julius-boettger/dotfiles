@@ -65,8 +65,8 @@ args@{ pkgs, variables, ... }:
     fortune # random quote
     # compilers, interpreters, debuggers
     gcc
-    jdk
     rustup
+    unstable.jdk
     nodePackages_latest.nodejs
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv
