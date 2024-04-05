@@ -44,14 +44,16 @@ in
     alsa.support32Bit = true;
   };
 
+  ### bluetooth
   hardware.bluetooth = {
     enable = true;
     settings.General = {
-      Experimental = "true"; # "enables dbus experimental interfaces"
+      Experimental = "true"; # necessary for some functionality
       FastConnectable = "true"; # connect faster but draw more power
-      Enable = "Control,Gateway,Headset,Media,Sink,Socket,Source"; # idk, from oaj
     };
   };
+  # avoid warning in bluetooth service
+  systemd.services."bluetooth".serviceConfig.ConfigurationDirectoryMode = 755;
 
   ##########################################
   ##########################################
