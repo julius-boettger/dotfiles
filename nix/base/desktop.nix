@@ -213,7 +213,7 @@ in
   # needed for trash to work in nautilus
   services.gvfs.enable = true;
 
-  # bluez bluetooth gui
+  # bluez bluetooth gui (has some other config with home-manager later!)
   services.blueman.enable = true;
 
   # default application for opening directories
@@ -311,6 +311,10 @@ in
 
   # for play/pause current media player (and remembering last active player)
   services.playerctld.enable = true;
+
+  # bluez bluetooth gui (was enabled earlier!)
+  # disable notifications when a device (dis)connects
+  dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
 
   # automatically mount usb sticks with notification and tray icon
   services.udiskie = {
