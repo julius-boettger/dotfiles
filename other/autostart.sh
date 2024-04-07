@@ -64,7 +64,7 @@ set_mic() {
 # only execute if noisetorch is not yet active (grep finds <= 1 results)
 if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
   # default mic (source) to apply noise reduction to
-  #set_mic "Scarlett Solo (3rd Gen.) Input 1 Mic"
+  set_mic "Scarlett Solo (3rd Gen.) Input 1 Mic"
   # init noisetorch for default mic
   noisetorch -i
   # set noisetorch mic as default
