@@ -4,6 +4,7 @@ args@{ pkgs, variables, ... }:
 
   imports = [
     ./hardware-configuration.nix
+    ../../modules/studies/dabank.nix
     ../../modules/studies/itsarch.nix
   ];
 
