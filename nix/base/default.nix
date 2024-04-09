@@ -66,7 +66,6 @@ args@{ pkgs, variables, ... }:
     # compilers, interpreters, debuggers
     gcc
     rustup
-    unstable.jdk
     nodePackages_latest.nodejs
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv
@@ -84,6 +83,12 @@ args@{ pkgs, variables, ... }:
 
   # fix pkg-config by pointing it in the right way
   environment.sessionVariables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+
+  # java
+  programs.java = {
+    enable = true;
+    package = pkgs.unstable.jdk;
+  };
 
   # for git authentication with ssh keys
   programs.ssh = {
