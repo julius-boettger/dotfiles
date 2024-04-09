@@ -101,6 +101,7 @@ in
     sioyek # pdf reader, also available as programs.sioyek in hm
     baobab # disk usage analyzer
     unstable.vesktop # wayland optimized discord client
+    unstable.bruno # rest api client
     spotify # PROPRIETARY
     pdfstudio2023 # PROPRIETARY
     obsidian # PROPRIETARY
@@ -152,7 +153,6 @@ in
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
     # could/should work on wayland, but doesnt for now :(
-    insomnia # rest api client
     barrier # kvm switch
     gparted # partition manager
 
