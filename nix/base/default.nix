@@ -98,6 +98,17 @@ args@{ pkgs, variables, ... }:
     pubkeyAcceptedKeyTypes = [ "ssh-ed25519" "ssh-rsa" ];
   };
 
+  # docker
+  virtualisation.docker = {
+    enable = true;
+    # better for security than adding user to "docker" group
+    rootless = {
+      enable = true;
+      # make rootless instance the default
+      setSocketVariable = true;
+    };
+  };
+
   ### fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
