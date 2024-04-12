@@ -55,6 +55,7 @@ args@{ pkgs, variables, ... }:
     fzf # fast fuzzy finder
     tldr # summarize man pages
     zoxide # better cd
+    numbat # cli calculator
     fastfetch # neofetch but fast
     librespeed-cli # speedtest
     meson ninja # for building c/c++ projects
