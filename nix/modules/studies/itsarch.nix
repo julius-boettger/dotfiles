@@ -1,4 +1,3 @@
-# for study module ITSARCH:
 # set up gns3 client and gns3 server as virtualbox vm
 args@{
   pkgs, variables,

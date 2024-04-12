@@ -4,8 +4,7 @@ args@{ pkgs, variables, ... }:
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/studies/dabank.nix
-    ../../modules/studies/itsarch.nix
+    ../../modules/studies
   ];
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
