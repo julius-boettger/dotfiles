@@ -102,6 +102,7 @@ in
     baobab # disk usage analyzer
     unstable.vesktop # wayland optimized discord client
     unstable.bruno # rest api client
+    signal-desktop # messenger
     spotify # PROPRIETARY
     pdfstudio2023 # PROPRIETARY
     obsidian # PROPRIETARY
