@@ -1,7 +1,7 @@
 # entry point of my nixos configuration
 {
   inputs = {                 
-    # main inputs for packages                        update version here vvvvv
+    # main inputs for packages                update channel version here vvvvv (see variables.nix for state version)
     nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-23.11";
     home-manager = { url = "github:nix-community/home-manager?ref=release-23.11";
       inputs.nixpkgs.follows = "nixpkgs"; };
