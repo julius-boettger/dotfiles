@@ -3,6 +3,7 @@
 {
   gitnuro                 = callPackage ./gitnuro.nix                 {};
   hyprsome                = callPackage ./hyprsome.nix                {};
+  sourcegit               = callPackage ./sourcegit                   {};
   sddm-sugar-candy        = callPackage ./sddm-sugar-candy.nix        {};
   swaylock-effects        = callPackage ./swaylock-effects.nix        {};
   monokai-pro-vscode      = callPackage ./monokai-pro-vscode          {};

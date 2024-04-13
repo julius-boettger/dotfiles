@@ -87,7 +87,8 @@ in
     tenacity # audio recorder and editor
     piper # configure gaming mice graphically with ratbagd
     protonup-qt # easy ge-proton setup for steam
-    local-pkgs.gitnuro # newer version compared to nixpkgs
+    local-pkgs.gitnuro # git gui (newer version compared to nixpkgs)
+    local-pkgs.sourcegit # git gui
     ventoy # create bootable usb sticks
     usbimager # if ventoy causes problems
     unstable.resources # system monitor (best overall)
