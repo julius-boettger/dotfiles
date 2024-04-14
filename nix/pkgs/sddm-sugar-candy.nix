@@ -1,7 +1,7 @@
 #################### WARNING ####################
 # this package requires some external dependencies.
 # just this derivation alone will not work.
-# search for "sddm-sugar-candy" in configuration.nix
+# search for "sddm-sugar-candy" in base/desktop.nix
 { stdenv, fetchFromGitHub }:
 stdenv.mkDerivation
 rec {
