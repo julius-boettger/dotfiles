@@ -8,6 +8,7 @@ args@{
 {
   environment.systemPackages = with pkgs; [
     pkgs-itsarch.gns3-gui
+    inetutils # for telnet
     wireshark
   ];
   # wireshark permissions
@@ -19,4 +20,6 @@ args@{
     enable = true;
     enableExtensionPack = true;
   };
+  # also remember to set GNS3's console application command
+  # to something like `alacritty -T %d -e telnet %h %p`
 }
