@@ -64,6 +64,7 @@ args@{ pkgs, variables, ... }:
     asciiquarium # ascii art aquarium
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
+    nix-output-monitor # prettier output of nix commands
     # compilers, interpreters, debuggers
     gcc
     rustup

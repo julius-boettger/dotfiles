@@ -13,10 +13,23 @@ if status is-interactive
     zoxide init fish | source
     # use starship prompt
     starship init fish | source
-    # aliases
+
+    ### aliases
     alias cd z
     alias ls lsd
     alias cat bat
+    # alias some nix commands to nom (for prettier output)
+    function nix
+        if begin test "$argv[1]" = "shell";
+              or test "$argv[1]" = "develop";
+              or test "$argv[1]" = "build";
+            end
+            nom $argv
+        else
+            # use command to avoid recursion of this function
+            command nix $argv
+        end
+    end
 end
 
 # use like "flake-rebuild HOST [--impure]"
@@ -36,6 +49,7 @@ function flake-rebuild
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
     cd /etc/dotfiles/nix
-    eval "sudo nixos-rebuild switch --flake .#$argv"
+    # use nom for prettier output
+    eval "sudo nixos-rebuild switch --flake .#$argv &| nom"
     cd $workingDir
 end
