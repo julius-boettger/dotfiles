@@ -46,7 +46,14 @@ function flake-rebuild
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
     cd /etc/dotfiles/nix
+    # require users password to continue
+    # (to avoid nom not showing password prompt for nixos-rebuild)
+    sudo true # require password to do nothing
+    if test $status -ne 0; return; end # exit if unsuccessful
+
     # use default host and nom for prettier output
     eval "sudo nixos-rebuild switch --flake .#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
+
+    # go back
     cd $workingDir
 end
