@@ -61,7 +61,7 @@ args@{ pkgs, variables, ... }:
     meson ninja # for building c/c++ projects
     pkg-config # for c/c++/rust dependency management
     cbonsai # ascii art bonsai
-    asciiquarium # ascii art aquarium
+    asciiquarium-transparent # ascii art aquarium
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
     nix-output-monitor # prettier output of nix commands

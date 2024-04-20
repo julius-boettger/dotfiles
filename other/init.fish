@@ -18,6 +18,7 @@ if status is-interactive
     alias cd z
     alias ls lsd
     alias cat bat
+    alias aquarium "asciiquarium --transparent"
     # alias some nix commands to nom (for prettier output)
     function nix
         if begin test "$argv[1]" = "shell";
