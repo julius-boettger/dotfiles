@@ -32,24 +32,20 @@ if status is-interactive
     end
 end
 
-# use like "flake-rebuild HOST [--impure]"
+# use like "flake-rebuild [--impure] [(other options)]"
 function flake-rebuild
-    # use default for $argv if not set
-    if test "x$argv" = "x"
-        # exit with error message if default is not set
-        if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
-            set_color red
-            echo -n "error: "
-            set_color normal
-            echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
-            return
-        end
-        set argv $NIX_FLAKE_DEFAULT_HOST
+    # exit with error message if default host is not set
+    if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
+        set_color red
+        echo -n "error: "
+        set_color normal
+        echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
+        return
     end
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
     cd /etc/dotfiles/nix
-    # use nom for prettier output
-    eval "sudo nixos-rebuild switch --flake .#$argv &| nom"
+    # use default host and nom for prettier output
+    eval "sudo nixos-rebuild switch --flake .#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
     cd $workingDir
 end
