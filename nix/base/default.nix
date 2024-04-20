@@ -65,6 +65,7 @@ args@{ pkgs, variables, ... }:
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
     nix-output-monitor # prettier output of nix commands
+    unstable.nh # nix helper (prettier/better nix commands)
     # compilers, interpreters, debuggers
     gcc
     rustup
@@ -79,6 +80,9 @@ args@{ pkgs, variables, ... }:
   ########### PROGRAMS / SERVICES ###########
   ###########################################
   ###########################################
+
+  # tell nh where the flake is
+  environment.sessionVariables.FLAKE = "/etc/dotfiles/nix";
 
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
