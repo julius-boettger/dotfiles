@@ -19,15 +19,20 @@ if status is-interactive
     alias ls lsd
     alias cat bat
     alias aquarium "asciiquarium --transparent"
-    # alias some nix commands to nom (for prettier output)
+    # alias some nix commands 
     function nix
+        # to nom (prettier output)
         if begin test "$argv[1]" = "shell";
               or test "$argv[1]" = "develop";
               or test "$argv[1]" = "build";
             end
             nom $argv
+        # to nh (prettier, faster and more convenient)
+        else if test "$argv[1]" = "search"
+            nh $argv
+        # to original
         else
-            # use command to avoid recursion of this function
+            # use "command" to avoid recursion of this function
             command nix $argv
         end
     end
