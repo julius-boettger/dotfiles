@@ -19,6 +19,7 @@ if status is-interactive
     alias ls lsd
     alias cat bat
     alias aquarium "asciiquarium --transparent"
+    alias flake-update "/etc/dotfiles/nix/update/update.sh"
     # alias some nix commands 
     function nix
         # to nom (prettier output)
@@ -46,7 +47,7 @@ function flake-rebuild
         echo -n "error: "
         set_color normal
         echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
-        return
+        return 1
     end
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
@@ -54,7 +55,10 @@ function flake-rebuild
 
     # rebuild with default host and nh for prettier output
     nh os switch -H $NIX_FLAKE_DEFAULT_HOST -- $argv
+    set return_code $status
 
     # go back
     cd $workingDir
+    # return status code of nh os switch
+    return $return_code
 end
