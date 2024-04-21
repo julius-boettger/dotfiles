@@ -100,8 +100,6 @@ args@{ pkgs, variables, ... }:
 
   # some environment variables
   environment.sessionVariables = {
-    # tell nh where the flake is
-    FLAKE = "/etc/dotfiles/nix";
     # fix pkg-config by pointing it in the right way
     PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
     # use --impure for flake-rebuild by default (if configured)

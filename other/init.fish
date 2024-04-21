@@ -59,7 +59,7 @@ function flake-rebuild
 
     # rebuild with nh (for prettier output), default host,
     # --impure (if set) and other given args
-    nh os switch -H $NIX_FLAKE_DEFAULT_HOST -- $impure $argv
+    nh os switch -H $NIX_FLAKE_DEFAULT_HOST . -- $impure $argv
 
     set return_code $status
     # go back
