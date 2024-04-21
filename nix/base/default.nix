@@ -81,14 +81,8 @@ args@{ pkgs, variables, ... }:
   ###########################################
   ###########################################
 
-  # tell nh where the flake is
-  environment.sessionVariables.FLAKE = "/etc/dotfiles/nix";
-
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
-
-  # fix pkg-config by pointing it in the right way
-  environment.sessionVariables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
 
   # java
   programs.java = {
@@ -102,6 +96,16 @@ args@{ pkgs, variables, ... }:
     # in order of preference
     hostKeyAlgorithms      = [ "ssh-ed25519" "ssh-rsa" ];
     pubkeyAcceptedKeyTypes = [ "ssh-ed25519" "ssh-rsa" ];
+  };
+
+  # some environment variables
+  environment.sessionVariables = {
+    # tell nh where the flake is
+    FLAKE = "/etc/dotfiles/nix";
+    # fix pkg-config by pointing it in the right way
+    PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+    # use --impure for flake-rebuild by default (if configured)
+    NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
   };
 
   # docker

@@ -3,6 +3,8 @@
 {
   # nixos and home-manager state version (see top of flake.nix for channel version)
   version = "23.11";
+  # use --impure for flake-rebuild by default
+  allowImpureByDefault = false;
   # username and displayname of only user
   username = "julius";
   displayname = "Julius";

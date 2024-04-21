@@ -52,11 +52,16 @@ function flake-rebuild
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
     cd /etc/dotfiles/nix
+    # use --impure if NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT is set
+    if test "$NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT" = "1"
+        set impure "--impure"
+    end
 
-    # rebuild with default host and nh for prettier output
-    nh os switch -H $NIX_FLAKE_DEFAULT_HOST -- $argv
+    # rebuild with nh (for prettier output), default host,
+    # --impure (if set) and other given args
+    nh os switch -H $NIX_FLAKE_DEFAULT_HOST -- $impure $argv
+
     set return_code $status
-
     # go back
     cd $workingDir
     # return status code of nh os switch
