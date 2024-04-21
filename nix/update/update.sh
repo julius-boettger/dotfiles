@@ -15,8 +15,8 @@ set_color white
 # update flake
 nix flake update /etc/dotfiles/nix
 
-# rebuild flake with new flake.lock
-flake-rebuild
+# rebuild flake with new flake.lock and given args
+flake-rebuild $argv
 set rebuild_status $status
 
 # cd into repo (for git)
