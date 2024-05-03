@@ -1,3 +1,6 @@
+; all labels have `:show-truncated false` because of
+; https://github.com/elkowar/eww/issues/1083
+
 (defpoll date :interval "1m"
   ; json string which eww can parse automatically (` = ' = ")
   :initial '{"date":"01.01.2000","day":"Monday"}'
@@ -77,6 +80,7 @@
           :condition      {ram.used < 1000}
           :condition-text {ram.used}))
       (label
+        :show-truncated false
         :class "time"
         :text {formattime(EWW_TIME, "%R")}
         :tooltip {formattime(EWW_TIME, "%T")})
@@ -87,9 +91,9 @@
           ; overlay with transparent longest possible value
           ; => visible box size always stays the same
           ; => no centering problems
-          (label :text "Wednesday" :style "color: transparent")
-          (label :text {date.day}))
-        (label :text {date.date})))
+          (label :show-truncated false :text "Wednesday" :style "color: transparent")
+          (label :show-truncated false :text {date.day}))
+        (label :show-truncated false :text {date.date})))
     (workspaces :data workspace-data)))
 
 ; data: json array with data about workspaces to display
@@ -107,6 +111,7 @@
           :tooltip {workspace.id > 10 ? workspace.id - 10 : workspace.id}
           :class "workspace"
           (label
+            :show-truncated false
             :style "padding-right: 0.25em"
             :text {
               workspace.id == current-workspace[0] || workspace.id == current-workspace[1] ? "󰟒" : ; nerdfont character
@@ -127,10 +132,12 @@
     (revealer
       :reveal {!condition}
       (label
+        :show-truncated false
         :text text
         :style style))
     (revealer
       :reveal {condition}
       (label
+        :show-truncated false
         :text condition-text
         :class "circle-condition-text"))))
