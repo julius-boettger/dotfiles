@@ -62,7 +62,7 @@
       # include configurations
       modules = modules ++ [
         ./base # most basic stuff
-        ./hosts/${internalName} # for specific device
+        ./devices/${internalName} # for specific device
         # make home manager available
         inputs.home-manager.nixosModules.home-manager
         # make specialArgs available for home manager

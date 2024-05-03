@@ -86,7 +86,7 @@ chown -R $USER:root /etc/dotfiles # not necessary, but makes editing files more 
 chmod -R 755 /etc/dotfiles # should already be set like this
 
 # copy over your hardware-configuration.nix (!)
-cp -f /etc/nixos/hardware-configuration.nix /etc/dotfiles/nix/hosts/nixos/
+cp -f /etc/nixos/hardware-configuration.nix /etc/dotfiles/nix/devices/desktop/
 ```
 
 If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
@@ -100,7 +100,7 @@ There are some files you now **NEED** to take a look at and adjust them to your 
 - Files in `nix/`:
   - `secrets.nix` and `variables.nix` (should explain themselves)
     - don't worry about `firefoxProfile`, we will set it later.
-  - `hosts/nixos/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
+  - `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
 Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#desktop`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
