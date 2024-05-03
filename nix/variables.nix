@@ -1,5 +1,4 @@
 # config variables that are shared by all of my devices.
-{ callPackage }:
 {
   # nixos and home-manager state version (see top of flake.nix for channel version)
   version = "23.11";

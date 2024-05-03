@@ -33,7 +33,7 @@
     pkgs          = import inputs.nixpkgs          pkgs-config;
     pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
 
-    variables = pkgs.callPackage (import ./variables.nix) {};
+    variables = import ./variables.nix;
 
     mkNixosConfig = {
       # nix configuration to include
