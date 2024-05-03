@@ -9,7 +9,7 @@ args@{ pkgs, variables, ... }:
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = args.host.name;
+    hostName = args.device.hostName;
     networkmanager.enable = true;
   };
 
@@ -102,6 +102,8 @@ args@{ pkgs, variables, ... }:
   environment.variables = {
     # fix pkg-config by pointing it in the right way
     PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
+    # current device to use for flake-rebuild
+    NIX_FLAKE_CURRENT_DEVICE = args.device.internalName;
     # use --impure for flake-rebuild by default (if configured)
     NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
   };

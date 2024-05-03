@@ -1,7 +1,5 @@
 args@{ pkgs, variables, ... }:
 {
-  environment.variables.NIX_FLAKE_DEFAULT_HOST = "wsl";
-
   wsl = {
     enable = true;
     defaultUser = variables.username;

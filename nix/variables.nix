@@ -15,33 +15,28 @@
     desktop = mkNixosConfig {
       # device architecture
       system = "x86_64-linux";
+      # name of corresponding device directory
+      internalName = "desktop";
       # networking hostname
       hostName = "nixos";
       # firefox profile to customize
       firefoxProfile = "h5hep79f.dev-edition-default";
       # nix configuration to include
-      modules = [
-        ./base/desktop.nix
-        ./hosts/desktop
-      ];
+      modules = [ ./base/desktop.nix ];
     };
     laptop = mkNixosConfig {
       system = "x86_64-linux";
+      internalName = "laptop";
       hostName = "nixos";
       firefoxProfile = "rwe6phtm.dev-edition-default";
-      modules = [
-        ./base/desktop.nix
-        ./hosts/laptop
-      ];
+      modules = [ ./base/desktop.nix ];
     };
     # not really a "device", i know
     wsl = mkNixosConfig {
       system = "x86_64-linux";
+      internalName = "wsl";
       hostName = "wsl";
-      modules = [
-        inputs.nixos-wsl.nixosModules.wsl
-        ./hosts/wsl
-      ];
+      modules = [ inputs.nixos-wsl.nixosModules.wsl ];
     };
   };
 }

@@ -28,11 +28,12 @@
   outputs = inputs@{ self, ... }:
   let
     variables = import ./variables.nix;
-    mkNixosConfig = {
+    mkNixosConfig = device@{
       # nix configuration to include
       modules,
       # device specific variables
-      system, hostName, firefoxProfile ? null
+      # see variables.nix for documentation
+      system, internalName, hostName, firefoxProfile ? null
     }:
     let
       pkgs-config   = { inherit system; config.allowUnfree = true; };
@@ -49,25 +50,23 @@
         # shared variables
         inherit variables;
         # device specific variables
-        host = {
-          inherit system firefoxProfile;
-          name = hostName;
-        };
+        inherit device;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {
       # make specialArgs available for nixos system
       inherit system specialArgs;
-      modules = [
-        # include most basic configuration
-        ./base
+      # include configurations
+      modules = modules ++ [
+        ./base # most basic stuff
+        ./hosts/${internalName} # for specific device
         # make home manager available
         inputs.home-manager.nixosModules.home-manager
         # make specialArgs available for home manager
         { home-manager.extraSpecialArgs = specialArgs; }
         # overlay unstable packages to do something like pkgs.unstable.my-package
         ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-      ] ++ modules;
+      ];
     };
   in
   {

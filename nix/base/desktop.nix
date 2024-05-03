@@ -357,7 +357,7 @@ in
     skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
   '';
   # firefox (allow userChrome.css)
-  home.file."./.mozilla/firefox/${args.host.firefoxProfile}/user.js".text = ''
+  home.file."./.mozilla/firefox/${args.device.firefoxProfile}/user.js".text = ''
     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
   '';
 
@@ -378,6 +378,6 @@ in
   home.file = {
     ".ideavimrc".source = symlink "/etc/dotfiles/other/.ideavimrc";
     ".local/share/rofi/themes".source = symlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${args.host.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
+    ".mozilla/firefox/${args.device.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
   };
 };}

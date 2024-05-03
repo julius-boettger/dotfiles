@@ -41,12 +41,12 @@ end
 
 # use like "flake-rebuild [--impure] [(other options)]"
 function flake-rebuild
-    # exit with error message if default host is not set
-    if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
+    # exit with error message if current device is not set
+    if test "x$NIX_FLAKE_CURRENT_DEVICE" = "x"
         set_color red
         echo -n "error: "
         set_color normal
-        echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
+        echo '$NIX_FLAKE_CURRENT_DEVICE is not set!'
         return 1
     end
     # cd back and forth because of wsl issue
@@ -57,9 +57,9 @@ function flake-rebuild
         set impure "--impure"
     end
 
-    # rebuild with nh (for prettier output), default host,
+    # rebuild with nh (for prettier output), current device,
     # --impure (if set) and other given args
-    nh os switch -H $NIX_FLAKE_DEFAULT_HOST . -- $impure $argv
+    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE . -- $impure $argv
 
     set return_code $status
     # go back
