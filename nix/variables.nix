@@ -12,8 +12,9 @@
   git.email = "julius.btg@proton.me";
   # nixos configurations for different devices
   nixosConfigs = { mkNixosConfig, inputs }: {
-    # "desktop" will be built by default
     desktop = mkNixosConfig {
+      # device architecture
+      system = "x86_64-linux";
       # networking hostname
       hostName = "nixos";
       # firefox profile to customize
@@ -25,6 +26,7 @@
       ];
     };
     laptop = mkNixosConfig {
+      system = "x86_64-linux";
       hostName = "nixos";
       firefoxProfile = "rwe6phtm.dev-edition-default";
       modules = [
@@ -34,6 +36,7 @@
     };
     # not really a "device", i know
     wsl = mkNixosConfig {
+      system = "x86_64-linux";
       hostName = "wsl";
       modules = [
         inputs.nixos-wsl.nixosModules.wsl

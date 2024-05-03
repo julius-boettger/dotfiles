@@ -27,21 +27,18 @@
   # take inputs as arguments
   outputs = inputs@{ self, ... }:
   let
-    system = "x86_64-linux";
-
-    pkgs-config   = { inherit system; config.allowUnfree = true; };
-    pkgs          = import inputs.nixpkgs          pkgs-config;
-    pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
-
     variables = import ./variables.nix;
-
     mkNixosConfig = {
       # nix configuration to include
       modules,
       # device specific variables
-      hostName, firefoxProfile ? null
+      system, hostName, firefoxProfile ? null
     }:
     let
+      pkgs-config   = { inherit system; config.allowUnfree = true; };
+      pkgs          = import inputs.nixpkgs          pkgs-config;
+      pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
+
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
         secrets = import ./secrets.nix;
@@ -53,7 +50,7 @@
         inherit variables;
         # device specific variables
         host = {
-          inherit firefoxProfile;
+          inherit system firefoxProfile;
           name = hostName;
         };
       };
