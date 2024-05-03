@@ -42,7 +42,7 @@
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
         secrets = import ./secrets.nix;
-        local-pkgs = pkgs.callPackage (import ./pkgs) {};
+        local-pkgs = (import ./pkgs) { inherit system pkgs; };
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # for ./modules/studies/itsarch.nix
         pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
