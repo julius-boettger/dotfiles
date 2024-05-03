@@ -28,6 +28,9 @@
   outputs = inputs@{ self, ... }:
   let
     variables = import ./variables.nix;
+
+    ### process nixosConfigs in variables.nix
+    # map a high-level attribute set to a lib.nixosSystem
     mkNixosConfig = device@{
       # nix configuration to include
       modules,
@@ -68,8 +71,23 @@
         ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
       ];
     };
+    # take a nixosConfigs list like
+    # [{ internalName="desktop"; hostName="nixos"; }]
+    # then maps each config to a set using internalName like
+    # { "desktop"={ internalName="desktop"; hostName="nixos; }; }
+    # then maps each set to a lib.nixosSystem using mkNixosConfig like
+    # { "desktop"=lib.nixosSystem {...}; }
+    mkNixosConfigs = nixosConfigs: 
+      builtins.mapAttrs (ignored: namedConfig: mkNixosConfig namedConfig) (
+        builtins.listToAttrs (
+          builtins.map (config: {
+            value = config;
+            name = config.internalName; 
+          }) nixosConfigs
+        )
+      );
   in
   {
-    nixosConfigurations = variables.nixosConfigs { inherit mkNixosConfig inputs; };
+    nixosConfigurations = variables.nixosConfigs { inherit mkNixosConfigs inputs; };
   };
 }

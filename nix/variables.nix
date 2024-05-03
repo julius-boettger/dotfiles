@@ -11,32 +11,31 @@
   git.name = "julius-boettger";
   git.email = "julius.btg@proton.me";
   # nixos configurations for different devices
-  nixosConfigs = { mkNixosConfig, inputs }: {
-    desktop = mkNixosConfig {
-      # device architecture
-      system = "x86_64-linux";
+  nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
+    {
       # name of corresponding device directory
       internalName = "desktop";
+      # device architecture
+      system = "x86_64-linux";
       # networking hostname
       hostName = "nixos";
       # firefox profile to customize
       firefoxProfile = "h5hep79f.dev-edition-default";
       # nix configuration to include
       modules = [ ./base/desktop.nix ];
-    };
-    laptop = mkNixosConfig {
-      system = "x86_64-linux";
+    }
+    {
       internalName = "laptop";
+      system = "x86_64-linux";
       hostName = "nixos";
       firefoxProfile = "rwe6phtm.dev-edition-default";
       modules = [ ./base/desktop.nix ];
-    };
-    # not really a "device", i know
-    wsl = mkNixosConfig {
-      system = "x86_64-linux";
+    }
+    {
       internalName = "wsl";
+      system = "x86_64-linux";
       hostName = "wsl";
       modules = [ inputs.nixos-wsl.nixosModules.wsl ];
-    };
-  };
+    }
+  ];
 }
