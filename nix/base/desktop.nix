@@ -249,7 +249,7 @@ in
 
   ### hyprland (tiling wayland compositor)
   # make chromium / electron apps use wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.variables.NIXOS_OZONE_WL = "1";
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;

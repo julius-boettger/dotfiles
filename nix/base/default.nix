@@ -99,7 +99,7 @@ args@{ pkgs, variables, ... }:
   };
 
   # some environment variables
-  environment.sessionVariables = {
+  environment.variables = {
     # fix pkg-config by pointing it in the right way
     PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
     # use --impure for flake-rebuild by default (if configured)
@@ -120,7 +120,7 @@ args@{ pkgs, variables, ... }:
   ### fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
-  environment.sessionVariables = {
+  environment.variables = {
     fish_color_param = "normal";
     fish_color_error = "yellow";
     fish_color_option = "cyan";
@@ -128,7 +128,7 @@ args@{ pkgs, variables, ... }:
     fish_color_autosuggestion = "brblack";
   };
   # config file location for starship prompt
-  environment.sessionVariables.STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
+  environment.variables.STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
 
   ############################################
   ############################################
