@@ -31,9 +31,6 @@ style = "Bold"
 [font.bold_italic]
 style = "Bold Italic"
 
-[cursor.style]
-shape = "Underline"
-
 [env]
 # fix interactive features on remote ssh sessions that dont know about alacritty
 TERM = "xterm-256color"

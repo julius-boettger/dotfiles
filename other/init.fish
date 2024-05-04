@@ -14,6 +14,25 @@ if status is-interactive
     # use starship prompt
     starship init fish | source
 
+    ### vim
+    fish_vi_key_bindings
+    set fish_vi_force_cursor
+    set fish_cursor_insert line
+    ### keybinds for default/visual mode
+    bind -M default ö beginning-of-line
+    bind -M visual  ö beginning-of-line
+    bind -M default ä end-of-line
+    bind -M visual  ä end-of-line
+    ### keybinds for insert mode
+    # ctrl+c => switch to default mode
+    bind -M insert -m default \cc repaint-mode
+    # ctrl+backspace => delete input
+    bind -M insert \b kill-whole-line
+    # ctrl+space => go through options
+    bind -M insert -k nul complete
+    # tab => accept suggestion
+    bind -M insert \t accept-autosuggestion
+
     ### aliases
     alias cd z
     alias ls lsd
