@@ -134,6 +134,7 @@ in
 
     ### only used without desktop environment
     font-manager
+    rofimoji # emoji picker for rofi
     copyq # clipboard manager
     networkmanagerapplet # tray icon for networking connection
     qview # image viewer
@@ -357,6 +358,11 @@ in
     min_notify_changes = "1"   
     # ignore temporary stuff and weird obsidian file
     skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
+  '';
+  # rofimoji
+  xdg.configFile."rofimoji.rc".text = ''
+    action = copy
+    skin-tone = neutral
   '';
   # firefox (allow userChrome.css)
   home.file."./.mozilla/firefox/${args.device.firefoxProfile}/user.js".text = ''
