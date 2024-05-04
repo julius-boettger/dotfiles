@@ -172,6 +172,7 @@ in
     unstable.grim # whole screen screenshot
     unstable.grimblast # region select screenshot
     unstable.swayosd # osd for volume changes
+    unstable.swappy # edit screenshots
     # lockscreen
     local-pkgs.swaylock-effects
     unstable.swaylock-effects
