@@ -161,6 +161,7 @@ in
     socat # for hyprland workspaces with eww
     nwg-look # manage gtk theming stuff if homemanager fails
     wev ydotool # find out / send keycodes
+    wl-clipboard # interact with clipboard 
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
     local-pkgs.hyprctl-collect-clients # bring all clients to one workspace
     local-pkgs.hyprsome # awesome-like workspaces
