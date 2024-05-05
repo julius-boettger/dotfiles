@@ -80,16 +80,16 @@
           :value {battery.charge_percent}
           :text "󱊣" ; battery nerdfont character
           :condition        {battery.charge_percent < 100}
-          :condition-text "${battery.charge_percent}%")
+          :condition-text '${battery.charge_percent}%')
         (circular-progress-fancy
           :visible {!show-battery}
-          :tooltip "${round(EWW_CPU.avg, 2)}%"
+          :tooltip '${round(EWW_CPU.avg, 2)}%'
           :value logarithmic-cpu
           :text "" :style "padding-right: 0.35em" ; cpu nerdfont character
           :condition       {EWW_CPU.avg < 10}
-          :condition-text "${round(EWW_CPU.avg, 1)}")
+          :condition-text '${round(EWW_CPU.avg, 1)}')
         (circular-progress-fancy
-          :tooltip "${ram.used} / ${ram.total} MB"
+          :tooltip '${ram.used} / ${ram.total} MB'
           :value {ram.used_percent}
           :text "" :style "padding-right: 0.3em" ; memory chip nerdfont character
           :condition      {ram.used < 1000}
@@ -122,7 +122,7 @@
       :spacing 38
       (for workspace in data
         (eventbox
-          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          :onclick 'hyprctl dispatch workspace ${workspace.id}'
           :tooltip {workspace.id > 10 ? workspace.id - 10 : workspace.id}
           :class "workspace"
           (label
