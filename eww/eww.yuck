@@ -21,7 +21,7 @@
   "~/.config/eww/scripts/logarithmic-cpu.sh") 
 
 ; TODO replace with shell script
-(defvar battery '{"charge_percent":80,"time_remaining":"20h13min","charging":true}')
+(defvar battery '{"charge":30,"time_remaining":"20h13min","charging":true}')
 
 (deflisten workspaces-1
   ; json array with data for hyprland workspaces 1 to 9
@@ -76,11 +76,33 @@
         :spacing 25
         (circular-progress-fancy
           :visible {show-battery}
-          :tooltip '${battery.time_remaining}${battery.charging ? ", charging" : ""}'
-          :value {battery.charge_percent}
-          :text "󱊣" ; battery nerdfont character
-          :condition        {battery.charge_percent < 100}
-          :condition-text '${battery.charge_percent}%')
+          :tooltip '${battery.charge}% (${battery.time_remaining} left)'
+          :value {battery.charge}
+          :style {battery.charging ? "padding-left: 0.1em" : ""}
+          ; a lot of battery nerdfont characters incoming
+          :text {battery.charging ? (
+            battery.charge < 10 ? "󰢟" :
+            battery.charge < 20 ? "󰢜" :
+            battery.charge < 30 ? "󰂆" :
+            battery.charge < 40 ? "󰂇" :
+            battery.charge < 50 ? "󰂈" :
+            battery.charge < 60 ? "󰢝" :
+            battery.charge < 70 ? "󰂉" :
+            battery.charge < 80 ? "󰢞" :
+            battery.charge < 90 ? "󰂊" :
+            battery.charge < 95 ? "󰂋" : "󰂅"
+          ) : (
+            battery.charge < 10 ? "󰂎" :
+            battery.charge < 20 ? "󰁺" :
+            battery.charge < 30 ? "󰁻" :
+            battery.charge < 40 ? "󰁼" :
+            battery.charge < 50 ? "󰁽" :
+            battery.charge < 60 ? "󰁾" :
+            battery.charge < 70 ? "󰁿" :
+            battery.charge < 80 ? "󰂀" :
+            battery.charge < 90 ? "󰂁" :
+            battery.charge < 95 ? "󰂂" : "󰁹"
+          )})
         (circular-progress-fancy
           :visible {!show-battery}
           :tooltip '${round(EWW_CPU.avg, 2)}%'
@@ -132,7 +154,7 @@
               workspace.id == current-workspace[0] || workspace.id == current-workspace[1] ? "󰟒" : ; nerdfont character
                 workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
 
-(defwidget circular-progress-fancy [tooltip value text condition condition-text ?style ?visible]
+(defwidget circular-progress-fancy [value text ?tooltip ?condition ?condition-text ?style ?visible]
   (overlay
     :visible {visible ?: true}
     :tooltip tooltip
@@ -146,13 +168,13 @@
       :start-at 75
       :thickness 3)
     (revealer
-      :reveal {!condition}
+      :reveal {!(condition ?: false)}
       (label
         :show-truncated false
         :text text
         :style style))
     (revealer
-      :reveal {condition}
+      :reveal {condition ?: false}
       (label
         :show-truncated false
         :text condition-text
