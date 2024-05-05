@@ -20,8 +20,10 @@
   :initial 0
   "~/.config/eww/scripts/logarithmic-cpu.sh") 
 
-; TODO replace with shell script
-(defvar battery '{"charge":30,"time_remaining":"20h13min","charging":true}')
+(defpoll battery :interval "1s"
+  ; charge in percent
+  :initial '{"charge":0,"time_remaining":"unknown","charging":false}'
+  "~/.config/eww/scripts/battery.sh") 
 
 (deflisten workspaces-1
   ; json array with data for hyprland workspaces 1 to 9
@@ -76,7 +78,7 @@
         :spacing 25
         (circular-progress-fancy
           :visible {show-battery}
-          :tooltip '${battery.charge}% (${battery.time_remaining} left)'
+          :tooltip '${battery.charge}% (${battery.time_remaining} left${battery.charging ? " to charge" : ""})'
           :value {battery.charge}
           :style {battery.charging ? "padding-left: 0.1em" : ""}
           ; a lot of battery nerdfont characters incoming
