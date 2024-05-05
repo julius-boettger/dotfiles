@@ -1,6 +1,10 @@
 ; all labels have `:show-truncated false` because of
 ; https://github.com/elkowar/eww/issues/1083
 
+; show battery instead of cpu usage
+; TODO replace with env var
+(defvar show-battery true)
+
 (defpoll date :interval "1m"
   ; json string which eww can parse automatically (` = ' = ")
   :initial '{"date":"01.01.2000","day":"Monday"}'
@@ -15,6 +19,9 @@
   ; in percent
   :initial 0
   "~/.config/eww/scripts/logarithmic-cpu.sh") 
+
+; TODO replace with shell script
+(defvar battery '{"charge_percent":80,"time_remaining":"20h13min","charging":true}')
 
 (deflisten workspaces-1
   ; json array with data for hyprland workspaces 1 to 9
@@ -68,6 +75,14 @@
         :space-evenly false
         :spacing 25
         (circular-progress-fancy
+          :visible {show-battery}
+          :tooltip '${battery.time_remaining}${battery.charging ? ", charging" : ""}'
+          :value {battery.charge_percent}
+          :text "󱊣" ; battery nerdfont character
+          :condition        {battery.charge_percent < 100}
+          :condition-text "${battery.charge_percent}%")
+        (circular-progress-fancy
+          :visible {!show-battery}
           :tooltip "${round(EWW_CPU.avg, 2)}%"
           :value logarithmic-cpu
           :text "" :style "padding-right: 0.35em" ; cpu nerdfont character
@@ -117,8 +132,9 @@
               workspace.id == current-workspace[0] || workspace.id == current-workspace[1] ? "󰟒" : ; nerdfont character
                 workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
 
-(defwidget circular-progress-fancy [tooltip value text style condition condition-text]
+(defwidget circular-progress-fancy [tooltip value text condition condition-text ?style ?visible]
   (overlay
+    :visible {visible ?: true}
     :tooltip tooltip
     (circular-progress
       :class "inner-circle"
