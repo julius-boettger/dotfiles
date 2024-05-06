@@ -1,19 +1,8 @@
 # more gui config i don't want on every device
 args@{ pkgs, variables, local-pkgs, ... }:
-let
-  barrierPort = args.secrets.barrier.port;
-in
 {
-  # self-explaining one-liners
   imports = [ ../../modules/vscodium.nix ];
-  boot.supportedFilesystems = [ "ntfs" "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = args.lib.mkIf (barrierPort != null) [ barrierPort ];
-    allowedUDPPorts = [];
-  };
 
   boot.loader = {
     timeout = 1;
@@ -36,7 +25,6 @@ in
   # sound with pipewire
   sound.enable = true;
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -61,7 +49,6 @@ in
   ##########################################
   ##########################################
 
-  # fonts to install
   fonts.packages = with pkgs; [
     noto-fonts # ~200 standard modern fonts for all kinds of languages
     noto-fonts-cjk-sans # for asian characters
@@ -72,47 +59,36 @@ in
     ]; } )
   ];
 
-  # packages to install
   environment.systemPackages = with pkgs; [
     ### gui
-    bitwarden # password manager
-    obs-studio # video recording
-    libreoffice # office suite
-    gimp-with-plugins # image editor
     firefox-devedition # browser
-    jetbrains.idea-community # java ide
     unstable.alacritty # terminal
-    bottles # run windows software easily
-    pitivi # video editor
-    tenacity # audio recorder and editor
-    piper # configure gaming mice graphically with ratbagd
-    protonup-qt # easy ge-proton setup for steam
     local-pkgs.gitnuro # git gui (newer version compared to nixpkgs)
-    ventoy # create bootable usb sticks
-    usbimager # if ventoy causes problems
     unstable.resources # system monitor (best overall)
     monitor # system monitor (best process view)
     psensor # gui for (lm_)sensors to display system temperatures
-    darktable # photo editor and raw developer
-    inkscape-with-extensions # vector graphic editor
-    veracrypt # disk encryption
-    freefilesync # file backup
     vlc # video player
-    sioyek # pdf reader, also available as programs.sioyek in hm
-    baobab # disk usage analyzer
+    qview # image viewer
+    audacious # audio player
+    snapshot # camera
     unstable.vesktop # wayland optimized discord client
-    unstable.bruno # rest api client
     signal-desktop # messenger
+    rofimoji # emoji picker for rofi
+    copyq # clipboard manager
+    networkmanagerapplet # tray icon for networking connection
+    xarchiver # archive manager
+    gnome.dconf-editor # needed for home-manager gtk theming
+    baobab # disk usage analyzer
+    gnome.gnome-disk-utility
+    unstable.gnome.nautilus # file manager
+    gnome.sushi # thumbnails in nautilus
     spotify # PROPRIETARY
-    pdfstudio2023 # PROPRIETARY
     obsidian # PROPRIETARY
+    # gtk theme
+    (orchis-theme.override { border-radius = 10; })
     # sddm theme + dependency (login manager)
     local-pkgs.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
-    # gtk themes
-    fluent-gtk-theme
-    (orchis-theme.override { border-radius = 10; })
-    (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
     # icon themes
     gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
     ((papirus-icon-theme.override { /*folder-*/color = "black"; })
@@ -127,27 +103,10 @@ in
     ''; }))
 
     ### cli
-    playerctl # pause media with mpris
+    alsa-utils # control volume
     lm_sensors # system temperature sensor info
-    dunst # for better notify-send with dunstify
-    gphoto2fs # mount camera
-
-    ### only used without desktop environment
-    font-manager
-    rofimoji # emoji picker for rofi
-    copyq # clipboard manager
-    networkmanagerapplet # tray icon for networking connection
-    qview # image viewer
-    audacious # audio player
-    snapshot # camera
-    gnome.dconf-editor # needed for home-manager gtk theming
-    gnome.gnome-disk-utility
-    unstable.gnome.nautilus # file manager
-    gnome.sushi # thumbnails in nautilus
-    xarchiver # archive manager
     lxde.lxmenu-data # required to discover applications
     lxde.lxsession # just needed for lxpolkit (an authentication agent)
-    alsa-utils # control volume
 
     ### only used on xorg
     lxappearance # manage gtk theming stuff if homemanager fails
@@ -203,14 +162,6 @@ in
 
   services.onedrive.enable = true;
 
-  services.flatpak.enable = true;
-
-  # for configuring gaming mice with piper
-  services.ratbagd.enable = true;
-
-  # remove background noise from mic
-  programs.noisetorch.enable = true;
-
   # necessary for swaylock-effects
   security.pam.services.swaylock = {};
 
@@ -244,14 +195,6 @@ in
     style = "gtk2";
     platformTheme = "gtk2";
   };
-
-  ### steam (PROPRIETARY)
-  programs.steam = {
-    enable = true;
-    package = pkgs.unstable.steam;
-  };
-  # currently needs this
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
   ### hyprland (tiling wayland compositor)
   # make chromium / electron apps use wayland

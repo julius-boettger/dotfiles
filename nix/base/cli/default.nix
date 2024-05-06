@@ -11,6 +11,11 @@ args@{ pkgs, variables, ... }:
   networking = {
     hostName = args.device.hostName;
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
+    };
   };
 
   i18n.defaultLocale  = "en_US.UTF-8";
