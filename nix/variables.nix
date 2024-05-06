@@ -13,6 +13,7 @@
   # nixos configurations for different devices
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
     {
+      showBatteryIndicator = true;
       # name of corresponding device directory
       internalName = "desktop";
       # device architecture
@@ -21,7 +22,7 @@
       hostName = "nixos";
       # firefox profile to customize
       firefoxProfile = "h5hep79f.dev-edition-default";
-      # nix configuration to include
+      # other nix configuration to include
       modules = [ ./base/desktop.nix ];
     }
     {

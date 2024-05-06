@@ -36,7 +36,7 @@
       modules,
       # device specific variables
       # see variables.nix for documentation
-      system, internalName, hostName, firefoxProfile ? null
+      system, internalName, hostName, firefoxProfile ? null, showBatteryIndicator ? false
     }:
     let
       pkgs-config   = { inherit system; config.allowUnfree = true; };

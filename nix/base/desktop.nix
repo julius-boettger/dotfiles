@@ -229,6 +229,9 @@ in
   # shell alias for shorter fastfetch
   environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/short.jsonc";
 
+  # set env var to show battery indicator (if configured)
+  environment.variables.SHOW_BATTERY_INDICATOR = args.lib.mkIf args.device.showBatteryIndicator "1";
+
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
     subpixel.rgba = "vrgb";
