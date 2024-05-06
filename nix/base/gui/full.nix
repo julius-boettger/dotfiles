@@ -56,11 +56,9 @@ in
   # remove background noise from mic
   programs.noisetorch.enable = true;
 
-  ### steam (PROPRIETARY)
+  # steam (PROPRIETARY)
   programs.steam = {
     enable = true;
     package = pkgs.unstable.steam;
   };
-  # currently needs this
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 }
