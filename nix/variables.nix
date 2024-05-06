@@ -13,7 +13,6 @@
   # nixos configurations for different devices
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
     {
-      showBatteryIndicator = true;
       # name of corresponding device directory
       internalName = "desktop";
       # device architecture
@@ -30,6 +29,7 @@
       system = "x86_64-linux";
       hostName = "nixos";
       firefoxProfile = "rwe6phtm.dev-edition-default";
+      showBatteryIndicator = true;
       modules = [ ./base/desktop.nix ];
     }
     {
