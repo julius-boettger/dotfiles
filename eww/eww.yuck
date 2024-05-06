@@ -1,9 +1,8 @@
 ; all labels have `:show-truncated false` because of
 ; https://github.com/elkowar/eww/issues/1083
 
-; show battery instead of cpu usage
-; TODO replace with env var
-(defvar show-battery true)
+; show battery instead of cpu usage (based on env var)
+(defvar show-battery {get_env("SHOW_BATTERY_INDICATOR") == "1"})
 
 (defpoll date :interval "1m"
   ; json string which eww can parse automatically (` = ' = ")
