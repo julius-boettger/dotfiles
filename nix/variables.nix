@@ -10,18 +10,16 @@
   # global git config
   git.name = "julius-boettger";
   git.email = "julius.btg@proton.me";
-  # nixos configurations for different devices
+  
+  ### nixos configurations for different devices
+  # documentation for possible attributes and their meanings
+  # in flake.nix near "mkNixosConfig = device@{"
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
     {
-      # name of corresponding device directory
       internalName = "desktop";
-      # device architecture
       system = "x86_64-linux";
-      # networking hostname
       hostName = "nixos";
-      # firefox profile to customize
       firefoxProfile = "h5hep79f.dev-edition-default";
-      # other nix configuration to include
       modules = [ ./base/desktop.nix ];
     }
     {

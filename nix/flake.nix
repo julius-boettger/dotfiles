@@ -32,11 +32,20 @@
     ### process nixosConfigs in variables.nix
     # map a high-level attribute set to a lib.nixosSystem
     mkNixosConfig = device@{
-      # nix configuration to include
+      ### required
+      # name of corresponding device directory, e.g. "desktop" for ./devices/desktop/
+      internalName,
+      # device architecture, e.g. "x86_64-linux"
+      system,
+      # networking hostname, e.g. "nixos"
+      hostName,
+      # list of other nix configuration to include, e.g. [ ./base/desktop.nix ]
       modules,
-      # device specific variables
-      # see variables.nix for documentation
-      system, internalName, hostName, firefoxProfile ? null, showBatteryIndicator ? false
+      ### optional
+      # name of firefox profile to customize, see README for more
+      firefoxProfile ? null,
+      # show battery indicator on desktop
+      showBatteryIndicator ? false,
     }:
     let
       pkgs-config   = { inherit system; config.allowUnfree = true; };
