@@ -52,8 +52,8 @@
         pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
         # shared variables
         inherit variables;
-        # device specific variables
-        inherit device;
+        # device specific variables (with weird fix for optionals)
+        device = { inherit firefoxProfile showBatteryIndicator; } // device;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {
