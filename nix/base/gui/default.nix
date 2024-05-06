@@ -1,11 +1,11 @@
-# this file contains shared config i want to have on desktop (gui) devices
+# more gui config i don't want on every device
 args@{ pkgs, variables, local-pkgs, ... }:
 let
   barrierPort = args.secrets.barrier.port;
 in
 {
   # self-explaining one-liners
-  imports = [ ../modules/vscodium.nix ];
+  imports = [ ../../modules/vscodium.nix ];
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

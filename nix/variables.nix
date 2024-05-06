@@ -20,7 +20,7 @@
       system = "x86_64-linux";
       hostName = "nixos";
       firefoxProfile = "h5hep79f.dev-edition-default";
-      modules = [ ./base/desktop.nix ];
+      modules = [ ./base/full.nix ];
     }
     {
       internalName = "laptop";
@@ -28,13 +28,16 @@
       hostName = "nixos";
       firefoxProfile = "rwe6phtm.dev-edition-default";
       showBatteryIndicator = true;
-      modules = [ ./base/desktop.nix ];
+      modules = [ ./base/gui ];
     }
     {
       internalName = "wsl";
       system = "x86_64-linux";
       hostName = "wsl";
-      modules = [ inputs.nixos-wsl.nixosModules.wsl ];
+      modules = [
+        ./base/cli/full.nix
+        inputs.nixos-wsl.nixosModules.wsl
+      ];
     }
   ];
 }
