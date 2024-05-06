@@ -45,7 +45,6 @@ args@{ pkgs, variables, ... }:
   ##########################################
   ##########################################
 
-  # packages to install, mostly command line stuff
   environment.systemPackages = with pkgs; [
     vim
     bash
@@ -53,23 +52,14 @@ args@{ pkgs, variables, ... }:
     lsd # better ls
     bat # better cat
     fzf # fast fuzzy finder
-    tldr # summarize man pages
     zoxide # better cd
     unstable.numbat # cli calculator
     fastfetch # neofetch but fast
-    librespeed-cli # speedtest
-    meson ninja # for building c/c++ projects
-    pkg-config # for c/c++/rust dependency management
-    cbonsai # ascii art bonsai
-    asciiquarium-transparent # ascii art aquarium
     starship # shell prompt, install as program and package to set PATH
     fortune # random quote
     nix-output-monitor # prettier output of nix commands
     unstable.nh # nix helper (prettier/better nix commands)
     # compilers, interpreters, debuggers
-    gcc
-    rustup
-    nodePackages_latest.nodejs
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv
     ]))
@@ -84,12 +74,6 @@ args@{ pkgs, variables, ... }:
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
 
-  # java
-  programs.java = {
-    enable = true;
-    package = pkgs.unstable.jdk;
-  };
-
   # for git authentication with ssh keys
   programs.ssh = {
     startAgent = true;
@@ -100,23 +84,10 @@ args@{ pkgs, variables, ... }:
 
   # some environment variables
   environment.variables = {
-    # fix pkg-config by pointing it in the right way
-    PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
     # current device to use for flake-rebuild
     NIX_FLAKE_CURRENT_DEVICE = args.device.internalName;
     # use --impure for flake-rebuild by default (if configured)
     NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
-  };
-
-  # docker
-  virtualisation.docker = {
-    enable = true;
-    # better for security than adding user to "docker" group
-    rootless = {
-      enable = true;
-      # make rootless instance the default
-      setSocketVariable = true;
-    };
   };
 
   ### fish shell
