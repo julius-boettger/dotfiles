@@ -145,6 +145,8 @@ in
     # lockscreen
     unstable.swaylock-effects
     (script-file "swaylock-effects" /etc/dotfiles/other/swaylock-effects.sh)
+    (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
+    (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
   ];
 
   ###########################################
