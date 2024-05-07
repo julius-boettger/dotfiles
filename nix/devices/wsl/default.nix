@@ -34,12 +34,4 @@ args@{ pkgs, variables, ... }:
       KillMode = "mixed";
     };
   };
-
-  # shell alias for shorter fastfetch
-  environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/wsl/short.jsonc";
-
-  # symlink fastfetch config to ~/.config/fastfetch/config.jsonc
-  home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."fastfetch/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/fastfetch/wsl/default.jsonc";
-  };
 }

@@ -1,0 +1,58 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "display": {
+        "percent": {
+            "type": 1
+        }
+    },
+    "modules": [
+        "title",
+        "break", // empty line
+        // software
+        {
+            "type": "os",
+            "format": "{2} {8} @ {12}"
+        },
+        {
+            "type": "kernel",
+            "format": "{1} {2}"
+        },
+        "packages",
+        "lm",
+        "wm",
+        "shell",
+        "terminal",
+        "theme",
+        "icons",
+        // hardware
+        "cpu",
+        "gpu",
+        {
+            "type": "board",
+            "format": "{1}"
+        },
+        "memory",
+        {
+            "type": "display",
+            "preciseRefreshRate": false,
+            "format": "{1}x{2} @ {3}Hz"
+        },
+        "break", // empty line
+        "colors"
+
+        //"separator", // dotted line
+        //"font",
+        //"cursor",
+        //"processes"
+        //"chassis",
+        //"sound",
+        //"terminalfont",
+        //"uptime",
+        //"host",
+        //// shows nothing on hyprland desktop pc
+        //"de",
+        //"wmtheme",
+        //"battery",
+        //"poweradapter",
+    ]
+}

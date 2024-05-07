@@ -1,5 +1,5 @@
 # more gui config i don't want on every device
-args@{ pkgs, variables, local-pkgs, ... }:
+args@{ pkgs, variables, local-pkgs, device, ... }:
 {
   imports = [ ../../modules/vscodium.nix ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -180,11 +180,12 @@ args@{ pkgs, variables, local-pkgs, ... }:
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
-  # shell alias for shorter fastfetch
-  environment.shellAliases.fastfetch-short = "fastfetch -c /etc/dotfiles/fastfetch/short.jsonc";
-
   # set env var to show battery indicator (if configured)
-  environment.variables.SHOW_BATTERY_INDICATOR = args.lib.mkIf args.device.showBatteryIndicator "1";
+  environment.variables.SHOW_BATTERY_INDICATOR = args.lib.mkIf device.showBatteryIndicator "1";
+
+  # shell alias for shorter fastfetch
+  environment.shellAliases.fastfetch-short =
+    "fastfetch -c /etc/dotfiles/nix/devices/${device.internalName}/fastfetch/short.jsonc";
 
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
@@ -314,7 +315,7 @@ args@{ pkgs, variables, local-pkgs, ... }:
     skin-tone = neutral
   '';
   # firefox (allow userChrome.css)
-  home.file."./.mozilla/firefox/${args.device.firefoxProfile}/user.js".text = ''
+  home.file."./.mozilla/firefox/${device.firefoxProfile}/user.js".text = ''
     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
   '';
 
@@ -325,8 +326,8 @@ args@{ pkgs, variables, local-pkgs, ... }:
     "awesome"                 = { source = symlink "/etc/dotfiles/awesome"; recursive = true; };
     "swaync"                     .source = symlink "/etc/dotfiles/swaync";
     "hypr/hyprland.conf"         .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
-    "hypr/extra-config.conf"     .source = symlink "/etc/dotfiles/nix/devices/${args.device.internalName}/hyprland.conf";
-    "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/fastfetch/default.jsonc";   
+    "hypr/extra-config.conf"     .source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";
+    "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/fastfetch/default.jsonc";
     "picom.conf"                 .source = symlink "/etc/dotfiles/other/picom.conf";
     "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/other/copyq.conf";
     "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/other/vscodium.json";
@@ -336,6 +337,6 @@ args@{ pkgs, variables, local-pkgs, ... }:
   home.file = {
     ".ideavimrc".source = symlink "/etc/dotfiles/other/.ideavimrc";
     ".local/share/rofi/themes".source = symlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${args.device.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
+    ".mozilla/firefox/${device.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
   };
 };}
