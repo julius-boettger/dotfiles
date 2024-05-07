@@ -35,13 +35,13 @@
       ### required
       # name of corresponding device directory, e.g. "desktop" for ./devices/desktop/
       internalName,
-      # device architecture, e.g. "x86_64-linux"
-      system,
-      # networking hostname, e.g. "nixos"
-      hostName,
       # list of other nix configuration to include, e.g. [ ./base/desktop.nix ]
       modules,
       ### optional
+      # device architecture
+      system ? "x86_64-linux",
+      # networking hostname
+      hostName ? "nixos",
       # show battery indicator on desktop
       showBatteryIndicator ? false,
     }:
@@ -60,7 +60,7 @@
         # shared variables
         inherit variables;
         # device specific variables (with weird fix for optionals)
-        device = { inherit showBatteryIndicator; } // device;
+        device = { inherit system hostName showBatteryIndicator; } // device;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {

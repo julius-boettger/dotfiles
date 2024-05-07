@@ -17,21 +17,16 @@
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
     {
       internalName = "desktop";
-      system = "x86_64-linux";
-      hostName = "nixos";
       modules = [ ./base/full.nix ];
     }
     {
       internalName = "laptop";
-      system = "x86_64-linux";
-      hostName = "nixos";
       showBatteryIndicator = true;
       modules = [ ./base/gui ];
     }
     {
+          hostName = "wsl";
       internalName = "wsl";
-      system = "x86_64-linux";
-      hostName = "wsl";
       modules = [
         ./base/cli/full.nix
         inputs.nixos-wsl.nixosModules.wsl
