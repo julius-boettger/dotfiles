@@ -64,7 +64,6 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
 
   environment.systemPackages = with pkgs; [
     ### gui
-    firefox-devedition # browser
     unstable.alacritty # terminal
     local-pkgs.gitnuro # git gui (newer version compared to nixpkgs)
     unstable.resources # system monitor (best overall)
@@ -297,6 +296,14 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
     disabledTrayIcon = true;
   };
 
+  # browser
+  programs.firefox = {
+    enable = true;
+    package = pkgs.unstable.firefox;
+    # allow custom css
+    profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  };
+
   ### create dotfiles
   # onedrive
   home.file.".config/onedrive/config".text = ''
@@ -313,10 +320,6 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
   xdg.configFile."rofimoji.rc".text = ''
     action = copy
     skin-tone = neutral
-  '';
-  # firefox (allow userChrome.css)
-  home.file."./.mozilla/firefox/${device.firefoxProfile}/user.js".text = ''
-    user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
   '';
 
   ### symlink dotfiles
@@ -337,6 +340,6 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
   home.file = {
     ".ideavimrc".source = symlink "/etc/dotfiles/other/.ideavimrc";
     ".local/share/rofi/themes".source = symlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/${device.firefoxProfile}/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
+    ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
   };
 };}

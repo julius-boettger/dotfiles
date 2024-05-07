@@ -95,13 +95,10 @@ It's pretty much the same thing for my Hyprland config, but I extracted the devi
 
 There are some files you now should take a look at and adjust them to your liking, all in `/etc/dotfiles/nix/`:
 - `secrets.nix` and `variables.nix` (should explain themselves)
-  - don't worry about `firefoxProfile`, we will set it later.
 - `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
 Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#desktop`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
-
-**Apply Firefox customization**: Run Firefox and set it up to your liking (but don't choose a theme or a `userChrome.css`, you will load mine later). Then enter `about:profiles` in the Firefox URL bar and identify the profile you have set up. Copy the name of the profile directory in `~/.mozilla/firefox/` that is displayed under "Root Directory" (usually something like `h5hep79f.dev-edition-default`). Use it as the value of `firefoxProfile` in `/etc/dotfiles/nix/variables.nix` after the line `desktop = mkNixosConfig {` and rebuild your system, e.g. with `flake-rebuild`.
 
 Next: `reboot` for good measure.
 

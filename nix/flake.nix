@@ -42,8 +42,6 @@
       # list of other nix configuration to include, e.g. [ ./base/desktop.nix ]
       modules,
       ### optional
-      # name of firefox profile to customize, see README for more
-      firefoxProfile ? null,
       # show battery indicator on desktop
       showBatteryIndicator ? false,
     }:
@@ -62,7 +60,7 @@
         # shared variables
         inherit variables;
         # device specific variables (with weird fix for optionals)
-        device = { inherit firefoxProfile showBatteryIndicator; } // device;
+        device = { inherit showBatteryIndicator; } // device;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {

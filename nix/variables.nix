@@ -19,14 +19,12 @@
       internalName = "desktop";
       system = "x86_64-linux";
       hostName = "nixos";
-      firefoxProfile = "h5hep79f.dev-edition-default";
       modules = [ ./base/full.nix ];
     }
     {
       internalName = "laptop";
       system = "x86_64-linux";
       hostName = "nixos";
-      firefoxProfile = "rwe6phtm.dev-edition-default";
       showBatteryIndicator = true;
       modules = [ ./base/gui ];
     }
