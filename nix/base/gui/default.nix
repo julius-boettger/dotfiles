@@ -126,24 +126,24 @@ in
     gparted # partition manager
 
     ### only used on wayland
+    swww # wallpaper switching with animations
     socat # for hyprland workspaces with eww
+    grim # whole screen screenshot
+    swappy # edit screenshots
     nwg-look # manage gtk theming stuff if homemanager fails
+    hyprpicker # color picker
     wev ydotool # find out / send keycodes
     wl-clipboard # interact with clipboard 
-    libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
-    local-pkgs.hyprsome # awesome-like workspaces
-    unstable.hyprpicker # color picker
-    unstable.swaynotificationcenter
-    unstable.swww # wallpaper switching with animations
     unstable.eww # build custom widgets
-    unstable.grim # whole screen screenshot
-    unstable.grimblast # region select screenshot
     unstable.swayosd # osd for volume changes
-    unstable.swappy # edit screenshots
+    unstable.grimblast # region select screenshot
+    unstable.swaynotificationcenter
+    local-pkgs.hyprsome # awesome-like workspaces
+    libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/other/hyprctl-collect-clients.sh)
     # lockscreen
-    unstable.swaylock-effects
+    swaylock-effects
     (script-file "swaylock-effects" /etc/dotfiles/other/swaylock-effects.sh)
     (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
     (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
@@ -278,6 +278,13 @@ in
   # disable notifications when a device (dis)connects
   dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
 
+  # browser
+  programs.firefox = {
+    enable = true;
+    # allow custom css
+    profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  };
+
   # automatically mount usb sticks with notification and tray icon
   services.udiskie = {
     enable = true;
@@ -303,14 +310,6 @@ in
     showHelp         = false;
     startupLaunch    = false;
     disabledTrayIcon = true;
-  };
-
-  # browser
-  programs.firefox = {
-    enable = true;
-    package = pkgs.unstable.firefox;
-    # allow custom css
-    profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   };
 
   ### create dotfiles
