@@ -8,6 +8,7 @@
     "modules": [
         "title",
         "break", // empty line
+        "host",
         // software
         {
             "type": "os",
@@ -25,12 +26,12 @@
         "theme",
         "icons",
         // hardware
-        "cpu",
-        "gpu",
         {
             "type": "board",
             "format": "{1}"
         },
+        "cpu",
+        "gpu",
         "memory",
         {
             "type": "display",
@@ -48,8 +49,6 @@
         //"sound",
         //"terminalfont",
         //"uptime",
-        //"host",
-        //// shows nothing on hyprland desktop pc
         //"de",
         //"wmtheme",
         //"battery",

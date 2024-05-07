@@ -4,6 +4,17 @@
         "type": "data",
         "source": "  \\\\  \\\\ //\n ==\\\\__\\\\/ //\n   //   \\\\//\n==//     //==\n //\\\\___//\n// /\\\\  \\\\==\n  // \\\\  \\\\"
     },
+    "display": {
+        "binaryPrefix": "si",
+        "percent": {
+            "type": 1,
+            "color": {
+                "green": "white",
+                "yellow": "white",
+                "red": "white"
+            }
+        }
+    },
     "modules": [
         "title",
         {
@@ -20,8 +31,8 @@
             "format": "{3}"
         },
         {
-            "type": "terminal",
-            "format": "{5}"
+            "type": "battery",
+            "format": "{4}"
         },
         {
             "type": "colors",
