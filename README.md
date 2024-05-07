@@ -91,16 +91,12 @@ cp -f /etc/nixos/hardware-configuration.nix /etc/dotfiles/nix/devices/desktop/
 
 If you search for `xrandr` in `awesome/rc.lua` you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
 
-It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `/etc/dotfiles/hyprland/extra-config.conf`. The default config there shows what works for my setup.
+It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `/etc/dotfiles/nix/devices/desktop/hyprland.conf`. The config there shows what works for my setup, you may need to change it for yours.
 
-There are some files you now **NEED** to take a look at and adjust them to your liking, all in `/etc/dotfiles/`...
-
-- Example files where also you need to delete the `.example` at the end of their file names (**!!!**):
-  - `hyprland/extra-config.conf.example` contains device-specific Hyprland configuration like the afore-mentioned monitor setup.
-- Files in `nix/`:
-  - `secrets.nix` and `variables.nix` (should explain themselves)
-    - don't worry about `firefoxProfile`, we will set it later.
-  - `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
+There are some files you now should take a look at and adjust them to your liking, all in `/etc/dotfiles/nix/`:
+- `secrets.nix` and `variables.nix` (should explain themselves)
+  - don't worry about `firefoxProfile`, we will set it later.
+- `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
 Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#desktop`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.

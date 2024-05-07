@@ -325,6 +325,7 @@ args@{ pkgs, variables, local-pkgs, ... }:
     "awesome"                 = { source = symlink "/etc/dotfiles/awesome"; recursive = true; };
     "swaync"                     .source = symlink "/etc/dotfiles/swaync";
     "hypr/hyprland.conf"         .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
+    "hypr/extra-config.conf"     .source = symlink "/etc/dotfiles/nix/devices/${args.device.internalName}/hyprland.conf";
     "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/fastfetch/default.jsonc";   
     "picom.conf"                 .source = symlink "/etc/dotfiles/other/picom.conf";
     "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/other/copyq.conf";
