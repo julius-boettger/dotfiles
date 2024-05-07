@@ -1,5 +1,5 @@
-# move focus and all clients to a specific workspace (with hyprland)
-{ writeShellScriptBin }: writeShellScriptBin "hyprctl-collect-clients" ''
+#!/bin/sh
+# move all hyprland clients to a single workspace
 
 # workspace to move clients to
 target_workspace=11
@@ -16,5 +16,3 @@ done
 
 # execute commands
 hyprctl --batch $result
-
-''

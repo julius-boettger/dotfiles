@@ -1,5 +1,11 @@
 # more gui config i don't want on every device
 args@{ pkgs, variables, local-pkgs, device, ... }:
+let
+  # helper functions to make a shell script
+  # conveniently available under a given name (globally)
+  script = pkgs.writeShellScriptBin;
+  script-file = name: path: script name (builtins.readFile(path));
+in
 {
   imports = [ ../../modules/vscodium.nix ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -125,7 +131,6 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
     wev ydotool # find out / send keycodes
     wl-clipboard # interact with clipboard 
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
-    local-pkgs.hyprctl-collect-clients # bring all clients to one workspace
     local-pkgs.hyprsome # awesome-like workspaces
     unstable.hyprpicker # color picker
     unstable.swaynotificationcenter
@@ -135,9 +140,11 @@ args@{ pkgs, variables, local-pkgs, device, ... }:
     unstable.grimblast # region select screenshot
     unstable.swayosd # osd for volume changes
     unstable.swappy # edit screenshots
+    # move all hyprland clients to a single workspace
+    (script-file "hyprctl-collect-clients" /etc/dotfiles/other/hyprctl-collect-clients.sh)
     # lockscreen
-    local-pkgs.swaylock-effects
     unstable.swaylock-effects
+    (script-file "swaylock-effects" /etc/dotfiles/other/swaylock-effects.sh)
   ];
 
   ###########################################

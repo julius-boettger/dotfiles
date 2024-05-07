@@ -1,5 +1,6 @@
-# this uses nerdfont characters for text variables
-{ writeShellScriptBin }: writeShellScriptBin "swaylock-effects" ''
+#!/bin/sh
+# wrapper around https://github.com/jirutka/swaylock-effects
+# uses nerdfont characters for text variables
 swaylock \
 --daemonize \
 --screenshots \
@@ -37,4 +38,3 @@ swaylock \
   --ring-wrong-color FC618D \
       --key-hl-color 948AE3 \
    --separator-color 403e42
-''
