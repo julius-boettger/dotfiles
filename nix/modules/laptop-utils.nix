@@ -1,6 +1,8 @@
-# useful tools for laptops
+# useful config / tools for laptops
 args@{ pkgs, variables, secrets, ... }:
 {
+  networking.wireless.enable = true;
+
   # enable touchpad support
   services.xserver.libinput.enable = true;
 
