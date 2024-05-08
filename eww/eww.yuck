@@ -1,8 +1,8 @@
 ; all labels have `:show-truncated false` because of
 ; https://github.com/elkowar/eww/issues/1083
 
-; show battery instead of cpu usage (based on env var)
-(defvar show-battery {get_env("SHOW_BATTERY_INDICATOR") == "1"})
+; optimize for laptop usage (based on env var)
+(defvar is-laptop {get_env("IS_LAPTOP") == "1"})
 
 (defpoll date :interval "1m"
   ; json string which eww can parse automatically (` = ' = ")
@@ -76,7 +76,7 @@
         :space-evenly false
         :spacing 25
         (circular-progress-fancy
-          :visible {show-battery}
+          :visible {is-laptop}
           :tooltip '${battery.charge}% (${battery.time_remaining} left${battery.charging ? " to charge" : ""})'
           :value {battery.charge}
           :style {battery.charging ? "padding-left: 0.1em" : ""}
@@ -105,7 +105,7 @@
             battery.charge < 95 ? "󰂂" : "󰁹"
           )})
         (circular-progress-fancy
-          :visible {!show-battery}
+          :visible {!is-laptop}
           :tooltip '${round(EWW_CPU.avg, 2)}%'
           :value logarithmic-cpu
           :text "" :style "padding-right: 0.35em" ; cpu nerdfont character

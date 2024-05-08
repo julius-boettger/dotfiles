@@ -21,8 +21,8 @@
     }
     {
       internalName = "laptop";
-      showBatteryIndicator = true;
       modules = [ ./base/gui ];
+      isLaptop = true;
     }
     {
           hostName = "wsl";

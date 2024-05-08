@@ -42,8 +42,8 @@
       system ? "x86_64-linux",
       # networking hostname
       hostName ? "nixos",
-      # show battery indicator on desktop
-      showBatteryIndicator ? false,
+      # optimize config for usage with laptop
+      isLaptop ? false,
     }:
     let
       pkgs-config   = { inherit system; config.allowUnfree = true; };
@@ -60,7 +60,7 @@
         # shared variables
         inherit variables;
         # device specific variables (with weird fix for optionals)
-        device = { inherit system hostName showBatteryIndicator; } // device;
+        device = { inherit system hostName isLaptop; } // device;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {
