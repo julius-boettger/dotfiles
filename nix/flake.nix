@@ -66,17 +66,23 @@
     inputs.nixpkgs.lib.nixosSystem {
       # make specialArgs available for nixos system
       inherit system specialArgs;
-      # include configurations
-      modules = modules ++ [
-        ./base # most basic stuff
-        ./devices/${internalName} # for specific device
-        # make home manager available
-        inputs.home-manager.nixosModules.home-manager
-        # make specialArgs available for home manager
-        { home-manager.extraSpecialArgs = specialArgs; }
-        # overlay unstable packages to do something like pkgs.unstable.my-package
-        ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
-      ];
+      # include nix config
+      modules =
+        # given extra config of device
+        modules ++ 
+        # if device is a laptop: laptop utils
+        (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
+        # and more...
+        [
+          ./base # most basic stuff
+          ./devices/${internalName} # for specific device
+          # make home manager available
+          inputs.home-manager.nixosModules.home-manager
+          # make specialArgs available for home manager
+          { home-manager.extraSpecialArgs = specialArgs; }
+          # overlay unstable packages to do something like pkgs.unstable.my-package
+          ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
+        ];
     };
     # take a nixosConfigs list like
     # [{ internalName="desktop"; hostName="nixos"; }]

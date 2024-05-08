@@ -188,9 +188,6 @@ in
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
-  # set env var to optimize config for usage with laptop (if configured)
-  environment.variables.IS_LAPTOP = args.lib.mkIf device.isLaptop "1";
-
   # shell alias for shorter fastfetch
   environment.shellAliases.fastfetch-short =
     "fastfetch -c /etc/dotfiles/nix/devices/${device.internalName}/fastfetch/short.jsonc";

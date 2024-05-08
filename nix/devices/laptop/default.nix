@@ -1,9 +1,6 @@
 args@{ pkgs, variables, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    ../../modules/laptop-utils.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   # automatic garbage collection to free space
   nix.gc = {
