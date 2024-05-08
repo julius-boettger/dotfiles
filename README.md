@@ -47,6 +47,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `other/autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by WM/compositor on startup) |
 | `other/notification.wav` | `/etc/dotfiles/` | Notification sound |
 | `other/starship.toml` | `/etc/dotfiles/` | [Starship](https://github.com/starship/starship) configuration |
+| `other/.vimrc` | `~/` | [Vim](https://github.com/vim/vim) configuration |
 | `other/.ideavimrc` | `~/` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `awesome/` | `~/.config/` | [Awesome](https://github.com/awesomeWM/awesome) configuration including a custom theme based on [awesome-copycats](https://github.com/lcpz/awesome-copycats)' "rainbow" theme |
 | `swaync/` | `~/.config/` | [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter) configuration with custom theme |

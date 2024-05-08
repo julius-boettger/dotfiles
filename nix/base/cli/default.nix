@@ -116,14 +116,21 @@ args@{ pkgs, variables, ... }:
   # manage stuff in /home/$USER/
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${variables.username} = { config, ... }:
+  let
+    symlink = config.lib.file.mkOutOfStoreSymlink;
+  in
+  {
 
   home.stateVersion = variables.version;
   # i dont know what this does?
   programs.home-manager.enable = true;
 
-  # symlink fish config to ~/.config/fish/config.fish
-  xdg.configFile."fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/other/init.fish";
+  ### symlink some config files
+  # vim
+  home.file.".vimrc".source = symlink "/etc/dotfiles/other/.vimrc";
+  # fish config to ~/.config/fish/config.fish
+  xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/other/init.fish";
 
   programs.git = {
     enable = true;
