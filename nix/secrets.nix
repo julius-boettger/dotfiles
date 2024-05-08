@@ -3,4 +3,7 @@
 {
     # tcp port for barrier (irrelevant on WSL)
     barrier.port = null;
+    # eduroam wifi credentials (irrelevant on WSL)
+    eduroam.email = "user@institution.edu";
+    eduroam.password = "password";
 }

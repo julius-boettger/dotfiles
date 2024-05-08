@@ -1,6 +1,14 @@
 # useful tools for laptops
-args@{ pkgs, variables, ... }:
+args@{ pkgs, variables, secrets, ... }:
 {
   # enable touchpad support
   services.xserver.libinput.enable = true;
+
+  # eduroam wifi authentication
+  networking.wireless.networks.eduroam.auth = ''
+    key_mgmt=WPA-EAP
+    eap=PWD
+    identity="${secrets.eduroam.email}"
+    password="${secrets.eduroam.password}"
+  '';
 }
