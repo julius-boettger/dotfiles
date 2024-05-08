@@ -64,6 +64,8 @@ args@{ pkgs, variables, ... }:
     fortune # random quote
     nix-output-monitor # prettier output of nix commands
     unstable.nh # nix helper (prettier/better nix commands)
+    cbonsai # ascii art bonsai
+    asciiquarium-transparent # ascii art aquarium
     # compilers, interpreters, debuggers
     (python3.withPackages (python-pkgs: with python-pkgs; [
       virtualenv

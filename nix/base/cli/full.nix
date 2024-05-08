@@ -6,8 +6,6 @@ args@{ pkgs, variables, ... }:
     meson ninja # for building c/c++ projects
     pkg-config # for c/c++/rust dependency management
     librespeed-cli # speedtest
-    cbonsai # ascii art bonsai
-    asciiquarium-transparent # ascii art aquarium
     # compilers, interpreters, debuggers
     gcc
     rustup
