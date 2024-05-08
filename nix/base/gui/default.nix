@@ -201,6 +201,13 @@ in
     hinting.style = "full"; # may cause loss of shape, try lower value?
   };
 
+  # what to do when pressing power button
+  services.logind = {
+    powerKeyLongPress = "poweroff";
+    # do nothing :) suspend manually if you want
+    powerKey = "ignore";
+  };
+
   # qt theming (based on gtk theming)
   qt = {
     enable = true;
