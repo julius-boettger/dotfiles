@@ -141,10 +141,10 @@ in
     local-pkgs.hyprsome # awesome-like workspaces
     libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
     # move all hyprland clients to a single workspace
-    (script-file "hyprctl-collect-clients" /etc/dotfiles/other/hyprctl-collect-clients.sh)
+    (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen
     swaylock-effects
-    (script-file "swaylock-effects" /etc/dotfiles/other/swaylock-effects.sh)
+    (script-file "swaylock-effects" /etc/dotfiles/scripts/swaylock-effects.sh)
     (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
     (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
   ];

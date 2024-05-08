@@ -45,7 +45,6 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `nix/pkgs/` | `/etc/dotfiles/` | Local Nix packages |
 | `wallpapers/nixos/` | `/etc/dotfiles/` | NixOS logo wallpapers in all kinds of color combinations |
 | `scripts/` | `/etc/dotfiles/` | Shell scripts that didn't belong anywhere else |
-| `other/autostart.sh` | `/etc/dotfiles/` | Script for autostarting background processes (called by WM/compositor on startup) |
 | `other/notification.wav` | `/etc/dotfiles/` | Notification sound |
 | `other/starship.toml` | `/etc/dotfiles/` | [Starship](https://github.com/starship/starship) configuration |
 | `other/.vimrc` | `~/` | [Vim](https://github.com/vim/vim) configuration |
