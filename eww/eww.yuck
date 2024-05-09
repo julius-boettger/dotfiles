@@ -24,8 +24,10 @@
   :initial '{"charge":0,"time_remaining":"unknown","charging":false}'
   "~/.config/eww/scripts/battery.sh") 
 
-; TODO automate with script
-(defvar network '{"internet":true,"wired":true,"signal_strength":60}')
+(defpoll network :interval "1s"
+  ; signal strength in percent
+  :initial '{"internet":false,"wired":false,"signal_strength":0}'
+  "~/.config/eww/scripts/network.sh") 
 
 (deflisten workspaces-1
   ; json array with data for hyprland workspaces 1 to 9
