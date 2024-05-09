@@ -1,10 +1,14 @@
 #!/bin/sh
 
-# TODO check if internet is reachable
-internet="true"
+# try to reach internet (google dns server)
+ping -q -c 1 -W 1 8.8.8.8 &> /dev/null
+if [[ $? != 0 ]]; then
+  echo '{"internet":false,"wired":false,"signal_strength":0}'
+  exit
+fi
 
-# get wired connection
-nmcli device | grep ethernet | grep connected > /dev/null
+# test for wired connection
+nmcli device | grep ethernet | grep connected &> /dev/null
 if [[ $? == 0 ]]; then
   wired="true"
   signal_strength=100
@@ -12,11 +16,10 @@ else
   wired="false"
   # try to get wifi signal strength
   signal_strength=$(nmcli device wifi | grep strength | awk '{print $NF}')
+  # if unsuccessful: signal strength unknown => 0
+  if [[ $? != 0 ]]; then
+    signal_strength=0
+  fi
 fi
 
-# fallback value for signal strength
-if [ -z "${signal_strength}" ]; then
-  signal_strength=0
-fi
-
-echo "{\"internet\":$internet,\"wired\":$wired,\"signal_strength\":$signal_strength}"
+echo "{\"internet\":true,\"wired\":$wired,\"signal_strength\":$signal_strength}"
