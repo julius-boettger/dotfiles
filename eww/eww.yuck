@@ -26,7 +26,7 @@
 
 (defpoll network :interval "1s"
   ; signal strength in percent
-  :initial '{"internet":false,"wired":false,"signal_strength":0}'
+  :initial '{"internet":false,"wired":false,"signal_strength":0,"wifi_name":""}'
   "~/.config/eww/scripts/network.sh") 
 
 (deflisten workspaces-1
@@ -112,7 +112,7 @@
           :visible {is-laptop}
           :tooltip {!network.internet ? "no connection" : (
             network.wired ? "wired connection" :
-              'wireless connection (${network.signal_strength}% signal strength)')}
+              'connected to ${network.wifi_name} (${network.signal_strength}% signal strength)')}
           :value {network.signal_strength}
           :style 'padding-right: 0.${network.internet && !network.wired ? 3 : 2}em'
           ; network nerdfont characters incoming
