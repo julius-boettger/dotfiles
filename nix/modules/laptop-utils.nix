@@ -7,6 +7,9 @@ args@{ pkgs, variables, secrets, ... }:
   # enable touchpad support
   services.xserver.libinput.enable = true;
 
+  # probably useful
+  hardware.enableAllFirmware = true;
+
   # configure behavior when closing laptop lid
   services.logind = {
     # do nothing, you have to suspend manually
