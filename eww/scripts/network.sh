@@ -15,9 +15,9 @@ if [[ $? == 0 ]]; then
 else
   wired="false"
   # try to get wifi signal strength
-  signal_strength=$(nmcli device wifi | grep strength | awk '{print $NF}')
-  # if unsuccessful: signal strength unknown => 0
-  if [[ $? != 0 ]]; then
+  signal_strength=$(nmcli d wifi | grep "^*       " | awk '{print $8}')
+  # if signal strength still unknown => 0
+  if [ -z "$signal_strength" ]; then
     signal_strength=0
   fi
 fi
