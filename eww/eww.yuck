@@ -24,6 +24,9 @@
   :initial '{"charge":0,"time_remaining":"unknown","charging":false}'
   "~/.config/eww/scripts/battery.sh") 
 
+; TODO automate with script
+(defvar network '{"internet":true,"wired":true,"signal_strength":60}')
+
 (deflisten workspaces-1
   ; json array with data for hyprland workspaces 1 to 9
   :initial '[{"id":"1","occupied":false}]'
@@ -102,8 +105,21 @@
             battery.charge < 70 ? "󰁿" :
             battery.charge < 80 ? "󰂀" :
             battery.charge < 90 ? "󰂁" :
-            battery.charge < 95 ? "󰂂" : "󰁹"
-          )})
+            battery.charge < 95 ? "󰂂" : "󰁹" )})
+        (circular-progress-fancy
+          :visible {is-laptop}
+          :tooltip {!network.internet ? "no connection" : (
+            network.wired ? "wired connection" :
+              'wireless connection (${network.signal_strength}% signal strength)')}
+          :value {network.signal_strength}
+          :style 'padding-right: 0.${network.internet && !network.wired ? 3 : 2}em'
+          ; network nerdfont characters incoming
+          :text {!network.internet ? "" : (
+            network.wired ? "󰈀" : (
+              network.signal_strength < 20 ? "󰤯" :
+              network.signal_strength < 40 ? "󰤟" :
+              network.signal_strength < 60 ? "󰤢" :
+              network.signal_strength < 80 ? "󰤥" : "󰤨" ))})
         (circular-progress-fancy
           :visible {!is-laptop}
           :tooltip '${round(EWW_CPU.avg, 2)}%'
@@ -112,6 +128,7 @@
           :condition       {EWW_CPU.avg < 10}
           :condition-text '${round(EWW_CPU.avg, 1)}')
         (circular-progress-fancy
+          :visible {!is-laptop}
           :tooltip '${ram.used} / ${ram.total} MB'
           :value {ram.used_percent}
           :text "" :style "padding-right: 0.3em" ; memory chip nerdfont character
