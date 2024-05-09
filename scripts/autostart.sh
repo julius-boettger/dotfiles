@@ -22,6 +22,7 @@ if [ $# -ge 1 ]; then
   elif [ "$1" = "wayland" ]; then
     ### only run on wayland
     run_once swaync
+    ydotoold --mouse-off &
   fi
 fi
 
