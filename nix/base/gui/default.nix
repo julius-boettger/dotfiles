@@ -143,7 +143,7 @@ in
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen
-    swaylock-effects
+    unstable.swaylock-effects
     (script-file "swaylock-effects" /etc/dotfiles/scripts/swaylock-effects.sh)
     (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
     (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
