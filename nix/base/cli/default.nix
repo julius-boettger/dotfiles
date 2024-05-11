@@ -1,5 +1,5 @@
 # most basic config for all devices
-args@{ pkgs, variables, ... }:
+args@{ pkgs, variables, device, ... }:
 {
   # self-explaining one-liners
   console.keyMap = "de";
@@ -9,7 +9,7 @@ args@{ pkgs, variables, ... }:
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = args.device.hostName;
+    hostName = device.hostName;
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -81,6 +81,10 @@ args@{ pkgs, variables, ... }:
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
 
+  # shell alias for shorter fastfetch
+  environment.shellAliases.fastfetch-short =
+    "fastfetch -c /etc/dotfiles/nix/devices/${device.internalName}/fastfetch/short.jsonc";
+
   # for git authentication with ssh keys
   programs.ssh = {
     startAgent = true;
@@ -92,12 +96,14 @@ args@{ pkgs, variables, ... }:
   # some environment variables
   environment.variables = {
     # current device to use for flake-rebuild
-    NIX_FLAKE_CURRENT_DEVICE = args.device.internalName;
+    NIX_FLAKE_CURRENT_DEVICE = device.internalName;
     # use --impure for flake-rebuild by default (if configured)
     NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
+    # config file location for starship prompt
+    STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
   };
 
-  ### fish shell
+  # fish shell
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   environment.variables = {
@@ -107,8 +113,6 @@ args@{ pkgs, variables, ... }:
     fish_color_command = "green";
     fish_color_autosuggestion = "brblack";
   };
-  # config file location for starship prompt
-  environment.variables.STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
 
   ############################################
   ############################################

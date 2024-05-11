@@ -191,10 +191,6 @@ in
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
-  # shell alias for shorter fastfetch
-  environment.shellAliases.fastfetch-short =
-    "fastfetch -c /etc/dotfiles/nix/devices/${device.internalName}/fastfetch/short.jsonc";
-
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {
     subpixel.rgba = "vrgb";
