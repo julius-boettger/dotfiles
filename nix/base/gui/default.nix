@@ -7,7 +7,11 @@ let
   script-file = name: path: script name (builtins.readFile(path));
 in
 {
-  imports = [ ../../modules/vscodium.nix ];
+  imports = [
+    ../../modules/vscodium.nix
+    ../../modules/hyprland.nix
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
@@ -138,8 +142,7 @@ in
     unstable.swayosd # osd for volume changes
     unstable.grimblast # region select screenshot
     unstable.swaynotificationcenter
-    local-pkgs.hyprsome # awesome-like workspaces
-    libsForQt5.qt5.qtwayland qt6.qtwayland # hyprland must-haves
+    local-pkgs.hyprsome # awesome-like workspaces for hyprland
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen
@@ -210,21 +213,6 @@ in
     enable = true;
     style = "gtk2";
     platformTheme = "gtk2";
-  };
-
-  ### hyprland (tiling wayland compositor)
-  # make chromium / electron apps use wayland
-  environment.variables.NIXOS_OZONE_WL = "1";
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = pkgs.unstable.hyprland;
-  };
-  # use gtk desktop portal
-  # (recommended for usage alongside hyprland desktop portal)
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # use keyd to emulate ctrl+alt being equal to altgr,
@@ -340,8 +328,6 @@ in
     "eww"                     = { source = symlink "/etc/dotfiles/eww";     recursive = true; };
     "awesome"                 = { source = symlink "/etc/dotfiles/awesome"; recursive = true; };
     "swaync"                     .source = symlink "/etc/dotfiles/swaync";
-    "hypr/hyprland.conf"         .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
-    "hypr/extra-config.conf"     .source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";
     "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/fastfetch/default.jsonc";
     "picom.conf"                 .source = symlink "/etc/dotfiles/other/picom.conf";
     "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/other/copyq.conf";
