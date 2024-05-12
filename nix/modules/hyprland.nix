@@ -1,10 +1,12 @@
 # hyprland (tiling wayland compositor)
 args@{ pkgs, variables, device, ... }:
+let
+  hyprland-pkgs = args.inputs.hyprland.packages.${device.system};
+in
 {
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
-    package = pkgs.unstable.hyprland;
+    package = hyprland-pkgs.hyprland;
   };
 
   # make chromium / electron apps use wayland
@@ -23,12 +25,19 @@ args@{ pkgs, variables, device, ... }:
     qt6.qtwayland
   ];
 
-  # symlink config
+  # use cached hyprland flake builds
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+
+  # with home manager
   home-manager.users."${variables.username}" = { config, ... }:
   let
     symlink = config.lib.file.mkOutOfStoreSymlink;
   in
   {
+    # symlink config
     xdg.configFile = {
       "hypr/hyprland.conf"    .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
       "hypr/extra-config.conf".source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";

@@ -21,7 +21,9 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat"; };
     # for ./modules/studies/itsarch.nix
-    nixpkgs-itsarch.url = "github:nixos/nixpkgs?ref=dd5621df6dcb90122b50da5ec31c411a0de3e538";
+    nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
+    # hyprland (to manage version independently of other packages)
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.39.1";
   };
 
   # take inputs as arguments
@@ -52,15 +54,14 @@
 
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
+        inherit inputs variables;
         secrets = import ./secrets.nix;
         local-pkgs = (import ./pkgs) { inherit system pkgs; };
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
-        # for ./modules/studies/itsarch.nix
-        pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
-        # shared variables
-        inherit variables;
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
+        # for ./modules/studies/itsarch.nix
+        pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
       };
     in
     inputs.nixpkgs.lib.nixosSystem {
