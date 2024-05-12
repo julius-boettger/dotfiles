@@ -1,7 +1,7 @@
 # hyprland (tiling wayland compositor)
-args@{ pkgs, variables, device, ... }:
+args@{ pkgs, variables, device, inputs, ... }:
 let
-  hyprland-pkgs = args.inputs.hyprland.packages.${device.system};
+  hyprland-pkgs = inputs.hyprland.packages.${device.system};
 in
 {
   programs.hyprland = {
@@ -22,13 +22,13 @@ in
   # must-haves according to hyprland wiki
   environment.systemPackages = with pkgs; [
     libsForQt5.qt5.qtwayland
-    qt6.qtwayland
+               qt6.qtwayland
   ];
 
   # use cached hyprland flake builds
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   # with home manager
@@ -37,6 +37,13 @@ in
     symlink = config.lib.file.mkOutOfStoreSymlink;
   in
   {
+    # home manager module to configure plugins
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = hyprland-pkgs.hyprland;
+      plugins = [];
+    };
+
     # symlink config
     xdg.configFile = {
       "hypr/hyprland.conf"    .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
