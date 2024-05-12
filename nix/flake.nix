@@ -60,8 +60,9 @@
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
-        # for ./modules/studies/itsarch.nix
-        pkgs-itsarch = import inputs.nixpkgs-itsarch pkgs-config;
+        # helper functions
+        getNixpkgs = input: inputs.${input}.legacyPackages.${system};
+        getPkgs    = input: inputs.${input}      .packages.${system};
       };
     in
     inputs.nixpkgs.lib.nixosSystem {

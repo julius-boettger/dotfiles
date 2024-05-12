@@ -1,7 +1,7 @@
 # hyprland (tiling wayland compositor)
-args@{ pkgs, variables, device, inputs, ... }:
+args@{ pkgs, variables, device, ... }:
 let
-  hyprland-pkgs = inputs.hyprland.packages.${device.system};
+  hyprland-pkgs = args.getPkgs "hyprland";
 in
 {
   programs.hyprland = {
