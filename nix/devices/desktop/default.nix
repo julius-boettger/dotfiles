@@ -13,10 +13,15 @@ args@{ pkgs, variables, ... }:
   boot.kernelModules = [ "liquidtux" ];
 
   environment.systemPackages = with pkgs; [
+    # to mount encrypted data partition
+    gnome.zenity # password prompt
+    cryptsetup # unlock luks
+    dunst # send notifications
+
     nvidia-system-monitor-qt # monitor nvidia gpu stuff
     alsa-scarlett-gui # control center for focusrite usb audio interface
-    unigine-valley # PROPRIETARY gpu stress test and benchmark
     liquidctl # liquid cooler control
+    unigine-valley # PROPRIETARY gpu stress test and benchmark
     mprime # PROPRIETARY cpu stress test
   ];
 
