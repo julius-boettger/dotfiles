@@ -7,9 +7,16 @@
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # for ./modules/studies/itsarch.nix
+    nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
+    # hyprland (to manage version independently of other packages)
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.39.1";
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
+    # declarative disk management
+    disko = { url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # wsl utils
     nixos-wsl = { url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat"; };
-    # for ./modules/studies/itsarch.nix
-    nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
-    # hyprland (to manage version independently of other packages)
-    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.39.1";
   };
 
   # take inputs as arguments
