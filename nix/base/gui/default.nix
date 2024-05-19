@@ -68,6 +68,7 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
 
   environment.systemPackages = with pkgs; [
     ### gui
+    gparted # partition manager, use with sudo -E gparted
     unstable.alacritty # terminal
     local-pkgs.gitnuro # git gui (newer version compared to nixpkgs)
     unstable.resources # system monitor (best overall)
@@ -121,7 +122,6 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
     pick-colour-picker
     # could/should work on wayland, but doesnt for now :(
     barrier # kvm switch
-    gparted # partition manager
 
     ### only used on wayland
     swww # wallpaper switching with animations
