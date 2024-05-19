@@ -1,11 +1,5 @@
 # more gui config i don't want on every device
-args@{ pkgs, variables, local-pkgs, device, ... }:
-let
-  # helper functions to make a shell script
-  # conveniently available under a given name (globally)
-  script = pkgs.writeShellScriptBin;
-  script-file = name: path: script name (builtins.readFile(path));
-in
+args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
 {
   imports = [
     ../../modules/vscodium.nix

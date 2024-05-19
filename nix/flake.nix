@@ -61,8 +61,10 @@
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
         # helper functions
-        getNixpkgs = input: inputs.${input}.legacyPackages.${system};
-        getPkgs    = input: inputs.${input}      .packages.${system};
+        getNixpkgs  = input: inputs.${input}.legacyPackages.${system};
+        getPkgs     = input: inputs.${input}      .packages.${system};
+        script      = pkgs.writeShellScriptBin;
+        script-file = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
       };
     in
     inputs.nixpkgs.lib.nixosSystem {
