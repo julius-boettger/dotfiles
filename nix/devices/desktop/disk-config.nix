@@ -54,14 +54,13 @@
           content = {
             type = "luks";
             name = "encrypted";
-            askPassword = true; # ask for password when running disko
+            askPassword = true; # set password when running disko
+            initrdUnlock = false; # don't prompt passphrase on boot
             settings.allowDiscards = true; # recommended for ssd
             content = {
               type = "btrfs";
               extraArgs = [ "-f" ];
             };
-            # may be necessary to prevent passphrase prompt on boot
-            #initrdUnluck = false; 
           };
         };
       };
