@@ -1,11 +1,9 @@
 args@{ pkgs, variables, ... }:
 {
   imports = [
+    #./disk-config.nix
     ./hardware-configuration.nix
     ../../modules/studies
-    # declarative disk management
-    args.inputs.disko.nixosModules.disko
-    #./disk-config.nix
   ];
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)

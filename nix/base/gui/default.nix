@@ -4,6 +4,8 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
   imports = [
     ../../modules/vscodium.nix
     ../../modules/hyprland.nix
+    # declarative disk management
+    args.inputs.disko.nixosModules.disko
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
