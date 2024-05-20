@@ -4,5 +4,6 @@
     ./comarch.nix
     ./dabank.nix
     ./itsarch.nix
+    ./swsyspro.nix
   ];
 }
