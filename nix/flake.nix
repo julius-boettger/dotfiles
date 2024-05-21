@@ -59,7 +59,7 @@
       specialArgs = {
         inherit inputs variables;
         secrets = import ./secrets.nix;
-        local-pkgs = (import ./pkgs) { inherit system pkgs; };
+        local-pkgs = (import ./pkgs) { inherit system pkgs pkgs-unstable; };
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;

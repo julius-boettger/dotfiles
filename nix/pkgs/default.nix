@@ -1,5 +1,5 @@
 # build local packages
-{ system, pkgs }:
+{ system, pkgs, pkgs-unstable }:
 let 
   callPackage = pkgs.callPackage;
 in
