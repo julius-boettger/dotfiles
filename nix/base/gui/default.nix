@@ -8,7 +8,9 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
     args.inputs.disko.nixosModules.disko
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # pin to kernel version to 6.8
+  # because of virtualbox incompatability on 6.9.1
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   boot.loader = {
     timeout = 1;
