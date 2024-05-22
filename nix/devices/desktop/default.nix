@@ -56,6 +56,15 @@ args@{ pkgs, variables, ... }:
     # should usually be `true`, but is
     # currently "marked as broken"
     open = false; 
+    # pin driver version https://www.nvidia.com/en-us/drivers/unix/
+    /*package = args.config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "555.42.02";
+      sha256_64bit   = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
+      settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA="; 
+      # dont actually need values
+      openSha256 = "";
+      persistencedSha256 = "";
+    };*/
   };
   hardware.opengl = {
     enable = true;
