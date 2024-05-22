@@ -23,7 +23,7 @@
   "script-fail-notify": false,
   "scripts": {
     "sound": {
-      "exec": "/run/current-system/sw/bin/aplay /etc/dotfiles/other/notification.wav",
+      "exec": "sh -c \"[ $(swaync-client -I) == 'false' ] && aplay /etc/dotfiles/other/notification.wav\"",
       "run-on": "receive"
     }
   },
