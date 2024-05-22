@@ -1,5 +1,5 @@
 # more gui config i don't want on every device
-args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
+args@{ pkgs, variables, device, script, script-file, ... }:
 {
   imports = [
     ../../modules/vscodium.nix
@@ -74,7 +74,7 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
     ### gui
     gparted # partition manager, use with sudo -E gparted
     unstable.alacritty # terminal
-    local-pkgs.gitnuro # git gui (newer version compared to nixpkgs)
+    local.gitnuro # git gui (newer version compared to nixpkgs)
     unstable.resources # system monitor (best overall)
     monitor # system monitor (best process view)
     psensor # gui for (lm_)sensors to display system temperatures
@@ -98,7 +98,7 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
     # gtk theme
     (orchis-theme.override { border-radius = 10; })
     # sddm theme + dependency (login manager)
-    local-pkgs.sddm-sugar-candy
+    local.sddm-sugar-candy
     libsForQt5.qt5.qtgraphicaleffects
     # icon themes
     gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
@@ -140,7 +140,7 @@ args@{ pkgs, variables, local-pkgs, device, script, script-file, ... }:
     unstable.swayosd # osd for volume changes
     unstable.grimblast # region select screenshot
     unstable.swaynotificationcenter
-    local-pkgs.hyprsome # awesome-like workspaces for hyprland
+    local.hyprsome # awesome-like workspaces for hyprland
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen

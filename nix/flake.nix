@@ -54,12 +54,12 @@
       pkgs-config   = { inherit system; config.allowUnfree = true; };
       pkgs          = import inputs.nixpkgs          pkgs-config;
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
+      pkgs-local    = (import ./pkgs) { inherit system pkgs pkgs-unstable; };
 
       # attributes of this set can be taken as function arguments in modules like base/default.nix
       specialArgs = {
         inherit inputs variables;
         secrets = import ./secrets.nix;
-        local-pkgs = (import ./pkgs) { inherit system pkgs pkgs-unstable; };
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
@@ -87,8 +87,11 @@
           inputs.home-manager.nixosModules.home-manager
           # make specialArgs available for home manager
           { home-manager.extraSpecialArgs = specialArgs; }
-          # overlay unstable packages to do something like pkgs.unstable.my-package
-          ({ ... }: { nixpkgs.overlays = [ (final: prev: { unstable = pkgs-unstable; }) ]; })
+          # package overlays
+          ({ ... }: { nixpkgs.overlays = [ (final: prev: {
+            /*pkgs.*/unstable = pkgs-unstable;
+            /*pkgs.*/local    = pkgs-local;
+          }) ]; })
         ];
     };
     # take a nixosConfigs list like

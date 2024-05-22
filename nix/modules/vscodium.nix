@@ -11,7 +11,7 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         with vscode-extensions.open-vsx-release; # <-- use first if available, otherwise go up
       [
         # monokai pro color theme from local package
-        args.local-pkgs.monokai-pro-vscode
+        pkgs.local.monokai-pro-vscode
         # for syntax highlighting / language support
         bbenoist.nix
         dlasagno.rasi
