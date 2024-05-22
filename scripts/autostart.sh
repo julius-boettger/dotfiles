@@ -8,22 +8,16 @@ run_once() {
     fi
 }
 
-### only run some commands on xorg/wayland
+### only run some commands on xorg
 # check if number of arguments is >= 1
 if [ $# -ge 1 ]; then
   if [ "$1" = "xorg" ]; then
-    ### only run on xorg
     # focus primary screen on awesome
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
     run_once picom --experimental-backend
     run_once nm-applet
     run_once flameshot # not necessary, but makes startup faster
-  elif [ "$1" = "wayland" ]; then
-    ### only run on wayland
-    run_once swaync
-    ydotoold --mouse-off &
-  fi
 fi
 
 ### run display server agnostic commands
