@@ -88,7 +88,6 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     copyq # clipboard manager
     networkmanagerapplet # tray icon for networking connection
     xarchiver # archive manager
-    gnome.dconf-editor # needed for home-manager gtk theming
     baobab # disk usage analyzer
     gnome.gnome-disk-utility
     unstable.gnome.nautilus # file manager
@@ -173,6 +172,9 @@ args@{ pkgs, variables, device, script, script-file, ... }:
   };
 
   services.onedrive.enable = true;
+
+  # configure various app settings
+  programs.dconf.enable = true;
 
   # necessary for swaylock-effects
   security.pam.services.swaylock = {};
