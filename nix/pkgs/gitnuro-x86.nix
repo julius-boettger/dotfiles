@@ -1,4 +1,5 @@
-# I copied this derivation from nixpkgs to be able to adjust the version more easily.
+# copied from a nixpkgs PR until it gets merged
+# https://github.com/NixOS/nixpkgs/pull/278514
 
 { stdenv
 , fetchurl
