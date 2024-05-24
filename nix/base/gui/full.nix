@@ -4,7 +4,11 @@ let
   barrierPort = args.secrets.barrier.port;
 in
 {
-  imports = [ ./default.nix ];
+  imports = [
+    ./default.nix
+    ../../modules/studies
+    ../../modules/virt-manager.nix
+  ];
 
   # open port for barrier (if configured)
   networking.firewall.allowedTCPPorts =

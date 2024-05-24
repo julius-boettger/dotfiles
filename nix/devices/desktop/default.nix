@@ -3,7 +3,6 @@ args@{ pkgs, variables, ... }:
   imports = [
     #./disk-config.nix
     ./hardware-configuration.nix
-    ../../modules/studies
   ];
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
