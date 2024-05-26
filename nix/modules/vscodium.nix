@@ -16,6 +16,7 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         bbenoist.nix
         dlasagno.rasi
         eww-yuck.yuck
+        csstools.postcss
         ms-python.python 
         ms-vscode.cpptools
         svelte.svelte-vscode
