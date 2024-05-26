@@ -17,12 +17,13 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         dlasagno.rasi
         eww-yuck.yuck
         ms-python.python 
-        mshr-h.veriloghdl
         ms-vscode.cpptools
+        svelte.svelte-vscode
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
+        bradlc.vscode-tailwindcss
         coolbear.systemd-unit-file
         ms-azuretools.vscode-docker
         matthewpi.caddyfile-support
