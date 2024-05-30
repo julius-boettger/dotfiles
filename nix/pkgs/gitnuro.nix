@@ -1,13 +1,13 @@
 # copied from a nixpkgs PR until it gets merged
 # https://github.com/NixOS/nixpkgs/pull/278514
 
-{ stdenv
+{ lib
+, stdenv
 , fetchurl
 , makeWrapper
 , copyDesktopItems
 , makeDesktopItem
 , jre
-, lib
 , libGL
 }:
 
@@ -51,7 +51,17 @@ stdenv.mkDerivation rec {
       icon = "com.jetpackduba.Gitnuro";
       desktopName = "Gitnuro";
       categories = [ "Development" ];
-      comment = "A FOSS Git multiplatform client based on Compose and JGit";
+      comment = meta.description;
     })
   ];
+
+  meta = with lib; {
+    description = "A FOSS Git multiplatform client based on Compose and JGit";
+    homepage = "https://gitnuro.com/";
+    license = licenses.gpl3Plus;
+    platforms = [ "x86_64-linux" ];
+    sourceProvenance = with sourceTypes; [ binaryBytecode ];
+    maintainers = with maintainers; [ zendo ];
+    mainProgram = "gitnuro";
+  };
 }
