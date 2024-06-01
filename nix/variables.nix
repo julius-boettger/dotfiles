@@ -1,7 +1,7 @@
 # config variables that are shared by all of my devices.
 {
   # nixos and home-manager state version (see top of flake.nix for channel version)
-  version = "23.11";
+  version = "24.05";
   # use --impure for flake-rebuild by default
   allowImpureByDefault = true; # currently needed for vscodium extensions
   # username and displayname of only user
