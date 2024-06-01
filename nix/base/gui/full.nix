@@ -36,7 +36,6 @@ in
     sioyek # pdf reader, also available as programs.sioyek in hm
     unstable.bruno # rest api client
     ddcutil ddcui # interact with external monitors
-    pdfstudio2023 # PROPRIETARY
     # more gtk themes
     fluent-gtk-theme
     (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
