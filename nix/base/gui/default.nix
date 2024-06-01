@@ -120,7 +120,7 @@ args@{ pkgs, variables, device, script, script-file, ... }:
 
     ### only used on xorg
     lxappearance # manage gtk theming stuff if homemanager fails
-    #picom-jonaburg # compositor
+    local.picom-jonaburg # compositor
     unclutter-xfixes # hide mouse on inactivity
     pick-colour-picker
     # could/should work on wayland, but doesnt for now :(
