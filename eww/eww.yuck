@@ -172,7 +172,7 @@
             :style "padding-right: 0.25em"
             :text {
               workspace.id == current-workspace[0] || workspace.id == current-workspace[1] ? "󰟒" : ; nerdfont character
-                workspace.occupied ? "󰝥" : "" })))))) ; nerdfont characters
+                workspace.occupied ? "󰝥" : "󰄰" })))))) ; nerdfont characters
 
 (defwidget circular-progress-fancy [value text ?tooltip ?condition ?condition-text ?style ?visible]
   (overlay
