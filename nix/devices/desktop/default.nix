@@ -5,6 +5,8 @@ args@{ pkgs, variables, ... }:
     ./hardware-configuration.nix
   ];
 
+  boot.supportedFilesystems.ntfs = true;
+
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
 
@@ -26,7 +28,7 @@ args@{ pkgs, variables, ... }:
   ];
 
   ### mount data partition
-  boot.supportedFilesystems = [ "ntfs" "exfat" ];
+  boot.supportedFilesystems.exfat = true;
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-label/DATA";
     fsType = "exfat";
