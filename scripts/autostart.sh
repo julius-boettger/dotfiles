@@ -18,6 +18,7 @@ if [ $# -ge 1 ]; then
     run_once picom --experimental-backend
     run_once nm-applet
     run_once flameshot # not necessary, but makes startup faster
+  fi
 fi
 
 ### run display server agnostic commands
