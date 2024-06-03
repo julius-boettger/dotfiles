@@ -74,7 +74,7 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     ### gui
     gparted # partition manager, use with sudo -E gparted
     unstable.alacritty # terminal
-    local.gitnuro # git gui (newer version compared to nixpkgs)
+    unstable.gitnuro # git gui
     unstable.resources # system monitor (best overall)
     monitor # system monitor (best process view)
     psensor # gui for (lm_)sensors to display system temperatures
