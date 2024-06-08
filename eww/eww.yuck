@@ -48,6 +48,7 @@
   :stacking "bottom" ; below other sutff / on desktop
   :exclusive false ; dont reserve WM space
   :focusable false ; does not need keyboard input
+  :namespace "eww-desktop-widget"
   :geometry (geometry
               :anchor "center"
               ; small window, stretches to fit content
@@ -61,6 +62,7 @@
   :stacking "bottom"
   :exclusive false
   :focusable false
+  :namespace "eww-desktop-widget"
   :geometry (geometry
               :anchor "center"
               :width  "1%"
