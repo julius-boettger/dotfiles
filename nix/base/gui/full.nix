@@ -21,6 +21,7 @@ in
     libreoffice # office suite
     gimp-with-plugins # image editor
     jetbrains.idea-community # java ide
+    jetbrains.pycharm-community # python ide
     font-manager # font manager
     bottles # run windows software easily
     pitivi # video editor
