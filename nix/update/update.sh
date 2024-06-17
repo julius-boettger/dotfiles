@@ -56,7 +56,7 @@ echo "starting clean up..."
 set_color white
 
 # delete nix generations older than 7 days
-sudo nix-collect-garbage --delete-older-than 7d
+sudo nix-collect-garbage --delete-older-than 14d
 
 set_color green
 echo "completed clean up."
