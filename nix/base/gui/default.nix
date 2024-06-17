@@ -92,8 +92,8 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     gnome.gnome-disk-utility
     unstable.gnome.nautilus # file manager
     gnome.sushi # thumbnails in nautilus
+    unstable.obsidian # PROPRIETARY notes
     spotify # PROPRIETARY
-    obsidian # PROPRIETARY
     # gtk theme
     (orchis-theme.override { border-radius = 10; })
     # sddm theme + dependency (login manager)
