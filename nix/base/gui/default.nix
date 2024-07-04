@@ -130,7 +130,6 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.swayosd # osd for volume changes
     unstable.grimblast # region select screenshot
     unstable.swaynotificationcenter
-    local.hyprsome # awesome-like workspaces for hyprland
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen

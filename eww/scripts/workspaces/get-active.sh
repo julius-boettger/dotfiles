@@ -1,6 +1,6 @@
 #!/bin/sh
 # originally from https://wiki.hyprland.org/0.34.0/Useful-Utilities/Status-Bars/#configuration
-# modified to work with hyprsome workspaces (usually 1-9 and 11-19)
+# modified to work with split-monitor-workspaces 1-9 and 11-19
 
 process_current() {
   current=$1
@@ -14,7 +14,7 @@ process_current() {
   fi
 }
 
-# last hyprsome workspace
+# last workspace
 LAST=9
 # current workspace for each monitor, initialize on first each
 current1=1

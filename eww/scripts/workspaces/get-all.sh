@@ -1,6 +1,6 @@
 #!/bin/sh
 # originally from https://wiki.hyprland.org/0.34.0/Useful-Utilities/Status-Bars/#configuration
-# modified to work with hyprsome workspaces (usually 1-9 and 11-19)
+# modified to work with split-monitor-workspaces 1-9 and 11-19
 # accepts one argument with value 1 or 2:
 # 1: observe workspaces 1 to  9
 # 2: observe workspaes 11 to 19
