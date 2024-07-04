@@ -2,6 +2,10 @@
 args@{ pkgs, variables, device, ... }:
 let
   hyprland-pkgs = args.getPkgs "hyprland";
+  plugins = [
+    # better multi-monitor workspaces
+    (args.getPkgs "split-monitor-workspaces").split-monitor-workspaces
+  ];
 in
 {
   programs.hyprland = {
@@ -32,22 +36,20 @@ in
   };
 
   # with home manager
-  home-manager.users."${variables.username}" = { config, ... }:
-  let
-    symlink = config.lib.file.mkOutOfStoreSymlink;
-  in
-  {
-    # home manager module to configure plugins
+  home-manager.users."${variables.username}" = { config, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
+      inherit plugins;
       package = hyprland-pkgs.hyprland;
-      plugins = [];
+      # write config file that imports real config
+      extraConfig = "source = /etc/dotfiles/hyprland/hyprland.conf";
+      # tell systemd to import environment by default
+      # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
+      systemd.variables = [ "--all" ];
     };
 
-    # symlink config
-    xdg.configFile = {
-      "hypr/hyprland.conf"    .source = symlink "/etc/dotfiles/hyprland/hyprland.conf";
-      "hypr/extra-config.conf".source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";
-    };
+    # symlink extra config
+    xdg.configFile."hypr/extra-config.conf".source = config.lib.file.mkOutOfStoreSymlink
+      "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";
   };
 }

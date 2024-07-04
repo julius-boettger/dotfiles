@@ -11,6 +11,9 @@
     nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
     # hyprland (to manage version independently of other packages)
     hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.39.1";
+    # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)
+    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=9981a3a66ad8df721fe46617233c58edac368f11";
+      inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
