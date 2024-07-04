@@ -1,4 +1,4 @@
-# basic gui config (without unrelated programs)
+# more gui config i don't want on every device
 args@{ pkgs, variables, ... }:
 let
   barrierPort = args.secrets.barrier.port;

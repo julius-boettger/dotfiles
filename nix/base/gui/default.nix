@@ -1,4 +1,4 @@
-# more gui config i don't want on every device
+# basic gui config (without unrelated programs)
 args@{ pkgs, variables, device, script, script-file, ... }:
 {
   imports = [
