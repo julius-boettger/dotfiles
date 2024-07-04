@@ -1,7 +1,7 @@
 # hyprland (tiling wayland compositor)
 args@{ pkgs, variables, device, ... }:
 let
-  hyprland-pkgs = args.getPkgs "hyprland";
+  package = (args.getPkgs "hyprland").hyprland;
   plugins = [
     # better multi-monitor workspaces
     (args.getPkgs "split-monitor-workspaces").split-monitor-workspaces
@@ -10,7 +10,7 @@ in
 {
   programs.hyprland = {
     enable = true;
-    package = hyprland-pkgs.hyprland;
+    inherit package;
   };
 
   # make chromium / electron apps use wayland
@@ -39,8 +39,7 @@ in
   home-manager.users."${variables.username}" = { config, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
-      inherit plugins;
-      package = hyprland-pkgs.hyprland;
+      inherit package plugins;
       # write config file that imports real config
       extraConfig = "source = /etc/dotfiles/hyprland/hyprland.conf";
       # tell systemd to import environment by default
