@@ -54,7 +54,10 @@
               ; small window, stretches to fit content
               :width  "1%"
               :height "1%")
-  (desktop :workspace-data workspaces-1)) ; workspaces 1-9
+  (desktop
+    ; workspaces 1-9
+    :workspace-data workspaces-1
+    :monitor "HDMI-A-1")) 
 
 ; same window for other monitor, because spawning on other
 ; monitor with `eww open desktop-0 --screen 1` doesn't work...?
@@ -67,10 +70,14 @@
               :anchor "center"
               :width  "1%"
               :height "1%")
-  (desktop :workspace-data workspaces-2)) ; workspaces 11-19
+  (desktop
+    ; workspaces 11-19
+    :workspace-data workspaces-2
+    :monitor "DP-1")) 
 
 ; workspace-data: json array with data about workspaces to display
-(defwidget desktop [workspace-data] 
+; monitor: name of monitor to watch workspaces, e.g. DP-1
+(defwidget desktop [workspace-data monitor] 
   (box
     :class "main-box"
     :orientation "v"
