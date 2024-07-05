@@ -20,6 +20,7 @@ args@{ pkgs, variables, ... }:
     cryptsetup # unlock luks
     dunst # send notifications
 
+    egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
     nvidia-system-monitor-qt # monitor nvidia gpu stuff
     alsa-scarlett-gui # control center for focusrite usb audio interface
     liquidctl # liquid cooler control
@@ -46,17 +47,9 @@ args@{ pkgs, variables, ... }:
   };
 
   ### for nvidia gpu
-  # load some nvidia stuff early into the boot process, helps with plymouth
-  #boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    # for suspend on hyprland
-    powerManagement.enable = true;
-    # for kernel module, not nouveau drivers!
-    # should usually be `true`, but is
-    # currently "marked as broken"
-    open = false; 
     # pin driver version https://www.nvidia.com/en-us/drivers/unix/
     /*package = args.config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "555.42.02";
@@ -71,6 +64,10 @@ args@{ pkgs, variables, ... }:
     enable = true;
     driSupport32Bit = true;
   };
+  # for suspend/wakeup issues, recommended by https://wiki.hyprland.org/Nvidia/
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia.open = false;
 
   services.xserver = {
     # monitor config with xrandr command
