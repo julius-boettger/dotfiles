@@ -7,9 +7,9 @@ args@{ pkgs, variables, ... }:
     pkg-config # for c/c++/rust dependency management
     librespeed-cli # speedtest
     # compilers, interpreters, debuggers
-    gcc
-    rustup
-    nodePackages_latest.nodejs
+    gcc # c/c++
+    cargo # rust
+    nodePackages_latest.nodejs # javascript
   ];
 
   ###########################################
