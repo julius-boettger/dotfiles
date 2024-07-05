@@ -1,6 +1,6 @@
 #!/bin/sh
 # originally from https://wiki.hyprland.org/0.34.0/Useful-Utilities/Status-Bars/#configuration
-# modified to work with split-monitor-workspaces 1-9 and 11-19
+# modified to work with split-monitor-workspaces 1-9
 
 range() {
 	min=$1
@@ -16,13 +16,10 @@ range() {
 }
 
 direction=$1
-current=$2
-LAST=9
 
-# 1 => 1, 11 => 1 (for split-monitor-workspaces)
-if [ "$current" -gt "$LAST" ]; then
-	current=$(($current - 10))
-fi
+# for split-monitor-workspaces
+LAST=9
+current=$(expr $2 % 10)
 
 if [ "$direction" = "down" ]; then
     hyprctl dispatch split-workspace $(range 1 $LAST $(($current + 1)))
