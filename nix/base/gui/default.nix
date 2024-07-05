@@ -129,6 +129,7 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.eww # build custom widgets
     unstable.swayosd # osd for volume changes
     unstable.grimblast # region select screenshot
+    unstable.hyprland-workspaces # for hyprland + eww integration
     unstable.swaynotificationcenter
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
