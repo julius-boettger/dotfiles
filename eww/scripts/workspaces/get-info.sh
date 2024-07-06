@@ -1,9 +1,8 @@
 #!/bin/sh
-# NOT YET USED! waiting for https://github.com/FieldofClay/hyprland-workspaces/issues/25
-
 # output json string of active and occupied split-monitor-workspaces for each monitor on hyprland, e.g.
 # {"HDMI-A-1":{"active":1,"occupied":[1,2,3]},"DP-1":{"active":4,"occupied":[]}}
 # all workspace IDs are between 1 and 9 for split-monitor-workspaces.
+# the active workspace for each monitor will always be listed as occupied, even if it's not.
 # uses hyprland-workspaces https://github.com/FieldofClay/hyprland-workspaces.
 
 # json string with active split-monitor-workspace for each monitor
@@ -16,7 +15,9 @@ hyprland-workspaces _ | while read -r line; do
     # update active with current_active
     active=$(echo "$active" | jq '. + $arg' --argjson arg "$current_active")
 
-    # TODO output occupied workspaces per monitor like [1, 2, 3] (1-9)
+    # like { "DP-1": { "occupied": [ 1, 2, 3 ] } } (1-9)
+    occupied=$(echo "$line" | jq 'map({(.name): {"occupied": [.workspaces[] | .id % 10]}}) | add')
 
-    echo "$active" | jq -c 'to_entries | map({(.key): {"active": .value, "occupied": []}}) | add'
+    # output active and occupied
+    echo "$active" | jq -c '(to_entries | map({(.key): {"active": .value}}) | add) * $arg' --argjson arg "$occupied"
 done
