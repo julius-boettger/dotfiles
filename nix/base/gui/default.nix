@@ -129,6 +129,7 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.eww # build custom widgets
     unstable.swayosd # osd for volume changes
     unstable.grimblast # region select screenshot
+    unstable.hyprland-workspaces # for hyprland + eww integration
     unstable.swaynotificationcenter
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
@@ -137,15 +138,6 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     (script-file "swaylock-effects" /etc/dotfiles/scripts/swaylock-effects.sh)
     (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
     (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
-    # for hyprland + eww integration
-    (unstable.hyprland-workspaces.overrideAttrs (_: {
-      src = fetchFromGitHub {
-        owner = "julius-boettger";
-        repo = "hyprland-workspaces";
-        rev = "c62d2b4aad0740579bc0e32be8813357fa791f1c";
-        sha256 = "sha256-SdC/9Z3kR0rYM5007AgU6i4EfgTEPT4RxzNnN9vFPqw=";
-      };
-    }))
   ];
 
   ###########################################
