@@ -1,23 +1,32 @@
 #!/bin/sh
 # output json string of active and occupied split-monitor-workspaces for each monitor on hyprland, e.g.
-# {"HDMI-A-1":{"active":1,"occupied":[1,2,3]},"DP-1":{"active":4,"occupied":[]}}
+# {"HDMI-A-1":{"1":false,"2":true},"DP-1":{"3":true}}
+# only active and occupied workspaces are listed, "true" meaning the workspace is active.
+# each monitor will have exactly one (last) active workspace.
 # all workspace IDs are between 1 and 9 for split-monitor-workspaces.
-# the active workspace for each monitor will always be listed as occupied, even if it's not.
 # uses hyprland-workspaces https://github.com/FieldofClay/hyprland-workspaces.
 
 # json string with active split-monitor-workspace for each monitor
 # with initial value like { "DP-1": 1, "HDMI-A-1": 1 } (1-9)
-active=$(hyprctl monitors -j | jq 'INDEX(.name) | map_values(1)')
+active=$(hyprctl monitors -j | jq -cM 'map({ (.name): 1 }) | add')
 
 hyprland-workspaces _ | while read -r line; do
     # like { "DP-1": 1 } (1-9)
-    current_active=$(echo "$line" | jq 'map(select(.workspaces | any(.active == true)) | {(.name): (.workspaces[] | select(.active).id % 10)}) | add')
+    current_active=$(echo "$line" | jq -cM '
+        map(
+            { (.name): (.workspaces[] | select(.active).id % 10) }
+        ) | add')
+
     # update active with current_active
-    active=$(echo "$active" | jq '. + $arg' --argjson arg "$current_active")
+    active=$(echo "$active" | jq -cM '. + $arg' --argjson arg "$current_active")
 
-    # like { "DP-1": { "occupied": [ 1, 2, 3 ] } } (1-9)
-    occupied=$(echo "$line" | jq 'map({(.name): {"occupied": [.workspaces[] | .id % 10]}}) | add')
-
-    # output active and occupied
-    echo "$active" | jq -c '(to_entries | map({(.key): {"active": .value}}) | add) * $arg' --argjson arg "$occupied"
+    echo "$line" | jq -c --argjson active "$active" '
+        map({
+            (.name): (
+                (.workspaces | map(
+                    { (.id % 10 | tostring): .active }
+                ) | add)
+                * { ($active[.name] | tostring): true }
+            )
+        }) | add'
 done
