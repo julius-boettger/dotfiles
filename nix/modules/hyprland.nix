@@ -35,20 +35,19 @@ in
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
-  # with home manager
+  # home manager module
   home-manager.users."${variables.username}" = { config, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
       inherit package plugins;
       # write config file that imports real config
-      extraConfig = "source = /etc/dotfiles/hyprland/hyprland.conf";
+      extraConfig = ''
+        source = /etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf
+        source = /etc/dotfiles/hyprland/hyprland.conf
+      '';
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
       systemd.variables = [ "--all" ];
     };
-
-    # symlink extra config
-    xdg.configFile."hypr/extra-config.conf".source = config.lib.file.mkOutOfStoreSymlink
-      "/etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf";
   };
 }
