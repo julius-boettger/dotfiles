@@ -1,33 +1,32 @@
 #!/bin/sh
-# originally from https://wiki.hyprland.org/0.34.0/Useful-Utilities/Status-Bars/#configuration
-# modified to work with split-monitor-workspaces 1-9 and 11-19
-# accepts one argument with value 1 or 2:
-# 1: observe workspaces 1 to  9
-# 2: observe workspaes 11 to 19
+# output json string of active and occupied split-monitor-workspaces for each monitor on hyprland, e.g.
+# {"HDMI-A-1":{"1":false,"2":true},"DP-1":{"3":true}}
+# only active and occupied workspaces are listed, "true" meaning the workspace is active.
+# each monitor will have exactly one (last) active workspace.
+# all workspace IDs are between 1 and 9 for split-monitor-workspaces.
+# uses hyprland-workspaces https://github.com/FieldofClay/hyprland-workspaces.
 
-if [ $# -ne 1 ]; then
-  echo "incorrect number of arguments, expected exactly one."
-  exit 1
-fi
+# json string with active split-monitor-workspace for each monitor
+# with initial value like { "DP-1": 1, "HDMI-A-1": 1 } (1-9)
+active=$(hyprctl monitors -j | jq -cM 'map({ (.name): 1 }) | add')
 
-# exit if argument argument has unexpected value
-if [ "$1" != "1" ] && [ "$1" != "2" ]; then 
-  echo "invalid argument. expected value \`1\` or \`2\`."
-  exit 1
-fi
+hyprland-workspaces _ | while read -r line; do
+    # like { "DP-1": 1 } (1-9)
+    current_active=$(echo "$line" | jq -cM '
+        map(
+            { (.name): (.workspaces[] | select(.active).id % 10) }
+        ) | add')
 
-spaces() {
-	LAST=9
-	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: (.windows > 0)}) | from_entries')
-	if   [ "$1" = "1" ]; then 
-		IDS=$(seq  1       $LAST  )
-	elif [ "$1" = "2" ]; then  
-		IDS=$(seq 11 $((10+$LAST)))
-	fi
-	echo $IDS | jq --argjson occupied "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., occupied: ($occupied[.]//false)})'
-}
+    # update active with current_active
+    active=$(echo "$active" | jq -cM '. + $arg' --argjson arg "$current_active")
 
-spaces $1
-socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-	spaces $1
+    echo "$line" | jq -c --argjson active "$active" '
+        map({
+            (.name): (
+                (.workspaces | map(
+                    { (.id % 10 | tostring): .active }
+                ) | add)
+                * { ($active[.name] | tostring): true }
+            )
+        }) | add'
 done

@@ -29,20 +29,11 @@
   :initial '{"internet":false,"wired":false,"signal_strength":0,"wifi_name":""}'
   "~/.config/eww/scripts/network.sh") 
 
-(deflisten workspaces-1
-  ; json array with data for hyprland workspaces 1 to 9
-  :initial '[{"id":"1","occupied":false}]'
-  "~/.config/eww/scripts/workspaces/get-all.sh 1")
-
-(deflisten workspaces-2
-  ; json array with data for hyprland workspaces 11 to 19
-  :initial '[{"id":"11","occupied":false}]'
-  "~/.config/eww/scripts/workspaces/get-all.sh 2")
-
-(deflisten current-workspace
-  ; json array with current hyprland workspace per monitor
-  :initial '[1, 11]'
-  "~/.config/eww/scripts/workspaces/get-active.sh")
+(deflisten workspaces
+  ; active and occupied hyprland workspaces for each monitor,
+  ; e.g. {"HDMI-A-1":{"1":true},"DP-1":{"1":true}}
+  :initial '{}'
+  "~/.config/eww/scripts/workspaces/get-all.sh")
 
 (defwindow desktop-0 :monitor 0
   :stacking "bottom" ; below other sutff / on desktop
@@ -54,10 +45,7 @@
               ; small window, stretches to fit content
               :width  "1%"
               :height "1%")
-  (desktop
-    ; workspaces 1-9
-    :workspace-data workspaces-1
-    :monitor "HDMI-A-1")) 
+  (desktop :monitor "HDMI-A-1")) 
 
 ; same window for other monitor, because spawning on other
 ; monitor with `eww open desktop-0 --screen 1` doesn't work...?
@@ -70,14 +58,10 @@
               :anchor "center"
               :width  "1%"
               :height "1%")
-  (desktop
-    ; workspaces 11-19
-    :workspace-data workspaces-2
-    :monitor "DP-1")) 
+  (desktop :monitor "DP-1")) 
 
-; workspace-data: json array with data about workspaces to display
 ; monitor: name of monitor to watch workspaces, e.g. DP-1
-(defwidget desktop [workspace-data monitor] 
+(defwidget desktop [monitor] 
   (box
     :class "main-box"
     :orientation "v"
@@ -160,28 +144,29 @@
           (label :show-truncated false :text "Wednesday" :style "color: transparent")
           (label :show-truncated false :text {date.day}))
         (label :show-truncated false :text {date.date})))
-    (workspaces :data workspace-data)))
+    (workspaces :monitor monitor)))
 
-; data: json array with data about workspaces to display
-(defwidget workspaces [data]
+; monitor: name of monitor to watch workspaces, e.g. DP-1
+(defwidget workspaces [monitor]
   (eventbox
-    :onscroll "~/.config/eww/scripts/workspaces/change-active.sh {} ${current-workspace[0]}"
+    ; scroll through workspaces with direction like up/down and currently active workspace on that monitor
+    :onscroll '~/.config/eww/scripts/workspaces/change-active.sh {} ${jq(workspaces[monitor], "to_entries | map(select(.value == true)) | .[0].key")}'
     (box
       :halign "center"
       :style "margin-left: -1px" ; better centering below ":" of time
       :space-evenly false
       :spacing 38
-      (for workspace in data
+      ; for all workspaces per monitor
+      (for i in '[1,2,3,4,5,6,7,8,9]'
         (eventbox
-          :onclick 'hyprctl dispatch workspace ${workspace.id}'
-          :tooltip {workspace.id > 10 ? workspace.id - 10 : workspace.id}
+          :onclick 'hyprctl dispatch split-workspace ${i}'
+          :tooltip {i}
           :class "workspace"
           (label
             :show-truncated false
             :style "padding-right: 0.25em"
-            :text {
-              workspace.id == current-workspace[0] || workspace.id == current-workspace[1] ? "󰟒" : ; nerdfont character
-                workspace.occupied ? "󰝥" : "󰄰" })))))) ; nerdfont characters
+            :text {workspaces[monitor][i] == "true"  ? "󰟒" :
+                   workspaces[monitor][i] == "false" ? "󰝥" : "󰄰"})))))) ; nerdfont characters
 
 (defwidget circular-progress-fancy [value text ?tooltip ?condition ?condition-text ?style ?visible]
   (overlay
