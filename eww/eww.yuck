@@ -35,7 +35,8 @@
   :initial '{}'
   "~/.config/eww/scripts/workspaces/get-all.sh")
 
-(defwindow desktop-0 :monitor 0
+; monitor: name of monitor to watch workspaces, e.g. DP-1
+(defwindow desktop [monitor]
   :stacking "bottom" ; below other sutff / on desktop
   :exclusive false ; dont reserve WM space
   :focusable false ; does not need keyboard input
@@ -45,20 +46,7 @@
               ; small window, stretches to fit content
               :width  "1%"
               :height "1%")
-  (desktop :monitor "HDMI-A-1")) 
-
-; same window for other monitor, because spawning on other
-; monitor with `eww open desktop-0 --screen 1` doesn't work...?
-(defwindow desktop-1 :monitor 1
-  :stacking "bottom"
-  :exclusive false
-  :focusable false
-  :namespace "eww-desktop-widget"
-  :geometry (geometry
-              :anchor "center"
-              :width  "1%"
-              :height "1%")
-  (desktop :monitor "DP-1")) 
+  (desktop :monitor monitor)) 
 
 ; monitor: name of monitor to watch workspaces, e.g. DP-1
 (defwidget desktop [monitor] 

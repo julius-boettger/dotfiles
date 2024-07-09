@@ -131,6 +131,8 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.grimblast # region select screenshot
     unstable.hyprland-workspaces # for hyprland + eww integration
     unstable.swaynotificationcenter
+    # open eww desktop widget on all monitors
+    (script-file "eww-open-everywhere" /etc/dotfiles/eww/scripts/open-everywhere.sh)
     # move all hyprland clients to a single workspace
     (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
     # lockscreen
