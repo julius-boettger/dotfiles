@@ -58,6 +58,7 @@ args@{ pkgs, variables, device, ... }:
     bat # better cat
     fzf # fast fuzzy finder
     zoxide # better cd
+    nomino # file renaming
     unstable.numbat # cli calculator
     fastfetch # neofetch but fast
     starship # shell prompt, install as program and package to set PATH
