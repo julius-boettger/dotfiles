@@ -36,8 +36,9 @@
   "~/.config/eww/scripts/workspaces/get-all.sh")
 
 ; monitor: name of monitor to watch workspaces, e.g. DP-1
-(defwindow desktop [monitor]
-  :stacking "bottom" ; below other sutff / on desktop
+; elevate: elevate the widget if true
+(defwindow desktop [monitor elevate]
+  :stacking {elevate ? "fg" : "bottom"}
   :exclusive false ; dont reserve WM space
   :focusable false ; does not need keyboard input
   :namespace "eww-desktop-widget"
