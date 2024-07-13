@@ -34,7 +34,6 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
-        ms-python.vscode-pylance # more python (PROPRIETARY)
         leetcode.vscode-leetcode # solve leetcode problems
         pkief.material-icon-theme # file icon theme
         christian-kohler.path-intellisense # auto complete paths
