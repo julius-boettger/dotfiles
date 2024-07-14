@@ -19,7 +19,7 @@ direction=$1
 
 # for split-monitor-workspaces
 LAST=9
-current=$(expr $2 % 10)
+current=$2
 
 if [ "$direction" = "down" ]; then
     hyprctl dispatch split-workspace $(range 1 $LAST $(($current + 1)))

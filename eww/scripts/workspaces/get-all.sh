@@ -12,15 +12,14 @@ active=$(hyprctl monitors -j | jq -cM 'map({ (.name): 1 }) | add')
 
 hyprland-workspaces _ | while read -r line; do
     # like { "DP-1": 1 } (1-9)
-    current_active=$(echo "$line" | jq -cM '
-        map(
+    current_active=$(jq -cM 'map(
             { (.name): (.workspaces[] | select(.active).id % 10) }
-        ) | add')
+        ) | add' <<< "$line")
 
     # update active with current_active
-    active=$(echo "$active" | jq -cM '. + $arg' --argjson arg "$current_active")
+    active=$(jq -cM '. + $arg' --argjson arg "$current_active" <<< "$active")
 
-    echo "$line" | jq -c --argjson active "$active" '
+    jq -c --argjson active "$active" '
         map({
             (.name): (
                 (.workspaces | map(
@@ -28,5 +27,5 @@ hyprland-workspaces _ | while read -r line; do
                 ) | add)
                 * { ($active[.name] | tostring): true }
             )
-        }) | add'
+        }) | add' <<< "$line"
 done
