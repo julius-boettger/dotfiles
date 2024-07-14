@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# try to reach internet (google dns server)
-ping -q -c 1 -W 1 8.8.8.8 &> /dev/null
+# try to reach internet (rethinkdns servers)
+ping -q -c 1 -W 1 max.rethinkdns.com &> /dev/null
 if [[ $? != 0 ]]; then
   echo '{"internet":false,"wired":false,"signal_strength":0,"wifi_name":""}'
   exit
