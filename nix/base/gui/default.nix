@@ -181,6 +181,12 @@ args@{ pkgs, variables, device, script, script-file, ... }:
   # default application for opening directories
   xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
 
+  # disable docker (enabled in cli config)
+  virtualisation.docker = {
+    rootless.enable = args.lib.mkForce false;
+             enable = args.lib.mkForce false;
+  };
+
   # for mounting usb sticks and stuff
   services.udisks2.enable = true;
 
