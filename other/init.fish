@@ -39,6 +39,10 @@ if status is-interactive
     alias cat bat
     alias aquarium "asciiquarium --transparent"
     alias flake-update "/etc/dotfiles/nix/update/update.sh"
+    # easier numbat access
+    function calc
+        numbat -e "$argv"
+    end
     # alias some nix commands 
     function nix
         # to nom (prettier output)
