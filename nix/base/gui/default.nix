@@ -8,8 +8,9 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     args.inputs.disko.nixosModules.disko
   ];
 
-  # pin to kernel version to 6.8
-  # because of virtualbox incompatability on 6.9.1
+  # pin kernel version to 6.8
+  # because of hyprland crashes on 6.9
+  # and nvidia driver build failure on 6.10
   boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   boot.loader = {
