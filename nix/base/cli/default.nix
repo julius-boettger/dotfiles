@@ -52,6 +52,7 @@ args@{ pkgs, variables, device, ... }:
 
   environment.systemPackages = with pkgs; [
     vim
+    wget
     bash
     jq # process json
     lsd # better ls

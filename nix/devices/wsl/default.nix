@@ -5,6 +5,11 @@ args@{ pkgs, variables, ... }:
     defaultUser = variables.username;
   };
 
+  environment.systemPackages = with pkgs; [
+    unstable.gitnuro # git gui (yes, that works with wsl)
+    unstable.wsl-vpnkit # for issues with company vpn
+  ];
+
   # for issues with company network
   wsl.wslConf.network.generateResolvConf = false;
   networking.nameservers = [ "8.8.4.4" "8.8.8.8" ];
@@ -18,7 +23,6 @@ args@{ pkgs, variables, ... }:
   };
 
   # for issues with company vpn
-  environment.systemPackages = with pkgs; [ unstable.wsl-vpnkit ];
   environment.shellAliases = {
     vpn-status =      "systemctl status wsl-vpnkit | sed -n '/Active: /s/Active: //p' | awk '{$1=$1};1'";
     vpn-start  = "sudo systemctl start  wsl-vpnkit";
