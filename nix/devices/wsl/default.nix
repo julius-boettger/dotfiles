@@ -10,6 +10,12 @@ args@{ pkgs, variables, ... }:
     unstable.wsl-vpnkit # for issues with company vpn
   ];
 
+  # connect vscode on windows to nixos wsl
+  services.vscode-server = {
+    enable = true;
+    nodejsPackage = pkgs.nodePackages_latest.nodejs;
+  };
+
   # for issues with company network
   wsl.wslConf.network.generateResolvConf = false;
   networking.nameservers = [ "8.8.4.4" "8.8.8.8" ];

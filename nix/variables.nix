@@ -30,6 +30,7 @@
       modules = [
         ./base/cli/full.nix
         inputs.nixos-wsl.nixosModules.wsl
+        inputs.vscode-server.nixosModules.default
       ];
     }
   ];
