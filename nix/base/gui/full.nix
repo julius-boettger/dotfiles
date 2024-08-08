@@ -16,12 +16,9 @@ in
 
   environment.systemPackages = with pkgs; [
     ### gui
-    bitwarden # password manager
     obs-studio # video recording
-    libreoffice # office suite
+    onlyoffice-bin_latest # office suite
     gimp-with-plugins # image editor
-    jetbrains.idea-community # java ide
-    jetbrains.pycharm-community # python ide
     font-manager # font manager
     bottles # run windows software easily
     pitivi # video editor
@@ -34,7 +31,6 @@ in
     inkscape-with-extensions # vector graphic editor
     veracrypt # disk encryption
     freefilesync # file backup
-    sioyek # pdf reader, also available as programs.sioyek in hm
     unstable.bruno # rest api client
     ddcutil ddcui # interact with external monitors
     # more gtk themes
