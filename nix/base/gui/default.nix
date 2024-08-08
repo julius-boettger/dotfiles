@@ -91,7 +91,7 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     xarchiver # archive manager
     baobab # disk usage analyzer
     gnome.gnome-disk-utility
-    unstable.gnome.nautilus # file manager
+    unstable.nautilus # file manager
     gnome.sushi # thumbnails in nautilus
     unstable.obsidian # PROPRIETARY notes
     spotify # PROPRIETARY
@@ -152,14 +152,13 @@ args@{ pkgs, variables, device, script, script-file, ... }:
   # xorg
   services.xserver = {
     enable = true;
-    layout = args.config.console.keyMap;
-
-    # window manager / desktop environment
+    xkb.layout = args.config.console.keyMap;
     windowManager.awesome.enable = true;
+  };
 
-    # display manager
-    displayManager.defaultSession = "hyprland";
-    displayManager.sddm = {
+  services.displayManager = {
+    defaultSession = "hyprland";
+    sddm = {
       enable = true;
       theme = "sugar-candy";
     };

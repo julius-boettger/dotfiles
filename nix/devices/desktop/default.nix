@@ -69,12 +69,10 @@ args@{ pkgs, variables, ... }:
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.open = false;
 
-  services.xserver = {
-    # monitor config with xrandr command
-    displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred";
-    # mouse sens config
-    libinput.mouse.accelSpeed = "-0.7";
-  };
+  # monitor config with xrandr command
+  services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred";
+  # mouse sens config
+  services.libinput.mouse.accelSpeed = "-0.7";
   
   # openrgb
   services.hardware.openrgb = {
