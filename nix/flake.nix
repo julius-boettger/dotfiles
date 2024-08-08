@@ -9,10 +9,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # for ./modules/studies/itsarch.nix
     nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
-    # hyprland v0.41.2 (to manage version independently of other packages)
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
+    # hyprland v0.42.0 (to manage version independently of other packages)
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
     # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)
-    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=19483b0e0e3e7ee5125e54ab36bcadf180a26ad3";
+    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=4dd66b315ce9d8bd2962f705236e60ec233536b4";
       inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
