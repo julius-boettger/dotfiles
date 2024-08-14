@@ -426,17 +426,17 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1723068137,
-        "narHash": "sha256-8UvmtzyaHW8CEXpO8Ky1AN2lMeDpHkLhcuGHJwuXBmg=",
+        "lastModified": 1723383162,
+        "narHash": "sha256-PjblkZqj0J0XMJNQrqDOqLtG91tInOZlOo2dbupiyDs=",
         "owner": "Duckonaut",
         "repo": "split-monitor-workspaces",
-        "rev": "4dd66b315ce9d8bd2962f705236e60ec233536b4",
+        "rev": "7fc862344ebab65968c988a7f59beda1ec0579a5",
         "type": "github"
       },
       "original": {
         "owner": "Duckonaut",
         "repo": "split-monitor-workspaces",
-        "rev": "4dd66b315ce9d8bd2962f705236e60ec233536b4",
+        "rev": "7fc862344ebab65968c988a7f59beda1ec0579a5",
         "type": "github"
       }
     },
