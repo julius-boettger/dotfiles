@@ -1,5 +1,9 @@
 # vscodium with extensions (text editor)
 args@{ pkgs, variables, vscode-extensions, ... }:
+let
+  # extensions directly from nixpkgs
+  nixpkgs-ext = pkgs.unstable.vscode-extensions;
+in
 {
   environment.systemPackages = [
     (pkgs.vscode-with-extensions.override {
@@ -18,7 +22,6 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         eww-yuck.yuck
         csstools.postcss
         ms-python.python 
-        ms-vscode.cpptools
         svelte.svelte-vscode
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
@@ -28,6 +31,7 @@ args@{ pkgs, variables, vscode-extensions, ... }:
         coolbear.systemd-unit-file
         ms-azuretools.vscode-docker
         matthewpi.caddyfile-support
+        nixpkgs-ext.ms-vscode.cpptools # https://github.com/nix-community/nix-vscode-extensions/issues/69
         # other stuff
         vscodevim.vim # vim :)
         eamodio.gitlens # advanced git integration

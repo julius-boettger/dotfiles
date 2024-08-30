@@ -8,10 +8,10 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     args.inputs.disko.nixosModules.disko
   ];
 
-  # pin kernel version to 6.8
-  # because of hyprland crashes on 6.9
-  # and nvidia driver build failure on 6.10
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  # pin kernel version to 6.6
+  # because of nvidia driver build failure on 6.10
+  # and everything in between has been removed (end of life)
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
 
   boot.loader = {
     timeout = 1;
