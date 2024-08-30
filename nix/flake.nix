@@ -12,7 +12,7 @@
     # hyprland v0.42.0 (to manage version independently of other packages)
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
     # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)
-    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=7fc862344ebab65968c988a7f59beda1ec0579a5";
+    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=5ba1e2ef5e06f83e5f01ebf8a746ea3090073522";
       inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
