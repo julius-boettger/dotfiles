@@ -8,10 +8,8 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     args.inputs.disko.nixosModules.disko
   ];
 
-  # pin kernel version to 6.6
-  # because of nvidia driver build failure on 6.10
-  # and everything in between has been removed (end of life)
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # nvidia driver fails to build on latest kernel
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
     timeout = 1;

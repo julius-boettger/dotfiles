@@ -21,7 +21,6 @@ in
         dlasagno.rasi
         eww-yuck.yuck
         csstools.postcss
-        ms-python.python 
         svelte.svelte-vscode
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
