@@ -17,10 +17,10 @@ in
         # monokai pro color theme from local package
         pkgs.local.monokai-pro-vscode
         # for syntax highlighting / language support
-        bbenoist.nix
         dlasagno.rasi
         eww-yuck.yuck
         csstools.postcss
+        jnoortheen.nix-ide
         svelte.svelte-vscode
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
