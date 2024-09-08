@@ -1,6 +1,6 @@
 args@{ pkgs, variables, ... }:
 {
-  imports = [ ./../../modules/base/cli/full.nix ];
+  local.base.cli.full.enable = true;
 
   wsl = {
     enable = true;

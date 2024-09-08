@@ -1,10 +1,6 @@
 args@{ pkgs, variables, ... }:
 {
-  imports = [
-    #./disk-config.nix
-    ./hardware-configuration.nix
-    ./../../modules/base/gui
-  ];
+  local.base.gui.enable = true;
 
   # automatic garbage collection to free space
   nix.gc = {
