@@ -13,6 +13,7 @@
     ./jetbrains
     ./picom
     ./rofi
+    ./sddm-sugar-candy
     ./swaync
     ./vscodium
     ./nvidia.nix
