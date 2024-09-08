@@ -106,8 +106,6 @@ in
       wl-clipboard # interact with clipboard 
       unstable.swayosd # osd for volume changes
       unstable.grimblast # region select screenshot
-      # move all hyprland clients to a single workspace
-      (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
     ];
 
     ###########################################

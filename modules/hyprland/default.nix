@@ -25,10 +25,12 @@ lib.mkModule "hyprland" config {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # must-haves according to hyprland wiki
   environment.systemPackages = with pkgs; [
+    # must-haves according to hyprland wiki
     libsForQt5.qt5.qtwayland
                qt6.qtwayland
+    # move all hyprland clients to a single workspace
+    (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
   ];
 
   # use cached hyprland flake builds
