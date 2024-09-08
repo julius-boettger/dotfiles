@@ -14,6 +14,7 @@
     ./picom
     ./rofi
     ./sddm-sugar-candy
+    ./starship
     ./swaync
     ./vscodium
     ./nvidia.nix
