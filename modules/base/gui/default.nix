@@ -116,7 +116,6 @@ in
 
       ### only used on wayland
       swww # wallpaper switching with animations
-      socat # for hyprland workspaces with eww
       grim # whole screen screenshot
       swappy # edit screenshots
       nwg-look # manage gtk theming stuff if homemanager fails
@@ -125,7 +124,6 @@ in
       wl-clipboard # interact with clipboard 
       unstable.swayosd # osd for volume changes
       unstable.grimblast # region select screenshot
-      unstable.swaynotificationcenter
       # move all hyprland clients to a single workspace
       (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
       # lockscreen
@@ -158,6 +156,7 @@ in
       hyprland.enable = true;
       awesome.enable = true;
       copyq.enable = true;
+      swaync.enable = true;
     };
 
     services.onedrive.enable = true;
@@ -309,7 +308,6 @@ in
       ### symlink dotfiles
       # files in ~/.config/
       xdg.configFile = {
-        "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
         "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
         "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
