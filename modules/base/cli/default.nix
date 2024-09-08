@@ -129,21 +129,21 @@ args@{ pkgs, variables, device, ... }:
     symlink = config.lib.file.mkOutOfStoreSymlink;
   in
   {
+    home.stateVersion = variables.version;
+    # i dont know what this does?
+    programs.home-manager.enable = true;
 
-  home.stateVersion = variables.version;
-  # i dont know what this does?
-  programs.home-manager.enable = true;
+    ### symlink some config files
+    # vim
+    home.file.".vimrc".source = symlink "/etc/dotfiles/modules/vim/.vimrc";
+    # fish config to ~/.config/fish/config.fish
+    xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/modules/fish/init.fish";
 
-  ### symlink some config files
-  # vim
-  home.file.".vimrc".source = symlink "/etc/dotfiles/modules/vim/.vimrc";
-  # fish config to ~/.config/fish/config.fish
-  xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/modules/fish/init.fish";
-
-  programs.git = {
-    enable = true;
-    extraConfig.init.defaultBranch = "main";
-    userName = variables.git.name;
-    userEmail = variables.git.email;
+    programs.git = {
+      enable = true;
+      extraConfig.init.defaultBranch = "main";
+      userName = variables.git.name;
+      userEmail = variables.git.email;
+    };
   };
-};}
+}
