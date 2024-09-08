@@ -123,13 +123,9 @@ in
       hyprpicker # color picker
       wev ydotool # find out / send keycodes
       wl-clipboard # interact with clipboard 
-      unstable.eww # build custom widgets
       unstable.swayosd # osd for volume changes
       unstable.grimblast # region select screenshot
-      unstable.hyprland-workspaces # for hyprland + eww integration
       unstable.swaynotificationcenter
-      # open eww desktop widget on all monitors
-      (lib.writeScriptFile "eww-open-everywhere" /etc/dotfiles/modules/eww/scripts/open-everywhere.sh)
       # move all hyprland clients to a single workspace
       (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
       # lockscreen
@@ -313,7 +309,6 @@ in
       ### symlink dotfiles
       # files in ~/.config/
       xdg.configFile = {
-        "eww"                     = { source = symlink "/etc/dotfiles/modules/eww";     recursive = true; };
         "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
         "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
