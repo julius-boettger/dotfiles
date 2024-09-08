@@ -8,6 +8,7 @@
     ./eww
     ./firefox
     ./fish
+    ./gitnuro
     ./hyprland
     ./swaync
     ./vscodium

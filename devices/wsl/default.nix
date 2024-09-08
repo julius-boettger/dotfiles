@@ -1,6 +1,9 @@
 args@{ pkgs, variables, ... }:
 {
-  local.base.cli.full.enable = true;
+  local = {
+    base.cli.full.enable = true;
+    gitnuro.enable = true; # (yes, that works with wsl)
+  };
 
   wsl = {
     enable = true;
@@ -8,7 +11,6 @@ args@{ pkgs, variables, ... }:
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.gitnuro # git gui (yes, that works with wsl)
     unstable.wsl-vpnkit # for issues with company vpn
   ];
 
