@@ -162,6 +162,9 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     };
   };
 
+  # enable self-written options
+  local.vscodium.enable = true;
+
   services.onedrive.enable = true;
 
   # configure various app settings
