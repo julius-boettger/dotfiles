@@ -6,6 +6,7 @@
     ./base
     ./copyq
     ./eww
+    ./firefox
     ./hyprland
     ./swaync
     ./vscodium
