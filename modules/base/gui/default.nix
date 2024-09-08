@@ -120,11 +120,6 @@ in
       unstable.grimblast # region select screenshot
       # move all hyprland clients to a single workspace
       (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
-      # lockscreen
-      unstable.swaylock-effects
-      (lib.writeScriptFile "swaylock-effects" /etc/dotfiles/modules/swaylock-effects/swaylock-effects.sh)
-      (lib.writeScript "lock-suspend"   "swaylock-effects && systemctl suspend"  )
-      (lib.writeScript "lock-hibernate" "swaylock-effects && systemctl hibernate")
     ];
 
     ###########################################
@@ -150,6 +145,7 @@ in
       eww.enable = true;
       rofi.enable = true;
       sddm-sugar-candy.enable = true;
+      swaylock-effects.enable = true;
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
@@ -160,9 +156,6 @@ in
 
     # configure various app settings
     programs.dconf.enable = true;
-
-    # necessary for swaylock-effects
-    security.pam.services.swaylock = {};
 
     # needed for trash to work in nautilus
     services.gvfs.enable = true;
