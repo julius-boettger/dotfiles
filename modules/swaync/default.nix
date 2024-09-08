@@ -8,6 +8,6 @@ lib.mkModule "swaync" config {
 
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."swaync".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/swaync";
+    xdg.configFile."swaync".source = config.lib.file.mkOutOfStoreSymlink ./.;
   };
 }

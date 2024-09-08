@@ -5,6 +5,6 @@ lib.mkModule "vim" config {
 
   # symlink config to ~
   home-manager.users.${variables.username} = { config, ... }: {
-    home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/vim/.vimrc";
+    home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink ./.vimrc;
   };
 }
