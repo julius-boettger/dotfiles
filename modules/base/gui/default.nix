@@ -114,12 +114,6 @@ in
     ###########################################
     ###########################################
 
-    # xorg
-    services.xserver = {
-      enable = true;
-      xkb.layout = args.config.console.keyMap;
-    };
-
     services.displayManager.sddm.enable = true;
 
     local = {

@@ -1,7 +1,11 @@
 # xorg tiling window manager
 args@{ config, lib, pkgs, inputs, variables, device, ... }:
 lib.mkModule "awesome" config {
-  services.xserver.windowManager.awesome.enable = true;
+  services.xserver = {
+    enable = true;
+    xkb.layout = args.config.console.keyMap;
+    windowManager.awesome.enable = true;
+  };
 
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
