@@ -6,10 +6,6 @@ in
 {
   options.local.base.gui.enable = lib.mkEnableOption "whether to enable basic gui config";
 
-  imports = [
-    ../../hyprland
-  ];
-
   config = lib.mkIf (cfg.enable || cfg.full.enable) {
 
     # nvidia driver fails to build on latest kernel
@@ -157,17 +153,15 @@ in
       windowManager.awesome.enable = true;
     };
 
-    services.displayManager = {
-      defaultSession = "hyprland";
-      sddm = {
-        enable = true;
-        theme = "sugar-candy";
-      };
+    services.displayManager.sddm = {
+      enable = true;
+      theme = "sugar-candy";
     };
 
     local = {
       vscodium.enable = true;
       alacritty.enable = true;
+      hyprland.enable = true;
     };
 
     services.onedrive.enable = true;
