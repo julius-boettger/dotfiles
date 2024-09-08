@@ -11,6 +11,7 @@
     ./gitnuro
     ./hyprland
     ./jetbrains
+    ./picom
     ./swaync
     ./vscodium
     ./nvidia.nix

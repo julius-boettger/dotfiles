@@ -107,7 +107,6 @@ in
 
       ### only used on xorg
       lxappearance # manage gtk theming stuff if homemanager fails
-      local.picom-jonaburg # compositor
       unclutter-xfixes # hide mouse on inactivity
       pick-colour-picker
       # could/should work on wayland, but doesnt for now :(
@@ -159,6 +158,7 @@ in
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
+      picom.enable = true;
     };
 
     services.onedrive.enable = true;
@@ -304,7 +304,6 @@ in
       # files in ~/.config/
       xdg.configFile = {
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
-        "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
         "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
       };
       # files somewhere else in ~/
