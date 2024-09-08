@@ -5,6 +5,10 @@ args@{ pkgs, variables, ... }:
     ./hardware-configuration.nix
   ];
 
+  local.base.cli.full.enable = true;
+  local.base.gui.enable = true;
+  local.base.gui.full.enable = true;
+
   boot.supportedFilesystems.ntfs = true;
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
