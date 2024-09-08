@@ -230,7 +230,7 @@ in
     ############### HOME-MANAGER ###############
     ############################################
     ############################################
-    home-manager.users."${variables.username}" = { config, ... }:
+    home-manager.users.${variables.username} = { config, ... }:
     let
       symlink = config.lib.file.mkOutOfStoreSymlink;
     in

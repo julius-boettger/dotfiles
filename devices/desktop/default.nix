@@ -43,7 +43,7 @@ args@{ pkgs, variables, ... }:
     ];
   };
   # symlink to home folder
-  home-manager.users."${variables.username}" = { config, ... }: {
+  home-manager.users.${variables.username} = { config, ... }: {
     home.file."Library".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Library";
   };
 
