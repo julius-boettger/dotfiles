@@ -1,10 +1,5 @@
 args@{ pkgs, variables, ... }:
 {
-  imports = [
-    #./disk-config.nix
-    ./hardware-configuration.nix
-  ];
-
   local.base.cli.full.enable = true;
   local.base.gui.full.enable = true;
 

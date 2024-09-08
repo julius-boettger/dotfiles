@@ -93,12 +93,19 @@
         modules ++ 
         # if device is a laptop: laptop utils
         (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
+        # if device is wsl
+        (if internalName == "wsl" then [
+          inputs.nixos-wsl.nixosModules.wsl
+        ] else [
+          ./devices/${internalName}/hardware-configuration.nix
+          # declarative disk management
+          inputs.disko.nixosModules.disko
+          #./disk-config.nix # not used yet
+        ]) ++ 
         # and more...
         [
           ./modules # module definitions with some default config
           ./devices/${internalName} # for specific device
-          # declarative disk management
-          inputs.disko.nixosModules.disko
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
           # make specialArgs available for home manager
