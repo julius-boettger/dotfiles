@@ -2,8 +2,8 @@
 args@{ pkgs, variables, device, script, script-file, ... }:
 {
   imports = [
-    ../../modules/vscodium.nix
-    ../../modules/hyprland.nix
+    ../vscodium/vscodium.nix
+    ../hyprland/hyprland.nix
     # declarative disk management
     args.inputs.disko.nixosModules.disko
   ];
@@ -131,12 +131,12 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.hyprland-workspaces # for hyprland + eww integration
     unstable.swaynotificationcenter
     # open eww desktop widget on all monitors
-    (script-file "eww-open-everywhere" /etc/dotfiles/eww/scripts/open-everywhere.sh)
+    (script-file "eww-open-everywhere" /etc/dotfiles/modules/eww/scripts/open-everywhere.sh)
     # move all hyprland clients to a single workspace
-    (script-file "hyprctl-collect-clients" /etc/dotfiles/scripts/hyprctl-collect-clients.sh)
+    (script-file "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
     # lockscreen
     unstable.swaylock-effects
-    (script-file "swaylock-effects" /etc/dotfiles/scripts/swaylock-effects.sh)
+    (script-file "swaylock-effects" /etc/dotfiles/modules/swaylock-effects/swaylock-effects.sh)
     (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
     (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
   ];
@@ -318,19 +318,19 @@ args@{ pkgs, variables, device, script, script-file, ... }:
   ### symlink dotfiles
   # files in ~/.config/
   xdg.configFile = {
-    "eww"                     = { source = symlink "/etc/dotfiles/eww";     recursive = true; };
-    "awesome"                 = { source = symlink "/etc/dotfiles/awesome"; recursive = true; };
-    "swaync"                     .source = symlink "/etc/dotfiles/swaync";
-    "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/nix/devices/${device.internalName}/fastfetch/default.jsonc";
-    "picom.conf"                 .source = symlink "/etc/dotfiles/other/picom.conf";
-    "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/other/copyq.conf";
-    "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/other/vscodium.json";
-    "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/other/alacritty.toml";
+    "eww"                     = { source = symlink "/etc/dotfiles/modules/eww";     recursive = true; };
+    "awesome"                 = { source = symlink "/etc/dotfiles/modules/awesome"; recursive = true; };
+    "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
+    "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
+    "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
+    "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/modules/copyq/copyq.conf";
+    "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
+    "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
   };
   # files somewhere else in ~/
   home.file = {
-    ".ideavimrc".source = symlink "/etc/dotfiles/other/.ideavimrc";
-    ".local/share/rofi/themes".source = symlink "/etc/dotfiles/rofi";
-    ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/other/firefox.css";
+    ".ideavimrc".source = symlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
+    ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
+    ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/modules/firefox/firefox.css";
   };
 };}

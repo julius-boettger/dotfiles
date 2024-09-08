@@ -38,7 +38,7 @@ if status is-interactive
     alias ls lsd
     alias cat bat
     alias aquarium "asciiquarium --transparent"
-    alias flake-update "/etc/dotfiles/nix/update/update.sh"
+    alias flake-update "/etc/dotfiles/misc/update/update.sh"
     # easier numbat access
     function calc
         numbat -e "$argv"
@@ -74,7 +74,7 @@ function flake-rebuild
     end
     # cd back and forth because of wsl issue
     set workingDir $(pwd)
-    cd /etc/dotfiles/nix
+    cd /etc/dotfiles
     # use --impure if NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT is set
     if test "$NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT" = "1"
         set impure "--impure"

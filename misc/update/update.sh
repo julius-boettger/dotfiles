@@ -13,7 +13,7 @@ echo "updating flake..."
 set_color white
 
 # update flake
-nix flake update /etc/dotfiles/nix
+nix flake update /etc/dotfiles
 
 # rebuild flake with new flake.lock and given args
 flake-rebuild $argv

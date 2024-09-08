@@ -1,7 +1,7 @@
 #################### WARNING ####################
 # this package requires some external dependencies.
 # just this derivation alone will not work.
-# search for "sddm-sugar-candy" in base/desktop.nix
+# see modules/sddm-sugar-candy for more
 { stdenv, fetchFromGitHub }:
 stdenv.mkDerivation
 rec {
@@ -20,7 +20,7 @@ rec {
 
     mkdir -p $out/share/sddm/themes/sugar-candy
     cp -r . $out/share/sddm/themes/sugar-candy
-    ln -sf /etc/dotfiles/other/sddm-sugar-candy.conf $out/share/sddm/themes/sugar-candy/theme.conf
+    ln -sf /etc/dotfiles/modules/sddm-sugar-candy/sddm-sugar-candy.conf $out/share/sddm/themes/sugar-candy/theme.conf
 
     runHook postInstall
   '';
