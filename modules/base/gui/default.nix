@@ -156,6 +156,7 @@ in
       hyprland.enable = true;
       awesome.enable = true;
       copyq.enable = true;
+      eww.enable = true;
       swaync.enable = true;
       firefox.enable = true;
     };
