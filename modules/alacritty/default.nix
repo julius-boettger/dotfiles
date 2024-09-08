@@ -11,7 +11,6 @@ lib.mkModule "alacritty" config {
 
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."alacritty/alacritty.toml".source =
-      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
+    xdg.configFile."alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink ./alacritty.toml;
   };
 }

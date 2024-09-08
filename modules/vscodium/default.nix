@@ -48,6 +48,6 @@ lib.mkModule "vscodium" config {
 
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/vscodium/vscodium.json";
+    xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink ./vscodium.json;
   };
 }
