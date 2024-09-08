@@ -2,6 +2,7 @@
 {
   imports = [
     ./alacritty
+    ./awesome
     ./base
     ./hyprland
     ./vscodium
