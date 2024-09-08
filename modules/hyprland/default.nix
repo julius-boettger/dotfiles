@@ -1,5 +1,5 @@
 # hyprland (tiling wayland compositor)
-args@{ pkgs, lib, variables, device, ... }:
+args@{ config, lib, pkgs, variables, device, ... }:
 let
   package = (lib.getPkgs "hyprland").hyprland;
   plugins = [
@@ -7,11 +7,13 @@ let
     (lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces
   ];
 in
-{
+lib.mkModule "hyprland" config {
   programs.hyprland = {
     enable = true;
     inherit package;
   };
+
+  services.displayManager.defaultSession = "hyprland";
 
   # make chromium / electron apps use wayland
   environment.variables.NIXOS_OZONE_WL = "1";
