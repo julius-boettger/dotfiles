@@ -85,7 +85,7 @@ args@{ pkgs, variables, device, ... }:
 
   # shell alias for shorter fastfetch
   environment.shellAliases.fastfetch-short =
-    "fastfetch -c /etc/dotfiles/nix/devices/${device.internalName}/fastfetch/short.jsonc";
+    "fastfetch -c /etc/dotfiles/devices/${device.internalName}/fastfetch/short.jsonc";
 
   # for git authentication with ssh keys
   programs.ssh = {
@@ -102,7 +102,7 @@ args@{ pkgs, variables, device, ... }:
     # use --impure for flake-rebuild by default (if configured)
     NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
     # config file location for starship prompt
-    STARSHIP_CONFIG = "/etc/dotfiles/other/starship.toml";
+    STARSHIP_CONFIG = "/etc/dotfiles/modules/starship/starship.toml";
   };
 
   # fish shell
@@ -136,9 +136,9 @@ args@{ pkgs, variables, device, ... }:
 
   ### symlink some config files
   # vim
-  home.file.".vimrc".source = symlink "/etc/dotfiles/other/.vimrc";
+  home.file.".vimrc".source = symlink "/etc/dotfiles/modules/vim/.vimrc";
   # fish config to ~/.config/fish/config.fish
-  xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/other/init.fish";
+  xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/modules/fish/init.fish";
 
   programs.git = {
     enable = true;

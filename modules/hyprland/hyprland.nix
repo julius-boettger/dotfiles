@@ -42,8 +42,8 @@ in
       inherit package plugins;
       # write config file that imports real config
       extraConfig = ''
-        source = /etc/dotfiles/nix/devices/${device.internalName}/hyprland.conf
-        source = /etc/dotfiles/hyprland/hyprland.conf
+        source = /etc/dotfiles/devices/${device.internalName}/hyprland.conf
+        source = /etc/dotfiles/modules/hyprland/hyprland.conf
       '';
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables

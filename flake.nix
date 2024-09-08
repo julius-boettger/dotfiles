@@ -47,7 +47,7 @@
       ### required
       # name of corresponding device directory, e.g. "desktop" for ./devices/desktop/
       internalName,
-      # list of other nix configuration to include, e.g. [ ./base/desktop.nix ]
+      # list of other nix configuration to include, e.g. [ /path/to/some_config.nix ]
       modules,
       ### optional
       # device architecture
@@ -61,9 +61,9 @@
       pkgs-config   = { inherit system; config.allowUnfree = true; };
       pkgs          = import inputs.nixpkgs          pkgs-config;
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
-      pkgs-local    = (import ./pkgs) { inherit system pkgs pkgs-unstable; };
+      pkgs-local    = (import ./packages) { inherit system pkgs pkgs-unstable; };
 
-      # attributes of this set can be taken as function arguments in modules like base/default.nix
+      # attributes of this set can be taken as function arguments in modules like modules/cli/default.nix
       specialArgs = {
         inherit inputs variables;
         secrets = import ./secrets.nix;
@@ -88,7 +88,7 @@
         (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
         # and more...
         [
-          ./base # most basic stuff
+          ./modules/cli # most basic stuff
           ./devices/${internalName} # for specific device
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
