@@ -1,5 +1,5 @@
 # wayland notification daemon and center
-args@{ config, lib, pkgs, inputs, variables, device, ... }:
+args@{ config, lib, pkgs, variables, ... }:
 lib.mkModule "swaync" config {
   environment.systemPackages = with pkgs; [
     unstable.swaynotificationcenter

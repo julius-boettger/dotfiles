@@ -1,5 +1,5 @@
 # for nvidia gpu
-args@{ config, lib, pkgs, inputs, device, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "nvidia" config {
   environment.systemPackages = with pkgs; [
     egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
@@ -12,7 +12,7 @@ lib.mkModule "nvidia" config {
     nvidiaSettings = false;
     # pin driver version https://www.nvidia.com/en-us/drivers/unix/
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
-    /*package = args.config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    /*package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "560.35.03";
       sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
       sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";

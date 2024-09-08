@@ -1,5 +1,5 @@
 # more cli config i don't want on every device
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 {
   options.local.base.cli.full.enable = lib.mkEnableOption "whether to enable full cli config";
 

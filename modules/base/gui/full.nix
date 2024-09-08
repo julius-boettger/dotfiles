@@ -1,5 +1,5 @@
 # more gui config i don't want on every device
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 let
   barrierPort = args.secrets.barrier.port;
 in
@@ -9,8 +9,7 @@ in
   config = lib.mkIf config.local.base.gui.full.enable {
 
     # open port for barrier (if configured)
-    networking.firewall.allowedTCPPorts =
-      args.lib.mkIf (barrierPort != null) [ barrierPort ];
+    networking.firewall.allowedTCPPorts = lib.mkIf (barrierPort != null) [ barrierPort ];
 
     environment.systemPackages = with pkgs; [
       ### gui

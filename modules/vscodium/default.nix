@@ -1,5 +1,5 @@
 # vscodium with extensions (text editor)
-args@{ config, lib, pkgs, inputs, device, ... }:
+args@{ config, lib, pkgs, inputs, variables, device, ... }:
 let
   # extensions from extra flake
   exts = (import inputs.nix-vscode-extensions).extensions.${device.system};

@@ -1,9 +1,9 @@
 # xorg tiling window manager
-args@{ config, lib, pkgs, inputs, variables, device, ... }:
+args@{ config, lib, variables, ... }:
 lib.mkModule "awesome" config {
   services.xserver = {
     enable = true;
-    xkb.layout = args.config.console.keyMap;
+    xkb.layout = config.console.keyMap;
     windowManager.awesome.enable = true;
   };
 

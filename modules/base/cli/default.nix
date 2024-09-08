@@ -1,5 +1,5 @@
 # most basic config for all devices
-args@{ pkgs, variables, device, ... }:
+args@{ lib, pkgs, variables, device, ... }:
 {
   # self-explaining one-liners
   time.timeZone = "Europe/Berlin";
@@ -112,7 +112,7 @@ args@{ pkgs, variables, device, ... }:
     # current device to use for flake-rebuild
     NIX_FLAKE_CURRENT_DEVICE = device.internalName;
     # use --impure for flake-rebuild by default (if configured)
-    NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
+    NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = lib.mkIf variables.allowImpureByDefault "1";
   };
 
   ############################################
