@@ -20,15 +20,12 @@ args@{ pkgs, variables, ... }:
   boot.kernelModules = [ "liquidtux" ];
 
   environment.systemPackages = with pkgs; [
+    alsa-scarlett-gui # control center for focusrite usb audio interface
+    liquidctl # liquid cooler control
     # to mount encrypted data partition
     gnome.zenity # password prompt
     cryptsetup # unlock luks
     dunst # send notifications
-
-    alsa-scarlett-gui # control center for focusrite usb audio interface
-    liquidctl # liquid cooler control
-    unigine-valley # PROPRIETARY gpu stress test and benchmark
-    mprime # PROPRIETARY cpu stress test
   ];
 
   ### mount data partition
