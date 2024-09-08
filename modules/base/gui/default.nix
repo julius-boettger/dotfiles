@@ -91,9 +91,6 @@ in
       spotify # PROPRIETARY
       # gtk theme
       (orchis-theme.override { border-radius = 10; })
-      # sddm theme + dependency (login manager)
-      local.sddm-sugar-candy
-      libsForQt5.qt5.qtgraphicaleffects
       # icon themes
       gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
       (papirus-icon-theme.override { /*folder-*/color = "black"; })
@@ -142,10 +139,7 @@ in
       xkb.layout = args.config.console.keyMap;
     };
 
-    services.displayManager.sddm = {
-      enable = true;
-      theme = "sugar-candy";
-    };
+    services.displayManager.sddm.enable = true;
 
     local = {
       vscodium.enable = true;
@@ -155,6 +149,7 @@ in
       copyq.enable = true;
       eww.enable = true;
       rofi.enable = true;
+      sddm-sugar-candy.enable = true;
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
