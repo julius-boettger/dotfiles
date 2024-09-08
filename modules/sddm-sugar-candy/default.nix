@@ -1,4 +1,4 @@
-# sddm (login manager) theme
+# sddm (display manager) theme
 args@{ config, lib, pkgs, ... }:
 lib.mkModule "sddm-sugar-candy" config {
   services.displayManager.sddm.theme = "sugar-candy";
