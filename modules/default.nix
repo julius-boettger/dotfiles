@@ -5,6 +5,7 @@
     ./awesome
     ./base
     ./copyq
+    ./eww
     ./hyprland
     ./vscodium
     ./nvidia.nix
