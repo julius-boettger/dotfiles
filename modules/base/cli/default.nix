@@ -51,7 +51,6 @@ args@{ pkgs, variables, device, ... }:
   ##########################################
 
   environment.systemPackages = with pkgs; [
-    vim
     wget
     bash
     jq # process json
@@ -80,6 +79,7 @@ args@{ pkgs, variables, device, ... }:
   ###########################################
 
   local = {
+    vim.enable = true;
     fish.enable = true;
     starship.enable = true;
   };
@@ -116,17 +116,10 @@ args@{ pkgs, variables, device, ... }:
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.${variables.username} = { config, ... }:
-  let
-    symlink = config.lib.file.mkOutOfStoreSymlink;
-  in
   {
     home.stateVersion = variables.version;
     # i dont know what this does?
     programs.home-manager.enable = true;
-
-    ### symlink some config files
-    # vim
-    home.file.".vimrc".source = symlink "/etc/dotfiles/modules/vim/.vimrc";
 
     programs.git = {
       enable = true;
