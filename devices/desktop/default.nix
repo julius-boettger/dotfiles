@@ -1,7 +1,12 @@
 args@{ pkgs, variables, ... }:
 {
-  local.base.cli.full.enable = true;
-  local.base.gui.full.enable = true;
+  local = {
+    base = {
+      cli.full.enable = true;
+      gui.full.enable = true;
+    };
+    nvidia.enable = true;
+  };
 
   boot.supportedFilesystems.ntfs = true;
 
@@ -18,8 +23,6 @@ args@{ pkgs, variables, ... }:
     cryptsetup # unlock luks
     dunst # send notifications
 
-    egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
-    nvidia-system-monitor-qt # monitor nvidia gpu stuff
     alsa-scarlett-gui # control center for focusrite usb audio interface
     liquidctl # liquid cooler control
     unigine-valley # PROPRIETARY gpu stress test and benchmark
@@ -43,31 +46,6 @@ args@{ pkgs, variables, ... }:
   home-manager.users."${variables.username}" = { config, ... }: {
     home.file."Library".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Library";
   };
-
-  ### for nvidia gpu
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = false;
-    # pin driver version https://www.nvidia.com/en-us/drivers/unix/
-    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
-    /*package = args.config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "560.35.03";
-      sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
-      sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";
-      openSha256 = "sha256-/32Zf0dKrofTmPZ3Ratw4vDM7B+OgpC4p7s+RHUjCrg=";
-      settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
-      persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
-    };*/
-  };
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
-  # for suspend/wakeup issues, recommended by https://wiki.hyprland.org/Nvidia/
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-  hardware.nvidia.powerManagement.enable = true;
-  hardware.nvidia.open = false;
 
   # monitor config with xrandr command
   services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred";
