@@ -47,9 +47,6 @@ in
     ##########################################
     ##########################################
 
-    # not sure for which package, but this is necessary for some reason
-    nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
     fonts.packages = with pkgs; [
       noto-fonts # ~200 standard modern fonts for all kinds of languages
       noto-fonts-cjk-sans # for asian characters
