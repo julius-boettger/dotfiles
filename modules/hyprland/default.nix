@@ -1,10 +1,10 @@
 # hyprland (tiling wayland compositor)
-args@{ pkgs, variables, device, ... }:
+args@{ pkgs, lib, variables, device, ... }:
 let
-  package = (args.getPkgs "hyprland").hyprland;
+  package = (lib.getPkgs "hyprland").hyprland;
   plugins = [
     # better multi-monitor workspaces
-    (args.getPkgs "split-monitor-workspaces").split-monitor-workspaces
+    (lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces
   ];
 in
 {

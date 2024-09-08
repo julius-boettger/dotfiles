@@ -1,5 +1,5 @@
 # basic gui config (without unrelated programs)
-args@{ pkgs, variables, device, script, script-file, ... }:
+args@{ pkgs, lib, variables, device, script, script-file, ... }:
 {
   imports = [
     ../../vscodium
@@ -131,14 +131,14 @@ args@{ pkgs, variables, device, script, script-file, ... }:
     unstable.hyprland-workspaces # for hyprland + eww integration
     unstable.swaynotificationcenter
     # open eww desktop widget on all monitors
-    (script-file "eww-open-everywhere" /etc/dotfiles/modules/eww/scripts/open-everywhere.sh)
+    (lib.writeScriptFile "eww-open-everywhere" /etc/dotfiles/modules/eww/scripts/open-everywhere.sh)
     # move all hyprland clients to a single workspace
-    (script-file "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
+    (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
     # lockscreen
     unstable.swaylock-effects
-    (script-file "swaylock-effects" /etc/dotfiles/modules/swaylock-effects/swaylock-effects.sh)
-    (script "lock-suspend"   "swaylock-effects && systemctl suspend"  )
-    (script "lock-hibernate" "swaylock-effects && systemctl hibernate")
+    (lib.writeScriptFile "swaylock-effects" /etc/dotfiles/modules/swaylock-effects/swaylock-effects.sh)
+    (lib.writeScript "lock-suspend"   "swaylock-effects && systemctl suspend"  )
+    (lib.writeScript "lock-hibernate" "swaylock-effects && systemctl hibernate")
   ];
 
   ###########################################
