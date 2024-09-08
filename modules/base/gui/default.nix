@@ -2,8 +2,8 @@
 args@{ pkgs, variables, device, script, script-file, ... }:
 {
   imports = [
-    ../vscodium/vscodium.nix
-    ../hyprland/hyprland.nix
+    ../../vscodium
+    ../../hyprland
     # declarative disk management
     args.inputs.disko.nixosModules.disko
   ];
