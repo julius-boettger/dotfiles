@@ -148,8 +148,8 @@ in
 
     # disable docker (enabled in cli config)
     virtualisation.docker = {
-      rootless.enable = args.lib.mkForce false;
-               enable = args.lib.mkForce false;
+      rootless.enable = lib.mkForce false;
+               enable = lib.mkForce false;
     };
 
     # for mounting usb sticks and stuff
