@@ -1,5 +1,5 @@
-# 
-args@{ config, lib, pkgs, inputs, variables, device, ... }:
+# jetbrains ide's
+args@{ config, lib, pkgs, variables, ... }:
 lib.mkModule "jetbrains" config {
   environment.systemPackages = with pkgs.jetbrains; [
     pycharm-community
