@@ -69,13 +69,17 @@
         getPkgs     = input: inputs.${input}      .packages.${system};
         writeScript     = pkgs.writeShellScriptBin;
         writeScriptFile = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
+        mkModule = name: currentConfig: newConfig: {
+          # apply newConfig if module is enabled in currentConfig
+          options.local.${name}.enable = lib.mkEnableOption "whether to enable ${name}";
+          config = lib.mkIf currentConfig.local.${name}.enable newConfig;
+        };
       });
 
       # attributes of this set can be taken as function arguments in modules like modules/base/cli/default.nix
       specialArgs = {
         inherit inputs variables lib;
         secrets = import ./secrets.nix;
-        vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
       };
