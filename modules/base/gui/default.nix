@@ -259,7 +259,6 @@ in
       # files in ~/.config/
       xdg.configFile = {
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
-        "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
       };
     };
   };
