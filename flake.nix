@@ -97,6 +97,8 @@
         [
           ./modules # module definitions with some default config
           ./devices/${internalName} # for specific device
+          # declarative disk management
+          inputs.disko.nixosModules.disko
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
           # make specialArgs available for home manager

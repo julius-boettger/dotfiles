@@ -1,64 +1,69 @@
 # more gui config i don't want on every device
-args@{ pkgs, variables, ... }:
+args@{ config, lib, pkgs, variables, ... }:
 let
   barrierPort = args.secrets.barrier.port;
 in
 {
+  options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
+
   imports = [
     ../../studies
     ../../virt-manager.nix
   ];
 
-  # open port for barrier (if configured)
-  networking.firewall.allowedTCPPorts =
-    args.lib.mkIf (barrierPort != null) [ barrierPort ];
+  config = lib.mkIf config.local.base.gui.full.enable {
 
-  environment.systemPackages = with pkgs; [
-    ### gui
-    obs-studio # video recording
-    onlyoffice-bin_latest # office suite
-    gimp-with-plugins # image editor
-    font-manager # font manager
-    bottles # run windows software easily
-    pitivi # video editor
-    tenacity # audio recorder and editor
-    piper # configure gaming mice graphically with ratbagd
-    protonup-qt # easy ge-proton setup for steam
-    ventoy # create bootable usb sticks
-    usbimager # if ventoy causes problems
-    darktable # photo editor and raw developer
-    inkscape-with-extensions # vector graphic editor
-    veracrypt # disk encryption
-    freefilesync # file backup
-    unstable.bruno # rest api client
-    ddcutil ddcui # interact with external monitors
-    # more gtk themes
-    fluent-gtk-theme
-    (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
+    # open port for barrier (if configured)
+    networking.firewall.allowedTCPPorts =
+      args.lib.mkIf (barrierPort != null) [ barrierPort ];
 
-    ### cli
-    playerctl # pause media with mpris
-    dunst # for better notify-send with dunstify
-    gphoto2fs # mount camera
-  ];
+    environment.systemPackages = with pkgs; [
+      ### gui
+      obs-studio # video recording
+      onlyoffice-bin_latest # office suite
+      gimp-with-plugins # image editor
+      font-manager # font manager
+      bottles # run windows software easily
+      pitivi # video editor
+      tenacity # audio recorder and editor
+      piper # configure gaming mice graphically with ratbagd
+      protonup-qt # easy ge-proton setup for steam
+      ventoy # create bootable usb sticks
+      usbimager # if ventoy causes problems
+      darktable # photo editor and raw developer
+      inkscape-with-extensions # vector graphic editor
+      veracrypt # disk encryption
+      freefilesync # file backup
+      unstable.bruno # rest api client
+      ddcutil ddcui # interact with external monitors
+      # more gtk themes
+      fluent-gtk-theme
+      (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
 
-  ###########################################
-  ###########################################
-  ########### PROGRAMS / SERVICES ###########
-  ###########################################
-  ###########################################
+      ### cli
+      playerctl # pause media with mpris
+      dunst # for better notify-send with dunstify
+      gphoto2fs # mount camera
+    ];
 
-  services.flatpak.enable = true;
+    ###########################################
+    ###########################################
+    ########### PROGRAMS / SERVICES ###########
+    ###########################################
+    ###########################################
 
-  # for configuring gaming mice with piper
-  services.ratbagd.enable = true;
+    services.flatpak.enable = true;
 
-  # remove background noise from mic
-  programs.noisetorch.enable = true;
+    # for configuring gaming mice with piper
+    services.ratbagd.enable = true;
 
-  # steam (PROPRIETARY)
-  programs.steam = {
-    enable = true;
-    package = pkgs.unstable.steam;
+    # remove background noise from mic
+    programs.noisetorch.enable = true;
+
+    # steam (PROPRIETARY)
+    programs.steam = {
+      enable = true;
+      package = pkgs.unstable.steam;
+    };
   };
 }
