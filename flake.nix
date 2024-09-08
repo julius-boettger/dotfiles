@@ -63,21 +63,24 @@
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
       pkgs-local    = (import ./packages) { inherit system pkgs pkgs-unstable; };
 
+      # add some helper functions to lib
+      lib = inputs.nixpkgs.lib.extend (final: prev: inputs.home-manager.lib // {
+        getNixpkgs  = input: inputs.${input}.legacyPackages.${system};
+        getPkgs     = input: inputs.${input}      .packages.${system};
+        writeScript     = pkgs.writeShellScriptBin;
+        writeScriptFile = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
+      });
+
       # attributes of this set can be taken as function arguments in modules like modules/base/cli/default.nix
       specialArgs = {
-        inherit inputs variables;
+        inherit inputs variables lib;
         secrets = import ./secrets.nix;
         vscode-extensions = (import inputs.nix-vscode-extensions).extensions.${system};
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName isLaptop; } // device;
-        # helper functions
-        getNixpkgs  = input: inputs.${input}.legacyPackages.${system};
-        getPkgs     = input: inputs.${input}      .packages.${system};
-        script      = pkgs.writeShellScriptBin;
-        script-file = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
       };
     in
-    inputs.nixpkgs.lib.nixosSystem {
+    lib.nixosSystem {
       # make specialArgs available for nixos system
       inherit system specialArgs;
       # include nix config

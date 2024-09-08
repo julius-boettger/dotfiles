@@ -1,9 +1,9 @@
 # gns3 client + gns3 server (virtualbox vm) + utils
-args@{ pkgs, variables, ... }:
+args@{ pkgs, lib, variables, ... }:
 let 
   # should point to nixpkgs commit dd5621df6dcb90122b50da5ec31c411a0de3e538
   # to get gns3-gui version 2.2.44.1
-  gns3-gui = (args.getNixpkgs "nixpkgs-itsarch").gns3-gui;
+  gns3-gui = (lib.getNixpkgs "nixpkgs-itsarch").gns3-gui;
 in
 {
   environment.systemPackages = with pkgs; [
