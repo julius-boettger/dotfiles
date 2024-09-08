@@ -72,7 +72,6 @@ in
     environment.systemPackages = with pkgs; [
       ### gui
       gparted # partition manager, use with sudo -E gparted
-      unstable.gitnuro # git gui
       unstable.resources # system monitor (best overall)
       monitor # system monitor (best process view)
       psensor # gui for (lm_)sensors to display system temperatures
@@ -159,6 +158,7 @@ in
       eww.enable = true;
       swaync.enable = true;
       firefox.enable = true;
+      gitnuro.enable = true;
     };
 
     services.onedrive.enable = true;
