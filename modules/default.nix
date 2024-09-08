@@ -16,6 +16,7 @@
     ./sddm-sugar-candy
     ./starship
     ./swaylock-effects
+    ./vim
     ./swaync
     ./vscodium
     ./nvidia.nix
