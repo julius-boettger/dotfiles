@@ -36,7 +36,7 @@ in
   };
 
   # home manager module
-  home-manager.users."${variables.username}" = { config, ... }: {
+  home-manager.users.${variables.username} = { config, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
       inherit package plugins;
