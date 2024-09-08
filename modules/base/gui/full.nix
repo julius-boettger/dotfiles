@@ -7,7 +7,6 @@ in
   options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
 
   imports = [
-    ../../studies
     ../../virt-manager.nix
   ];
 

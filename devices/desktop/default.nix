@@ -1,5 +1,7 @@
 args@{ pkgs, variables, ... }:
 {
+  imports = [ ../../modules/studies ];
+
   local = {
     base = {
       cli.full.enable = true;
