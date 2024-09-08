@@ -237,105 +237,105 @@ args@{ config, lib, pkgs, variables, device, ... }:
       symlink = config.lib.file.mkOutOfStoreSymlink;
     in
     {
-
-    ### theming
-    gtk.enable = true;
-    # gtk theme
-    gtk.theme.name = "Orchis-Dark";
-    # icon theme
-    gtk.iconTheme.name = "Papirus-Dark";
-    # font config
-    gtk.font.name = "Noto Sans";
-    gtk.font.size = 10;
-    # cursor theme
-    home.pointerCursor = {
+      ### theming
       gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
-      size = 32;
-    };
-    gtk.cursorTheme = {
-      name = "capitaine-cursors";
-      size = 32;
-    };
+      # gtk theme
+      gtk.theme.name = "Orchis-Dark";
+      # icon theme
+      gtk.iconTheme.name = "Papirus-Dark";
+      # font config
+      gtk.font.name = "Noto Sans";
+      gtk.font.size = 10;
+      # cursor theme
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors";
+        size = 32;
+      };
+      gtk.cursorTheme = {
+        name = "capitaine-cursors";
+        size = 32;
+      };
 
-    # for play/pause current media player (and remembering last active player)
-    services.playerctld.enable = true;
+      # for play/pause current media player (and remembering last active player)
+      services.playerctld.enable = true;
 
-    # bluez bluetooth gui (was enabled earlier!)
-    # disable notifications when a device (dis)connects
-    dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
+      # bluez bluetooth gui (was enabled earlier!)
+      # disable notifications when a device (dis)connects
+      dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
 
-    # browser
-    programs.firefox = {
-      enable = true;
-      # allow custom css
-      profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      # browser
+      programs.firefox = {
+        enable = true;
+        # allow custom css
+        profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      };
+
+      # automatically mount usb sticks with notification and tray icon
+      services.udiskie = {
+        enable = true;
+        automount = true;
+        tray = "never"; # necessary when not having a tray
+        notify = true;
+      };
+
+      # rofi (application launcher)
+      programs.rofi = {
+        enable = true;
+        theme = "transparent"; # own theme
+        package = pkgs.rofi-wayland; # wayland support
+        terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
+      };
+
+      # flameshot (screenshots on xorg)
+      services.flameshot.enable = true;
+      services.flameshot.settings.General = {
+                uiColor  = "#FC618D";
+        contrastUiColor  = "#5AD4E6";
+        contrastOpacity  = 64;
+        showHelp         = false;
+        startupLaunch    = false;
+        disabledTrayIcon = true;
+      };
+
+      ### create dotfiles
+      # onedrive
+      home.file.".config/onedrive/config".text = ''
+        # try to download changes from onedrive every x seconds
+        monitor_interval = "6"
+        # fully scan data for integrity every x attempt of downloading (monitor_interval)
+        monitor_fullscan_frequency = "50"
+        # minimum number of downloaded changes to trigger desktop notification
+        min_notify_changes = "1"   
+        # ignore temporary stuff and weird obsidian file
+        skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
+      '';
+      # rofimoji
+      xdg.configFile."rofimoji.rc".text = ''
+        action = copy
+        skin-tone = neutral
+      '';
+
+      ### symlink dotfiles
+      # files in ~/.config/
+      xdg.configFile = {
+        "eww"                     = { source = symlink "/etc/dotfiles/modules/eww";     recursive = true; };
+        "awesome"                 = { source = symlink "/etc/dotfiles/modules/awesome"; recursive = true; };
+        "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
+        "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
+        "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
+        "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/modules/copyq/copyq.conf";
+        "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
+        "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
+      };
+      # files somewhere else in ~/
+      home.file = {
+        ".ideavimrc".source = symlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
+        ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
+        ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/modules/firefox/firefox.css";
+      };
     };
-
-    # automatically mount usb sticks with notification and tray icon
-    services.udiskie = {
-      enable = true;
-      automount = true;
-      tray = "never"; # necessary when not having a tray
-      notify = true;
-    };
-
-    # rofi (application launcher)
-    programs.rofi = {
-      enable = true;
-      theme = "transparent"; # own theme
-      package = pkgs.rofi-wayland; # wayland support
-      terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
-    };
-
-    # flameshot (screenshots on xorg)
-    services.flameshot.enable = true;
-    services.flameshot.settings.General = {
-              uiColor  = "#FC618D";
-      contrastUiColor  = "#5AD4E6";
-      contrastOpacity  = 64;
-      showHelp         = false;
-      startupLaunch    = false;
-      disabledTrayIcon = true;
-    };
-
-    ### create dotfiles
-    # onedrive
-    home.file.".config/onedrive/config".text = ''
-      # try to download changes from onedrive every x seconds
-      monitor_interval = "6"
-      # fully scan data for integrity every x attempt of downloading (monitor_interval)
-      monitor_fullscan_frequency = "50"
-      # minimum number of downloaded changes to trigger desktop notification
-      min_notify_changes = "1"   
-      # ignore temporary stuff and weird obsidian file
-      skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
-    '';
-    # rofimoji
-    xdg.configFile."rofimoji.rc".text = ''
-      action = copy
-      skin-tone = neutral
-    '';
-
-    ### symlink dotfiles
-    # files in ~/.config/
-    xdg.configFile = {
-      "eww"                     = { source = symlink "/etc/dotfiles/modules/eww";     recursive = true; };
-      "awesome"                 = { source = symlink "/etc/dotfiles/modules/awesome"; recursive = true; };
-      "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
-      "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
-      "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
-      "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/modules/copyq/copyq.conf";
-      "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
-      "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
-    };
-    # files somewhere else in ~/
-    home.file = {
-      ".ideavimrc".source = symlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
-      ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
-      ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/modules/firefox/firefox.css";
-    };
-  };};
+  };
 }
