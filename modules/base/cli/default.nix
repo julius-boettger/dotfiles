@@ -62,7 +62,6 @@ args@{ pkgs, variables, device, ... }:
     nomino # file renaming
     unstable.numbat # cli calculator
     fastfetch # neofetch but fast
-    starship # shell prompt, install as program and package to set PATH
     fortune # random quote
     nix-output-monitor # prettier output of nix commands
     unstable.nh # nix helper (prettier/better nix commands)
@@ -80,7 +79,10 @@ args@{ pkgs, variables, device, ... }:
   ###########################################
   ###########################################
 
-  local.fish.enable = true;
+  local = {
+    fish.enable = true;
+    starship.enable = true;
+  };
 
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
@@ -103,8 +105,6 @@ args@{ pkgs, variables, device, ... }:
     NIX_FLAKE_CURRENT_DEVICE = device.internalName;
     # use --impure for flake-rebuild by default (if configured)
     NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = args.lib.mkIf variables.allowImpureByDefault "1";
-    # config file location for starship prompt
-    STARSHIP_CONFIG = "/etc/dotfiles/modules/starship/starship.toml";
   };
 
   ############################################
