@@ -15,6 +15,7 @@
     ./rofi
     ./sddm-sugar-candy
     ./starship
+    ./swaylock-effects
     ./swaync
     ./vscodium
     ./nvidia.nix
