@@ -1,5 +1,8 @@
 # basic gui config (without unrelated programs)
 args@{ config, lib, pkgs, variables, device, ... }:
+let
+  cfg = config.local.base.gui;
+in
 {
   options.local.base.gui.enable = lib.mkEnableOption "whether to enable basic gui config";
 
@@ -7,7 +10,7 @@ args@{ config, lib, pkgs, variables, device, ... }:
     ../../hyprland
   ];
 
-  config = lib.mkIf config.local.base.gui.enable {
+  config = lib.mkIf (cfg.enable || cfg.full.enable) {
 
     # nvidia driver fails to build on latest kernel
     #boot.kernelPackages = pkgs.linuxPackages_latest;
