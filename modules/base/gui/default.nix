@@ -309,7 +309,6 @@ in
       };
       # files somewhere else in ~/
       home.file = {
-        ".ideavimrc".source = symlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
         ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
       };
     };

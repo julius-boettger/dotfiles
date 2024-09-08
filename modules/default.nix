@@ -10,6 +10,7 @@
     ./fish
     ./gitnuro
     ./hyprland
+    ./jetbrains
     ./swaync
     ./vscodium
     ./nvidia.nix
