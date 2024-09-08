@@ -7,6 +7,7 @@
     ./copyq
     ./eww
     ./firefox
+    ./fish
     ./hyprland
     ./swaync
     ./vscodium
