@@ -5,7 +5,6 @@ let
 in
 {
   imports = [
-    ./default.nix
     ../../studies
     ../../virt-manager.nix
   ];

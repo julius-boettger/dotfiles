@@ -95,7 +95,7 @@
         (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
         # and more...
         [
-          ./modules/base/cli # most basic stuff
+          ./modules # module definitions with some default config
           ./devices/${internalName} # for specific device
           # make home manager available
           inputs.home-manager.nixosModules.home-manager
