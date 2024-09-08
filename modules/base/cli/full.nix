@@ -2,7 +2,9 @@
 args@{ config, lib, pkgs, variables, ... }:
 {
   options.local.base.cli.full.enable = lib.mkEnableOption "whether to enable full cli config";
+
   config = lib.mkIf config.local.base.cli.full.enable {
+
     environment.systemPackages = with pkgs; [
       tldr # summarize man pages
       meson ninja # for building c/c++ projects
@@ -13,12 +15,6 @@ args@{ config, lib, pkgs, variables, ... }:
       cargo # rust
       nodePackages_latest.nodejs # javascript
     ];
-
-    ###########################################
-    ###########################################
-    ########### PROGRAMS / SERVICES ###########
-    ###########################################
-    ###########################################
 
     # fix pkg-config by pointing it in the right way
     environment.variables.PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig";
