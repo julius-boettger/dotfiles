@@ -157,6 +157,7 @@ in
       awesome.enable = true;
       copyq.enable = true;
       swaync.enable = true;
+      firefox.enable = true;
     };
 
     services.onedrive.enable = true;
@@ -253,13 +254,6 @@ in
       # disable notifications when a device (dis)connects
       dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
 
-      # browser
-      programs.firefox = {
-        enable = true;
-        # allow custom css
-        profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
-
       # automatically mount usb sticks with notification and tray icon
       services.udiskie = {
         enable = true;
@@ -316,7 +310,6 @@ in
       home.file = {
         ".ideavimrc".source = symlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
         ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
-        ".mozilla/firefox/default/chrome/userChrome.css".source = symlink "/etc/dotfiles/modules/firefox/firefox.css";
       };
     };
   };
