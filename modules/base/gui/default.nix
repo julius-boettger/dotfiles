@@ -150,7 +150,6 @@ in
     services.xserver = {
       enable = true;
       xkb.layout = args.config.console.keyMap;
-      windowManager.awesome.enable = true;
     };
 
     services.displayManager.sddm = {
@@ -162,6 +161,7 @@ in
       vscodium.enable = true;
       alacritty.enable = true;
       hyprland.enable = true;
+      awesome.enable = true;
     };
 
     services.onedrive.enable = true;
@@ -314,7 +314,6 @@ in
       # files in ~/.config/
       xdg.configFile = {
         "eww"                     = { source = symlink "/etc/dotfiles/modules/eww";     recursive = true; };
-        "awesome"                 = { source = symlink "/etc/dotfiles/modules/awesome"; recursive = true; };
         "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
         "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
