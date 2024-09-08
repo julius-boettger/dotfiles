@@ -80,6 +80,8 @@ args@{ pkgs, variables, device, ... }:
   ###########################################
   ###########################################
 
+  local.fish.enable = true;
+
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
 
@@ -105,17 +107,6 @@ args@{ pkgs, variables, device, ... }:
     STARSHIP_CONFIG = "/etc/dotfiles/modules/starship/starship.toml";
   };
 
-  # fish shell
-  users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
-  environment.variables = {
-    fish_color_param = "normal";
-    fish_color_error = "yellow";
-    fish_color_option = "cyan";
-    fish_color_command = "green";
-    fish_color_autosuggestion = "brblack";
-  };
-
   ############################################
   ############################################
   ############### HOME-MANAGER ###############
@@ -136,8 +127,6 @@ args@{ pkgs, variables, device, ... }:
     ### symlink some config files
     # vim
     home.file.".vimrc".source = symlink "/etc/dotfiles/modules/vim/.vimrc";
-    # fish config to ~/.config/fish/config.fish
-    xdg.configFile."fish/config.fish".source = symlink "/etc/dotfiles/modules/fish/init.fish";
 
     programs.git = {
       enable = true;
