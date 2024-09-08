@@ -76,7 +76,6 @@ in
     environment.systemPackages = with pkgs; [
       ### gui
       gparted # partition manager, use with sudo -E gparted
-      unstable.alacritty # terminal
       unstable.gitnuro # git gui
       unstable.resources # system monitor (best overall)
       monitor # system monitor (best process view)
@@ -166,8 +165,10 @@ in
       };
     };
 
-    # enable self-written options
-    local.vscodium.enable = true;
+    local = {
+      vscodium.enable = true;
+      alacritty.enable = true;
+    };
 
     services.onedrive.enable = true;
 
@@ -194,12 +195,6 @@ in
 
     # for mounting usb sticks and stuff
     services.udisks2.enable = true;
-
-    # make some stuff in alacritty look better...? probably subjective
-    fonts.fontconfig = {
-      subpixel.rgba = "vrgb";
-      hinting.style = "full"; # may cause loss of shape, try lower value?
-    };
 
     # what to do when pressing power button
     services.logind = {
@@ -331,7 +326,6 @@ in
         "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
         "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/modules/copyq/copyq.conf";
         "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
-        "alacritty/alacritty.toml"   .source = symlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
       };
       # files somewhere else in ~/
       home.file = {
