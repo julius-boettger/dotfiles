@@ -1,5 +1,7 @@
 args@{ pkgs, variables, ... }:
 {
+  imports = [ ./../../modules/base/cli/full.nix ];
+
   wsl = {
     enable = true;
     defaultUser = variables.username;

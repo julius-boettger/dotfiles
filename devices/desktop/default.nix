@@ -3,6 +3,8 @@ args@{ pkgs, variables, ... }:
   imports = [
     #./disk-config.nix
     ./hardware-configuration.nix
+    ./../../modules/base/cli/full.nix
+    ./../../modules/base/gui/full.nix
   ];
 
   boot.supportedFilesystems.ntfs = true;

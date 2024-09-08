@@ -3,6 +3,7 @@ args@{ pkgs, variables, ... }:
   imports = [
     #./disk-config.nix
     ./hardware-configuration.nix
+    ./../../modules/base/gui
   ];
 
   # automatic garbage collection to free space

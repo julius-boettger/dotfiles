@@ -48,7 +48,7 @@
       # name of corresponding device directory, e.g. "desktop" for ./devices/desktop/
       internalName,
       # list of other nix configuration to include, e.g. [ /path/to/some_config.nix ]
-      modules,
+      modules ? [],
       ### optional
       # device architecture
       system ? "x86_64-linux",

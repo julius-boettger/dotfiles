@@ -17,21 +17,15 @@
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
     {
       internalName = "desktop";
-      modules = [
-        ./modules/base/cli/full.nix
-        ./modules/base/gui/full.nix
-      ];
     }
     {
       internalName = "laptop";
-      modules = [ ./modules/base/gui ];
       isLaptop = true;
     }
     {
           hostName = "wsl";
       internalName = "wsl";
       modules = [
-        ./modules/base/cli/full.nix
         inputs.nixos-wsl.nixosModules.wsl
         inputs.vscode-server.nixosModules.default
       ];
