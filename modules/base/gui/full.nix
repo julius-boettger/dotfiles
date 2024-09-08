@@ -49,8 +49,6 @@ in
 
     local.virt-manager.enable = true;
 
-    services.flatpak.enable = true;
-
     # for configuring gaming mice with piper
     services.ratbagd.enable = true;
 
