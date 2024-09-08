@@ -114,8 +114,6 @@ in
     ###########################################
     ###########################################
 
-    services.displayManager.sddm.enable = true;
-
     local = {
       vscodium.enable = true;
       alacritty.enable = true;
@@ -133,6 +131,8 @@ in
     };
 
     services.onedrive.enable = true;
+
+    services.displayManager.sddm.enable = true;
 
     # configure various app settings
     programs.dconf.enable = true;
