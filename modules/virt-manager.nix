@@ -1,7 +1,7 @@
 # vm's with virt-manager + libvirtd + qemu + kvm
 # based on https://nixos.wiki/wiki/Virt-manager
-args@{ pkgs, variables, device, ... }:
-{
+args@{ config, lib, variables, device, ... }:
+lib.mkModule "virt-manager" config {
   programs.virt-manager.enable = true;
 
   # libvirtd

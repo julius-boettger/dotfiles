@@ -6,10 +6,6 @@ in
 {
   options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
 
-  imports = [
-    ../../virt-manager.nix
-  ];
-
   config = lib.mkIf config.local.base.gui.full.enable {
 
     # open port for barrier (if configured)
@@ -50,6 +46,8 @@ in
     ########### PROGRAMS / SERVICES ###########
     ###########################################
     ###########################################
+
+    local.virt-manager.enable = true;
 
     services.flatpak.enable = true;
 
