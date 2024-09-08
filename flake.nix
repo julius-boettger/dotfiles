@@ -63,7 +63,7 @@
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
       pkgs-local    = (import ./packages) { inherit system pkgs pkgs-unstable; };
 
-      # attributes of this set can be taken as function arguments in modules like modules/cli/default.nix
+      # attributes of this set can be taken as function arguments in modules like modules/base/cli/default.nix
       specialArgs = {
         inherit inputs variables;
         secrets = import ./secrets.nix;
@@ -88,7 +88,7 @@
         (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
         # and more...
         [
-          ./modules/cli # most basic stuff
+          ./modules/base/cli # most basic stuff
           ./devices/${internalName} # for specific device
           # make home manager available
           inputs.home-manager.nixosModules.home-manager

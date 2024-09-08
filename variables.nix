@@ -18,20 +18,20 @@
     {
       internalName = "desktop";
       modules = [
-        ./modules/cli/full.nix
-        ./modules/gui/full.nix
+        ./modules/base/cli/full.nix
+        ./modules/base/gui/full.nix
       ];
     }
     {
       internalName = "laptop";
-      modules = [ ./modules/gui ];
+      modules = [ ./modules/base/gui ];
       isLaptop = true;
     }
     {
           hostName = "wsl";
       internalName = "wsl";
       modules = [
-        ./modules/cli/full.nix
+        ./modules/base/cli/full.nix
         inputs.nixos-wsl.nixosModules.wsl
         inputs.vscode-server.nixosModules.default
       ];

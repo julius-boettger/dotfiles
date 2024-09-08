@@ -6,8 +6,8 @@ in
 {
   imports = [
     ./default.nix
-    ../../modules/studies
-    ../../modules/virt-manager.nix
+    ../../studies
+    ../../virt-manager.nix
   ];
 
   # open port for barrier (if configured)
