@@ -4,6 +4,7 @@
     ./alacritty
     ./awesome
     ./base
+    ./copyq
     ./hyprland
     ./vscodium
     ./nvidia.nix

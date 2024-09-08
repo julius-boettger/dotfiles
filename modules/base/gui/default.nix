@@ -83,7 +83,6 @@ in
       unstable.vesktop # wayland optimized discord client
       signal-desktop # messenger
       rofimoji # emoji picker for rofi
-      copyq # clipboard manager
       networkmanagerapplet # tray icon for networking connection
       xarchiver # archive manager
       baobab # disk usage analyzer
@@ -162,6 +161,7 @@ in
       alacritty.enable = true;
       hyprland.enable = true;
       awesome.enable = true;
+      copyq.enable = true;
     };
 
     services.onedrive.enable = true;
@@ -317,7 +317,6 @@ in
         "swaync"                     .source = symlink "/etc/dotfiles/modules/swaync";
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
         "picom.conf"                 .source = symlink "/etc/dotfiles/modules/picom/picom.conf";
-        "copyq/copyq.conf"           .source = symlink "/etc/dotfiles/modules/copyq/copyq.conf";
         "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
       };
       # files somewhere else in ~/
