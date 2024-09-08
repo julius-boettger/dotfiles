@@ -8,8 +8,8 @@ in
 
   config = lib.mkIf (cfg.enable || cfg.full.enable) {
 
-    # nvidia driver fails to build on latest kernel
-    #boot.kernelPackages = pkgs.linuxPackages_latest;
+    # latest kernel
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
     boot.loader = {
       timeout = 1;

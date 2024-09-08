@@ -1,11 +1,6 @@
 # for nvidia gpu
 args@{ config, lib, pkgs, ... }:
 lib.mkModule "nvidia" config {
-  environment.systemPackages = with pkgs; [
-    egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
-    nvidia-system-monitor-qt # monitor nvidia gpu stuff
-  ];
-
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
@@ -31,4 +26,12 @@ lib.mkModule "nvidia" config {
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.open = false;
+
+  environment.systemPackages = with pkgs; [
+    egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
+    nvidia-system-monitor-qt # monitor nvidia gpu stuff
+  ];
+
+  # nvidia driver fails to build on latest kernel, so use lts instead
+  boot.kernelPackages = pkgs.linuxPackages;
 }
