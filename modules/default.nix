@@ -12,6 +12,7 @@
     ./hyprland
     ./jetbrains
     ./picom
+    ./rofi
     ./swaync
     ./vscodium
     ./nvidia.nix

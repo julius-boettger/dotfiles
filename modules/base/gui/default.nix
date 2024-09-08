@@ -81,7 +81,6 @@ in
       snapshot # camera
       unstable.vesktop # wayland optimized discord client
       signal-desktop # messenger
-      rofimoji # emoji picker for rofi
       networkmanagerapplet # tray icon for networking connection
       xarchiver # archive manager
       baobab # disk usage analyzer
@@ -155,6 +154,7 @@ in
       awesome.enable = true;
       copyq.enable = true;
       eww.enable = true;
+      rofi.enable = true;
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
@@ -263,14 +263,6 @@ in
         notify = true;
       };
 
-      # rofi (application launcher)
-      programs.rofi = {
-        enable = true;
-        theme = "transparent"; # own theme
-        package = pkgs.rofi-wayland; # wayland support
-        terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
-      };
-
       # flameshot (screenshots on xorg)
       services.flameshot.enable = true;
       services.flameshot.settings.General = {
@@ -294,21 +286,12 @@ in
         # ignore temporary stuff and weird obsidian file
         skip_file = "~*|.~*|*.tmp|.OBSIDIANTEST"
       '';
-      # rofimoji
-      xdg.configFile."rofimoji.rc".text = ''
-        action = copy
-        skin-tone = neutral
-      '';
 
       ### symlink dotfiles
       # files in ~/.config/
       xdg.configFile = {
         "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
         "VSCodium/User/settings.json".source = symlink "/etc/dotfiles/modules/vscodium/vscodium.json";
-      };
-      # files somewhere else in ~/
-      home.file = {
-        ".local/share/rofi/themes".source = symlink "/etc/dotfiles/modules/rofi";
       };
     };
   };
