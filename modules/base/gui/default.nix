@@ -11,15 +11,6 @@ in
     # latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-    boot.loader = {
-      timeout = 1;
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 20; # number of generations to show
-      };
-    };
-
     # sound with pipewire
     sound.enable = true;
     security.rtkit.enable = true;

@@ -16,6 +16,15 @@ args@{ lib, pkgs, variables, device, ... }:
   system.stateVersion = variables.version;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.loader = {
+    timeout = 1;
+    efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 20; # number of generations to show
+    };
+  };
+
   console = {
     earlySetup = true;
     keyMap = "de";
