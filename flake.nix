@@ -61,7 +61,7 @@
       pkgs-config   = { inherit system; config.allowUnfree = true; };
       pkgs          = import inputs.nixpkgs          pkgs-config;
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
-      pkgs-local    = (import ./packages) { inherit system pkgs pkgs-unstable; };
+      pkgs-local    = import ./packages { inherit pkgs; };
 
       # add some helper functions to lib
       lib = inputs.nixpkgs.lib.extend (final: prev: inputs.home-manager.lib // {

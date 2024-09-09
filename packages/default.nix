@@ -1,10 +1,6 @@
 # build local packages
-{ system, pkgs, pkgs-unstable }:
-let 
-  callPackage = pkgs.callPackage;
-in
+{ pkgs, ... }:
 {
-  picom-jonaburg     = callPackage ./picom-jonaburg.nix   {};
-  sddm-sugar-candy   = callPackage ./sddm-sugar-candy.nix {};
-  monokai-pro-vscode = callPackage ./monokai-pro-vscode   {};
+  picom-jonaburg     = pkgs.callPackage ./picom-jonaburg.nix   {};
+  sddm-sugar-candy   = pkgs.callPackage ./sddm-sugar-candy.nix {};
 }

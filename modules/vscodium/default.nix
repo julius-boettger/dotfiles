@@ -16,8 +16,6 @@ lib.mkModule "vscodium" config {
         with exts.vscode-marketplace-release;
         with exts.open-vsx-release; # <-- use first if available, otherwise go up
       [
-        # monokai pro color theme from local package
-        pkgs.local.monokai-pro-vscode
         # for syntax highlighting / language support
         dlasagno.rasi
         eww-yuck.yuck
@@ -41,6 +39,7 @@ lib.mkModule "vscodium" config {
         naumovs.color-highlight # highlight color codes with their color
         leetcode.vscode-leetcode # solve leetcode problems
         pkief.material-icon-theme # file icon theme
+        monokai.theme-monokai-pro-vscode # color theme
         christian-kohler.path-intellisense # auto complete paths
       ];
     })
