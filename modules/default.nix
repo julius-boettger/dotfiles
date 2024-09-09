@@ -19,6 +19,7 @@
     ./vim
     ./swaync
     ./vscodium
+    ./bluetooth.nix
     ./devtools.nix
     ./fastfetch.nix
     ./nautilus.nix
