@@ -26,6 +26,7 @@
     ./nvidia.nix
     ./onedrive.nix
     ./piper.nix
+    ./playerctl.nix
     ./steam.nix
     ./virt-manager.nix
     ./wsl-vpnkit.nix

@@ -27,7 +27,6 @@ args@{ config, lib, pkgs, ... }:
       (colloid-gtk-theme.override { tweaks = [ "normal" ]; })
 
       ### cli
-      playerctl # pause media with mpris
       dunst # for better notify-send with dunstify
       gphoto2fs # mount camera
     ];
@@ -35,6 +34,7 @@ args@{ config, lib, pkgs, ... }:
     local = {
       virt-manager.enable = true;
       devtools.cpp.enable = true;
+      playerctl.enable = true;
     };
 
     # remove background noise from mic
