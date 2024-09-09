@@ -6,6 +6,7 @@ args@{ config, pkgs, variables, ... }:
     base.gui.full.enable = true;
     nvidia.enable = true;
     steam.enable = true;
+    piper.enable = true;
   };
 
   boot.supportedFilesystems.ntfs = true;

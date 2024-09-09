@@ -20,7 +20,6 @@ in
       bottles # run windows software easily
       pitivi # video editor
       tenacity # audio recorder and editor
-      piper # configure gaming mice graphically with ratbagd
       ventoy # create bootable usb sticks
       usbimager # if ventoy causes problems
       darktable # photo editor and raw developer
@@ -39,19 +38,10 @@ in
       gphoto2fs # mount camera
     ];
 
-    ###########################################
-    ###########################################
-    ########### PROGRAMS / SERVICES ###########
-    ###########################################
-    ###########################################
-
     local = {
       virt-manager.enable = true;
       devtools.cpp.enable = true;
     };
-
-    # for configuring gaming mice with piper
-    services.ratbagd.enable = true;
 
     # remove background noise from mic
     programs.noisetorch.enable = true;
