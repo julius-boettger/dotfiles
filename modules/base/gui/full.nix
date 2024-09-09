@@ -21,7 +21,6 @@ in
       pitivi # video editor
       tenacity # audio recorder and editor
       piper # configure gaming mice graphically with ratbagd
-      protonup-qt # easy ge-proton setup for steam
       ventoy # create bootable usb sticks
       usbimager # if ventoy causes problems
       darktable # photo editor and raw developer
@@ -56,11 +55,5 @@ in
 
     # remove background noise from mic
     programs.noisetorch.enable = true;
-
-    # steam (PROPRIETARY)
-    programs.steam = {
-      enable = true;
-      package = pkgs.unstable.steam;
-    };
   };
 }
