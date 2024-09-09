@@ -72,9 +72,7 @@ function flake-rebuild
         echo '$NIX_FLAKE_CURRENT_DEVICE is not set!'
         return 1
     end
-    # cd back and forth because of wsl issue
-    set workingDir $(pwd)
-    cd /etc/dotfiles
+    
     # use --impure if NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT is set
     if test "$NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT" = "1"
         set impure "--impure"
@@ -82,11 +80,6 @@ function flake-rebuild
 
     # rebuild with nh (for prettier output), current device,
     # --impure (if set) and other given args
-    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE . -- $impure $argv
-
-    set return_code $status
-    # go back
-    cd $workingDir
-    # return status code of nh os switch
-    return $return_code
+    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE /etc/dotfiles -- $impure $argv
+    return $status
 end
