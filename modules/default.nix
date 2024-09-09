@@ -28,5 +28,6 @@
     ./piper.nix
     ./steam.nix
     ./virt-manager.nix
+    ./wsl-vpnkit.nix
   ];
 }
