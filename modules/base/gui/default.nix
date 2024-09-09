@@ -164,11 +164,7 @@ in
     ############### HOME-MANAGER ###############
     ############################################
     ############################################
-    home-manager.users.${variables.username} = { config, ... }:
-    let
-      symlink = config.lib.file.mkOutOfStoreSymlink;
-    in
-    {
+    home-manager.users.${variables.username} = { config, ... }: {
       ### theming
       gtk.enable = true;
       # gtk theme
