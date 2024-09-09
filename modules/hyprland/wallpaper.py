@@ -12,7 +12,7 @@ colors = {
 }
 
 # directory of unsorted wallpapers to pick at random
-OTHER_WALLPAPER_PATH = "/etc/dotfiles/wallpapers/other/"
+OTHER_WALLPAPER_PATH = "/etc/dotfiles/wallpapers/misc/"
 
 # if directory exists and is not empty: use random wallpaper from it
 if os.path.isdir(OTHER_WALLPAPER_PATH) and len(os.listdir(OTHER_WALLPAPER_PATH)) != 0:
