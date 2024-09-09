@@ -20,6 +20,7 @@
     ./swaync
     ./vscodium
     ./devtools.nix
+    ./fastfetch.nix
     ./nvidia.nix
     ./onedrive.nix
     ./piper.nix

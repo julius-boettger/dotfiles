@@ -72,7 +72,6 @@ args@{ lib, pkgs, variables, device, ... }:
     zoxide # better cd
     nomino # file renaming
     unstable.numbat # cli calculator
-    fastfetch # neofetch but fast
     fortune # random quote
     librespeed-cli # speedtest
     nix-output-monitor # prettier output of nix commands
@@ -85,15 +84,12 @@ args@{ lib, pkgs, variables, device, ... }:
     vim.enable = true;
     fish.enable = true;
     starship.enable = true;
+    fastfetch.enable = true;
     devtools.python.enable = true;
   };
 
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
-
-  # shell alias for shorter fastfetch
-  environment.shellAliases.fastfetch-short =
-    "fastfetch -c /etc/dotfiles/devices/${device.internalName}/fastfetch/short.jsonc";
 
   # for git authentication with ssh keys
   programs.ssh = {

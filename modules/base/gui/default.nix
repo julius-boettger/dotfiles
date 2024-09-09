@@ -234,12 +234,6 @@ in
         startupLaunch    = false;
         disabledTrayIcon = true;
       };
-
-      ### symlink dotfiles
-      # files in ~/.config/
-      xdg.configFile = {
-        "fastfetch/config.jsonc"     .source = symlink "/etc/dotfiles/devices/${device.internalName}/fastfetch/default.jsonc";
-      };
     };
   };
 }
