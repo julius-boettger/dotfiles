@@ -146,12 +146,6 @@ in
     # default application for opening directories
     xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
 
-    # disable docker (enabled in cli config)
-    virtualisation.docker = {
-      rootless.enable = lib.mkForce false;
-               enable = lib.mkForce false;
-    };
-
     # for mounting usb sticks and stuff
     services.udisks2.enable = true;
 

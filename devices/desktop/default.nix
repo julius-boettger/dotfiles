@@ -3,10 +3,7 @@ args@{ config, pkgs, variables, ... }:
   imports = [ ../../modules/studies ];
 
   local = {
-    base = {
-      cli.full.enable = true;
-      gui.full.enable = true;
-    };
+    base.gui.full.enable = true;
     nvidia.enable = true;
   };
 
