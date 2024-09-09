@@ -21,17 +21,6 @@ in
       alsa.support32Bit = true;
     };
 
-    ### bluetooth
-    hardware.bluetooth = {
-      enable = true;
-      settings.General = {
-        Experimental = "true"; # necessary for some functionality
-        FastConnectable = "true"; # connect faster but draw more power
-      };
-    };
-    # avoid warning in bluetooth service
-    systemd.services."bluetooth".serviceConfig.ConfigurationDirectoryMode = 755;
-
     ##########################################
     ##########################################
     ################ PACKAGES ################
@@ -117,15 +106,13 @@ in
       picom.enable = true;
       onedrive.enable = true;
       nautilus.enable = true;
+      bluetooth.enable = true;
     };
 
     services.displayManager.sddm.enable = true;
 
     # configure various app settings
     programs.dconf.enable = true;
-
-    # bluez bluetooth gui (has some other config with home-manager later!)
-    services.blueman.enable = true;
 
     # for mounting usb sticks and stuff
     services.udisks2.enable = true;
@@ -189,10 +176,6 @@ in
 
       # for play/pause current media player (and remembering last active player)
       services.playerctld.enable = true;
-
-      # bluez bluetooth gui (was enabled earlier!)
-      # disable notifications when a device (dis)connects
-      dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
 
       # automatically mount usb sticks with notification and tray icon
       services.udiskie = {
