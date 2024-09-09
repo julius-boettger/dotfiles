@@ -15,6 +15,7 @@ args@{ pkgs, variables, ... }:
   ];
 
   # connect vscode on windows to nixos wsl
+  # https://github.com/nix-community/nixos-vscode-server/issues/70
   services.vscode-server = {
     enable = true;
     nodejsPackage = pkgs.nodePackages_latest.nodejs;
