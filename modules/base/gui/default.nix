@@ -91,8 +91,6 @@ in
       lxappearance # manage gtk theming stuff if homemanager fails
       unclutter-xfixes # hide mouse on inactivity
       pick-colour-picker
-      # could/should work on wayland, but doesnt for now :(
-      barrier # kvm switch
 
       ### only used on wayland
       swww # wallpaper switching with animations

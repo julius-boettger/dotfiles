@@ -1,15 +1,9 @@
 # more gui config i don't want on every device
 args@{ config, lib, pkgs, ... }:
-let
-  barrierPort = args.secrets.barrier.port;
-in
 {
   options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
 
   config = lib.mkIf config.local.base.gui.full.enable {
-
-    # open port for barrier (if configured)
-    networking.firewall.allowedTCPPorts = lib.mkIf (barrierPort != null) [ barrierPort ];
 
     environment.systemPackages = with pkgs; [
       ### gui
