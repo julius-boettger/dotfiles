@@ -21,6 +21,7 @@
     ./vscodium
     ./devtools.nix
     ./nvidia.nix
+    ./onedrive.nix
     ./piper.nix
     ./steam.nix
     ./virt-manager.nix
