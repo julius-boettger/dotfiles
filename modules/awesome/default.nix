@@ -10,7 +10,8 @@ lib.mkModule "awesome" config {
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
     xdg.configFile."awesome" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./.;
+      # use absolute path because relative path doesn't symlink submodules (?)
+      source = config.lib.file.mkOutOfStoreSymlink /etc/dotfiles/modules/awesome;
       recursive = true;
     };
   };
