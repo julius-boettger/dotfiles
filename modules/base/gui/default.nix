@@ -114,9 +114,6 @@ in
     # configure various app settings
     programs.dconf.enable = true;
 
-    # for mounting usb sticks and stuff
-    services.udisks2.enable = true;
-
     # what to do when pressing power button
     services.logind = {
       powerKeyLongPress = "poweroff";
