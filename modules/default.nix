@@ -19,6 +19,7 @@
     ./vim
     ./swaync
     ./vscodium
+    ./devtools.nix
     ./nvidia.nix
     ./virt-manager.nix
   ];

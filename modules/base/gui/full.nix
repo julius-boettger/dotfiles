@@ -46,7 +46,10 @@ in
     ###########################################
     ###########################################
 
-    local.virt-manager.enable = true;
+    local = {
+      virt-manager.enable = true;
+      devtools.cpp.enable = true;
+    };
 
     # for configuring gaming mice with piper
     services.ratbagd.enable = true;

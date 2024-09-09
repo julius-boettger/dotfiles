@@ -1,9 +1,6 @@
 args@{ pkgs, variables, ... }:
 {
-  local = {
-    base.cli.full.enable = true;
-    gitnuro.enable = true; # (yes, that works with wsl)
-  };
+  local.gitnuro.enable = true; # (yes, that works with wsl)
 
   wsl = {
     enable = true;
