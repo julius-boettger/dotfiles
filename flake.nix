@@ -76,7 +76,7 @@
         };
       });
 
-      # attributes of this set can be taken as function arguments in modules like modules/base/cli/default.nix
+      # attributes of this set can be taken as function arguments in modules like modules/base/default.nix
       specialArgs = {
         inherit inputs variables lib;
         secrets = import ./secrets.nix;
