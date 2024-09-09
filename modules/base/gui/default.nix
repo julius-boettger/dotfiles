@@ -73,8 +73,6 @@ in
       xarchiver # archive manager
       baobab # disk usage analyzer
       gnome.gnome-disk-utility
-      unstable.nautilus # file manager
-      gnome.sushi # thumbnails in nautilus
       unstable.obsidian # PROPRIETARY notes
       spotify # PROPRIETARY
       # gtk theme
@@ -129,6 +127,7 @@ in
       gitnuro.enable = true;
       picom.enable = true;
       onedrive.enable = true;
+      nautilus.enable = true;
     };
 
     services.displayManager.sddm.enable = true;
@@ -136,14 +135,8 @@ in
     # configure various app settings
     programs.dconf.enable = true;
 
-    # needed for trash to work in nautilus
-    services.gvfs.enable = true;
-
     # bluez bluetooth gui (has some other config with home-manager later!)
     services.blueman.enable = true;
-
-    # default application for opening directories
-    xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
 
     # for mounting usb sticks and stuff
     services.udisks2.enable = true;

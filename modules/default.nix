@@ -21,6 +21,7 @@
     ./vscodium
     ./devtools.nix
     ./fastfetch.nix
+    ./nautilus.nix
     ./nvidia.nix
     ./onedrive.nix
     ./piper.nix
