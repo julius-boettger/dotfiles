@@ -174,9 +174,6 @@ in
         size = 32;
       };
 
-      # for play/pause current media player (and remembering last active player)
-      services.playerctld.enable = true;
-
       # automatically mount usb sticks with notification and tray icon
       services.udiskie = {
         enable = true;
