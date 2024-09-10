@@ -24,7 +24,6 @@
     {
           hostName = "wsl";
       internalName = "wsl";
-      modules = [ inputs.vscode-server.nixosModules.default ];
     }
   ];
 }

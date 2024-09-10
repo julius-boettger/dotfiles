@@ -1,5 +1,10 @@
-args@{ pkgs, variables, ... }:
+args@{ pkgs, inputs, variables, ... }:
 {
+  imports = [
+    inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
+  ];
+
   wsl = {
     enable = true;
     defaultUser = variables.username;

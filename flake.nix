@@ -47,8 +47,6 @@
       ### required
       # name of corresponding device directory, e.g. "desktop" for ./devices/desktop/
       internalName,
-      # list of other nix configuration to include, e.g. [ /path/to/some_config.nix ]
-      modules ? [],
       ### optional
       # device architecture
       system ? "x86_64-linux",
@@ -67,6 +65,7 @@
         getPkgs     = input: inputs.${input}      .packages.${system};
         writeScript     = pkgs.writeShellScriptBin;
         writeScriptFile = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
+        importIfExists  = path: if builtins.pathExists path then import path else {};
         mkModule = name: currentConfig: newConfig: {
           # apply newConfig if module is enabled in currentConfig
           options.local.${name}.enable = lib.mkEnableOption "whether to enable ${name}";
@@ -86,32 +85,27 @@
       # make specialArgs available for nixos system
       inherit system specialArgs;
       # include nix config
-      modules =
-        # given extra config of device
-        modules ++ 
-        # if device is wsl
-        (if internalName == "wsl" then [
-          inputs.nixos-wsl.nixosModules.wsl
-        ] else [
-          ./devices/${internalName}/hardware-configuration.nix
-          # declarative disk management
-          inputs.disko.nixosModules.disko
-          #./devices/${internalName}/disk-config.nix # not used yet
-        ]) ++ 
-        # and more...
-        [
-          ./modules # module definitions with some default config
-          ./devices/${internalName} # for specific device
-          # make home manager available
-          inputs.home-manager.nixosModules.home-manager
+      modules = [
+        # module definitions with some default config
+        ./modules
+        # for specific device
+        ./devices/${internalName} 
+        (lib.importIfExists ./devices/${internalName}/hardware-configuration.nix)
+        #(lib.importIfExists ./devices/${internalName}/disk-config.nix) # not used yet
+        # make declarative disk management available
+        inputs.disko.nixosModules.disko
+        # make home manager available
+        inputs.home-manager.nixosModules.home-manager
+        {
           # make specialArgs available for home manager
-          { home-manager.extraSpecialArgs = specialArgs; }
+          home-manager.extraSpecialArgs = specialArgs;
           # package overlays
-          { nixpkgs.overlays = [ (final: prev: {
+          nixpkgs.overlays = [ (final: prev: {
             /*pkgs.*/unstable = pkgs-unstable;
             /*pkgs.*/local    = pkgs-local;
-          }) ]; }
-        ];
+          }) ];
+        }
+      ];
     };
     # take a nixosConfigs list like
     # [{ internalName="desktop"; hostName="nixos"; }]
