@@ -107,10 +107,10 @@
           # make specialArgs available for home manager
           { home-manager.extraSpecialArgs = specialArgs; }
           # package overlays
-          ({ ... }: { nixpkgs.overlays = [ (final: prev: {
+          { nixpkgs.overlays = [ (final: prev: {
             /*pkgs.*/unstable = pkgs-unstable;
             /*pkgs.*/local    = pkgs-local;
-          }) ]; })
+          }) ]; }
         ];
     };
     # take a nixosConfigs list like
