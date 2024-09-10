@@ -1,6 +1,6 @@
 args@{ pkgs, variables, ... }:
 {
-  local.base.gui.enable = true;
+  local.base.laptop.enable = true;
 
   # automatic garbage collection to free space
   nix.gc = {

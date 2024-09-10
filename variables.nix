@@ -20,7 +20,6 @@
     }
     {
       internalName = "laptop";
-      isLaptop = true;
     }
     {
           hostName = "wsl";

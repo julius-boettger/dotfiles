@@ -54,8 +54,6 @@
       system ? "x86_64-linux",
       # networking hostname
       hostName ? "nixos",
-      # optimize config for usage with laptop
-      isLaptop ? false,
     }:
     let
       pkgs-config   = { inherit system; config.allowUnfree = true; };
@@ -81,7 +79,7 @@
         inherit inputs variables lib;
         secrets = import ./secrets.nix;
         # device specific variables (with weird fix for optionals)
-        device = { inherit system hostName isLaptop; } // device;
+        device = { inherit system hostName; } // device;
       };
     in
     lib.nixosSystem {
@@ -91,8 +89,6 @@
       modules =
         # given extra config of device
         modules ++ 
-        # if device is a laptop: laptop utils
-        (if isLaptop then [ ./modules/laptop-utils.nix ] else []) ++ 
         # if device is wsl
         (if internalName == "wsl" then [
           inputs.nixos-wsl.nixosModules.wsl
@@ -100,7 +96,7 @@
           ./devices/${internalName}/hardware-configuration.nix
           # declarative disk management
           inputs.disko.nixosModules.disko
-          #./disk-config.nix # not used yet
+          #./devices/${internalName}/disk-config.nix # not used yet
         ]) ++ 
         # and more...
         [

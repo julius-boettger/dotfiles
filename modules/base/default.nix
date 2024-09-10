@@ -4,6 +4,7 @@ args@{ lib, pkgs, variables, device, ... }:
   imports = [
     ./gui
     ./gui/full.nix
+    ./laptop.nix
   ];
 
   #########################################################
