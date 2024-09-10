@@ -11,7 +11,6 @@ args@{ pkgs, inputs, variables, ... }:
   };
 
   # for issues with company network/vpn
-  wsl.wslConf.network.generateResolvConf = false;
   local.wsl-vpnkit.enable = true;
 
   # git gui (yes, that works with wsl!)
