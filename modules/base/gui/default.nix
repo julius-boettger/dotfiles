@@ -1,12 +1,9 @@
 # basic gui config (without unrelated programs)
-args@{ config, lib, pkgs, variables, device, ... }:
-let
-  cfg = config.local.base.gui;
-in
+args@{ config, lib, pkgs, variables, ... }:
 {
   options.local.base.gui.enable = lib.mkEnableOption "whether to enable basic gui config";
 
-  config = lib.mkIf (cfg.enable || cfg.full.enable) {
+  config = lib.mkIf config.local.base.gui.enable {
 
     # latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
