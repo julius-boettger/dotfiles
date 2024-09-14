@@ -10,6 +10,7 @@ lib.mkModule "jetbrains" config {
 
   # symlink ideavim config to ~
   home-manager.users.${variables.username} = { config, ... }: {
-    home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink ./.ideavimrc;
+    home.file.".ideavimrc".source =
+      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
   };
 }

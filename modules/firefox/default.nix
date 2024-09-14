@@ -9,6 +9,7 @@ lib.mkModule "firefox" config {
     };
     
     # symlink custom css to ~
-    home.file.".mozilla/firefox/default/chrome/userChrome.css".source = config.lib.file.mkOutOfStoreSymlink ./firefox.css;
+    home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
+      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/firefox/firefox.css";
   };
 }

@@ -12,7 +12,7 @@ lib.mkModule "eww" config {
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
     xdg.configFile."eww" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./.;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/eww";
       recursive = true;
     };
   };

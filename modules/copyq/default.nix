@@ -5,6 +5,7 @@ lib.mkModule "copyq" config {
 
   # symlink config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."copyq/copyq.conf".source = config.lib.file.mkOutOfStoreSymlink ./copyq.conf;
+    xdg.configFile."copyq/copyq.conf".source =
+      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/copyq/copyq.conf";
   };
 }

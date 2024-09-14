@@ -19,6 +19,7 @@ lib.mkModule "rofi" config {
     '';
 
     # symlink themes to ~
-    home.file.".local/share/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink ./.;
+    home.file.".local/share/rofi/themes".source =
+      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/rofi";
   };
 }

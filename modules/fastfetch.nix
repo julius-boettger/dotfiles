@@ -1,7 +1,7 @@
 # neofetch but fast
 args@{ config, lib, pkgs, variables, device, ... }:
 let
-  configPath = /etc/dotfiles/devices/${device.internalName}/fastfetch;
+  configPath = "/etc/dotfiles/devices/${device.internalName}/fastfetch";
 in
 lib.mkModule "fastfetch" config {
   environment.systemPackages = [ pkgs.fastfetch ];
@@ -11,6 +11,7 @@ lib.mkModule "fastfetch" config {
 
   # symlink device-specific config to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."fastfetch/config.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${configPath}/default.jsonc";
+    xdg.configFile."fastfetch/config.jsonc".source =
+      config.lib.file.mkOutOfStoreSymlink "${configPath}/default.jsonc";
   };
 }

@@ -14,6 +14,7 @@ lib.mkModule "fish" config {
 
   # symlink startup script to ~/.config
   home-manager.users.${variables.username} = { config, ... }: {
-    xdg.configFile."fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink ./init.fish;
+    xdg.configFile."fish/config.fish".source =
+      config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/fish/init.fish";
   };
 }

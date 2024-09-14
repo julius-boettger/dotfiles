@@ -30,7 +30,7 @@ lib.mkModule "hyprland" config {
     libsForQt5.qt5.qtwayland
                qt6.qtwayland
     # move all hyprland clients to a single workspace
-    (lib.writeScriptFile "hyprctl-collect-clients" ./hyprctl-collect-clients.sh)
+    (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
   ];
 
   # use cached hyprland flake builds
@@ -47,7 +47,7 @@ lib.mkModule "hyprland" config {
       # write config file that imports real config
       extraConfig = ''
         source = /etc/dotfiles/devices/${device.internalName}/hyprland.conf
-        source = ${./hyprland.conf}
+        source = /etc/dotfiles/modules/hyprland/hyprland.conf
       '';
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
