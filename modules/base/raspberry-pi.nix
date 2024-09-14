@@ -20,7 +20,7 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
     networkmanager-sstp
   ]);
 
-  ### use nix-community/raspberry-pi-nix with cache
+  # use nix-community/raspberry-pi-nix with cache
   imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
   nix.settings = {
     extra-substituters = [ "https://nix-community.cachix.org" ];
@@ -30,6 +30,17 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
     board = "bcm2712"; # raspberry pi 5
     uboot.enable = false; # disable uboot as it just gets stuck
   };
+
+  # avoid password prompts when remote rebuilding
+  # https://github.com/NixOS/nixpkgs/issues/118655#issuecomment-1537131599
+  security.sudo.extraRules = [ {
+    users = [ variables.username ];
+    commands = [
+      { command = "/run/current-system/sw/bin/env";         options = [ "NOPASSWD" ]; }
+      { command = "/run/current-system/sw/bin/nix-env";     options = [ "NOPASSWD" ]; }
+      { command = "/run/current-system/sw/bin/systemd-run"; options = [ "NOPASSWD" ]; }
+    ];
+  } ];
 
   # set initial passwords of users to their names (dont forget to change!)
   users.users = {
