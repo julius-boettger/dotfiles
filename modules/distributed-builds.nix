@@ -1,5 +1,4 @@
-### nix builds on remote machines
-# dont forget `ssh-copy-id USER@IP`!
+# nix builds on remote machines
 # https://wiki.nixos.org/wiki/Distributed_build
 args@{ config, lib, variables, ... }:
 lib.mkModule "distributed-builds" config {
@@ -11,14 +10,20 @@ lib.mkModule "distributed-builds" config {
       builders-use-substitutes = true;
     };
     buildMachines = [
-      # raspberry pi
       {
-        protocol = "ssh-ng"; # nix' custom ssh variant
+        hostName = "raspberry-pi";
         system = "aarch64-linux";
-        sshUser = variables.username; # on remote
-        hostName = "192.168.178.254";
+        protocol = "ssh-ng"; # nix' custom ssh variant
         supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       }
     ];
   };
+
+  # convenient ssh hostnames
+  # dont forget `ssh-copy-id HOST`!
+  programs.ssh.extraConfig = ''
+    Host raspberry-pi
+      Hostname 192.168.178.254
+      User ${variables.username}
+  '';
 }
