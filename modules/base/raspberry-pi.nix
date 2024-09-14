@@ -6,27 +6,9 @@
 # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Using_the_Pi_5_as_a_remote_builder_to_build_native_ARM_packages_for_the_Pi_5
 args@{ config, lib, pkgs, inputs, variables, ... }:
 {
-  # use nix-community/raspberry-pi-nix with cache
-  imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
-  nix.settings = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-  };
-
-  raspberry-pi-nix = {
-    board = "bcm2712"; # raspberry pi 5
-    uboot.enable = false; # disable uboot as it just gets stuck
-  };
-
-  # set initial passwords of users to their names (dont forget to change!)
-  users.users = {
-    ${variables.username}.initialPassword = variables.username;
-                     root.initialPassword = "root";
-  };
-
-  # usually enabled in modules/base/default.nix
+  ### fixes for default config
+  # usually enabled in modules/base/default.nix, doesnt work here
   boot.loader.systemd-boot.enable = lib.mkForce false;
-
   # networkmanager-openconnect fails to build, so manually remove it from the default plugins
   networking.networkmanager.plugins = lib.mkForce (with pkgs; [
     networkmanager-fortisslvpn
@@ -38,8 +20,25 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
     networkmanager-sstp
   ]);
 
-  # this allows you to run `nixos-rebuild --target-host admin@this-machine` from a different host
-  security.pam.sshAgentAuth.enable = true;
-  nix.settings.trusted-users = [ variables.username ];
-  services.openssh.enable = true;
+  ### use nix-community/raspberry-pi-nix with cache
+  imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
+  nix.settings = {
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+  };
+  raspberry-pi-nix = {
+    board = "bcm2712"; # raspberry pi 5
+    uboot.enable = false; # disable uboot as it just gets stuck
+  };
+
+  # set initial passwords of users to their names (dont forget to change!)
+  users.users = {
+    ${variables.username}.initialPassword = variables.username;
+                     root.initialPassword = "root";
+  };
+
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "no";
+  };
 }
