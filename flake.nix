@@ -9,6 +9,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # for ./modules/studies/itsarch.nix
     nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
+    # run nixos on raspberry pi
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?rev=97c85054d16579b5bbc3e31ea346e273990f0f93";
     # hyprland v0.42.0 (to manage version independently of other packages)
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
     # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)

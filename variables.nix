@@ -15,15 +15,16 @@
   # documentation for possible attributes and their meanings
   # in flake.nix near "mkNixosConfig = device@{"
   nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
-    {
-      internalName = "desktop";
+    { internalName = "desktop"; }
+    { internalName = "laptop";  }
+    { 
+      internalName = "raspberry-pi";
+          hostName =     "nixos-pi";
+      system = "aarch64-linux";
     }
     {
-      internalName = "laptop";
-    }
-    {
-          hostName = "wsl";
       internalName = "wsl";
+          hostName = "wsl";
     }
   ];
 }
