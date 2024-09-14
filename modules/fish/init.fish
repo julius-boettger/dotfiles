@@ -83,3 +83,30 @@ function flake-rebuild
     nh os switch -H $NIX_FLAKE_CURRENT_DEVICE /etc/dotfiles -- $impure $argv
     return $status
 end
+
+# like flake-rebuild, but for remote rebuilds
+# use like "flake-rebuild-remote HOSTNAME [--impure] [(other options)]"
+function flake-rebuild-remote
+    # exit with error message if hostname wasnt given as first arg
+    if test "x$argv[1]" = "x"
+        set_color red
+        echo -n "error: "
+        set_color normal
+        echo "no hostname given!"
+        return 1
+    end
+
+    # use --impure if NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT is set
+    if test "$NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT" = "1"
+        set impure "--impure"
+    end
+
+    # rebuild with hostname, --impure (if set), other given args and nom (for prettier output)
+    nixos-rebuild switch --fast --use-remote-sudo \
+        --flake /etc/dotfiles\#$argv[1] \
+        --target-host $argv[1] \
+         --build-host $argv[1] \
+        $impure $argv[2..-1] \
+        &| nom
+    return $status
+end
