@@ -12,9 +12,13 @@
         }
     },
     "modules": [
+        "break", // empty line
+        "break", // empty line
+
         "title",
         "break", // empty line
         // software
+        "host",
         {
             "type": "os",
             "format": "{2} {8} @ {12}"
@@ -23,13 +27,11 @@
             "type": "kernel",
             "format": "{1} {2}"
         },
-        "host",
         "packages",
         "shell",
-        "terminal",
-        "terminalfont",
-        "theme",
-        "icons",
+        "lm",
+        "processes",
+        "uptime",
         // hardware
         "cpu",
         {
@@ -42,18 +44,22 @@
             "preciseRefreshRate": false,
             "format": "{1}x{2} @ {3}Hz"
         },
-        "battery",
+        "disk",
         "break", // empty line
         "colors"
 
+        //// boring
         //"separator", // dotted line
-        //"lm",
+        //"terminal",
+
+        //// shows nothing on raspberry pi
+        //"battery",
+        //"terminalfont",
+        //"theme",
+        //"icons",
         //"wm",
-        //"processes",
         //"sound",
-        //"uptime"
         //"gpu",
-        //// shows nothing on wsl
         //"font",
         //"cursor",
         //"chassis",

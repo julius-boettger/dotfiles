@@ -16,37 +16,23 @@
         }
     },
     "modules": [
-        "break",
         "title",
+
+        "host",
         {
             "type": "os",
-            "format": "{3}"
+            "format": "{2} {8} @ {12}"
         },
-        "shell",
         {
-            "type": "battery",
-            "format": "{4}"
+            "type": "kernel",
+            "format": "{2}"
         },
+        "memory",
+        "disk",
+
         {
             "type": "colors",
             "symbol": "circle"
         }
-        //{
-        //    "key": "Font",
-        //    "type": "terminalfont",
-        //    "format": "{2}"
-        //},
-        //{
-        //    "type": "memory",
-        //    "format": "{3} ({1})"
-        //},
-        //{
-        //    "type": "kernel",
-        //    "format": "{2}"
-        //},
-        //{
-        //    "type": "terminal",
-        //    "format": "{5}"
-        //},
     ]
 }
