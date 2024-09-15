@@ -1,4 +1,4 @@
-args@{ pkgs, inputs, variables, ... }:
+args@{ lib, pkgs, inputs, variables, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -9,6 +9,9 @@ args@{ pkgs, inputs, variables, ... }:
     enable = true;
     defaultUser = variables.username;
   };
+
+  # usually enabled in modules/base/default.nix, doesnt work here
+  boot.loader.systemd-boot.enable = lib.mkForce false;
 
   # for issues with company network/vpn
   local.wsl-vpnkit.enable = true;
