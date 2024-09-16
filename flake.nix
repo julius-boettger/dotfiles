@@ -19,6 +19,9 @@
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
+    # host own website
+    website = { url = "github:julius-boettger/website";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # declarative disk management
     disko = { url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs"; };

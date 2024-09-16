@@ -29,6 +29,7 @@
     ./playerctl.nix
     ./steam.nix
     ./virt-manager.nix
+    ./website.nix
     ./wsl-vpnkit.nix
   ];
 }

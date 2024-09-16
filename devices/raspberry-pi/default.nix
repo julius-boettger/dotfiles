@@ -15,4 +15,6 @@
       metric = 100;
     };
   };
+
+  local.website.enable = true;
 }
