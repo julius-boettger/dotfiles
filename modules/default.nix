@@ -23,6 +23,7 @@
     ./discord.nix
     ./distributed-builds.nix
     ./fastfetch.nix
+    ./lamp-server.nix
     ./nautilus.nix
     ./nvidia.nix
     ./onedrive.nix

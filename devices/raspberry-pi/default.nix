@@ -16,5 +16,9 @@
     };
   };
 
-  local.website.enable = true;
+  local = {
+    # host some stuff
+    website.enable = true;
+    lamp-server.enable = true;
+  };
 }
