@@ -345,6 +345,21 @@
         "type": "github"
       }
     },
+    "nixcord": {
+      "locked": {
+        "lastModified": 1725839179,
+        "narHash": "sha256-ZDl3FmLFHRxcYHVMeoexIS+l03Uy9vuUbZ5fOYJcXTA=",
+        "owner": "kaylorben",
+        "repo": "nixcord",
+        "rev": "52904a199d5643c85d654b6c120bab0619f68819",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kaylorben",
+        "repo": "nixcord",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": [
@@ -487,6 +502,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-vscode-extensions": "nix-vscode-extensions",
+        "nixcord": "nixcord",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-itsarch": "nixpkgs-itsarch",

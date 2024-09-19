@@ -20,6 +20,7 @@
     ./vscodium
     ./bluetooth.nix
     ./devtools.nix
+    ./discord.nix
     ./distributed-builds.nix
     ./fastfetch.nix
     ./nautilus.nix

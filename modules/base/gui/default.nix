@@ -44,7 +44,6 @@ args@{ config, lib, pkgs, variables, ... }:
       qview # image viewer
       audacious # audio player
       snapshot # camera
-      unstable.vesktop # wayland optimized discord client
       signal-desktop # messenger
       networkmanagerapplet # tray icon for networking connection
       xarchiver # archive manager
@@ -104,6 +103,7 @@ args@{ config, lib, pkgs, variables, ... }:
       onedrive.enable = true;
       nautilus.enable = true;
       bluetooth.enable = true;
+      discord.enable = true;
     };
 
     services.displayManager.sddm.enable = true;
