@@ -1,6 +1,7 @@
 # server to control govee rgb lamp
 args@{ config, lib, variables, device, ... }:
 let
+  port = 9000; # currently hard-coded in server
   lamp-server-pkg = (lib.getPkgs "lamp-server").lamp-server.override {
     # override govee api secrets 
     govee_api_key = "";
@@ -11,7 +12,7 @@ in
 lib.mkModule "lamp-server" config {
 
   environment.systemPackages = [ lamp-server-pkg ];
-  networking.firewall.allowedTCPPorts = [ 9000 ];
+  networking.firewall.allowedTCPPorts = [ port ];
 
   systemd.services.lamp-server = {
     enable = true;
@@ -22,4 +23,10 @@ lib.mkModule "lamp-server" config {
     };
     wantedBy = [ "multi-user.target" ];
   };
+
+  local.website.extraConfig = ''
+    lamp.juliusboettger.com {
+      reverse_proxy :${toString port}
+    }
+  '';
 }
