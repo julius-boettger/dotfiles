@@ -85,7 +85,6 @@
       # attributes of this set can be taken as function arguments in modules like modules/base/default.nix
       specialArgs = {
         inherit inputs variables lib;
-        secrets = import ./secrets.nix;
         # device specific variables (with weird fix for optionals)
         device = { inherit system hostName; } // device;
       };
