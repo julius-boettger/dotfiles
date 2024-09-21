@@ -10,6 +10,7 @@
     ./gitnuro
     ./hyprland
     ./jetbrains
+    ./lamp-server
     ./picom
     ./rofi
     ./sddm-sugar-candy
@@ -23,7 +24,6 @@
     ./discord.nix
     ./distributed-builds.nix
     ./fastfetch.nix
-    ./lamp-server.nix
     ./nautilus.nix
     ./nvidia.nix
     ./onedrive.nix
