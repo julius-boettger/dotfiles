@@ -1,0 +1,6 @@
+# give every device access to sops secrets
+creation_rules:
+  - key_groups:
+    - age: # public keys generated with ssh-to-age
+      - age12zlz6lvcdk6eqaewfylg35w0syh58sm7gh53q5vvn7hd7c6nngyseftjxl # desktop
+      - age1qwj962m2mkzhk64t6fztw3hhh94wn82ayh9xl5u4vhajzpqa9ekqxthuaa # raspberry-pi

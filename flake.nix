@@ -23,6 +23,9 @@
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
+    # secret management with sops
+    sops-nix = { url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # host own website
     website = { url = "github:julius-boettger/website";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -100,9 +103,8 @@
         ./devices/${internalName} 
         (lib.importIfExists ./devices/${internalName}/hardware-configuration.nix)
         #(lib.importIfExists ./devices/${internalName}/disk-config.nix) # not used yet
-        # make declarative disk management available
-        inputs.disko.nixosModules.disko
-        # make home manager available
+        # make some options available
+        inputs.disko.nixosModules.disko # disk management
         inputs.home-manager.nixosModules.home-manager
         {
           # make specialArgs available for home manager

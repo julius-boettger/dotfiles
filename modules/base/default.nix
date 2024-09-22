@@ -93,6 +93,7 @@ args@{ lib, pkgs, variables, device, ... }:
   local = {
     vim.enable = true;
     fish.enable = true;
+    sops.enable = true;
     starship.enable = true;
     fastfetch.enable = true;
     devtools.python.enable = true;
@@ -112,6 +113,7 @@ args@{ lib, pkgs, variables, device, ... }:
 
   # some environment variables
   environment.variables = {
+    EDITOR = "vim";
     # current device to use for flake-rebuild
     NIX_FLAKE_CURRENT_DEVICE = device.internalName;
     # use --impure for flake-rebuild by default (if configured)

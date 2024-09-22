@@ -29,6 +29,7 @@
     ./onedrive.nix
     ./piper.nix
     ./playerctl.nix
+    ./sops.nix
     ./steam.nix
     ./virt-manager.nix
     ./website.nix
