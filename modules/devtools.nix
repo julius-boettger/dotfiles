@@ -19,8 +19,8 @@ in
       ++ (if cfg.python.enable then [ (pkgs.python3.withPackages (python-pkgs: [ python-pkgs.virtualenv ])) ] else [])
       # javascript
       ++ (if cfg.javascript.enable then [ pkgs.nodePackages_latest.nodejs ] else [])
-      # rust
-      ++ (if cfg.rust.enable then [ pkgs.cargo ] else [])
+      # rust (dont forget to run `rustup toolchain install stable`)
+      ++ (if cfg.rust.enable then [ pkgs.rustup ] else [])
       # c/c++
       ++ (if cfg.cpp.enable then with pkgs; [
         gcc # compiler
