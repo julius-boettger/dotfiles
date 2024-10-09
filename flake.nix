@@ -9,8 +9,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # run nixos on raspberry pi
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?rev=97c85054d16579b5bbc3e31ea346e273990f0f93";
-    # declarative discord config
-    nixcord.url = "github:kaylorben/nixcord";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # hyprland v0.42.0 (to manage version independently of other packages)
@@ -39,6 +37,10 @@
     vscode-server = { url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils"; };
+    # declarative discord config
+    nixcord = { url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat"; };
     # for more vscode extensions
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
