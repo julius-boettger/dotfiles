@@ -7,8 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    # for ./modules/studies/itsarch.nix
-    nixpkgs-itsarch.url = "github:nixos/nixpkgs?rev=dd5621df6dcb90122b50da5ec31c411a0de3e538";
     # run nixos on raspberry pi
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?rev=97c85054d16579b5bbc3e31ea346e273990f0f93";
     # declarative discord config

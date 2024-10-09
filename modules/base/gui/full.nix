@@ -22,7 +22,6 @@ args@{ config, lib, pkgs, ... }:
       inkscape-with-extensions # vector graphic editor
       veracrypt # disk encryption
       freefilesync # file backup
-      unstable.bruno # rest api client
       ddcutil ddcui # interact with external monitors
       # more gtk themes
       fluent-gtk-theme
