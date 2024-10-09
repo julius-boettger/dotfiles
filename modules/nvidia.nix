@@ -7,15 +7,23 @@ lib.mkModule "nvidia" config {
     nvidiaSettings = false;
     # pin driver version https://www.nvidia.com/en-us/drivers/unix/
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
-    /*package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      version = "560.35.03";
-      sha256_64bit = "sha256-8pMskvrdQ8WyNBvkU/xPc/CtcYXCa7ekP73oGuKfH+M=";
-      sha256_aarch64 = "sha256-s8ZAVKvRNXpjxRYqM3E5oss5FdqW+tv1qQC2pDjfG+s=";
-      openSha256 = "sha256-/32Zf0dKrofTmPZ3Ratw4vDM7B+OgpC4p7s+RHUjCrg=";
-      settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
-      persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
-    };*/
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "550.120";
+      sha256_64bit = "sha256-gBkoJ0dTzM52JwmOoHjMNwcN2uBN46oIRZHAX8cDVpc=";
+      sha256_aarch64 = "sha256-dzTEUuSIWKEuAMhsL9QkR7CCHpm6m9ZwtGSpSKqwJdc=";
+      openSha256 = "sha256-O3OrGGDR+xrpfyPVQ04aM3eGI6aWuZfRzmaPjMfnGIg=";
+      settingsSha256 = "sha256-fPfIPwpIijoUpNlAUt9C8EeXR5In633qnlelL+btGbU=";
+      persistencedSha256 = "sha256-ztEemWt0VR+cQbxDmMnAbEVfThdvASHni4SJ0dTZ2T4=";
+    };
   };
+
+  boot.kernelParams = [
+    # for suspend/wakeup issues, recommended by https://wiki.hyprland.org/Nvidia/
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    # for wayland issues, but breaks tty
+    # see https://github.com/NixOS/nixpkgs/issues/343774#issuecomment-2370293678
+    "initcall_blacklist=simpledrm_platform_driver_init"
+  ];
 
   hardware.opengl = {
     enable = true;
@@ -23,7 +31,6 @@ lib.mkModule "nvidia" config {
   };
 
   # for suspend/wakeup issues, recommended by https://wiki.hyprland.org/Nvidia/
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.open = false;
 
@@ -31,7 +38,4 @@ lib.mkModule "nvidia" config {
     egl-wayland # recommended by https://wiki.hyprland.org/Nvidia/
     nvidia-system-monitor-qt # monitor nvidia gpu stuff
   ];
-
-  # nvidia driver fails to build on latest kernel, so use lts instead
-  boot.kernelPackages = pkgs.linuxPackages;
 }
