@@ -11,10 +11,10 @@
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?rev=97c85054d16579b5bbc3e31ea346e273990f0f93";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
-    # hyprland v0.44.0 (to manage version independently of other packages)
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=0c7a7e2d569eeed9d6025f3eef4ea0690d90845d";
+    # hyprland (to manage version independently of other packages)
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.44.1";
     # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)
-    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=7c0cec6e8661facf252b2c974f214b60c4f87466";
+    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=f5805a868543358adeb5f24fd411c2f72455c88c";
       inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";

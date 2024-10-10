@@ -150,16 +150,17 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1728212653,
-        "narHash": "sha256-XgDhPx+tKs+2lyWM/ZqIHnMArd/c0LGmwAwu0EG1uJM=",
-        "rev": "0c7a7e2d569eeed9d6025f3eef4ea0690d90845d",
-        "revCount": 5299,
+        "lastModified": 1728478479,
+        "narHash": "sha256-hnoPoxMFetuoXQuAMgvopl1kCRQ33FYaVVBgV9FIFkM=",
+        "ref": "refs/tags/v0.44.1",
+        "rev": "4520b30d498daca8079365bdb909a8dea38e8d55",
+        "revCount": 5309,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
-        "rev": "0c7a7e2d569eeed9d6025f3eef4ea0690d90845d",
+        "ref": "refs/tags/v0.44.1",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -714,17 +715,17 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1728413360,
-        "narHash": "sha256-0YQnm4VFTdJvUwkK97W2805I0L7Retkhsh19/Nil3cQ=",
+        "lastModified": 1728502823,
+        "narHash": "sha256-fDakOtUruC76M7pU04czQxB43ZBfffIxY4r+F+UAMic=",
         "owner": "Duckonaut",
         "repo": "split-monitor-workspaces",
-        "rev": "7c0cec6e8661facf252b2c974f214b60c4f87466",
+        "rev": "f5805a868543358adeb5f24fd411c2f72455c88c",
         "type": "github"
       },
       "original": {
         "owner": "Duckonaut",
         "repo": "split-monitor-workspaces",
-        "rev": "7c0cec6e8661facf252b2c974f214b60c4f87466",
+        "rev": "f5805a868543358adeb5f24fd411c2f72455c88c",
         "type": "github"
       }
     },
