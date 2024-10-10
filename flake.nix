@@ -8,7 +8,7 @@
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # run nixos on raspberry pi
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?rev=97c85054d16579b5bbc3e31ea346e273990f0f93";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # hyprland (to manage version independently of other packages)
