@@ -11,7 +11,6 @@
     ./hyprland
     ./jetbrains
     ./lamp-server
-    ./obsidian-livesync
     ./picom
     ./rofi
     ./sddm-sugar-candy
@@ -27,6 +26,7 @@
     ./fastfetch.nix
     ./nautilus.nix
     ./nvidia.nix
+    ./obsidian-livesync.nix
     ./onedrive.nix
     ./piper.nix
     ./playerctl.nix
