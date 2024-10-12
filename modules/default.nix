@@ -11,6 +11,7 @@
     ./hyprland
     ./jetbrains
     ./lamp-server
+    ./obsidian-livesync
     ./picom
     ./rofi
     ./sddm-sugar-candy

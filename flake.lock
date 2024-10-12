@@ -563,6 +563,22 @@
         "type": "github"
       }
     },
+    "raspberry-pi-nixpkgs": {
+      "locked": {
+        "lastModified": 1727173215,
+        "narHash": "sha256-JrOd8fWyCuzMVKjZG6ns4Hvfy+90EYiYTPEsX4cK7HI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6fc0699003d64e9c884eca15f162b0125020aef7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6fc0699003d64e9c884eca15f162b0125020aef7",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -577,6 +593,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "raspberry-pi-nix": "raspberry-pi-nix",
+        "raspberry-pi-nixpkgs": "raspberry-pi-nixpkgs",
         "sops-nix": "sops-nix",
         "split-monitor-workspaces": "split-monitor-workspaces",
         "vscode-server": "vscode-server",

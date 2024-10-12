@@ -20,5 +20,6 @@
     # host some stuff
     website.enable = true;
     lamp-server.enable = true;
+    obsidian-livesync.enable = true;
   };
 }
