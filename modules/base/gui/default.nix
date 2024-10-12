@@ -100,7 +100,6 @@ args@{ config, lib, pkgs, variables, ... }:
       firefox.enable = true;
       gitnuro.enable = true;
       picom.enable = true;
-      onedrive.enable = true;
       nautilus.enable = true;
       bluetooth.enable = true;
       discord.enable = true;
