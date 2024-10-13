@@ -19,6 +19,7 @@
     ./vim
     ./swaync
     ./vscodium
+    ./blocky.nix
     ./bluetooth.nix
     ./devtools.nix
     ./discord.nix
