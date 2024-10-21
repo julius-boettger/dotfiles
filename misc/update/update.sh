@@ -26,7 +26,7 @@ cd /etc/dotfiles
 # if rebuild failed
 if test $rebuild_status != 0
     # discard changes
-    git restore nix/flake.lock
+    git restore flake.lock
     cd $working_dir
     exit
 end
@@ -40,7 +40,7 @@ set_color white
 # unstage possible staged changes
 git reset
 # commit flake.lock changes (if available)
-git add nix/flake.lock
+git add flake.lock
 git commit -m "update flake.lock"
 # stage possible changes before rebuilding so that the flake can see them
 git add .
