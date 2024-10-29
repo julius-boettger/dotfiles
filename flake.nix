@@ -104,7 +104,7 @@
         # for specific device
         ./devices/${internalName} 
         (lib.importIfExists ./devices/${internalName}/hardware-configuration.nix)
-        #(lib.importIfExists ./devices/${internalName}/disk-config.nix) # not used yet
+        (lib.importIfExists ./devices/${internalName}/disk-config.nix)
         # make some options available
         inputs.disko.nixosModules.disko # disk management
         inputs.home-manager.nixosModules.home-manager
