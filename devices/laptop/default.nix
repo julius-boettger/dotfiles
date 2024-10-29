@@ -2,15 +2,8 @@ args@{ pkgs, variables, ... }:
 {
   local.base.laptop.enable = true;
 
-  # automatic garbage collection to free space
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-old";
-  };
-
   # show loading animation during boot with plymouth
-  boot = {
+  /*boot = {
     initrd.systemd.enable = true; # run plymouth early
     plymouth.enable = true;
     plymouth.theme = "breeze";
@@ -23,5 +16,5 @@ args@{ pkgs, variables, ... }:
     #plymouth.theme = "spinfinity";
     #plymouth.theme = "tribar";
     #plymouth.theme = "text";
-  };
+  };*/
 }
