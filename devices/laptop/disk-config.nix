@@ -1,4 +1,4 @@
-# disk config using disko. i don't use this yet, but i plan to.
+# disk config using disko
 # https://github.com/nix-community/disko
 {
   disko.devices.disk.main = {
@@ -10,7 +10,7 @@
         # efi system partition
         esp = {
           type = "EF00";
-          size = "512M";
+          size = "1G";
           content = {
             type = "filesystem";
             format = "vfat";
@@ -30,7 +30,7 @@
               subvolumes = {
                 "/main" = {
                   mountpoint = "/";
-                  swap.".swapfile".size = "8G";
+                  swap.".swapfile".size = "4G";
                 };
                 "/home" = {
                   mountpoint = "/home";
