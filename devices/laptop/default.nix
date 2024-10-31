@@ -1,20 +1,33 @@
-args@{ pkgs, variables, ... }:
+args@{ pkgs, inputs, variables, device, ... }:
+let
+  # unstable packages (input) of hyprland for newer mesa drivers
+  hyprland-pkgs-unstable = inputs.hyprland
+    .inputs.nixpkgs.legacyPackages.${device.system};
+in
 {
   local.base.laptop.enable = true;
 
-  # show loading animation during boot with plymouth
-  /*boot = {
-    initrd.systemd.enable = true; # run plymouth early
-    plymouth.enable = true;
-    plymouth.theme = "breeze";
-    #plymouth.theme = "bgrt";
-    #plymouth.theme = "fade-in";
-    #plymouth.theme = "glow";
-    #plymouth.theme = "script";
-    #plymouth.theme = "solar";
-    #plymouth.theme = "spinner";
-    #plymouth.theme = "spinfinity";
-    #plymouth.theme = "tribar";
-    #plymouth.theme = "text";
-  };*/
+  # monitor config with xrandr command
+  services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP --mode 1920x1200 --rate 120";
+
+  # amd gpu
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [
+    # what is better?
+    "amdgpu"
+    #"modesetting"
+  ];
+  hardware.opengl = {
+    enable = true;
+    driSupport      = true;
+    driSupport32Bit = true;
+    # newer drivers compatible with hyprland
+    package   = hyprland-pkgs-unstable              .mesa.drivers;
+    package32 = hyprland-pkgs-unstable.pkgsi686Linux.mesa.drivers;
+    extraPackages = with pkgs; [
+      # why do i need this again?
+      rocmPackages.clr.icd
+      amdvlk
+    ];
+  };
 }

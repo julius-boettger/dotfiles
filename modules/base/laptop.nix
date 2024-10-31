@@ -11,7 +11,7 @@ args@{ config, lib, ... }:
     environment.variables.IS_LAPTOP = 1;
 
     # enable touchpad support
-    services.xserver.libinput.enable = true;
+    services.libinput.enable = true;
 
     # probably useful
     hardware.enableAllFirmware = true;
