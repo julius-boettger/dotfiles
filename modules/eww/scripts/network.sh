@@ -15,7 +15,7 @@ if [[ $? == 0 ]]; then
 else
   wired="false"
   # get wifi name and signal strength
-  wifi_name=$(echo $(nmcli d | grep wifi | grep connected | sed 's/^.*connected\s*//'))
+  wifi_name=$(nmcli d | grep wifi | grep connected | sed 's/^.*connected\s*//' | head -n 1)
   signal_strength=$(nmcli d wifi | grep "^*       " | sed 's/^.*\/s\s*//' | awk '{print $1}')
   # if signal strength still unknown => 0
   if [ -z "$signal_strength" ]; then
