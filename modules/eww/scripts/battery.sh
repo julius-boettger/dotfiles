@@ -16,4 +16,9 @@ else
   charging="false"
 fi
 
-echo "{\"charge\":$charge,\"time_remaining\":\"unknown time\",\"charging\":$charging}"
+time_remaining=$(acpi | grep -oP '\d\d(:\d\d){2}')
+if [[ $? != 0 ]]; then
+  time_remaining="unknown time"
+fi
+
+echo "{\"charge\":$charge,\"time_remaining\":\"$time_remaining\",\"charging\":$charging}"

@@ -19,7 +19,7 @@
   :initial 0
   "~/.config/eww/scripts/logarithmic-cpu.sh") 
 
-(defpoll battery :interval "1s"
+(defpoll battery :interval "5s"
   ; charge in percent
   :initial '{"charge":0,"time_remaining":"unknown","charging":false}'
   "~/.config/eww/scripts/battery.sh") 

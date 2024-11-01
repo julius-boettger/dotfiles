@@ -1,5 +1,5 @@
 # useful config for laptops
-args@{ config, lib, ... }:
+args@{ config, lib, pkgs, ... }:
 {
   options.local.base.laptop.enable = lib.mkEnableOption "whether to enable laptop config";
 
@@ -22,5 +22,9 @@ args@{ config, lib, ... }:
       lidSwitch       = "ignore";
       lidSwitchDocked = "ignore";
     };
+
+    environment.systemPackages = with pkgs; [
+      acpi # get battery info like remaining time to (dis)charge
+    ];
   };
 }
