@@ -25,6 +25,7 @@ args@{ config, lib, pkgs, ... }:
 
     environment.systemPackages = with pkgs; [
       acpi # get battery info like remaining time to (dis)charge
+      local.easyroam # connect to eduroam
     ];
   };
 }
