@@ -24,7 +24,7 @@
   :initial '{"charge":0,"time_remaining":"unknown","charging":false}'
   "~/.config/eww/scripts/battery.sh") 
 
-(defpoll network :interval "1s"
+(defpoll network :interval "5s"
   ; signal strength in percent
   :initial '{"internet":false,"wired":false,"signal_strength":0,"wifi_name":""}'
   "~/.config/eww/scripts/network.sh") 
