@@ -10,6 +10,16 @@ in
   # monitor config with xrandr command
   services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP --mode 1920x1200 --rate 120";
 
+  boot = {
+    # boot animation
+    plymouth.enable = true;
+    plymouth.theme = "bgrt";
+    # e.g. to run plymouth early (for disk encryption password)
+    initrd.systemd.enable = true;
+    # show less text during boot
+    kernelParams = [ "quiet" ];
+  };
+
   # amd gpu
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [
