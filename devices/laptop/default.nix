@@ -5,7 +5,10 @@ let
     .inputs.nixpkgs.legacyPackages.${device.system};
 in
 {
-  local.base.laptop.enable = true;
+  local = {
+    base.laptop.enable = true;
+    plymouth.enable = true;
+  };
 
   # monitor config with xrandr command
   services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP --mode 1920x1200 --rate 120";
@@ -14,16 +17,6 @@ in
   services.displayManager.sddm.settings.Autologin = {
     User = variables.username;
     Session = "hyprland.desktop";
-  };
-
-  boot = {
-    # boot animation
-    plymouth.enable = true;
-    plymouth.theme = "bgrt";
-    # e.g. to run plymouth early (for disk encryption password)
-    initrd.systemd.enable = true;
-    # show less text during boot
-    kernelParams = [ "quiet" ];
   };
 
   # amd gpu

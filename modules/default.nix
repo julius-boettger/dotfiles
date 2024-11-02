@@ -12,6 +12,7 @@
     ./jetbrains
     ./lamp-server
     ./picom
+    ./plymouth
     ./rofi
     ./sddm-sugar-candy
     ./starship
