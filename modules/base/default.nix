@@ -18,8 +18,8 @@ args@{ lib, pkgs, variables, device, ... }:
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader = {
-    timeout = 1;
     efi.canTouchEfiVariables = true;
+    timeout = 0; # only show when pressing keys during boot
     systemd-boot = {
       enable = true;
       configurationLimit = 20; # number of generations to show
