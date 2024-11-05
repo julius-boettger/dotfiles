@@ -1,4 +1,10 @@
-import random, subprocess, time, os
+import random, subprocess, time, sys, os
+
+# make sure script is only running once
+running_scripts = len(subprocess.run(["pgrep", "-f", __file__], capture_output=True).stdout.splitlines())
+if running_scripts > 1:
+    print("script already running! exiting...")
+    sys.exit(1)
 
 # color scheme to use
 colors = {
