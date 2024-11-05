@@ -25,7 +25,24 @@ args@{ config, lib, pkgs, ... }:
 
     environment.systemPackages = with pkgs; [
       acpi # get battery info like remaining time to (dis)charge
+      brightnessctl # control display brightness
       local.easyroam # connect to eduroam
     ];
+
+    # set brightness to 0 while lid is closed
+    services.acpid = {
+      enable = true;
+      lidEventCommands = ''
+        PATH=/run/current-system/sw/bin
+        if [[ $(awk '{print$NF}' /proc/acpi/button/lid/LID0/state) == "closed" ]]; then
+          # save current brightness and set to 0
+          brightnessctl -s
+          brightnessctl s 0
+        else
+          # restore saved brightness
+          brightnessctl -r
+        fi
+      '';
+    };
   };
 }
