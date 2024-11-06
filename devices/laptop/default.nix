@@ -21,11 +21,6 @@ in
 
   # amd gpu
   boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [
-    # what is better?
-    "amdgpu"
-    #"modesetting"
-  ];
   hardware.opengl = {
     enable = true;
     driSupport      = true;
@@ -33,10 +28,5 @@ in
     # newer drivers compatible with hyprland
     package   = hyprland-pkgs-unstable              .mesa.drivers;
     package32 = hyprland-pkgs-unstable.pkgsi686Linux.mesa.drivers;
-    extraPackages = with pkgs; [
-      # why do i need this again?
-      rocmPackages.clr.icd
-      amdvlk
-    ];
   };
 }
