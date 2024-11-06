@@ -147,6 +147,8 @@ args@{ config, lib, pkgs, variables, ... }:
     home-manager.users.${variables.username} = { config, ... }: {
       ### theming
       gtk.enable = true;
+      # gtk dark mode
+      dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       # gtk theme
       gtk.theme.name = "Orchis-Dark";
       # icon theme
