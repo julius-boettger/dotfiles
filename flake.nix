@@ -15,8 +15,8 @@
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # hyprland (to manage version independently of other packages)
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.44.1";
-    # hyprland plugin for better multi-monitor workspaces (with rev matching hyprland version)
-    split-monitor-workspaces = { url = "github:Duckonaut/split-monitor-workspaces?rev=f5805a868543358adeb5f24fd411c2f72455c88c";
+    # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
+    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.44.1";
       inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";

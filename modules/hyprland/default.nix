@@ -4,7 +4,7 @@ let
   package = (lib.getPkgs "hyprland").hyprland;
   plugins = [
     # better multi-monitor workspaces
-    (lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces
+    (lib.getPkgs "hyprsplit").hyprsplit
   ];
 in
 lib.mkModule "hyprland" config {
