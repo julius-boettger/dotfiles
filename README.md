@@ -109,7 +109,7 @@ There are some files you now should take a look at and adjust them to your likin
 - `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
-Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles/nix#desktop`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
+Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles#desktop --impure`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
 
 Next: `reboot` for good measure.
 
