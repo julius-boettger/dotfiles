@@ -14,9 +14,9 @@
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # hyprland (to manage version independently of other packages)
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.44.1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.45.0";
     # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
-    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.44.1";
+    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.45.0";
       inputs.hyprland.follows = "hyprland"; };
     # shared dependencies of following inputs
     flake-utils.url = "github:numtide/flake-utils";
