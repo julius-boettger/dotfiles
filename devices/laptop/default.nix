@@ -6,7 +6,10 @@ let
 in
 {
   local = {
-    base.laptop.enable = true;
+    base = {
+      gui.full.enable = true;
+      laptop.enable = true;
+    };
     plymouth.enable = true;
   };
 
