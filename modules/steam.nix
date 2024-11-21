@@ -7,5 +7,5 @@ lib.mkModule "steam" config {
   };
 
   # easy ge-proton setup for steam
-  environment.systemPackages = [ pkgs.protonup-qt ];
+  environment.systemPackages = [ pkgs.unstable.protonup-qt ];
 }
