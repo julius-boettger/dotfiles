@@ -9,8 +9,12 @@ lib.mkModule "discord" config {
       # disable discord (enabled by default)
       discord = {
         enable = false;
-        vencord.enable = false;
         openASAR.enable = false;
+        vencord = {
+          enable = false;
+          # still relevant for vesktop even if not enabled here
+          package = pkgs.unstable.vencord;
+        };
       };
       # use vesktop instead (wayland optimized discord client)
       vesktop = {
