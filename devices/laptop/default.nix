@@ -1,8 +1,10 @@
-args@{ pkgs, inputs, variables, device, ... }:
+args@{ lib, pkgs, inputs, variables, device, ... }:
 let
-  # unstable packages (input) of hyprland for newer mesa drivers
+  # unstable nixpkgs input of hyprland to use for newer mesa drivers
   hyprland-pkgs-unstable = inputs.hyprland
     .inputs.nixpkgs.legacyPackages.${device.system};
+  # nixpkgs to use for amd gpu mesa drivers
+  mesa-pkgs = hyprland-pkgs-unstable;
 in
 {
   local = {
@@ -28,8 +30,14 @@ in
     enable = true;
     driSupport      = true;
     driSupport32Bit = true;
-    # newer drivers compatible with hyprland
-    package   = hyprland-pkgs-unstable              .mesa.drivers;
-    package32 = hyprland-pkgs-unstable.pkgsi686Linux.mesa.drivers;
+    package   = mesa-pkgs              .mesa.drivers;
+    package32 = mesa-pkgs.pkgsi686Linux.mesa.drivers;
+    # additional vulkan drivers 
+    extraPackages   = [ mesa-pkgs                 .amdvlk ];
+    extraPackages32 = [ mesa-pkgs.driversi686Linux.amdvlk ];
+  };
+  # make sure hyprland desktop portal uses the right mesa version
+  programs.hyprland.portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland.override {
+    inherit (mesa-pkgs) mesa;
   };
 }
