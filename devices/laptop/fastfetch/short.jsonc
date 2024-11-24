@@ -5,7 +5,9 @@
         "source": "  \\\\  \\\\ //\n ==\\\\__\\\\/ //\n   //   \\\\//\n==//     //==\n //\\\\___//\n// /\\\\  \\\\==\n  // \\\\  \\\\"
     },
     "display": {
-        "binaryPrefix": "si",
+        "size": {
+            "binaryPrefix": "si"
+        },
         "percent": {
             "type": 1,
             "color": {
