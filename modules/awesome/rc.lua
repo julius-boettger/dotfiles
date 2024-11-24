@@ -265,8 +265,6 @@ globalkeys = mytable.join(
             if julius_monitor_toggle then
                 -- turn off second screen
                 awful.spawn("xrandr --output HDMI-0 --off")
-                -- picom may get messed with => try to start it (only works if not running)
-                awful.spawn.with_shell("sleep 1 && picom --experimental-backend")
             else
                 -- turn on second screen (by applying the right config)
                 awful.spawn.with_shell("xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred")

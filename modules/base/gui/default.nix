@@ -97,7 +97,6 @@ args@{ config, lib, pkgs, variables, ... }:
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
-      #picom.enable = true;
       nautilus.enable = true;
       bluetooth.enable = true;
       discord.enable = true;

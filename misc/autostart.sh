@@ -15,7 +15,6 @@ if [ $# -ge 1 ]; then
     # focus primary screen on awesome
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
-    run_once picom --experimental-backend
     run_once nm-applet
     run_once flameshot # not necessary, but makes startup faster
   fi

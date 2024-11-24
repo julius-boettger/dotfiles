@@ -27,7 +27,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
     - serving as documentation and inspiration for customizing your system
 - With this repo you get a [Flake](https://nixos.wiki/wiki/Flakes)-based [NixOS](https://nixos.org) configuration that includes...
   - two fully functional desktop sessions:
-    - [Awesome](https://github.com/awesomeWM/awesome) + [Picom](https://github.com/jonaburg/picom) (on Xorg)
+    - [Awesome](https://github.com/awesomeWM/awesome) (on Xorg)
     - [Hyprland](https://hyprland.org/) (on Wayland)
     - => See [Installation (Desktop)](#installation-desktop)
   - a nice [WSL](https://learn.microsoft.com/en-us/windows/wsl/) setup
@@ -62,7 +62,6 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `modules/gitnuro/gitnuro.json` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
 | `modules/hyprland/hyprland.conf` | [Hyprland](https://hyprland.org/) configuration |
 | `modules/jetbrains/.ideavimrc` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
-| `modules/picom/picom.conf` | [picom (jonaburg-fork)](https://github.com/jonaburg/picom) configuration |
 | `modules/rofi/` | [Rofi](https://github.com/lbonn/rofi) (Wayland fork) themes |
 | `modules/sddm-sugar-candy/sddm-sugar-candy.conf` | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 | `modules/starship/starship.toml` | [Starship](https://github.com/starship/starship) configuration |
