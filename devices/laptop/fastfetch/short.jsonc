@@ -34,7 +34,8 @@
         },
         {
             "type": "battery",
-            "format": "{4}"
+            "format": "{4}",
+            "key": "Battery"
         },
         {
             "type": "colors",
