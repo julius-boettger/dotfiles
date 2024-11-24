@@ -9,7 +9,6 @@ args@{ config, lib, pkgs, variables, ... }:
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
     # sound with pipewire
-    sound.enable = true;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -39,7 +38,6 @@ args@{ config, lib, pkgs, variables, ... }:
       gparted # partition manager, use with sudo -E gparted
       unstable.resources # system monitor (best overall)
       monitor # system monitor (best process view)
-      psensor # gui for (lm_)sensors to display system temperatures
       vlc # video player
       qview # image viewer
       audacious # audio player
@@ -48,13 +46,13 @@ args@{ config, lib, pkgs, variables, ... }:
       networkmanagerapplet # tray icon for networking connection
       xarchiver # archive manager
       baobab # disk usage analyzer
-      gnome.gnome-disk-utility
+      gnome-disk-utility
       unstable.obsidian # PROPRIETARY notes
       spotify # PROPRIETARY
       # gtk theme
       (orchis-theme.override { border-radius = 10; })
       # icon themes
-      gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
+      adwaita-icon-theme # just having this installed fixes issues with some apps
       (papirus-icon-theme.override { /*folder-*/color = "black"; })
 
       ### cli
@@ -99,7 +97,7 @@ args@{ config, lib, pkgs, variables, ... }:
       swaync.enable = true;
       firefox.enable = true;
       gitnuro.enable = true;
-      picom.enable = true;
+      #picom.enable = true;
       nautilus.enable = true;
       bluetooth.enable = true;
       discord.enable = true;

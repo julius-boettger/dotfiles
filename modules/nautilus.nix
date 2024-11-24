@@ -3,7 +3,7 @@ args@{ config, lib, pkgs, ... }:
 lib.mkModule "nautilus" config {
   environment.systemPackages = with pkgs; [
     unstable.nautilus
-    gnome.sushi # thumbnails in nautilus
+    sushi # thumbnails in nautilus
   ];
 
   # needed for trash to work in nautilus

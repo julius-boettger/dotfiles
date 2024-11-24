@@ -1,10 +1,7 @@
 args@{ lib, pkgs, inputs, variables, device, ... }:
 let
-  # unstable nixpkgs input of hyprland to use for newer mesa drivers
-  hyprland-pkgs-unstable = inputs.hyprland
-    .inputs.nixpkgs.legacyPackages.${device.system};
-  # nixpkgs to use for amd gpu mesa drivers
-  mesa-pkgs = hyprland-pkgs-unstable;
+  # nixpkgs to use for amd gpu mesa driver stuff
+  mesa-pkgs = pkgs;
 in
 {
   local = {
@@ -26,12 +23,9 @@ in
 
   # amd gpu
   boot.initrd.kernelModules = [ "amdgpu" ];
-  hardware.opengl = {
-    enable = true;
-    driSupport      = true;
-    driSupport32Bit = true;
-    package   = mesa-pkgs              .mesa.drivers;
-    package32 = mesa-pkgs.pkgsi686Linux.mesa.drivers;
+  hardware.graphics = {
+    enable      = true;
+    enable32Bit = true;
     # additional vulkan drivers 
     extraPackages   = [ mesa-pkgs                 .amdvlk ];
     extraPackages32 = [ mesa-pkgs.driversi686Linux.amdvlk ];
