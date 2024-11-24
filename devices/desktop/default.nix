@@ -23,7 +23,7 @@ args@{ config, pkgs, variables, ... }:
     alsa-scarlett-gui # control center for focusrite usb audio interface
     liquidctl # liquid cooler control
     # to mount encrypted data partition
-    gnome.zenity # password prompt
+    zenity # password prompt
     cryptsetup # unlock luks
     dunst # send notifications
   ];

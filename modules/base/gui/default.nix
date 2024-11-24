@@ -8,6 +8,12 @@ args@{ config, lib, pkgs, variables, ... }:
     # latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
+    # hardware accelerated graphics drivers
+    hardware.graphics = {
+      enable      = true;
+      enable32Bit = true;
+    };
+
     # sound with pipewire
     security.rtkit.enable = true;
     services.pipewire = {
