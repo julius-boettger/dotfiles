@@ -1,11 +1,14 @@
 # useful config for laptops
-args@{ config, lib, pkgs, ... }:
+args@{ config, lib, pkgs, variables, ... }:
 {
   options.local.base.laptop.enable = lib.mkEnableOption "whether to enable laptop config";
 
   config = lib.mkIf config.local.base.laptop.enable {
 
-    local.base.gui.enable = true;
+    local = {
+      base.gui.enable = true;
+      plymouth.enable = true;
+    };
 
     # set env var to tell eww that this is a laptop
     environment.variables.IS_LAPTOP = 1;
@@ -28,6 +31,12 @@ args@{ config, lib, pkgs, ... }:
       brightnessctl # control display brightness
       local.easyroam # connect to eduroam
     ];
+
+    # autologin hyprland
+    services.displayManager.sddm.settings.Autologin = {
+      User = variables.username;
+      Session = "hyprland.desktop";
+    };
 
     # set brightness to 0 while lid is closed
     services.acpid = {
