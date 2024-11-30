@@ -10,6 +10,9 @@ args@{ config, pkgs, variables, ... }:
     playerctl.enable = true;
   };
 
+  # build fails on latest kernel (6.12)
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
+
   boot.supportedFilesystems.ntfs = true;
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
