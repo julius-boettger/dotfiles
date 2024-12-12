@@ -27,6 +27,9 @@ args@{ config, lib, pkgs, ... }:
       gphoto2fs # mount camera
     ];
 
-    local.devtools.cpp.enable = true;
+    local.devtools = {
+      cpp.enable = true;
+      rust.enable = true;
+    };
   };
 }
