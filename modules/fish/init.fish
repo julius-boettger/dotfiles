@@ -64,7 +64,7 @@ if status is-interactive
             awk '{print $6 "K"}' | \
             numfmt --from si --to si
         set_color normal
-        hyperfine --shell none --runs 5 "$argv"
+        hyperfine --shell none "$argv"
     end
 
     # alias some nix commands 
