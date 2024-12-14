@@ -13,42 +13,16 @@ echo "updating flake..."
 set_color white
 
 # update flake
-nix flake update /etc/dotfiles
+nix flake update --flake /etc/dotfiles
 
 # rebuild flake with new flake.lock and given args
 flake-rebuild $argv
-set rebuild_status $status
-
-# cd into repo (for git)
-set working_dir $(pwd)
-cd /etc/dotfiles
-
-# if rebuild failed
-if test $rebuild_status != 0
-    # discard changes
-    git restore flake.lock
-    cd $working_dir
+if test $status != 0
     exit
 end
 
 set_color green
 echo "completed rebuild."
-set_color white
-
-### commit changes to flake.lock
-# (will not do anything if file wasn't changed)
-# unstage possible staged changes
-git reset
-# commit flake.lock changes (if available)
-git add flake.lock
-git commit -m "update flake.lock"
-# stage possible changes before rebuilding so that the flake can see them
-git add .
-# cd back
-cd $working_dir
-
-set_color green
-echo "committed changes to flake.lock."
 set_color white
 
 set_color green
