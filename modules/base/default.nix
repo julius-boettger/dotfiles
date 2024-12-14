@@ -81,6 +81,7 @@ args@{ lib, pkgs, variables, device, ... }:
     tldr # summarize man pages
     zoxide # better cd
     nomino # file renaming
+    hyperfine # benchmarking tool
     unstable.numbat # cli calculator
     fortune # random quote
     librespeed-cli # speedtest

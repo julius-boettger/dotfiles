@@ -39,10 +39,34 @@ if status is-interactive
     alias cat bat
     alias aquarium "asciiquarium --transparent"
     alias flake-update "/etc/dotfiles/misc/update/update.sh"
+
     # easier numbat access
     function calc
         numbat -e "$argv"
     end
+
+    # test command for maximum memory usage and runtime
+    function memtime
+        if test -z "$argv"
+            set_color red
+            echo -n "Error: "
+            set_color normal
+            echo "no command given!"
+            return 1
+        end
+        set_color --bold
+        echo -n "Maximum memory usage"
+        set_color normal
+        echo -n " (RSS): "
+        set_color green --bold
+        command time -v $argv > /dev/null 2>| \
+            grep "Maximum resident set size" | \
+            awk '{print $6 "K"}' | \
+            numfmt --from si --to si
+        set_color normal
+        hyperfine --shell none --runs 5 "$argv"
+    end
+
     # alias some nix commands 
     function nix
         # to nom (prettier output)
