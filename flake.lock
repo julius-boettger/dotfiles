@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "couchdb-aarch64-nixpkgs": {
+      "locked": {
+        "lastModified": 1734126203,
+        "narHash": "sha256-0XovF7BYP50rTD2v4r55tR5MuBLet7q4xIz6Rgh3BBU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "71a6392e367b08525ee710a93af2e80083b5b3e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "71a6392e367b08525ee710a93af2e80083b5b3e2",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -684,24 +700,9 @@
         "type": "github"
       }
     },
-    "raspberry-pi-nixpkgs": {
-      "locked": {
-        "lastModified": 1727173215,
-        "narHash": "sha256-JrOd8fWyCuzMVKjZG6ns4Hvfy+90EYiYTPEsX4cK7HI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "6fc0699003d64e9c884eca15f162b0125020aef7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "6fc0699003d64e9c884eca15f162b0125020aef7",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
+        "couchdb-aarch64-nixpkgs": "couchdb-aarch64-nixpkgs",
         "disko": "disko",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
@@ -715,7 +716,6 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "raspberry-pi-nix": "raspberry-pi-nix",
-        "raspberry-pi-nixpkgs": "raspberry-pi-nixpkgs",
         "sops-nix": "sops-nix",
         "vscode-server": "vscode-server",
         "website": "website"

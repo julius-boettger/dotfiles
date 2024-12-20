@@ -3,7 +3,7 @@
 args@{ config, lib, variables, ... }:
 let
   port = 5984; # couchdb default
-  pkgs = lib.getNixpkgs "raspberry-pi-nixpkgs";
+  couchdb-pkg = (lib.getNixpkgs "couchdb-aarch64-nixpkgs").couchdb3;
 in
 lib.mkModule "obsidian-livesync" config {
 
@@ -22,7 +22,7 @@ lib.mkModule "obsidian-livesync" config {
   services.couchdb = {
     enable = true;
     inherit port;
-    package = pkgs.couchdb3;
+    package = couchdb-pkg;
     # to avoid shell setup script
     # https://github.com/vrtmrz/obsidian-livesync/blob/main/utils/couchdb/couchdb-init.sh
     extraConfig = ''
