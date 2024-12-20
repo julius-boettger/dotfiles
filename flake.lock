@@ -412,11 +412,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1727084160,
-        "narHash": "sha256-2Os+Bmu5MyKgzMWO/NWSL3s4t8rwTWa3R5KG6fQvkdU=",
+        "lastModified": 1734734774,
+        "narHash": "sha256-dyK69r+aH4xzdIThXBhT8ozE0FPNW0u1k6UwWKMDD2U=",
         "owner": "julius-boettger",
         "repo": "lamp-server-rust",
-        "rev": "081b324246b126b16523b56835a106378a6d236c",
+        "rev": "a32b60539661506863ec043bf56d3bfad869c2b2",
         "type": "github"
       },
       "original": {
