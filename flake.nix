@@ -9,7 +9,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # run nixos on raspberry pi
     # + slightly older nixpkgs to avoid cache misses of big packages
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?ref=v0.4.1";
     raspberry-pi-nixpkgs.url = "github:nixos/nixpkgs?rev=6fc0699003d64e9c884eca15f162b0125020aef7";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
