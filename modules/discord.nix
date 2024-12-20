@@ -24,7 +24,7 @@ lib.mkModule "discord" config {
 
       config.plugins = {
         fakeNitro.enable = true;
-        callTimer.enable = true;
+        #callTimer.enable = true; # makes vesktop crash when joining calls?
         friendsSince.enable = true;
         crashHandler.enable = true;
         volumeBooster.enable = true;
