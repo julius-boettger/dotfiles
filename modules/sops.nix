@@ -11,7 +11,8 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
       ssh-to-age # convert keys
     ];
 
-    # should contain private key generated with ssh-to-age
+    # should contain private key generated with
+    # ssh-to-age -private-key -i ~/.ssh/id_ed25519 -o ~/.config/sops/age/keys.txt
     sops.age.keyFile = "/home/${variables.username}/.config/sops/age/keys.txt";
   };
 }
