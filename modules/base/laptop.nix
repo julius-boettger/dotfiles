@@ -19,13 +19,6 @@ args@{ config, lib, pkgs, variables, ... }:
     # probably useful
     hardware.enableAllFirmware = true;
 
-    # configure behavior when closing laptop lid
-    services.logind = {
-      # do nothing, you have to suspend manually
-      lidSwitch       = "ignore";
-      lidSwitchDocked = "ignore";
-    };
-
     environment.systemPackages = with pkgs; [
       acpi # get battery info like remaining time to (dis)charge
       brightnessctl # control display brightness
@@ -38,20 +31,25 @@ args@{ config, lib, pkgs, variables, ... }:
       Session = "hyprland.desktop";
     };
 
-    # set brightness to 0 while lid is closed
-    services.acpid = {
-      enable = true;
-      lidEventCommands = ''
-        PATH=/run/current-system/sw/bin
-        if [[ $(awk '{print$NF}' /proc/acpi/button/lid/LID0/state) == "closed" ]]; then
-          # save current brightness and set to 0
-          brightnessctl -s
-          brightnessctl s 0
-        else
-          # restore saved brightness
-          brightnessctl -r
-        fi
-      '';
+    # lock and suspend when closing laptop lid
+    services = {
+      # stop default behavior
+      logind = {
+        lidSwitch       = "ignore";
+        lidSwitchDocked = "ignore";
+      };
+      # run custom script
+      acpid = {
+        enable = true;
+        lidEventCommands = ''
+          PATH=/run/current-system/sw/bin
+          if [[ $(awk '{print$NF}' /proc/acpi/button/lid/LID0/state) == "closed" ]]; then
+            export XDG_RUNTIME_DIR="/run/user/1000"
+            export WAYLAND_DISPLAY="wayland-1"
+            lock-suspend
+          fi
+        '';
+      };
     };
   };
 }
