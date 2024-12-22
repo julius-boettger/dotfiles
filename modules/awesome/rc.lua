@@ -259,21 +259,6 @@ globalkeys = mytable.join(
     ---- custom key bindings
 
 
-    -- toggle second screen
-    awful.key({ modkey }, "p",
-        function ()
-            if julius_monitor_toggle then
-                -- turn off second screen
-                awful.spawn("xrandr --output HDMI-0 --off")
-            else
-                -- turn on second screen (by applying the right config)
-                awful.spawn.with_shell("xrandr --output HDMI-0 --mode 1920x1080 --pos 0x100 --rate 144 --output DP-0 --mode 2560x1440 --pos 1920x0 --rate 144 --primary --preferred")
-            end
-            -- flip toggle variable
-            julius_monitor_toggle = not julius_monitor_toggle
-        end,
-        {description = "toggle second screen", group = "awesome"}
-    ),
     -- obsidian
     awful.key({ modkey }, "o", function () awful.spawn("obsidian") end,
               {description="obsidian", group="launcher"}),

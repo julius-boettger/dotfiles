@@ -74,9 +74,7 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 # Installation (Desktop)
 
 - The following guide explains installation on a [NixOS](https://nixos.org/) desktop system.
-- ⚠️ I try to make this config as modular and hardware independent as it makes sense for my time, but you might still have to change some things to make it work with your hardware. The current configuration assumes:
-    - a dual-monitor setup (for some later mentioned keybinds)
-    - a stationary/dektop system (you _could_ try it out on a portable system, but would probably miss things like a battery or wifi indicator)
+- ⚠️ I try to make this config as modular and hardware independent as it makes sense for my time, but you might still have to change some things to make it work with your hardware.
 - If you still want to try setting this up, here you go...
 
 First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
@@ -97,15 +95,11 @@ chmod -R 755 /etc/dotfiles # should already be set like this
 cp -f /etc/nixos/hardware-configuration.nix /etc/dotfiles/devices/desktop/
 ```
 
-> Paths like `devices/desktop/default.nix` are referencing this the content of this repo, which should now be in `/etc/dotfiles/`, so the full path in this case would be `/etc/dotfiles/devices/desktop/default.nix`.
-
-If you search for `xrandr` in `modules/awesome/rc.lua` (or `devices/desktop/default.nix`) you will find two commands which are for my specific dual-monitor setup. The idea is that one command configures both monitors and the other just the primary monitor, so that the secondary monitor is toggleable by pressing Super+P. If you want to use this functionality you will have to adjust the commands for your specific setup. ~~But you can also just leave them like that and don't press Super+P.~~
-
-It's pretty much the same thing for my Hyprland config, but I extracted the device specific stuff into two variables called `second_monitor` and `second_monitor_config`, which I set in `devices/desktop/hyprland.conf`. The config there shows what works for my setup, you may need to change it for yours.
+> Paths like `devices/desktop/default.nix` are referencing the content of this repo, which should now be in `/etc/dotfiles/`, so the full path in this case would be `/etc/dotfiles/devices/desktop/default.nix`.
 
 There are some files you now should take a look at and adjust them to your liking:
 - `variables.nix` (should explain itself)
-- `devices/desktop/default.nix` contains some device-specific configuration like mounting a partition. You may pick and choose what seems useful to you, or just delete it.
+- `default.nix` and `hyprland.conf` in `devices/desktop/` contain some device- / hardware-specific configuration like setting the resolution, mounting a partition, ... You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
 Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles#desktop --impure`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
