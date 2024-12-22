@@ -21,8 +21,9 @@ args@{ config, lib, pkgs, variables, ... }:
 
     environment.systemPackages = with pkgs; [
       acpi # get battery info like remaining time to (dis)charge
+      nwg-displays # control (external) display configuration
       brightnessctl # control display brightness
-      local.easyroam # connect to eduroam
+      unstable.easyroam-connect-desktop # connect to eduroam
     ];
 
     # autologin hyprland
