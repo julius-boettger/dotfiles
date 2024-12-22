@@ -52,5 +52,10 @@ args@{ config, lib, pkgs, variables, ... }:
         '';
       };
     };
+
+    # notifications for low battery
+    home-manager.users.${variables.username} = { config, ... }: {
+      services.batsignal.enable = true;
+    };
   };
 }
