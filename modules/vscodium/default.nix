@@ -32,6 +32,7 @@ lib.mkModule "vscodium" config {
         matthewpi.caddyfile-support
         nixpkgs-exts.ms-vscode.cpptools # https://github.com/nix-community/nix-vscode-extensions/issues/69
         # other stuff
+        mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
         eamodio.gitlens # advanced git integration
         ritwickdey.liveserver # quick webserver for testing

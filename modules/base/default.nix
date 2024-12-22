@@ -104,6 +104,9 @@ args@{ lib, pkgs, variables, device, ... }:
   # for secret storing stuff
   services.gnome.gnome-keyring.enable = true;
 
+  # load dev environment from directory
+  programs.direnv.enable = true;
+
   # for git authentication with ssh keys
   programs.ssh = {
     startAgent = true;

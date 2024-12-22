@@ -13,6 +13,8 @@ if status is-interactive
     zoxide init fish | source
     # use starship prompt
     starship init fish | source
+    # setup direnv to load dev environment from directory
+    direnv hook fish | source
 
     ### vim
     fish_vi_key_bindings
