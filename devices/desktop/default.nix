@@ -10,17 +10,14 @@ args@{ config, pkgs, variables, ... }:
     playerctl.enable = true;
   };
 
-  # build fails on latest kernel (6.12)
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
-
   boot.supportedFilesystems.ntfs = true;
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
 
-  # drivers for aio liquid coolers
-  boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
-  boot.kernelModules = [ "liquidtux" ];
+  # drivers for aio liquid coolers (currently fail to build on linux 6.12)
+  #boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
+  #boot.kernelModules = [ "liquidtux" ];
 
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui # control center for focusrite usb audio interface
