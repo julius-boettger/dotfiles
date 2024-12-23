@@ -19,12 +19,8 @@ args@{ lib, pkgs, inputs, variables, ... }:
   # git gui (yes, that works with wsl!)
   local.gitnuro.enable = true;
 
-  # automatic garbage collection to free space
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-old";
-  };
+  # automatic nix garbage collect
+  programs.nh.clean.dates = "daily";
 
   # connect vscode on windows to nixos wsl
   # https://github.com/nix-community/nixos-vscode-server/issues/70

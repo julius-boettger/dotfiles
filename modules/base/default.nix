@@ -86,7 +86,6 @@ args@{ lib, pkgs, variables, device, ... }:
     fortune # random quote
     librespeed-cli # speedtest
     nix-output-monitor # prettier output of nix commands
-    unstable.nh # nix helper (prettier/better nix commands)
     cbonsai # ascii art bonsai
     asciiquarium-transparent # ascii art aquarium
   ];
@@ -106,6 +105,19 @@ args@{ lib, pkgs, variables, device, ... }:
 
   # load dev environment from directory
   programs.direnv.enable = true;
+
+  # nix helper (prettier/better nix commands)
+  programs.nh =  {
+    enable = true;
+    package = pkgs.unstable.nh;
+    # automatic nix garbage collect
+    clean = {
+      enable = true;
+      dates = lib.mkDefault "weekly";
+      # always keep 2 generations
+      extraArgs = "--keep 2";
+    };
+  };
 
   # for git authentication with ssh keys
   programs.ssh = {
