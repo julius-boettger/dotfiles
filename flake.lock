@@ -412,11 +412,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1734734774,
-        "narHash": "sha256-dyK69r+aH4xzdIThXBhT8ozE0FPNW0u1k6UwWKMDD2U=",
+        "lastModified": 1734965051,
+        "narHash": "sha256-CReUyXZ3CSmxUd6eYcXWYhJPUhG7iO2SHEKJddCTtJ0=",
         "owner": "julius-boettger",
         "repo": "lamp-server-rust",
-        "rev": "a32b60539661506863ec043bf56d3bfad869c2b2",
+        "rev": "c0098a7dd0a0f89f6ab5427fa9d43cb5b0c9ebc8",
         "type": "github"
       },
       "original": {
@@ -586,11 +586,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1711001935,
-        "narHash": "sha256-URtGpHue7HHZK0mrHnSf8wJ6OmMKYSsoLmJybrOLFSQ=",
+        "lastModified": 1734649271,
+        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "20f77aa09916374aa3141cbc605c955626762c9a",
+        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
         "type": "github"
       },
       "original": {
