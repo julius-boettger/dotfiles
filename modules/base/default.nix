@@ -130,6 +130,9 @@ args@{ lib, pkgs, variables, device, ... }:
   # some environment variables
   environment.variables = {
     EDITOR = "vim";
+    # colorize man pages with bat
+    MANPAGER = "sh -c 'col -bx | bat --language man --plain'";
+    MANROFFOPT = "-c";
     # current device to use for flake-rebuild
     NIX_FLAKE_CURRENT_DEVICE = device.internalName;
     # use --impure for flake-rebuild by default (if configured)
