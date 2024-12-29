@@ -73,26 +73,82 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 
 # Installation (Desktop)
 
-- The following guide explains installation on a [NixOS](https://nixos.org/) desktop system.
+- The following guide explains the installation of [NixOS](https://nixos.org/) with my configuration on a desktop system.
 - ⚠️ I try to make this config as modular and hardware independent as it makes sense for my time, but you might still have to change some things to make it work with your hardware.
 - If you still want to try setting this up, here you go...
 
-First install [NixOS](https://nixos.org/) and set it up far enough to have `git`, a network connection and a text editor available.
+Download the "Minimal ISO image" of NixOS from [here](https://nixos.org/download/#nix-more), write it to a USB drive (e.g. with [USBImager](https://bztsrc.gitlab.io/usbimager/)) and boot it. If you don't have a wired internet connection, see how to set up wifi in the installer [here](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
 
-Place the content of this repository inside `/etc/dotfiles/`:
+Next, we will continue with some commands:
 ```shell
-cd /etc
+# you might want to change your keyboard layout, e.g.
+sudo loadkeys de
 
-# clone specific release (you know what you get, but v1.0.0 might not work anymore)
-git clone --branch v2.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+cd /tmp
+# download disko disk config
+# you probably don't want to use my exact configuration,
+# see https://github.com/nix-community/disko to build your own
+curl -o disk-config.nix https://raw.githubusercontent.com/julius-boettger/dotfiles/main/devices/desktop/disk-config.nix
+# check names of available disks
+lsblk
+# adjust disk config
+vim disk-config.nix
+# run disko
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disk-config.nix
+# check if resulting mounts look plausible 
+mount | grep /mnt
+
+# prepare nixos config
+sudo nixos-generate-config --no-filesystems --root /mnt
+cd /mnt/etc/nixos
+sudo mv /tmp/disk-config.nix .
+
+# start editing the config, keep on reading to see what you should change
+sudo vim configuration.nix
+```
+
+There should be a ton of commented-out code in this file that might be useful for you, feel free to comment it in.
+
+Particularly important is that your configuration contains the following:
+
+```sh
+imports = [
+  # import disko and disk config
+  "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+  ./disk-config.nix
+  # import generated hardware config
+  ./hardware-configuration.nix
+];
+
+# set keyboard layout
+console.keyMap = "de";
+
+# make sure your favorite editor is available
+environment.systemPackages = with pkgs; [
+  vim
+];
+```
+
+Save your changes and run `sudo nixos-install`.
+
+Shutdown your system, remove the USB drive and boot your newly installed operating system.
+
+Then run some more commands:
+
+```sh
+# make sure git is available, e.g. with
+nix-shell -p git
+
+# clone this repository to obtain my configuration
+cd /etc
 # clone current commit (although you don't know what you get)
 git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git
+# clone specific release (you know what you get, but v1.0.0 might not work anymore)
+git clone --branch v2.0.0 --depth 1 --recurse-submodules https://github.com/julius-boettger/dotfiles.git
 
-chown -R $USER:root /etc/dotfiles # make editing files more comfortable (don't require sudo)
-chmod -R 755 /etc/dotfiles # should already be set like this
-
-# copy over your hardware-configuration.nix (!)
+# copy over your disk and hardware config (!)
 cp -f /etc/nixos/hardware-configuration.nix /etc/dotfiles/devices/desktop/
+cp -f /etc/nixos/disk-config.nix /etc/dotfiles/devices/desktop/
 ```
 
 > Paths like `devices/desktop/default.nix` are referencing the content of this repo, which should now be in `/etc/dotfiles/`, so the full path in this case would be `/etc/dotfiles/devices/desktop/default.nix`.
@@ -102,11 +158,25 @@ There are some files you now should take a look at and adjust them to your likin
 - `default.nix` and `hyprland.conf` in `devices/desktop/` contain some device- / hardware-specific configuration like setting the resolution, mounting a partition, ... You may pick and choose what seems useful to you, or just delete it.
 - Of course you may also want to look at and change every other file ;)
 
-Then rebuild your system with `sudo nixos-rebuild switch --flake /etc/dotfiles#desktop --impure`. After you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
+```shell
+# make sure the nix flake can see all your files
+cd /etc/dotfiles
+git add .
+
+# rebuild the system
+# after you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
+nixos-rebuild switch --flake /etc/dotfiles#desktop --impure
+
+# set a password for your created user
+passwd <USER>
+
+# transfer ownership of the config to your created user to make editing it more comfortable
+chown -R <USER>:root /etc/dotfiles
+```
 
 Next: `reboot` for good measure.
 
-Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `modules/gitnuro/gitnuro.json` and click on "Accept".
+~~Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `modules/gitnuro/gitnuro.json` and click on "Accept".~~ (My theme is currently broken)
 
 To set a wallpaper for [SDDM](https://github.com/sddm/sddm) (the display manager) either put a `login.jpg` in `wallpapers/` or adjust the path to the wallpaper at the top of `modules/sddm-sugar-candy/sddm-sugar-candy.conf`.
 
@@ -142,20 +212,23 @@ Now run some more commands to setup my config:
 ```shell
 cd /etc
 nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/julius-boettger/dotfiles.git"
-chown -R $USER:root /etc/dotfiles # make editing files more comfortable (don't require sudo)
-chmod -R 755 /etc/dotfiles # should already be set like this
 ```
 
 You now should take a look at `variables.nix`, which should explain its content itself. Of course you may also want to look at and change every other file ;)
 
-Then rebuild your system with
+Then run some more commands:
 ```sh
+# rebuild the system
+# after you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
 nix-shell -p git --run "sudo nixos-rebuild switch --flake /etc/dotfiles#wsl"
+
+# transfer ownership of the config to your created user to make editing it more comfortable
+chown -R <USER>:root /etc/dotfiles
 ```
 
 To see the effects, exit your current WSL session (e.g. with `exit`), force WSL to shutdown (to achieve a restart) with `wsl --shutdown` and then start a new session (e.g. with `wsl -d NixOS`).
 
-You should be greeted by a nice little `fastfetch` now! `flake-rebuild` should also be available as a shorthand that serves the same purpose as the long rebuild command above.
+You should be greeted by a nice little `fastfetch` now!
 
 At this point it should also be fine to connect to a regulated company network again, reaching the internet should still be possible.
 
