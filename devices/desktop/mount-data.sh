@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # luks encrypted data partition
-partition="sda1"
+partition="nvme0n1p1"
 
 # gui prompt passphrase
 passphrase=$(zenity --entry --title="Mount encrypted data partition" --text="Enter passphrase:" --hide-text)

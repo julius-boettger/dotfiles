@@ -28,19 +28,6 @@ args@{ config, pkgs, variables, ... }:
     dunst # send notifications
   ];
 
-  ### mount data partition
-  boot.supportedFilesystems.exfat = true;
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-label/DATA";
-    fsType = "exfat";
-    options = [
-      "nodev"
-      "nosuid"
-      "nofail"
-      "uid=1000"
-      "gid=100"
-    ];
-  };
   # symlink to home folder
   home-manager.users.${variables.username} = { config, ... }: {
     home.file."Library".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Library";
