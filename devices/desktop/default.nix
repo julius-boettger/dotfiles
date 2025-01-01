@@ -10,18 +10,10 @@ args@{ config, pkgs, variables, ... }:
     playerctl.enable = true;
   };
 
-  # build fails because of liquidtux on latest kernel (6.12)
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
-
   boot.supportedFilesystems.ntfs = true;
 
   # for focusrite usb audio interface (get with `dmesg | grep Focusrite`)
   boot.extraModprobeConfig = "options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1";
-
-  # drivers for aio liquid coolers
-  # liquidctl seems to require sudo without this?
-  boot.extraModulePackages = with config.boot.kernelPackages; [ liquidtux ];
-  boot.kernelModules = [ "liquidtux" ];
 
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui # control center for focusrite usb audio interface
@@ -31,6 +23,9 @@ args@{ config, pkgs, variables, ... }:
     cryptsetup # unlock luks
     dunst # send notifications
   ];
+
+  # remove background noise from mic
+  programs.noisetorch.enable = true;
 
   # symlink to home folder
   home-manager.users.${variables.username} = { config, ... }: {
@@ -42,8 +37,16 @@ args@{ config, pkgs, variables, ... }:
   # mouse sens config
   services.libinput.mouse.accelSpeed = "-0.7";
 
-  # remove background noise from mic
-  programs.noisetorch.enable = true;
+  systemd.services.liquidctl = {
+    enable = true;
+    description = "set liquid cooler pump speed curve";
+    serviceConfig = {
+      User = "root";
+      ExecStartPre = "${pkgs.liquidctl}/bin/liquidctl --match kraken initialize";
+      ExecStart    = "${pkgs.liquidctl}/bin/liquidctl --match kraken set pump speed 30 55 45 100";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
   
   # openrgb
   services.hardware.openrgb = {
