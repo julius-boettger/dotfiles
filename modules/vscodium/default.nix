@@ -19,26 +19,18 @@ lib.mkModule "vscodium" config {
         # for syntax highlighting / language support
         dlasagno.rasi
         eww-yuck.yuck
-        csstools.postcss
         jnoortheen.nix-ide
-        svelte.svelte-vscode
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        bradlc.vscode-tailwindcss
-        coolbear.systemd-unit-file
-        ms-azuretools.vscode-docker
-        matthewpi.caddyfile-support
         nixpkgs-exts.ms-vscode.cpptools # https://github.com/nix-community/nix-vscode-extensions/issues/69
         # other stuff
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
         eamodio.gitlens # advanced git integration
-        ritwickdey.liveserver # quick webserver for testing
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
-        leetcode.vscode-leetcode # solve leetcode problems
         pkief.material-icon-theme # file icon theme
         monokai.theme-monokai-pro-vscode # color theme
         christian-kohler.path-intellisense # auto complete paths
