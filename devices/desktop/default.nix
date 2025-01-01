@@ -42,10 +42,13 @@ args@{ config, pkgs, variables, ... }:
     description = "set liquid cooler pump speed curve";
     serviceConfig = {
       User = "root";
-      ExecStartPre = "${pkgs.liquidctl}/bin/liquidctl --match kraken initialize";
-      ExecStart    = "${pkgs.liquidctl}/bin/liquidctl --match kraken set pump speed 30 55 45 100";
+      Type = "oneshot";
+      ExecStart = [
+        "${pkgs.liquidctl}/bin/liquidctl initialize all"
+        "${pkgs.liquidctl}/bin/liquidctl --match kraken set pump speed 30 55 40 100"
+      ];
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "default.target" ];
   };
   
   # openrgb
