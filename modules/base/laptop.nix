@@ -51,22 +51,20 @@ args@{ config, lib, pkgs, variables, ... }:
       };
     };
 
-    # lock and suspend when closing laptop lid
+    # suspend when closing laptop lid
     services = {
-      # stop default behavior
+      # stop default behavior, not reliable
       logind = {
         lidSwitch       = "ignore";
         lidSwitchDocked = "ignore";
       };
-      # run custom script
+      # run own script
       acpid = {
         enable = true;
         lidEventCommands = ''
           PATH=/run/current-system/sw/bin
           if [[ $(awk '{print$NF}' /proc/acpi/button/lid/LID0/state) == "closed" ]]; then
-            export XDG_RUNTIME_DIR="/run/user/1000"
-            export WAYLAND_DISPLAY="wayland-1"
-            lock-suspend
+            systemctl suspend
           fi
         '';
       };

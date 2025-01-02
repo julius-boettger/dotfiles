@@ -26,6 +26,7 @@ lib.mkModule "hyprland" config {
   };
 
   environment.systemPackages = with pkgs; [
+    unstable.hypridle # run commands on idle or suspend/ruspend
     # must-haves according to hyprland wiki
     libsForQt5.qt5.qtwayland
                qt6.qtwayland
@@ -52,6 +53,25 @@ lib.mkModule "hyprland" config {
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
       systemd.variables = [ "--all" ];
+    };
+
+    # lock before suspending with swaylock-effects
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "swaylock-effects";
+          before_sleep_cmd = "loginctl lock-session";
+        };
+
+        # hypridle complains if there are no listeners,
+        # so i made this one which does nothing
+        listener = {
+          timeout = 999999999999999999;
+          on-timeout = "";
+          on-resume = "";
+        };
+      };
     };
   };
 }
