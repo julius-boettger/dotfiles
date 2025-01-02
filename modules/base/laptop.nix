@@ -33,6 +33,24 @@ args@{ config, lib, pkgs, variables, ... }:
       Session = "hyprland.desktop";
     };
 
+    ### improve battery life
+    services.auto-cpufreq.enable = true;
+    # recommended by auto-cpufreq
+    services.thermald.enable = true;
+    # reference: https://github.com/AdnanHodzic/auto-cpufreq#example-config-file-contents
+    services.auto-cpufreq.settings = {
+      battery = {
+        governor = "powersave";
+        platform_profile = "low-power";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        platform_profile = "performance";
+        turbo = "auto";
+      };
+    };
+
     # lock and suspend when closing laptop lid
     services = {
       # stop default behavior
