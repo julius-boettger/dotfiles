@@ -2,7 +2,6 @@
 # wrapper around https://github.com/jirutka/swaylock-effects
 # uses nerdfont characters for text variables
 swaylock \
---daemonize \
 --screenshots \
 --clock \
 --datestr "" \

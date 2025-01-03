@@ -55,14 +55,27 @@ lib.mkModule "hyprland" config {
       systemd.variables = [ "--all" ];
     };
 
-    # lock before suspending with swaylock-effects
+    # lock before/after entering sleep with swaylock-effects
     services.hypridle = {
       enable = true;
       settings = {
         general = {
+          # set command for loginctl
           lock_cmd = "swaylock-effects";
+        } // (if device.internalName == "laptop" then {
+          # for laptops: lock before going to sleep, which shows the lockscreen
+          #              shortly, but you dont see it if you close the laptop lid
           before_sleep_cmd = "loginctl lock-session";
-        };
+        } else {
+          # otherwise: lock after resuming from sleep, so you
+          #            dont see the lockscreen before resuming
+          
+          # after resuming, there is split second of time before
+          # the session is locked. to secure this, inhibit input
+          # with a hyprland keybind submap for this time
+          before_sleep_cmd = "hyprctl dispatch submap inhibit-input";
+          after_sleep_cmd = "swaylock-effects; hyprctl dispatch submap reset";
+        });
 
         # hypridle complains if there are no listeners,
         # so i made this one which does nothing
