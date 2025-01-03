@@ -73,7 +73,7 @@ lib.mkModule "hyprland" config {
           # the session is locked. to secure this, inhibit input
           # with a hyprland keybind submap for this time
           before_sleep_cmd = "hyprctl dispatch submap inhibit-input";
-          after_sleep_cmd = "swaylock-effects; hyprctl dispatch submap reset";
+          after_sleep_cmd = "loginctl lock-session; sleep 1; hyprctl dispatch submap reset";
         });
 
         # hypridle complains if there are no listeners,
