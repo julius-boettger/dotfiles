@@ -26,7 +26,6 @@ lib.mkModule "hyprland" config {
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.hypridle # run commands on idle or suspend/ruspend
     # must-haves according to hyprland wiki
     libsForQt5.qt5.qtwayland
                qt6.qtwayland
