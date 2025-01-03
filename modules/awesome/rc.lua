@@ -283,9 +283,6 @@ globalkeys = mytable.join(
     -- suspend
     awful.key({ modkey, "Control", "Shift" }, "s", function () awful.spawn("systemctl suspend") end,
               {description="suspend", group="awesome"}),
-    -- hibernate
-    awful.key({ modkey, "Control", "Shift" }, "h", function () awful.spawn("systemctl hibernate") end,
-              {description="hibernate", group="awesome"}),
     -- flameshot screenshot
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn("flameshot gui") end,
               {description="screenshot with flameshot", group="launcher"}),

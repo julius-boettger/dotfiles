@@ -119,6 +119,13 @@ args@{ lib, pkgs, variables, device, ... }:
     };
   };
 
+  # disable hibernation
+  systemd.sleep.extraConfig = ''
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
+
   # for git authentication with ssh keys
   programs.ssh = {
     startAgent = true;
