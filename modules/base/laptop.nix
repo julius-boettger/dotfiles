@@ -46,7 +46,7 @@ args@{ config, lib, pkgs, variables, ... }:
       };
       charger = {
         governor = "performance";
-        platform_profile = "performance";
+        platform_profile = "balanced";
         turbo = "auto";
       };
     };
