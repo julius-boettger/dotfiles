@@ -9,16 +9,9 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
   ### fixes for default config
   # usually enabled in modules/base/default.nix, doesnt work here
   boot.loader.systemd-boot.enable = lib.mkForce false;
-  # networkmanager-openconnect fails to build, so manually remove it from the default plugins
-  networking.networkmanager.plugins = lib.mkForce (with pkgs; [
-    networkmanager-fortisslvpn
-    networkmanager-iodine
-    networkmanager-l2tp
-    #networkmanager-openconnect
-    networkmanager-openvpn
-    networkmanager-vpnc
-    networkmanager-sstp
-  ]);
+  # dont install networkmanager plugins because of
+  # build failures and expensive cache misses
+  networking.networkmanager.plugins = lib.mkForce [];
 
   # use nix-community/raspberry-pi-nix with cache
   imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
