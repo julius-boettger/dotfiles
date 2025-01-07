@@ -73,8 +73,7 @@ lib.mkModule "hyprland" config {
           # after_sleep_cmd is run. to secure this, inhibit input
           # with a hyprland keybind submap for this time
           before_sleep_cmd = "hyprctl dispatch submap inhibit-input";
-          # sleep at the start is somehow necessary? idk
-          after_sleep_cmd = "sleep 3; loginctl lock-session; hyprctl dispatch submap reset";
+          after_sleep_cmd = "loginctl lock-session; hyprctl dispatch submap reset";
         });
 
         # hypridle complains if there are no listeners,
