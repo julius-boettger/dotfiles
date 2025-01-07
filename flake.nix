@@ -30,6 +30,9 @@
     # declarative disk management
     disko = { url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs"; };
+    # declarative database for command-not-found
+    programs-sqlite = { url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # wsl utils
     nixos-wsl = { url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";

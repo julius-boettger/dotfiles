@@ -56,6 +56,12 @@ args@{ lib, pkgs, variables, device, ... }:
     LC_NAME           = "de_DE.UTF-8";
   };
 
+  # database for command-not-found in a declarative way without channels
+  # https://blog.nobbz.dev/2023-02-27-nixos-flakes-command-not-found/
+  environment.etc."programs.sqlite".source =
+    (lib.getPkgs "programs-sqlite").programs-sqlite;
+  programs.command-not-found.dbPath = "/etc/programs.sqlite";
+
   ### user account and groups
   # create new group with username
   users.groups.${variables.username} = {};
