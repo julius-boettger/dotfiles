@@ -38,7 +38,7 @@
 ; monitor: name of monitor to watch workspaces, e.g. DP-1
 ; elevate: elevate the widget if true
 (defwindow desktop [monitor elevate]
-  :stacking {elevate ? "fg" : "bottom"}
+  :stacking {elevate ? "overlay" : "bottom"}
   :exclusive false ; dont reserve WM space
   :focusable false ; does not need keyboard input
   :namespace "eww-desktop-widget"
