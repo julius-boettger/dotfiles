@@ -18,9 +18,6 @@
     # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
     hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.46.2";
       inputs.hyprland.follows = "hyprland"; };
-    # shared dependencies of following inputs
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     # secret management with sops
     sops-nix = { url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -35,22 +32,16 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # wsl utils
     nixos-wsl = { url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-compat"; };
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # to connect vscode on windows with nixos wsl
     vscode-server = { url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils"; };
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat"; };
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # for more vscode extensions
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-compat"; };
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; };
   };
 
   # take inputs as arguments
