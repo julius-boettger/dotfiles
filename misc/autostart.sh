@@ -22,14 +22,14 @@ fi
 
 ### run display server agnostic commands
 # run programs in background
-run_once lxpolkit
+run_once lxpolkit > /dev/null
 
 # running with "run_once" is kind of not reliable +
 # has built-in prevention for running more than once
-copyq --start-server hide &
+copyq --start-server hide &> /dev/null &
 
 # set default rgb profile (nothing happens if the command is not found)
-openrgb --profile default &
+openrgb --profile default > /dev/null &
 
 # ask for update on saturdays
 python /etc/dotfiles/misc/update/update_on_saturday.py &
@@ -38,6 +38,10 @@ python /etc/dotfiles/misc/update/update_on_saturday.py &
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id
   id=$(wpctl status | sed '/Sources:/,$!d' | grep -m 1 "$1" | sed "s/[^0-9]*\([0-9]\{2\}\).*/\1/")
+  if [ -z "$id" ]; then
+    echo "couldnt get id for microphone '$1'"
+    return
+  fi
   wpctl set-default $id
   wpctl set-volume $id 100%
 }
@@ -47,6 +51,13 @@ if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
   set_mic "Scarlett Solo (3rd Gen.) Input 1 Mic"
   # init noisetorch for default mic
   noisetorch -i
+  if [[ $? == 0 ]]; then
+    echo "noisetorch activated"
+  else
+    echo "noisetorch couldnt be activated"
+  fi
   # set noisetorch mic as default
   set_mic "NoiseTorch Microphone"
+else
+  echo "noisetorch already active"
 fi
