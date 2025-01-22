@@ -11,6 +11,7 @@
     ./hyprland
     ./jetbrains
     ./lamp-server
+    ./minecraft-server
     ./plymouth
     ./rofi
     ./sddm-sugar-candy
