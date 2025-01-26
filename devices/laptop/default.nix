@@ -3,6 +3,7 @@ args@{ pkgs, ... }:
   local.base = {
     gui.full.enable = true;
     laptop.enable = true;
+    steam.enable = true;
   };
 
   # monitor config with xrandr command

@@ -8,7 +8,6 @@ args@{ config, lib, pkgs, variables, ... }:
     local = {
       base.gui.enable = true;
       plymouth.enable = true;
-      steam.enable = true;
     };
 
     # set env var to tell eww that this is a laptop

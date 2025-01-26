@@ -1,3 +1,4 @@
+args@{ pkgs, ... }:
 {
   imports = [ ../../modules/base/raspberry-pi.nix ];
 
@@ -24,4 +25,8 @@
     minecraft-server.enable = true;
     obsidian-livesync.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    htop # process viewer
+  ];
 }
