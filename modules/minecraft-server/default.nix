@@ -1,12 +1,5 @@
 # host minecraft server
 args@{ config, lib, inputs, ... }:
-let
-  port = 25565; # also needs to be open on router!
-  serverName = "default";
-  dataDir = "/srv/minecraft";
-  package = (lib.getNixpkgs "nix-minecraft").minecraftServers
-    .vanilla-1_21;
-in 
 {
   options.local.minecraft-server.enable = lib.mkEnableOption "whether to enable minecraft-server";
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
@@ -16,14 +9,18 @@ in
       enable = true;
       eula = true;
       openFirewall = true;
-      inherit dataDir;
-      servers.${serverName} = {
+      dataDir = "/srv/minecraft";
+
+      servers.default = {
         enable = true;
-        inherit package;
         files."server-icon.png" = ./server-icon.png;
+        package = (lib.getNixpkgs "nix-minecraft").minecraftServers
+          .fabric-1_21;
+
         serverProperties = {
-          server-port = port;
           white-list = true;
+          # default, also needs to be open on router!
+          server-port = 25565;
 
           max-players = 8;
           view-distance = 10;
