@@ -27,7 +27,7 @@ args@{ config, lib, inputs, ... }:
           simulation-distance = 10;
           jvmOpts = "-Xms1G -Xmx7G"; # min/max memory
           # different quotes to avoid double backspaces for escaping
-          motd = ''\u00a73\u00a7lJulius \u00a7b\u00a7lServer\u00a7f \u263a\u26cf'';
+          motd = ''\u00a73\u00a7lJulius\u00a7b\u00a7l Server\u00a7r\n\u00a7f\u263a \ud83d\udd14 \ud83c\udfa3 \u2600 \u26cf \ud83e\uddea \u266b'';
         };
       };
     };
