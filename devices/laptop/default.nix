@@ -1,8 +1,8 @@
 args@{ pkgs, ... }:
 {
-  local.base = {
-    gui.full.enable = true;
-    laptop.enable = true;
+  local = {
+    base.gui.full.enable = true;
+    base.laptop.enable = true;
     steam.enable = true;
   };
 
