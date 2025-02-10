@@ -11,4 +11,9 @@ lib.mkModule "nautilus" config {
 
   # set default application for opening directories
   xdg.mime.defaultApplications."inode/directory" = "nautilus.desktop";
+
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "alacritty";
+  };
 }
