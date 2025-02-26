@@ -11,4 +11,7 @@ args@{ pkgs, ... }:
 
   # amd gpu
   hardware.amdgpu.initrd.enable = true;
+
+  # attempt to fix fast battery discharge while suspended
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 }
