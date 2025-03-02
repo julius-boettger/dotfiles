@@ -21,10 +21,8 @@ lib.mkModule "vscodium" config {
         eww-yuck.yuck
         jnoortheen.nix-ide
         bmalehorn.vscode-fish
-        mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        nixpkgs-exts.ms-vscode.cpptools # https://github.com/nix-community/nix-vscode-extensions/issues/69
         # other stuff
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)

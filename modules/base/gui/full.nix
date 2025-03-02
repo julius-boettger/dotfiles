@@ -29,7 +29,6 @@ args@{ config, lib, pkgs, ... }:
     ];
 
     local.devtools = {
-      cpp.enable = true;
       rust.enable = true;
     };
   };
