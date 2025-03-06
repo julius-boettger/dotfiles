@@ -20,6 +20,7 @@
     ./vim
     ./swaync
     ./vscodium
+    ./zen-browser
     ./blocky.nix
     ./bluetooth.nix
     ./devtools.nix

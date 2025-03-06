@@ -102,6 +102,7 @@ args@{ config, lib, pkgs, variables, ... }:
       swaylock-effects.enable = true;
       swaync.enable = true;
       firefox.enable = true;
+      zen-browser.enable = true;
       gitnuro.enable = true;
       nautilus.enable = true;
       bluetooth.enable = true;
