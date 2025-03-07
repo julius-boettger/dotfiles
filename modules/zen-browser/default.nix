@@ -14,9 +14,6 @@ lib.mkModule "zen-browser" config {
 
       profiles.default = {
         isDefault = true;
-        # necessary for some reason?
-        id = 0;
-        settings = {};
       };
     };
   };

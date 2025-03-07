@@ -1268,11 +1268,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1740924881,
-        "narHash": "sha256-sg5KdNbzFTBWsx2a/6VJlgvtMxMkJC+cNN0j0KaAcF0=",
+        "lastModified": 1741387317,
+        "narHash": "sha256-N/oVD//1XbBPP9Ftn62va7hTxvm7iOefcQkoGhWH8+w=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "1f22a452733afedc3a7d82365ef151f9227969cf",
+        "rev": "6a28f932ae836e7aa8b42e81348e765212c28d1f",
         "type": "github"
       },
       "original": {
