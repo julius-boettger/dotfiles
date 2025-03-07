@@ -15,7 +15,7 @@ args@{ lib, pkgs, variables, device, ... }:
   time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = variables.version;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -155,6 +155,7 @@ args@{ lib, pkgs, variables, device, ... }:
   ### manage stuff in /home/$USER/
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "hm-bak";
   home-manager.users.${variables.username} = { config, ... }:
   {
     home.stateVersion = variables.version;
