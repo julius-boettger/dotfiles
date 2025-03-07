@@ -147,6 +147,24 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1736143030,
+        "narHash": "sha256-+hu54pAoLDEZT9pjHlqL9DNzWz0NbUn8NEAHP7PQPzU=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "b905f6fc23a9051a6e1b741e1438dbfc0634c6de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_3"
@@ -643,6 +661,18 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1735774519,
+        "narHash": "sha256-CewEm1o2eVAnoqb6Ml+Qi9Gg/EfNAxbRx1lANGVyoLI=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -755,22 +785,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
-      "locked": {
-        "lastModified": 1735471104,
-        "narHash": "sha256-0q9NGQySwDQc7RhAV2ukfnu7Gxa5/ybJ2ANT8DQrQrs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "88195a94f390381c6afcdaa933c2f6ff93959cb4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -863,7 +877,7 @@
         "sops-nix": "sops-nix",
         "vscode-server": "vscode-server",
         "website": "website",
-        "zen-browser": "zen-browser"
+        "zenix": "zenix"
       }
     },
     "rpi-bluez-firmware-src": {
@@ -1223,19 +1237,47 @@
     },
     "zen-browser": {
       "inputs": {
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": [
+          "zenix",
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1740554227,
-        "narHash": "sha256-xpwZeMw2gGenixGQDyVv+ja+epcR+EJ1BPuGFdgFS18=",
+        "lastModified": 1736520301,
+        "narHash": "sha256-yfbnywGJyx1n+xRet1P5T+6gOUVSbR0p9XasU/q7XjY=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "7de16ae319e6f6852274fa90b0d41c00049767c9",
+        "rev": "0c7995b493e72c642766fa7668651a5351299eb8",
         "type": "github"
       },
       "original": {
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
+    "zenix": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "zen-browser": "zen-browser"
+      },
+      "locked": {
+        "lastModified": 1740924881,
+        "narHash": "sha256-sg5KdNbzFTBWsx2a/6VJlgvtMxMkJC+cNN0j0KaAcF0=",
+        "owner": "anders130",
+        "repo": "zenix",
+        "rev": "1f22a452733afedc3a7d82365ef151f9227969cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "zenix",
         "type": "github"
       }
     }

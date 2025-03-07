@@ -11,8 +11,6 @@
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?ref=v0.4.1";
     # nixpkgs to avoid expensive cache misses of couchdb and dependencies on aarch64
     couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=71a6392e367b08525ee710a93af2e80083b5b3e2";
-    # internet browser
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # host minecraft server
@@ -46,6 +44,10 @@
     # for more vscode extensions
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    # zen browser
+    zenix = { url = "github:anders130/zenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager"; };
   };
 
   # take inputs as arguments
