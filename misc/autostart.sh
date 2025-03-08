@@ -31,9 +31,6 @@ copyq --start-server hide &> /dev/null &
 # set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default > /dev/null &
 
-# ask for update on saturdays
-python /etc/dotfiles/misc/update/update_on_saturday.py &
-
 ### set up virtual microphone with noise reduction
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id

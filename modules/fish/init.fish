@@ -40,7 +40,7 @@ if status is-interactive
     alias ls lsd
     alias cat bat
     alias aquarium "asciiquarium --transparent"
-    alias flake-update "/etc/dotfiles/misc/update/update.sh"
+    alias flake-update "/etc/dotfiles/misc/update.sh"
 
     # easier numbat access
     function calc
