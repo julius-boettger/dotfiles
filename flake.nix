@@ -20,6 +20,9 @@
     # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
     hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.46.2";
       inputs.hyprland.follows = "hyprland"; };
+    # nix user repository (more packages)
+    nur = { url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # secret management with sops
     sops-nix = { url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -107,6 +110,7 @@
         (lib.importIfExists ./devices/${internalName}/disk-config.nix)
         # make some options available
         inputs.disko.nixosModules.disko # disk management
+        inputs.nur.modules.nixos.default # NUR package overlay
         inputs.home-manager.nixosModules.home-manager
         {
           # make specialArgs available for home manager
