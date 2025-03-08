@@ -76,13 +76,18 @@ lib.mkModule "hyprland" config {
           after_sleep_cmd = "loginctl lock-session; hyprctl dispatch submap reset";
         });
 
-        # hypridle complains if there are no listeners,
-        # so i made this one which does nothing
-        listener = {
+        listener = (if device.internalName == "laptop" then {
+          # turn off monitor when discharging and inactive
+          timeout = 60;
+          on-timeout = "cat /sys/class/power_supply/BAT0/status | grep Discharging && hyprctl dispatch dpms off";
+          on-resume  = "hyprctl dispatch dpms on";
+        } else {
+          # hypridle complains if there are no listeners,
+          # so i made this one which does nothing
           timeout = 999999999999999999;
           on-timeout = "";
           on-resume = "";
-        };
+        });
       };
     };
   };
