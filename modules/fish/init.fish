@@ -136,3 +136,14 @@ function flake-rebuild-remote
         &| nom
     return $status
 end
+
+# pull dotfiles before running flake-rebuild
+function flake-rebuild-pull
+    git -C /etc/dotfiles pull --rebase --autostash
+    set git_status $status
+    if test $git_status != 0
+        return $git_status
+    end
+    flake-rebuild $argv
+    return $status
+end
