@@ -16,13 +16,13 @@ if [ $# -ge 1 ]; then
     printf "awful=require('awful')\nawful.screen.focus(1)" | awesome-client &
     run_once unclutter --start-hidden --jitter 0 --timeout 3
     run_once nm-applet
-    run_once flameshot # not necessary, but makes startup faster
   fi
 fi
 
 ### run display server agnostic commands
 # run programs in background
 run_once lxpolkit > /dev/null
+run_once flameshot # not necessary, but makes startup faster
 
 # running with "run_once" is kind of not reliable +
 # has built-in prevention for running more than once

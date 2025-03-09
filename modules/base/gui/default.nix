@@ -74,14 +74,11 @@ args@{ config, lib, pkgs, variables, ... }:
 
       ### only used on wayland
       swww # wallpaper switching with animations
-      grim # whole screen screenshot
-      swappy # edit screenshots
       nwg-look # manage gtk theming stuff if homemanager fails
       hyprpicker # color picker
       wev ydotool # find out / send keycodes
       wl-clipboard # interact with clipboard 
       unstable.swayosd # osd for volume changes
-      unstable.grimblast # region select screenshot
     ];
 
     ###########################################
@@ -181,15 +178,20 @@ args@{ config, lib, pkgs, variables, ... }:
         notify = true;
       };
 
-      # flameshot (screenshots on xorg)
-      services.flameshot.enable = true;
-      services.flameshot.settings.General = {
-                uiColor  = "#FC618D";
-        contrastUiColor  = "#5AD4E6";
-        contrastOpacity  = 64;
-        showHelp         = false;
-        startupLaunch    = false;
-        disabledTrayIcon = true;
+      # flameshot (screenshot tool)
+      services.flameshot = {
+        enable = true;
+        # wayland support
+        package = pkgs.flameshot.override { enableWlrSupport = true; };
+        settings.General = {
+                    uiColor = "#5AD4E6";
+            contrastUiColor = "#FC618D";
+            contrastOpacity = 64;
+            showHelp = false;
+            startupLaunch = false;
+            disabledTrayIcon = true;
+            disabledGrimWarning = true; 
+        };
       };
     };
   };
