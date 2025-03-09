@@ -78,7 +78,7 @@ lib.mkModule "hyprland" config {
 
         listener = (if device.internalName == "laptop" then {
           # turn off monitor when discharging and inactive
-          timeout = 60;
+          timeout = 120; # seconds
           on-timeout = "cat /sys/class/power_supply/BAT0/status | grep Discharging && hyprctl dispatch dpms off";
           on-resume  = "hyprctl dispatch dpms on";
         } else {
