@@ -1,4 +1,9 @@
-args@{ pkgs, ... }:
+args@{ pkgs, inputs, device, ... }:
+let 
+  mesa-pkgs = 
+    pkgs;
+    #inputs.hyprland.inputs.nixpkgs.legacyPackages.${device.system};
+in
 {
   local = {
     base.gui.full.enable = true;
@@ -11,6 +16,10 @@ args@{ pkgs, ... }:
 
   # amd gpu
   hardware.amdgpu.initrd.enable = true;
+  hardware.graphics = {
+    package   = mesa-pkgs              .mesa.drivers;
+    package32 = mesa-pkgs.pkgsi686Linux.mesa.drivers;
+  };
 
   # attempt to fix fast battery discharge while suspended
   boot.kernelPackages = pkgs.linuxPackages_6_12;
