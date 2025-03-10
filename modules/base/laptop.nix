@@ -23,7 +23,6 @@ args@{ config, lib, pkgs, variables, ... }:
       acpi # get battery info like remaining time to (dis)charge
       nwg-displays # control (external) display configuration
       brightnessctl # control display brightness
-      unstable.easyroam-connect-desktop # connect to eduroam
     ];
 
     # autologin hyprland

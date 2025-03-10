@@ -7,6 +7,9 @@ lib.mkModule "zen-browser" config {
   home-manager.users.${variables.username} = { config, ... }: {
     imports = [ inputs.zenix.hmModules.default ];
 
+    # necessary for some reason?
+    programs.firefox.profiles.default = {};
+
     programs.zenix = {
       enable = true;
 
