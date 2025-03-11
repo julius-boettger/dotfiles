@@ -112,6 +112,11 @@ args@{ lib, pkgs, variables, device, ... }:
   # load dev environment from directory
   programs.direnv.enable = true;
 
+  # ensure /bin/bash exists to make
+  # #!/bin/bash script shebangs working
+  system.activationScripts.binbash.text =
+    "ln -sf /run/current-system/sw/bin/bash /bin/bash";
+
   # nix helper (prettier/better nix commands)
   programs.nh =  {
     enable = true;
