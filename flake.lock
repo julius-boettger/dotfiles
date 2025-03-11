@@ -1319,11 +1319,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1741683471,
-        "narHash": "sha256-94qmnofb9kBemEiwOmSsw8pjWBGSbuh7p1j/w7prpRg=",
+        "lastModified": 1741692477,
+        "narHash": "sha256-rwV6ay9onDSaN4jH7DoafqmvGvJNT5p1XvjZqRWUz/U=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "40b754efacaf320b9d18cb1ad9c5ee8ec2eb3c57",
+        "rev": "3436b87dc54e85d63f2224aa0dc921b73f5696b9",
         "type": "github"
       },
       "original": {

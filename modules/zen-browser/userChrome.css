@@ -1,0 +1,4 @@
+/* pinned extension icons */
+.toolbarbutton-1.panel-no-padding.webextension-browser-action.unified-extensions-item-action-button {
+    filter: grayscale(0.75);
+}

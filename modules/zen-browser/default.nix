@@ -7,9 +7,6 @@ lib.mkModule "zen-browser" config {
   home-manager.users.${variables.username} = { config, ... }: {
     imports = [ inputs.zenix.homeModules.default ];
 
-    # necessary for some reason?
-    programs.firefox.profiles.default = {};
-
     programs.zenix = {
       enable = true;
 
@@ -20,6 +17,10 @@ lib.mkModule "zen-browser" config {
 
       profiles.default = {
         isDefault = true;
+
+        userChrome.source = config.lib.file.mkOutOfStoreSymlink
+          "/etc/dotfiles/modules/zen-browser/userChrome.css";
+
         extensions.packages = with extensions; [
           bitwarden
           qwant-search
