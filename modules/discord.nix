@@ -1,5 +1,11 @@
 # discord
 args@{ config, lib, pkgs, inputs, variables, ... }:
+let
+  discord-pkgs =
+    pkgs;
+    # screenshare is currently broken on hyprland
+    #pkgs.unstable;
+in
 lib.mkModule "discord" config {
   # nixcord for declarative config
   home-manager.sharedModules = [ inputs.nixcord.homeManagerModules.nixcord ];
@@ -13,13 +19,13 @@ lib.mkModule "discord" config {
         vencord = {
           enable = false;
           # still relevant for vesktop even if not enabled here
-          package = pkgs.unstable.vencord;
+          package = discord-pkgs.vencord;
         };
       };
       # use vesktop instead (wayland optimized discord client)
       vesktop = {
         enable = true;
-        package = pkgs.unstable.vesktop;
+        package = discord-pkgs.vesktop;
       };
 
       config.plugins = {
