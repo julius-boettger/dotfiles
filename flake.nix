@@ -48,7 +48,7 @@
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # zen browser
-    zenix = { url = "github:anders130/zenix";
+    zenix = { url = "github:anders130/zenix?ref=mkFirefoxModule";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager"; };
   };
@@ -116,10 +116,15 @@
           # make specialArgs available for home manager
           home-manager.extraSpecialArgs = specialArgs;
           # package overlays
-          nixpkgs.overlays = [ (final: prev: {
-            /*pkgs.*/unstable = pkgs-unstable;
-            /*pkgs.*/local    = pkgs-local;
-          }) ];
+          nixpkgs.overlays = [
+            # self-defined
+            (final: prev: {
+              /*pkgs.*/unstable = pkgs-unstable;
+              /*pkgs.*/local    = pkgs-local;
+            })
+            # from inputs
+            inputs.zenix.overlays.default
+          ];
         }
       ];
     };

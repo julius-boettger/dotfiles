@@ -5,7 +5,7 @@ let
 in
 lib.mkModule "zen-browser" config {
   home-manager.users.${variables.username} = { config, ... }: {
-    imports = [ inputs.zenix.hmModules.default ];
+    imports = [ inputs.zenix.homeModules.default ];
 
     # necessary for some reason?
     programs.firefox.profiles.default = {};
@@ -20,7 +20,7 @@ lib.mkModule "zen-browser" config {
 
       profiles.default = {
         isDefault = true;
-        extensions = with extensions; [
+        extensions.packages = with extensions; [
           bitwarden
           qwant-search
           languagetool
