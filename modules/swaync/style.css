@@ -1,6 +1,6 @@
-@define-color cc-bg               rgba(38, 37, 39, 0.53);
-@define-color actual-noti-bg      rgba(38, 37, 39, 0.53);
-@define-color mpris-player-bg     rgba(38, 37, 39, 0.25);
+@define-color cc-bg               rgba(38, 37, 39, 0.35);
+@define-color actual-noti-bg      rgba(38, 37, 39, 0.35);
+@define-color mpris-player-bg     rgba(38, 37, 39, 0.2);
 @define-color noti-close-bg-hover rgba(38, 37, 39, 0.2);
 @define-color noti-action-bg      rgba(255, 255, 255, 0.1);
 @define-color noti-center-border  rgba(255, 255, 255, 0.2);

@@ -40,7 +40,7 @@ multiplier = 5
 
 [window]
 dynamic_title = true
-opacity = 0.53
+opacity = 0.35
 
 [window.padding]
 x = 7
