@@ -1319,16 +1319,15 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1741692477,
-        "narHash": "sha256-rwV6ay9onDSaN4jH7DoafqmvGvJNT5p1XvjZqRWUz/U=",
+        "lastModified": 1741733539,
+        "narHash": "sha256-NoJ8vcKmAJ11I7BUROdn1pTIxYWNfONVXMeJnwGawjg=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "3436b87dc54e85d63f2224aa0dc921b73f5696b9",
+        "rev": "35b8c8636a8ce9c7f6624f124fc8bfb508b98913",
         "type": "github"
       },
       "original": {
         "owner": "anders130",
-        "ref": "mkFirefoxModule",
         "repo": "zenix",
         "type": "github"
       }
