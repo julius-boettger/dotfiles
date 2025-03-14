@@ -1,9 +1,5 @@
 # vscodium with extensions (text editor)
-args@{ config, lib, pkgs, inputs, variables, device, ... }:
-let
-  # extensions directly from nixpkgs
-  nixpkgs-exts = pkgs.unstable.vscode-extensions;
-in
+args@{ config, lib, pkgs, variables, ... }:
 lib.mkModule "vscodium" config {
   environment.systemPackages = [
     (pkgs.vscode-with-extensions.override {
@@ -17,12 +13,12 @@ lib.mkModule "vscodium" config {
         # for syntax highlighting / language support
         dlasagno.rasi
         eww-yuck.yuck
+        ms-vscode.cpptools
         jnoortheen.nix-ide
         bmalehorn.vscode-fish
         mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        nixpkgs-exts.ms-vscode.cpptools
         # other stuff
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
