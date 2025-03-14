@@ -124,6 +124,7 @@
             })
             # from inputs
             inputs.zenix.overlays.default
+            inputs.nix-vscode-extensions.overlays.default
           ];
         }
       ];

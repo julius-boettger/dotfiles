@@ -1,8 +1,6 @@
 # vscodium with extensions (text editor)
 args@{ config, lib, pkgs, inputs, variables, device, ... }:
 let
-  # extensions from extra flake
-  exts = (import inputs.nix-vscode-extensions).extensions.${device.system};
   # extensions directly from nixpkgs
   nixpkgs-exts = pkgs.unstable.vscode-extensions;
 in
@@ -11,10 +9,10 @@ lib.mkModule "vscodium" config {
     (pkgs.vscode-with-extensions.override {
       vscode = pkgs.unstable.vscodium;
       vscodeExtensions =
-        with exts.vscode-marketplace;
-       #with exts.open-vsx; # seems to cause issues...?
-        with exts.vscode-marketplace-release;
-        with exts.open-vsx-release; # <-- use first if available, otherwise go up
+        with pkgs.vscode-marketplace;
+       #with pkgs.open-vsx; # seems to cause issues...?
+        with pkgs.vscode-marketplace-release;
+        with pkgs.open-vsx-release; # <-- use first if available, otherwise go up
       [
         # for syntax highlighting / language support
         dlasagno.rasi
