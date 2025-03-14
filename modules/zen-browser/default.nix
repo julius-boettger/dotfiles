@@ -50,54 +50,14 @@ lib.mkModule "zen-browser" config {
       };
 
       chrome.variables.colors = {
-        primary = "#5AA0E6";
+        primary = "#F7F1FF"; # for small ui elements
+        text = "#F7F1FF";
         secondary = "#FD9353";
         maroon = "#FC618D";
         highlight = "#5AD4E6";
-        text = "#F7F1FF";
         base = "#262527";
         mantle = "#201F21";
         crust = "#1F1E20";
-        #surface0 = "#363a4f";
-        #surface1 = "#494d64";
-        #surface2 = "#5b6078";
-        #overlay0 = "#6e738d";
-
-        #blue = "#8aadf4";
-        #blueInvert = "#8aadf4";
-        #bluePale = "#91d7e3";
-
-        #purple = "#c6a0f6";
-        #purpleInvert = "#c6a0f6";
-        #purplePale = "#b7bdf8";
-
-        #cyan = "#8bd5ca";
-        #cyanInvert = "#8bd5ca";
-        #cyanPale = "#91d7e3";
-
-        #orange = "#f08f66";
-        #orangeInvert = "#f08f66";
-        #orangePale = "#f5a97f";
-
-        #yellow = "#eed49f";
-        #yellowInvert = "#eed49f";
-        #yellowPale = "#eed49f";
-
-        #pink = "#f5bde6";
-        #pinkInvert = "#f5bde6";
-        #pinkPale = "#f0c6c6";
-
-        #green = "#a6da95";
-        #greenInvert = "#a6da95";
-        #greenPale = "#a6da95";
-
-        #red = "#ed8796";
-        #redInvert = "#ed8796";
-        #redPale = "#f5bde6";
-
-        #gray = "#939ab7";
-        #grayInvert = "#939ab7";
-        #grayPale = "#b8c0e0";
       };
     };
   };
