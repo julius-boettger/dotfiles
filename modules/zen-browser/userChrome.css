@@ -24,6 +24,11 @@
         display: none;
     }
 
+    /* weirdly aligned reader mode button in url bar */
+    #reader-mode-button {
+        display: none;
+    }
+
     /* workspace indicator */
     #zen-current-workspace-indicator-container {
         display: none;
