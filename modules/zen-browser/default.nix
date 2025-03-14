@@ -49,15 +49,21 @@ lib.mkModule "zen-browser" config {
         '';
       };
 
-      chrome.variables.colors = {
-        primary = "#F7F1FF"; # for small ui elements
-        text = "#F7F1FF";
-        secondary = "#FD9353";
-        maroon = "#FC618D";
-        highlight = "#5AD4E6";
-        base = "#262527";
-        mantle = "#201F21";
-        crust = "#1F1E20";
+      chrome.variables = {
+        colors = {
+          primary = "#F7F1FF"; # for small ui elements
+          text = "#F7F1FF";
+          secondary = "#FD9353";
+          maroon = "#FC618D";
+          highlight = "#5AD4E6";
+          base = "#262527";
+          mantle = "#201F21";
+          crust = "#1F1E20";
+        };
+        glass = {
+          background = "rgba(38, 37, 39, 0.5)";
+          blurRadius = "10px";
+        };
       };
     };
   };

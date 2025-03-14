@@ -1,15 +1,25 @@
 * {
     /* transparent main border background */
-    --zen-main-browser-background: rgba(38, 37, 39, 0.5) !important;
+    --zen-main-browser-background: var(--zenix-glass-background) !important;
 }
 
 @media (prefers-color-scheme: dark) {
-    /* url bar background when not floating/extended */
-    #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background,
     /* selected tab when window is focused */
-    :root:not(:-moz-window-inactive) [selected="true"] vbox.tab-background
+    :root:not(:-moz-window-inactive) [selected="true"] .tab-background
     {
         background-color: rgba(38, 37, 39, 0.25) !important;
+    }
+
+    /* especially when floating/extended */
+    #urlbar-background {
+        background: var(--zenix-glass-background) !important;
+        backdrop-filter: blur(var(--zenix-glass-blur-radius)) !important;
+    }
+
+    /* url bar background when not floating/extended */
+    #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background {
+        background: rgba(38, 37, 39, 0.25) !important;
+        backdrop-filter: none !important;
     }
 
     /* search engine indicator in url bar */
