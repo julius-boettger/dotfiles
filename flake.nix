@@ -78,8 +78,8 @@
 
       # add some helper functions to lib
       lib = inputs.nixpkgs.lib.extend (final: prev: inputs.home-manager.lib // {
-        getNixpkgs  = input: inputs.${input}.legacyPackages.${system};
-        getPkgs     = input: inputs.${input}      .packages.${system};
+        getNixpkgs  = input: import inputs.${input} pkgs-config;
+        getPkgs     = input: inputs.${input}.packages.${system};
         writeScript     = pkgs.writeShellScriptBin;
         writeScriptFile = name: path: pkgs.writeShellScriptBin name (builtins.readFile(path));
         importIfExists  = path: if builtins.pathExists path then import path else {};
