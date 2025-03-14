@@ -1,5 +1,9 @@
 # vscodium with extensions (text editor)
 args@{ config, lib, pkgs, variables, ... }:
+let
+  # extensions directly from nixpkgs
+  nixpkgs-exts = pkgs.unstable.vscode-extensions;
+in
 lib.mkModule "vscodium" config {
   environment.systemPackages = [
     (pkgs.vscode-with-extensions.override {
@@ -23,6 +27,7 @@ lib.mkModule "vscodium" config {
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
         eamodio.gitlens # advanced git integration
+        nixpkgs-exts.vadimcn.vscode-lldb # c++/rust debugger
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
         pkief.material-icon-theme # file icon theme
