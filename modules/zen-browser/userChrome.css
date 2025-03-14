@@ -5,32 +5,45 @@
 
 @media (prefers-color-scheme: dark) {
     /* url bar background when not floating/extended */
-    #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background {
+    #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background,
+    /* selected tab when window is focused */
+    :root:not(:-moz-window-inactive) [selected="true"] vbox.tab-background
+    {
         background-color: rgba(38, 37, 39, 0.25) !important;
     }
 
     /* search engine indicator in url bar */
-    #urlbar-search-mode-indicator {
+    #urlbar-search-mode-indicator,
+    /* zoom indicator in url bar */
+    #urlbar-zoom-button
+    {
         background: transparent !important;
     }
 
-    /* selected tab when window is focused */
-    :root:not(:-moz-window-inactive) [selected="true"] vbox.tab-background {
-        background-color: rgba(38, 37, 39, 0.2) !important;
+    /* permissions indicator in url bar */
+    /* fit theme to other navigator toolbox icons */
+    #identity-permission-box {
+        fill: var(--zenix-color-primary);
+        transition: fill 0.1s ease-in-out !important;
+    }
+    :root:-moz-window-inactive #identity-permission-box {
+        fill: color-mix(in srgb,
+                var(--zenix-color-highlight) 50%,
+                transparent) !important;
+    }
+
+    /* tracking protection icon in url bar */
+    #tracking-protection-icon-container {
+        margin-right: 5px !important;
     }
 
     /* weirdly aligned bookmark button in url bar */
-    #star-button-box {
-        display: none;
-    }
-
+    #star-button-box,
     /* weirdly aligned reader mode button in url bar */
-    #reader-mode-button {
-        display: none;
-    }
-
+    #reader-mode-button,
     /* workspace indicator */
-    #zen-current-workspace-indicator-container {
+    #zen-current-workspace-indicator-container
+    {
         display: none;
     }
 

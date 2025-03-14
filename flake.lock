@@ -1336,16 +1336,17 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1741955491,
-        "narHash": "sha256-+OAA7uX6QJeDTPVMhLn8OO+5xQRg2sSGE/5GuxE+RRI=",
+        "lastModified": 1741952970,
+        "narHash": "sha256-T623fh0rmeE5f6kX9Vi5p2zFDZzohlmI+w3nY/P2Qso=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "cdbedf07fad2d478998b1faf1c893238beb3c129",
+        "rev": "dcbe7072c2268c388ad1cecdf8bed0d8d7dbc737",
         "type": "github"
       },
       "original": {
         "owner": "anders130",
         "repo": "zenix",
+        "rev": "dcbe7072c2268c388ad1cecdf8bed0d8d7dbc737",
         "type": "github"
       }
     }
