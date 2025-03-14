@@ -696,6 +696,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-steam": {
+      "locked": {
+        "lastModified": 1740051602,
+        "narHash": "sha256-w9GKDli8qn7zOiCZTuA5c75Xdlx4dSblKAsrndKH+T4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9562d26ef08430dfd399ca44199341daaab33ffc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9562d26ef08430dfd399ca44199341daaab33ffc",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1739866667,
@@ -900,6 +916,7 @@
         "nixcord": "nixcord",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-steam": "nixpkgs-steam",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "programs-sqlite": "programs-sqlite",
