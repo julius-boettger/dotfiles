@@ -1,10 +1,7 @@
 # discord
 args@{ config, lib, pkgs, inputs, variables, ... }:
 let
-  discord-pkgs =
-    pkgs;
-    # screenshare is currently broken on hyprland
-    #pkgs.unstable;
+  discord-pkgs = pkgs.unstable;
 in
 lib.mkModule "discord" config {
   # nixcord for declarative config
