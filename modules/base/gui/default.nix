@@ -6,7 +6,7 @@ args@{ config, lib, pkgs, variables, ... }:
   config = lib.mkIf config.local.base.gui.enable {
 
     # latest kernel
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    boot.kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_latest;
 
     # hardware accelerated graphics drivers
     hardware.graphics = {
