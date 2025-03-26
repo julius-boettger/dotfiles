@@ -3,7 +3,7 @@ args@{ config, lib, pkgs, ... }:
 lib.mkModule "steam" config {
   programs.steam = {
     enable = true;
-    package = (lib.getNixpkgs "nixpkgs-steam").steam;
+    package = pkgs.unstable.steam;
   };
 
   # easy ge-proton setup for steam
