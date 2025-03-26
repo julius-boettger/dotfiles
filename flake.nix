@@ -48,7 +48,7 @@
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # zen browser
-    zenix = { url = "github:anders130/zenix?rev=dcbe7072c2268c388ad1cecdf8bed0d8d7dbc737";
+    zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager"; };
   };
