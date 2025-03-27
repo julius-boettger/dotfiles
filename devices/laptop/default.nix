@@ -20,7 +20,4 @@ in
     package   = mesa-pkgs              .mesa.drivers;
     package32 = mesa-pkgs.pkgsi686Linux.mesa.drivers;
   };
-
-  # attempt to fix fast battery discharge while suspended
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
 }
