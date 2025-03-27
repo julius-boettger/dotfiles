@@ -15,6 +15,7 @@ args@{ config, lib, pkgs, ... }:
       inkscape-with-extensions # vector graphic editor
       veracrypt # disk encryption
       freefilesync # file backup
+      foliate # ebook reader
       (prismlauncher.override { jdks = [ jdk ]; }) # minecraft
       #usbimager # if ventoy causes problems
       #obs-studio # video recording
