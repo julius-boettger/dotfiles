@@ -23,6 +23,7 @@ lib.mkModule "vscodium" config {
         mesonbuild.mesonbuild
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
+        wgsl-analyzer.wgsl-analyzer
         # other stuff
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
@@ -35,6 +36,9 @@ lib.mkModule "vscodium" config {
         christian-kohler.path-intellisense # auto complete paths
       ];
     })
+
+    # for wgsl-analyzer extension
+    (lib.getPkgs "wgsl-analyzer").default
   ];
 
   # symlink config to ~/.config

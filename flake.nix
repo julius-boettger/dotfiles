@@ -47,6 +47,9 @@
     # for more vscode extensions
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    # language server for wgsl for vscode extension, matching extension version
+    wgsl-analyzer = { url = "github:wgsl-analyzer/wgsl-analyzer?ref=v0.9.4";
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # zen browser
     zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";

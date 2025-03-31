@@ -85,6 +85,10 @@
   "mesonbuild.downloadLanguageServer": false,
   "mesonbuild.languageServer": null,
 
+  "wgsl-analyzer.inlayHints.structLayoutHints": true,
+  "wgsl-analyzer.diagnostics.nagaParsingErrors": true,
+  "wgsl-analyzer.server.path": "/run/current-system/sw/bin/wgsl_analyzer",
+
   "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
   "workbench.iconTheme": "material-icon-theme",
 
