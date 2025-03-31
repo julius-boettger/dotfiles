@@ -94,17 +94,14 @@
   "security.workspace.trust.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
 
-  "liveServer.settings.donotShowInfoMsg": true, 
-  "terminal.integrated.cursorStyle": "underline",
+  "git.openRepositoryInParentFolders": "always",
+  "git.confirmSync": false,
 
   "editor.fontSize": 18,
   "terminal.integrated.fontSize": 18,
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', monospace",
 
-  "npm.enableRunFromFolder": true,
-  "git.openRepositoryInParentFolders": "always",
   "update.mode": "none", // don't try to update, NixOS will do it
-  "window.titleBarStyle": "custom",
-  "git.confirmSync": false,
   "gitlens.currentLine.enabled": false,
+  "terminal.integrated.cursorStyle": "underline",
 }
