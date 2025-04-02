@@ -22,7 +22,7 @@ args@{ pkgs, ... }:
     #blocky.enable = true;
     website.enable = true;
     lamp-server.enable = true;
-    minecraft-server.enable = true;
+    #minecraft-server.enable = true;
     obsidian-livesync.enable = true;
   };
 
