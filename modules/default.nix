@@ -21,6 +21,7 @@
     ./swaync
     ./vscodium
     ./zen-browser
+    ./ai-chatbot.nix
     ./blocky.nix
     ./bluetooth.nix
     ./devtools.nix

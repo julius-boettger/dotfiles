@@ -74,7 +74,26 @@
       hostName ? "nixos",
     }:
     let
-      pkgs-config   = { inherit system; config.allowUnfree = true; };
+      # config to use for all nixpkgs
+      pkgs-config = {
+        inherit system;
+        config.allowUnfree = true; 
+
+        # for open-webui on aarch64 https://github.com/NixOS/nixpkgs/issues/312068#issuecomment-2365236799
+        overlays = [( _: prev: { pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [( _: python-prev: {
+          rapidocr-onnxruntime = python-prev.rapidocr-onnxruntime.overridePythonAttrs (self: {
+            pythonImportsCheck = if python-prev.stdenv.isAarch64 then [] else ["rapidocr_onnxruntime"];
+            doCheck = !(python-prev.stdenv.isAarch64);
+            meta = self.meta // { badPlatforms = []; };
+          });
+          chromadb = python-prev.chromadb.overridePythonAttrs (self: {
+            pythonImportsCheck = if python-prev.stdenv.isAarch64 then [] else ["chromadb"];
+            doCheck = !(python-prev.stdenv.isAarch64);
+            meta = self.meta // { broken = false; };
+          });
+        })]; })];
+      };
+
       pkgs          = import inputs.nixpkgs          pkgs-config;
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
       pkgs-local    = import ./packages { inherit pkgs; };
@@ -118,7 +137,7 @@
         {
           # make specialArgs available for home manager
           home-manager.extraSpecialArgs = specialArgs;
-          # package overlays
+          # package overlays (only for stable nixpkgs)
           nixpkgs.overlays = [
             # self-defined
             (final: prev: {

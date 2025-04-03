@@ -21,6 +21,7 @@ args@{ pkgs, ... }:
     # host some stuff
     #blocky.enable = true;
     website.enable = true;
+    ai-chatbot.enable = true;
     lamp-server.enable = true;
     #minecraft-server.enable = true;
     obsidian-livesync.enable = true;
