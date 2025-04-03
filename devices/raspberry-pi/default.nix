@@ -28,5 +28,8 @@ args@{ pkgs, ... }:
 
   environment.systemPackages = with pkgs; [
     htop # process viewer
+    # monitor networking
+    bmon
+    nload
   ];
 }
