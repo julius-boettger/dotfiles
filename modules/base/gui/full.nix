@@ -28,10 +28,5 @@ args@{ config, lib, pkgs, ... }:
       dunst # for better notify-send with dunstify
       gphoto2fs # mount camera
     ];
-
-    local.devtools = {
-      rust.enable = true;
-      cpp.enable = true;
-    };
   };
 }
