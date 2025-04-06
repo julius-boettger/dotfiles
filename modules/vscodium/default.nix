@@ -14,21 +14,30 @@ lib.mkModule "vscodium" config {
         with pkgs.vscode-marketplace-release;
         with pkgs.open-vsx-release; # <-- use first if available, otherwise go up
       [
-        # for syntax highlighting / language support
+        ### for syntax highlighting / language support
         dlasagno.rasi
         eww-yuck.yuck
-        ms-vscode.cpptools
         jnoortheen.nix-ide
         bmalehorn.vscode-fish
-        mesonbuild.mesonbuild
+
+        # rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        wgsl-analyzer.wgsl-analyzer
-        # other stuff
+        wgsl-analyzer.wgsl-analyzer # remember non-extension-package below!
+        nixpkgs-exts.vadimcn.vscode-lldb # debugger
+
+        # c/c++
+        #ms-vscode.cpptools
+        #mesonbuild.mesonbuild
+
+        # python
+        ms-python.python
+        njqdev.vscode-python-typehint
+
+        ### other stuff
         mkhl.direnv # load dev environment from directory
         vscodevim.vim # vim :)
         eamodio.gitlens # advanced git integration
-        nixpkgs-exts.vadimcn.vscode-lldb # c++/rust debugger
         esbenp.prettier-vscode # code formatter
         naumovs.color-highlight # highlight color codes with their color
         pkief.material-icon-theme # file icon theme
