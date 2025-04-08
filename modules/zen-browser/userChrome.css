@@ -1,9 +1,23 @@
 * {
     /* transparent main border background */
     --zen-main-browser-background: var(--zenix-glass-background) !important;
+    /* shadow around webview container */
+    --zen-big-shadow: transparent !important;
+    /* right and bottom margin of webview container */
+    --zen-element-separation: 0px;
+    /* borders and separators of pop-up dialogs */
+    --panel-separator-color: hsla(0, 0%, 100%, 0.1) !important;
+    --zen-appcontent-border: 1px solid var(--panel-separator-color) !important;
+    /* background of pop-up dialogs */
+    --arrowpanel-background: var(--zenix-glass-background) !important;
 }
 
 @media (prefers-color-scheme: dark) {
+    /* make webview container truly transparent (only visible on startup) */
+    browser[transparent="true"] {
+        background: transparent !important;
+    }
+
     /* selected tab when window is focused */
     :root:not(:-moz-window-inactive) [selected="true"] .tab-background
     {
@@ -18,7 +32,7 @@
 
     /* url bar background when not floating/extended */
     #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background {
-        background: rgba(38, 37, 39, 0.25) !important;
+        background: transparent !important;
         backdrop-filter: none !important;
     }
 
@@ -28,18 +42,6 @@
     #urlbar-zoom-button
     {
         background: transparent !important;
-    }
-
-    /* permissions indicator in url bar */
-    /* fit theme to other navigator toolbox icons */
-    #identity-permission-box {
-        fill: var(--zenix-color-primary);
-        transition: fill 0.1s ease-in-out !important;
-    }
-    :root:-moz-window-inactive #identity-permission-box {
-        fill: color-mix(in srgb,
-                var(--zenix-color-highlight) 50%,
-                transparent) !important;
     }
 
     /* tracking protection icon in url bar */
