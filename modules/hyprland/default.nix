@@ -30,7 +30,7 @@ lib.mkModule "hyprland" config {
     libsForQt5.qt5.qtwayland
                qt6.qtwayland
     # move all hyprland clients to a single workspace
-    (lib.writeScriptFile "hyprctl-collect-clients" /etc/dotfiles/modules/hyprland/hyprctl-collect-clients.sh)
+    (lib.writeScriptFile "hyprctl-collect-clients" ./hyprctl-collect-clients.sh)
   ];
 
   # use cached hyprland flake builds
