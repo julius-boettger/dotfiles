@@ -62,7 +62,7 @@ lib.mkModule "zen-browser" config {
         };
         glass = {
           background = "rgba(38, 37, 39, 0.5)";
-          blurRadius = "10px";
+          blurRadius = "25px";
         };
       };
     };

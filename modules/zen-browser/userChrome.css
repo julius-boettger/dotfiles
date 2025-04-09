@@ -8,14 +8,18 @@
     /* borders and separators of pop-up dialogs */
     --panel-separator-color: hsla(0, 0%, 100%, 0.1) !important;
     --zen-appcontent-border: 1px solid var(--panel-separator-color) !important;
-    /* background of pop-up dialogs */
-    --arrowpanel-background: var(--zenix-glass-background) !important;
 }
 
 @media (prefers-color-scheme: dark) {
     /* make webview container truly transparent (only visible on startup) */
     browser[transparent="true"] {
         background: transparent !important;
+    }
+
+    /* right click menu */
+    .menupopup-arrowscrollbox {
+        /* background is blurred by hyprland, don't need to set here */
+        background: var(--zenix-glass-background) !important;
     }
 
     /* selected tab when window is focused */
