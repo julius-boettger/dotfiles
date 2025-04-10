@@ -16,11 +16,11 @@ args@{ config, lib, pkgs, ... }:
       veracrypt # disk encryption
       freefilesync # file backup
       foliate # ebook reader
+      bottles # run windows software easily
       (prismlauncher.override { jdks = [ jdk ]; }) # minecraft
       #usbimager # if ventoy causes problems
       #obs-studio # video recording
       #font-manager # font manager
-      #bottles # run windows software easily
       #pitivi # video editor
       #tenacity # audio recorder and editor
 
