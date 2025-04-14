@@ -31,9 +31,11 @@ lib.mkModule "zen-browser" config {
           privacy-badger
           return-youtube-dislikes
           istilldontcareaboutcookies
+          /* HistoryBlock e.g. for search engine */
         ];
 
         extraConfig = ''
+          user_pref("privacy.history.custom", true);
           user_pref("layout.spellcheckDefault", 0);
           user_pref("zen.tab-unloader.enabled", false);
           user_pref("zen.view.sidebar-expanded", false);
@@ -43,7 +45,10 @@ lib.mkModule "zen-browser" config {
           user_pref("extensions.formautofill.addresses.enabled", false);
           user_pref("extensions.formautofill.creditCards.enabled", false);
           user_pref("browser.startup.page", 1); // open previous tabs
+          user_pref("browser.formfill.enable", false);
           user_pref("browser.search.suggest.enabled", true);
+          user_pref("browser.urlbar.suggest.recentsearches", false);
+          user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
           user_pref("browser.newtabpage.activity-stream.showWeather", false);
           user_pref("browser.download.always_ask_before_handling_new_types", false);
         '';
