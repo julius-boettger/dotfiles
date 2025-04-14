@@ -25,6 +25,11 @@ in
           file_server
         }
 
+        # to easily fetch e.g. .vimrc 
+        dotfiles.juliusboettger.com {
+          redir https://raw.githubusercontent.com/julius-boettger/dotfiles/refs/heads/main{uri}
+        }
+
         ${cfg.extraConfig}
 
         # fallback
