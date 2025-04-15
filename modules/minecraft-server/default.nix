@@ -17,7 +17,7 @@ in
       servers.default = {
         enable = true;
         files."server-icon.png" = ./server-icon.png;
-        package = server-pkgs.fabric-1_21;
+        package = server-pkgs.fabric-1_21_5;
 
         serverProperties = {
           white-list = true;
