@@ -3,6 +3,13 @@
 # luks encrypted data partition
 partition="disk/by-uuid/4a4090eb-701d-4eb3-bb9f-d417091c872f"
 
+# exit early if already unlocked and mounted
+mount | grep "/dev/mapper/data on /mnt/data"
+if [[ $? == 0 ]]; then
+    dunstify "already mounted" "encrypted data partition"
+    exit
+fi
+
 # gui prompt passphrase
 passphrase=$(zenity --entry --title="Mount encrypted data partition" --text="Enter passphrase:" --hide-text)
 # exit if prompt was canceled
