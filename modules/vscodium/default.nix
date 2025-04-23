@@ -32,6 +32,7 @@ lib.mkModule "vscodium" config {
 
         # python
         ms-python.python
+        ms-toolsai.jupyter
         njqdev.vscode-python-typehint
 
         ### other stuff
