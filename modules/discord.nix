@@ -5,7 +5,7 @@ let
 in
 lib.mkModule "discord" config {
   # nixcord for declarative config
-  home-manager.sharedModules = [ inputs.nixcord.homeManagerModules.nixcord ];
+  home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
   home-manager.users.${variables.username} = { config, ... }: {
     programs.nixcord = {
       enable = true;
