@@ -44,12 +44,11 @@
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs"; };
-    # for more vscode extensions
-    nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
+    # for more vscode extensions (version matching wgsl-analyzer)
+    nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions?rev=1b2a53e3478225bc35d14ae75ea9e7b749c16d5b";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
-    # language server for wgsl for vscode extension, matching extension version
-    wgsl-analyzer = { url = "github:wgsl-analyzer/wgsl-analyzer?ref=v0.9.4";
-      /*inputs.nixpkgs.follows = "nixpkgs-unstable";*/ };
+    # language server for wgsl for vscode extension (latest working version)
+    wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer?ref=v0.9.4";
     # zen browser
     zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";
