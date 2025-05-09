@@ -11,7 +11,8 @@ lib.mkModule "hyprland" config {
   programs.hyprland = {
     enable = true;
           package = hypr-pkgs.hyprland;
-    portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
+    # currently causes build failure, re-enable when upgrading
+    #portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
   };
   services.displayManager.defaultSession = "hyprland";
 
