@@ -1,7 +1,7 @@
 # hyprland (tiling wayland compositor)
 args@{ config, lib, pkgs, variables, device, ... }:
 let
-  package = (lib.getPkgs "hyprland").hyprland;
+  hypr-pkgs = (lib.getPkgs "hyprland");
   plugins = [
     # better multi-monitor workspaces
     (lib.getPkgs "hyprsplit").hyprsplit
@@ -10,9 +10,9 @@ in
 lib.mkModule "hyprland" config {
   programs.hyprland = {
     enable = true;
-    inherit package;
+          package = hypr-pkgs.hyprland;
+    portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
   };
-
   services.displayManager.defaultSession = "hyprland";
 
   # make chromium / electron apps use wayland
@@ -43,7 +43,8 @@ lib.mkModule "hyprland" config {
   home-manager.users.${variables.username} = { config, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
-      inherit package plugins;
+      package = hypr-pkgs.hyprland;
+      inherit plugins;
       # write config file that imports real config
       extraConfig = ''
         source = /etc/dotfiles/devices/${device.internalName}/hyprland.conf
