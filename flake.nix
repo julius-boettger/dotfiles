@@ -138,11 +138,14 @@
           home-manager.extraSpecialArgs = specialArgs;
           # package overlays (only for stable nixpkgs)
           nixpkgs.overlays = [
-            # self-defined
             (final: prev: {
               /*pkgs.*/unstable = pkgs-unstable;
               /*pkgs.*/local    = pkgs-local;
             })
+            # for specific device
+            (if builtins.pathExists ./devices/${internalName}/overlays.nix
+              then import ./devices/${internalName}/overlays.nix specialArgs
+              else _: _: {})
             # from inputs
             inputs.zenix.overlays.default
             inputs.nix-vscode-extensions.overlays.default
