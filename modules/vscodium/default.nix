@@ -23,8 +23,9 @@ lib.mkModule "vscodium" config {
         # rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        wgsl-analyzer.wgsl-analyzer # remember non-extension-package below!
         nixpkgs-exts.vadimcn.vscode-lldb # debugger
+        nolanderc.glasgow # wgsl language support, but without syntax highlighting
+        antaalt.shader-validator # wgsl syntax highlighting
 
         # c/c++
         #ms-vscode.cpptools
@@ -46,9 +47,6 @@ lib.mkModule "vscodium" config {
         christian-kohler.path-intellisense # auto complete paths
       ];
     })
-
-    # for wgsl-analyzer extension
-    (lib.getPkgs "wgsl-analyzer").default
   ];
 
   # symlink config to ~/.config

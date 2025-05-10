@@ -85,10 +85,6 @@
   "mesonbuild.downloadLanguageServer": false,
   "mesonbuild.languageServer": null,
 
-  "wgsl-analyzer.inlayHints.structLayoutHints": true,
-  "wgsl-analyzer.diagnostics.nagaParsingErrors": true,
-  "wgsl-analyzer.server.path": "/run/current-system/sw/bin/wgsl_analyzer",
-
   "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
   "workbench.iconTheme": "material-icon-theme",
 
@@ -106,6 +102,7 @@
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', monospace",
 
   "update.mode": "none", // don't try to update, NixOS will do it
+  "shader-validator.validate": false, // only used for syntax highlighting
   "gitlens.currentLine.enabled": false,
   "terminal.integrated.cursorStyle": "underline",
 }
