@@ -105,4 +105,5 @@
   "shader-validator.validate": false, // only used for syntax highlighting
   "gitlens.currentLine.enabled": false,
   "terminal.integrated.cursorStyle": "underline",
+  "glasgow.path": "/home/julius/.config/VSCodium/User/globalStorage/nolanderc.glasgow/glasgow_install/bin/glasgow",
 }
