@@ -34,7 +34,7 @@ lib.mkModule "vscodium" config {
         # python
         ms-python.python
         ms-toolsai.jupyter
-        njqdev.vscode-python-typehint
+        detachhead.basedpyright # pylance alternative, works in jupyter notebooks
 
         ### other stuff
         mkhl.direnv # load dev environment from directory

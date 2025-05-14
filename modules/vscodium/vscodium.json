@@ -85,6 +85,11 @@
   "mesonbuild.downloadLanguageServer": false,
   "mesonbuild.languageServer": null,
 
+  "basedpyright.analysis.typeCheckingMode": "standard",
+  "basedpyright.analysis.diagnosticSeverityOverrides": {
+    "reportAssignmentType": "hint", // make it easier to force types onto variables
+  },
+
   "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
   "workbench.iconTheme": "material-icon-theme",
 
