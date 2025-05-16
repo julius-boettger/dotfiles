@@ -44,8 +44,8 @@
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs"; };
-    # for more vscode extensions (pinned to last compatible jupyter extension version)
-    nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions?rev=5ce9c4adcc0098d86b6823fcb7926b4776d53e49";
+    # for more vscode extensions
+    nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # zen browser
     zenix = { url = "github:anders130/zenix";
