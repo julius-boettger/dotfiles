@@ -4,8 +4,11 @@ let
   discord-pkgs = pkgs.unstable;
 in
 lib.mkModule "discord" config {
+  # nixcord currently doesnt work for me, so just use basic vesktop
+  # see https://github.com/KaylorBen/nixcord/issues/93
+  environment.systemPackages = [ discord-pkgs.vesktop ];
   # nixcord for declarative config
-  home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
+  /*home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
   home-manager.users.${variables.username} = { config, ... }: {
     programs.nixcord = {
       enable = true;
@@ -35,5 +38,5 @@ lib.mkModule "discord" config {
         webScreenShareFixes.enable = true;
       };
     };
-  };
+  };*/
 }
