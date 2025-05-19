@@ -29,8 +29,8 @@ lib.mkModule "zen-browser" config {
           ublock-origin
           decentraleyes
           privacy-badger
+          consent-o-matic
           return-youtube-dislikes
-          istilldontcareaboutcookies
           /* HistoryBlock e.g. for search engine */
         ];
 
