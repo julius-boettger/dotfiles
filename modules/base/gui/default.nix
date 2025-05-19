@@ -57,8 +57,9 @@ args@{ config, lib, pkgs, variables, ... }:
       spotify # PROPRIETARY
       # gtk theme
       (orchis-theme.override { border-radius = 10; })
+      gnome-themes-extra # just having this installed avoids warnings in some apps
       # icon themes
-      adwaita-icon-theme # just having this installed fixes issues with some apps
+      adwaita-icon-theme # just having this installed fixes issues in some apps
       (papirus-icon-theme.override { /*folder-*/color = "black"; })
 
       ### cli
