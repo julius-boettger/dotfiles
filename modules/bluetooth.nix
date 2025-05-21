@@ -9,9 +9,6 @@ lib.mkModule "bluetooth" config {
     };
   };
 
-  # avoid warning in bluetooth service
-  systemd.services."bluetooth".serviceConfig.ConfigurationDirectoryMode = 755;
-
   # bluetooth gui
   services.blueman.enable = true;
   home-manager.users.${variables.username} = { config, ... }: {

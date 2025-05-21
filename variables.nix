@@ -1,7 +1,7 @@
 # config variables that are shared by all of my devices.
 {
   # nixos and home-manager state version (see top of flake.nix for channel version)
-  version = "24.11";
+  version = "25.05";
   # use --impure for flake-rebuild by default
   allowImpureByDefault = false;
   # username and displayname of only user

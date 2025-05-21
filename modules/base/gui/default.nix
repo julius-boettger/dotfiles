@@ -32,18 +32,14 @@ args@{ config, lib, pkgs, variables, ... }:
     fonts.packages = with pkgs; [
       noto-fonts # ~200 standard modern fonts for all kinds of languages
       noto-fonts-cjk-sans # for asian characters
-      aileron # modern text with 16 variations
-      # install only specific nerd fonts
-      (nerdfonts.override { fonts = [
-        "JetBrainsMono" # good for code
-      ]; } )
+      nerd-fonts.jetbrains-mono # good for code
     ];
 
     environment.systemPackages = with pkgs; [
       ### gui
       gparted # partition manager, use with sudo -E gparted
       unstable.resources # system monitor (best overall)
-      monitor # system monitor (best process view)
+      #monitor # system monitor (best process view) (broken)
       vlc # video player
       qview # image viewer
       audacious # audio player

@@ -2,8 +2,8 @@
 {
   inputs = {                 
     # main inputs for packages                update channel version here vvvvv (see variables.nix for state version)
-    nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-24.11";
-    home-manager = { url = "github:nix-community/home-manager?ref=release-24.11";
+    nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-25.05";
+    home-manager = { url = "github:nix-community/home-manager?ref=release-25.05";
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -16,9 +16,9 @@
     # host minecraft server
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # hyprland (to manage version independently of other packages)
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.46.2";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.49.0";
     # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
-    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.46.2";
+    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.49.0";
       inputs.hyprland.follows = "hyprland"; };
     # nix user repository (more packages)
     nur = { url = "github:nix-community/NUR";
