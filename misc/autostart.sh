@@ -32,6 +32,7 @@ copyq --start-server hide &> /dev/null &
 openrgb --profile default > /dev/null &
 
 ### set up virtual microphone with noise reduction
+NOISETORCH_MIC="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7BVH9Y0B69B0A-00.HiFi__Mic1__source"
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id
   id=$(wpctl status | sed '/Sources:/,$ { /Streams:/q; p }' | grep -m 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
@@ -47,7 +48,7 @@ if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
   # wait for mics to be detected correctly
   sleep 1
   # default mic (source) to apply noise reduction to
-  set_mic "Scarlett Solo (3rd Gen.) Input 1 Mic"
+  set_mic $NOISETORCH_MIC
   # init noisetorch for default mic
   noisetorch -i
   if [[ $? == 0 ]]; then
