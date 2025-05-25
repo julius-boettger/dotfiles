@@ -110,7 +110,13 @@ args@{ lib, pkgs, variables, device, ... }:
   services.gnome.gnome-keyring.enable = true;
 
   # load dev environment from directory
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    settings.global = {
+      warn_timeout = "-1s"; # disable timeout warning
+      hide_env_diff = "true";
+    };
+  };
 
   # ensure /bin/bash exists to make
   # #!/bin/bash script shebangs working
