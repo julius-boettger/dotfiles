@@ -13,12 +13,7 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
   # build failures and expensive cache misses
   networking.networkmanager.plugins = lib.mkForce [];
 
-  # use nix-community/raspberry-pi-nix with cache
   imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
-  nix.settings = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-  };
   raspberry-pi-nix = {
     board = "bcm2712"; # raspberry pi 5
     uboot.enable = false; # disable uboot as it just gets stuck
