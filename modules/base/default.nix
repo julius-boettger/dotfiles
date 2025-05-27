@@ -112,6 +112,9 @@ args@{ lib, pkgs, variables, device, ... }:
   # load dev environment from directory
   programs.direnv.enable = true;
 
+  # run dynamically-linked binaries not meant for NixOS
+  programs.nix-ld.enable = true;
+
   # ensure /bin/bash exists to make
   # #!/bin/bash script shebangs working
   system.activationScripts.binbash.text =
