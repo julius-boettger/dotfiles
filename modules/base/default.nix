@@ -127,7 +127,7 @@ args@{ lib, pkgs, variables, device, ... }:
     # automatic nix garbage collect
     clean = {
       enable = true;
-      dates = lib.mkDefault "weekly";
+      dates = lib.mkDefault "monthly";
       # always keep 2 generations
       extraArgs = "--keep 2";
     };
