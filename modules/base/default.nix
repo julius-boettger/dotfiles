@@ -106,9 +106,6 @@ args@{ lib, pkgs, variables, device, ... }:
     distributed-builds.enable = true;
   };
 
-  # for secret storing stuff
-  services.gnome.gnome-keyring.enable = true;
-
   # load dev environment from directory
   programs.direnv.enable = true;
 

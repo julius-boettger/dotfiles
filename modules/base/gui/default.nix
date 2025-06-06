@@ -8,6 +8,9 @@ args@{ config, lib, pkgs, variables, ... }:
     # latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_latest;
 
+    # for secret storing stuff
+    services.gnome.gnome-keyring.enable = true;
+
     # hardware accelerated graphics drivers
     hardware.graphics = {
       enable      = true;

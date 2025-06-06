@@ -36,6 +36,14 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
                      root.initialPassword = "root";
   };
 
+  # disable sound
+  services.pipewire = {
+    audio.enable = false;
+    alsa.enable = false;
+    jack.enable = false;
+    pulse.enable = false;
+  };
+
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";

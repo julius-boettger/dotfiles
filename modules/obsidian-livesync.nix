@@ -25,26 +25,27 @@ lib.mkModule "obsidian-livesync" config {
     package = couchdb-pkg;
     # to avoid shell setup script
     # https://github.com/vrtmrz/obsidian-livesync/blob/main/utils/couchdb/couchdb-init.sh
-    extraConfig = ''
-      [chttpd]
-      require_valid_user = true
-      enable_cors = true
-      max_http_request_size = 4294967296
+    extraConfig = {
+      chttpd = {
+        require_valid_user = true;
+        enable_cors = true;
+        max_http_request_size = 4294967296;
+      };
 
-      [chttpd_auth]
-      require_valid_user = true
+      chttpd_auth.require_valid_user = true;
 
-      [httpd]
-      WWW-Authenticate = Basic realm="couchdb"
-      enable_cors = true
+      httpd = {
+        WWW-Authenticate = ''Basic realm="couchdb"'';
+        enable_cors = true;
+      };
 
-      [couchdb]
-      max_document_size = 50000000
+      couchdb.max_document_size = 50000000;
 
-      [cors]
-      credentials = true
-      origins = app://obsidian.md,capacitor://localhost,http://localhost,https://localhost,capacitor://obsidian.juliusboettger.com,http://obsidian.juliusboettger.com,https://obsidian.juliusboettger.com
-    '';
+      cors = {
+        credentials = true;
+        origins = "app://obsidian.md,capacitor://localhost,http://localhost,https://localhost,capacitor://obsidian.juliusboettger.com,http://obsidian.juliusboettger.com,https://obsidian.juliusboettger.com";
+      };
+    };
   };
 
   local.website.extraConfig = ''
