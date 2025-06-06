@@ -14,6 +14,8 @@ in
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     services.caddy = {
       enable = true;
+      # change port of admin api from (default: 5000)
+      globalConfig = "admin :23673";
       logFormat = "level INFO";
       extraConfig = ''
         https:// {

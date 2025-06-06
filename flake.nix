@@ -13,6 +13,8 @@
     couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=eb0e0f21f15c559d2ac7633dc81d079d1caf5f5f";
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
+    # control smart plug for reptile terrarium lamp
+    terralux-backend.url = "github:solid-stack-solutions/terralux-backend";
     # host minecraft server
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # hyprland (to manage version independently of other packages)

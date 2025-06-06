@@ -36,6 +36,7 @@
     ./playerctl.nix
     ./sops.nix
     ./steam.nix
+    ./terralux-backend.nix
     ./virt-manager.nix
     ./website.nix
     ./wsl-vpnkit.nix
