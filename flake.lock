@@ -1198,11 +1198,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1749379431,
-        "narHash": "sha256-1vnqoNdaxP82SB29uy0KwDaIba7M4MJY21GKv7QkHRs=",
+        "lastModified": 1749497630,
+        "narHash": "sha256-BdMCyKvxDBJvm9kasu4nfWF3Wr9rXooZwYepP9I27lU=",
         "owner": "solid-stack-solutions",
         "repo": "terralux-backend",
-        "rev": "f2e3fa95eac182b5e4d1894c60db6c9ada66bf81",
+        "rev": "9031e144572d149f748828453596029fd57657b9",
         "type": "github"
       },
       "original": {
