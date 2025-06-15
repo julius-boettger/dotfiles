@@ -6,17 +6,15 @@
 # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Using_the_Pi_5_as_a_remote_builder_to_build_native_ARM_packages_for_the_Pi_5
 args@{ config, lib, pkgs, inputs, variables, ... }:
 {
-  ### fixes for default config
-  # usually enabled in modules/base/default.nix, doesnt work here
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  # dont install networkmanager plugins because of
-  # build failures and expensive cache misses
-  networking.networkmanager.plugins = lib.mkForce [];
-
-  imports = [ inputs.raspberry-pi-nix.nixosModules.raspberry-pi ];
-  raspberry-pi-nix = {
-    board = "bcm2712"; # raspberry pi 5
-    uboot.enable = false; # disable uboot as it just gets stuck
+  # import hardware-specific fixes
+  imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-5 ];
+  # compatible kernel
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+  # compatible boot loader
+  boot.loader = {
+    generic-extlinux-compatible.enable = true;
+    # usually enabled by default config
+    systemd-boot.enable = lib.mkForce false;
   };
 
   # avoid password prompts when remote rebuilding
@@ -30,10 +28,9 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
     ];
   } ];
 
-  # set initial passwords of users to their names (dont forget to change!)
-  users.users = {
-    ${variables.username}.initialPassword = variables.username;
-                     root.initialPassword = "root";
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "no";
   };
 
   # disable sound
@@ -44,8 +41,13 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
     pulse.enable = false;
   };
 
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "no";
+  # set initial passwords of users to their names (dont forget to change!)
+  users.users = {
+    ${variables.username}.initialPassword = variables.username;
+                     root.initialPassword = "root";
   };
+
+  # dont install networkmanager plugins because of
+  # build failures and expensive cache misses
+  networking.networkmanager.plugins = lib.mkForce [];
 }

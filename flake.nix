@@ -7,8 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    # run nixos on raspberry pi
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix?ref=v0.4.1";
+    # has nixos config for raspberry pi
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     # nixpkgs to avoid expensive cache misses of couchdb and dependencies on aarch64
     couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=eb0e0f21f15c559d2ac7633dc81d079d1caf5f5f";
     # control govee rgb lamp

@@ -20,6 +20,7 @@ args@{ lib, pkgs, variables, device, ... }:
   boot.loader = {
     efi.canTouchEfiVariables = true;
     timeout = 0; # only show when pressing keys during boot
+    grub.enable = false;
     systemd-boot = {
       enable = true;
       configurationLimit = 20; # number of generations to show
