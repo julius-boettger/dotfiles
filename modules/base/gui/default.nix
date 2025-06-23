@@ -103,7 +103,6 @@ args@{ config, lib, pkgs, variables, ... }:
       nautilus.enable = true;
       bluetooth.enable = true;
       discord.enable = true;
-      devtools.docker.enable = true;
     };
 
     services.displayManager.sddm.enable = true;

@@ -1,6 +1,8 @@
 # more gui config i don't want on every device
 args@{ config, lib, pkgs, ... }:
 {
+  imports = [ ../../studies ];
+
   options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
 
   config = lib.mkIf config.local.base.gui.full.enable {
@@ -15,10 +17,10 @@ args@{ config, lib, pkgs, ... }:
       inkscape-with-extensions # vector graphic editor
       veracrypt # disk encryption
       freefilesync # file backup
-      foliate # ebook reader
-      bottles # run windows software easily
       (prismlauncher.override { jdks = [ jdk ]; }) # minecraft
-      #usbimager # if ventoy causes problems
+      #foliate # ebook reader
+      #bottles # run windows software easily
+      #usbimager # create bootable usb stick
       #obs-studio # video recording
       #font-manager # font manager
       #pitivi # video editor
