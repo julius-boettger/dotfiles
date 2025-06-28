@@ -38,6 +38,7 @@
     ./steam.nix
     ./terralux-backend.nix
     ./virt-manager.nix
+    ./virtualbox.nix
     ./website.nix
     ./wsl-vpnkit.nix
   ];

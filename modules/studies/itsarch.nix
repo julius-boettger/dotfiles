@@ -18,11 +18,7 @@ in
   users.extraGroups.wireshark.members = [ variables.username ];
 
   # virtualbox for gns3 server
-  users.extraGroups.vboxusers.members = [ variables.username ];
-  virtualisation.virtualbox.host = {
-    enable = true;
-    enableExtensionPack = true;
-  };
+  local.virtualbox.enable = true;
 
   # also remember to change some GNS3 client preferences:
   # - console application command: alacritty -T %d -e telnet %h %p
