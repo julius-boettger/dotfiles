@@ -3,7 +3,6 @@ args@{ config, pkgs, variables, ... }:
   local = {
     base.gui.full.enable = true;
     nvidia.enable = true;
-    steam.enable = true;
     piper.enable = true;
     playerctl.enable = true;
   };

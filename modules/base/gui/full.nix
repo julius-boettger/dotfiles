@@ -7,7 +7,10 @@ args@{ config, lib, pkgs, ... }:
 
   config = lib.mkIf config.local.base.gui.full.enable {
 
-    local.base.gui.enable = true;
+    local = {
+      base.gui.enable = true;
+      steam.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       ### gui

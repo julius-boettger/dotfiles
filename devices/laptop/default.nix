@@ -8,7 +8,6 @@ in
   local = {
     base.gui.full.enable = true;
     base.laptop.enable = true;
-    steam.enable = true;
   };
 
   # monitor config with xrandr command
