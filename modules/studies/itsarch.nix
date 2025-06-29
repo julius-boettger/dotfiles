@@ -19,6 +19,7 @@ in
 
   # virtualbox for gns3 server
   local.virtualbox.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # also remember to change some GNS3 client preferences:
   # - console application command: alacritty -T %d -e telnet %h %p
