@@ -177,9 +177,13 @@ args@{ lib, pkgs, variables, device, ... }:
 
     programs.git = {
       enable = true;
-      extraConfig.init.defaultBranch = "main";
       userName = variables.git.name;
       userEmail = variables.git.email;
+      extraConfig = {
+        init.defaultBranch = "main";
+        fetch.prune = true; # remove deleted remote branches locally
+        pull.rebase = true; # rebase merge
+      };
     };
   };
 }
