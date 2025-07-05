@@ -1,5 +1,7 @@
 args@{ config, pkgs, variables, ... }:
 {
+  imports = [ ../../modules/studies ];
+
   local = {
     base.gui.full.enable = true;
     nvidia.enable = true;

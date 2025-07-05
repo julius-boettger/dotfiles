@@ -1,8 +1,6 @@
 # more gui config i don't want on every device
 args@{ config, lib, pkgs, ... }:
 {
-  imports = [ ../../studies ];
-
   options.local.base.gui.full.enable = lib.mkEnableOption "whether to enable full gui config";
 
   config = lib.mkIf config.local.base.gui.full.enable {
