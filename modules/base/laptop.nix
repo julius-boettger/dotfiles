@@ -23,6 +23,14 @@ args@{ config, lib, pkgs, variables, ... }:
       acpi # get battery info like remaining time to (dis)charge
       nwg-displays # control (external) display configuration
       brightnessctl # control display brightness
+      (lib.writeScript "reset-monitors" ''
+        # clear nwg-displays config
+        > ~/.config/hypr/monitors.conf
+        # fix wallpaper and window borders
+        pkill swww
+        swww-daemon & disown
+        python /etc/dotfiles/modules/hyprland/wallpaper.py &
+      '')
     ];
 
     # autologin hyprland
