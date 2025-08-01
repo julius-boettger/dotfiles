@@ -106,7 +106,7 @@ function flake-rebuild
 
     # rebuild with nh (for prettier output), current device,
     # --impure (if set) and other given args
-    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE /etc/dotfiles -- $impure $argv
+    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE -d always /etc/dotfiles -- $impure $argv
     return $status
 end
 

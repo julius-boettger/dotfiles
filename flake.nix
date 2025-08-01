@@ -49,6 +49,9 @@
     # for more vscode extensions
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    # nix helper (prettier/better nix commands)
+    nh = { url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     # zen browser (lock version as upgrade requires theming adjustments)
     zenix = { url = "github:anders130/zenix?rev=68d770b3fb466bca8e4749ef7dc6e3c4e0c03612";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -587,6 +587,26 @@
         "type": "github"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754032176,
+        "narHash": "sha256-UpdwtbVsqwQqD67hsW0l7gt3cGp+cB6IdRtdEG9SBwM=",
+        "owner": "nix-community",
+        "repo": "nh",
+        "rev": "304c5a87765e35eea74ca5038069a66bf92d0f95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nix-minecraft": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -885,6 +905,7 @@
         "hyprland": "hyprland",
         "hyprsplit": "hyprsplit",
         "lamp-server": "lamp-server",
+        "nh": "nh",
         "nix-minecraft": "nix-minecraft",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixcord": "nixcord",
