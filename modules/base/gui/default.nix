@@ -190,6 +190,7 @@ args@{ config, lib, pkgs, variables, ... }:
             startupLaunch = false;
             disabledTrayIcon = true;
             disabledGrimWarning = true; 
+            showDesktopNotification = false;
         };
       };
     };
