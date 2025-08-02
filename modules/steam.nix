@@ -3,7 +3,7 @@ args@{ config, lib, pkgs, ... }:
 lib.mkModule "steam" config {
   programs.steam = {
     enable = true;
-    package = pkgs.unstable.steam;
+    package = pkgs.steam;
   };
 
   # easy ge-proton setup for steam
