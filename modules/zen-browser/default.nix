@@ -10,10 +10,7 @@ lib.mkModule "zen-browser" config {
     programs.zenix = {
       enable = true;
 
-      chrome = {
-        findbar = true; # better-looking ctrl-f bar
-        hideTitlebarButtons = true;
-      };
+      chrome.hideTitlebarButtons = true;
 
       profiles.default = {
         isDefault = true;

@@ -1,13 +1,10 @@
 * {
-    /* transparent main border background */
+    /* main border background */
     --zen-main-browser-background: var(--zenix-glass-background) !important;
     /* shadow around webview container */
     --zen-big-shadow: transparent !important;
     /* right and bottom margin of webview container */
     --zen-element-separation: 0px;
-    /* borders and separators of pop-up dialogs */
-    --panel-separator-color: hsla(0, 0%, 100%, 0.1) !important;
-    --zen-appcontent-border: 1px solid var(--panel-separator-color) !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,55 +13,44 @@
         background: transparent !important;
     }
 
-    /* right click menu */
-    .menupopup-arrowscrollbox {
-        /* background is blurred by hyprland, don't need to set here */
-        background: var(--zenix-glass-background) !important;
-    }
-
-    /* selected tab when window is focused */
-    :root:not(:-moz-window-inactive) [selected="true"] .tab-background
-    {
-        background-color: rgba(38, 37, 39, 0.25) !important;
-    }
-
-    /* especially when floating/extended */
-    #urlbar-background {
-        background: var(--zenix-glass-background) !important;
-        backdrop-filter: blur(var(--zenix-glass-blur-radius)) !important;
-    }
-
     /* url bar background when not floating/extended */
     #urlbar:not([zen-floating-urlbar="true"]):not([breakout-extend="true"]) #urlbar-background {
         background: transparent !important;
-        backdrop-filter: none !important;
-    }
-
-    /* search engine indicator in url bar */
-    #urlbar-search-mode-indicator,
-    /* zoom indicator in url bar */
-    #urlbar-zoom-button
-    {
-        background: transparent !important;
-    }
-
-    /* tracking protection icon in url bar */
-    #tracking-protection-icon-container {
-        margin-right: 5px !important;
-    }
-
-    /* weirdly aligned bookmark button in url bar */
-    #star-button-box,
-    /* weirdly aligned reader mode button in url bar */
-    #reader-mode-button,
-    /* workspace indicator */
-    #zen-current-workspace-indicator-container
-    {
-        display: none;
     }
 
     /* pinned extension icons */
     .toolbarbutton-1.panel-no-padding.webextension-browser-action.unified-extensions-item-action-button {
         filter: grayscale(0.75);
+    }
+
+    /* bookmark button in url bar */
+    #star-button-box,
+    /* reader mode button in url bar */
+    #reader-mode-button,
+    /* workspace indicator */
+    .zen-current-workspace-indicator
+    {
+        display: none !important;
+    }
+
+    /* selected item of url bar suggestions */
+    .urlbarView-row[selected] {
+        background: var(--urlbarView-highlight-background) !important;
+        /* icon of the item */
+        & .urlbarView-favicon {
+            /* values copied from other zen-browser fallback values */
+            fill: currentColor !important;
+            background: color-mix(in srgb, var(--zen-branding-bg-reverse) 5%, transparent 95%) !important;
+        }
+    }
+
+    /***** override zenix theming value with default zen-browser value *****/
+    /* toolbar buttons (like extensions-button) */
+    toolbar .toolbarbutton-1 {
+        &:not([disabled]) {
+            &:is([open], [checked])> :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+                fill: var(--toolbarbutton-icon-fill);
+            }
+        }
     }
 }

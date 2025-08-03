@@ -53,7 +53,7 @@
     nh = { url = "github:nix-community/nh";
       inputs.nixpkgs.follows = "nixpkgs"; };
     # zen browser (lock version as upgrade requires theming adjustments)
-    zenix = { url = "github:anders130/zenix?rev=68d770b3fb466bca8e4749ef7dc6e3c4e0c03612";
+    zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager"; };
   };
