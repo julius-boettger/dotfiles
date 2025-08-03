@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/4275fa3915c12ad2731ff78027188b4b7ceaad64/src/configSchema.json",
+  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/73521f530b19d5c5fa043cdbdaeb2691f856f92e/src/configSchema.json",
 
   "cssPriority": "user",
   "image-visibility": "when-available",
@@ -23,7 +23,7 @@
   "script-fail-notify": false,
   "scripts": {
     "sound": {
-      "exec": "sh -c \"[ $(swaync-client -I) == 'false' ] && aplay /etc/dotfiles/misc/notification.wav\"",
+      "exec": "[ $(swaync-client -I) == 'false' ] && aplay /etc/dotfiles/misc/notification.wav",
       "run-on": "receive"
     }
   },
@@ -38,8 +38,7 @@
       "button-text": "Clear"
     },
     "mpris": {
-      "image-size": 64,
-      "image-radius": 10
+      "show-album-art": "when-available"
     }
   }
 }
