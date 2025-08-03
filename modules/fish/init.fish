@@ -27,13 +27,13 @@ if status is-interactive
     bind -M visual  ä end-of-line
     ### keybinds for insert mode
     # ctrl+c => switch to default mode
-    bind -M insert -m default \cc repaint-mode
-    # ctrl+backspace => delete input
-    bind -M insert \b kill-whole-line
+    bind -M insert -m default ctrl-c repaint-mode
+    # ctrl+backspace => delete input line
+    bind -M insert ctrl-backspace backward-kill-line
     # ctrl+space => go through options
-    bind -M insert -k nul complete
+    bind -M insert ctrl-space complete
     # tab => accept suggestion
-    bind -M insert \t accept-autosuggestion
+    bind -M insert tab accept-autosuggestion
 
     ### aliases
     alias cd z
