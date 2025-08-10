@@ -39,36 +39,8 @@ if status is-interactive
     alias cd z
     alias ls lsd
     alias cat bat
-    alias aquarium "asciiquarium --transparent"
-    alias flake-update "/etc/dotfiles/misc/update.sh"
 
-    # easier numbat access
-    function calc
-        numbat -e "$argv"
-    end
-
-    # test command for maximum memory usage and runtime
-    function memtime
-        if test -z "$argv"
-            set_color red
-            echo -n "Error: "
-            set_color normal
-            echo "no command given!"
-            return 1
-        end
-        set_color --bold
-        echo -n "Maximum memory usage"
-        set_color normal
-        echo -n " (RSS): "
-        set_color green --bold
-        command time -v $argv > /dev/null 2>| \
-            grep "Maximum resident set size" | \
-            awk '{print $6 "K"}' | \
-            numfmt --from si --to si
-        set_color normal
-        hyperfine --shell none "$argv"
-    end
-
+    ### functions
     # alias some nix commands 
     function nix
         # to nom (prettier output)
@@ -88,6 +60,35 @@ if status is-interactive
     end
 end
 
+### global aliases
+alias aquarium "asciiquarium --transparent"
+alias flake-update "/etc/dotfiles/misc/update.sh"
+alias flake-pull "git -C /etc/dotfiles pull --rebase --autostash"
+
+### global functions
+
+# test command for maximum memory usage and runtime
+function memtime
+    if test -z "$argv"
+        set_color red
+        echo -n "Error: "
+        set_color normal
+        echo "no command given!"
+        return 1
+    end
+    set_color --bold
+    echo -n "Maximum memory usage"
+    set_color normal
+    echo -n " (RSS): "
+    set_color green --bold
+    command time -v $argv > /dev/null 2>| \
+        grep "Maximum resident set size" | \
+        awk '{print $6 "K"}' | \
+        numfmt --from si --to si
+    set_color normal
+    hyperfine --shell none "$argv"
+end
+
 # use like "flake-rebuild [--impure] [(other options)]"
 function flake-rebuild
     # exit with error message if current device is not set
@@ -104,9 +105,14 @@ function flake-rebuild
         set impure "--impure"
     end
 
+    # allow overriding `nh os` command used below with env var
+    if test "x$NIX_FLAKE_NH_OS_COMMAND" = "x"
+        set NIX_FLAKE_NH_OS_COMMAND "switch"
+    end
+
     # rebuild with nh (for prettier output), current device,
     # --impure (if set) and other given args
-    nh os switch -H $NIX_FLAKE_CURRENT_DEVICE -d always /etc/dotfiles -- $impure $argv
+    nh os $NIX_FLAKE_NH_OS_COMMAND -H $NIX_FLAKE_CURRENT_DEVICE -d always /etc/dotfiles -- $impure $argv
     return $status
 end
 
@@ -137,13 +143,10 @@ function flake-rebuild-remote
     return $status
 end
 
-# pull dotfiles before running flake-rebuild
-function flake-rebuild-pull
-    git -C /etc/dotfiles pull --rebase --autostash
-    set git_status $status
-    if test $git_status != 0
-        return $git_status
-    end
+# run flake-rebuild (build), suspend, run flake-rebuild (switch)
+function flake-rebuild-suspend
+    NIX_FLAKE_NH_OS_COMMAND=build flake-rebuild $argv
+    systemctl suspend
     flake-rebuild $argv
     return $status
 end

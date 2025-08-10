@@ -6,7 +6,7 @@ set_color green
 echo "inputs updated."
 set_color white
 
-flake-rebuild $argv
+flake-rebuild-suspend $argv
 if test $status != 0
     exit
 end
