@@ -18,6 +18,7 @@ args@{ config, lib, pkgs, ... }:
       inkscape-with-extensions # vector graphic editor
       veracrypt # disk encryption
       freefilesync # file backup
+      local.jetbrains-gitclient
       (prismlauncher.override { jdks = [ jdk ]; }) # minecraft
       #foliate # ebook reader
       #bottles # run windows software easily
