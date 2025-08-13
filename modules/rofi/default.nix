@@ -9,7 +9,7 @@ lib.mkModule "rofi" config {
       enable = true;
       theme = "transparent"; # own theme
       package = pkgs.rofi-wayland; # wayland support
-      terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
     };
 
     # write rofimoji config file

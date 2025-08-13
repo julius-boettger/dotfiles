@@ -2,7 +2,7 @@
 args@{ config, lib, pkgs, variables, ... }:
 lib.mkModule "swaync" config {
   environment.systemPackages = with pkgs; [
-    unstable.swaynotificationcenter
+    swaynotificationcenter
     socat # to listen to hyprland events for scripting
   ];
 

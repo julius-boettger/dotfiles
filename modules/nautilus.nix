@@ -2,7 +2,7 @@
 args@{ config, lib, pkgs, ... }:
 lib.mkModule "nautilus" config {
   environment.systemPackages = with pkgs; [
-    unstable.nautilus
+    nautilus
     sushi # thumbnails in nautilus
   ];
 

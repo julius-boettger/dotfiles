@@ -6,7 +6,7 @@ args@{ config, lib, pkgs, variables, ... }:
   config = lib.mkIf config.local.base.gui.enable {
 
     # latest kernel
-    boot.kernelPackages = lib.mkDefault pkgs.unstable.linuxPackages_latest;
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
     # for secret storing stuff
     services.gnome.gnome-keyring.enable = true;
@@ -41,7 +41,7 @@ args@{ config, lib, pkgs, variables, ... }:
     environment.systemPackages = with pkgs; [
       ### gui
       gparted # partition manager, use with sudo -E gparted
-      unstable.resources # system monitor (best overall)
+      resources # system monitor (best overall)
       #monitor # system monitor (best process view) (broken)
       vlc # video player
       qview # image viewer
@@ -52,7 +52,7 @@ args@{ config, lib, pkgs, variables, ... }:
       xarchiver # archive manager
       baobab # disk usage analyzer
       gnome-disk-utility
-      unstable.obsidian # PROPRIETARY notes
+      obsidian # PROPRIETARY notes
       spotify # PROPRIETARY
       # gtk theme
       (orchis-theme.override { border-radius = 10; })
@@ -78,7 +78,7 @@ args@{ config, lib, pkgs, variables, ... }:
       hyprpicker # color picker
       wev ydotool # find out / send keycodes
       wl-clipboard # interact with clipboard 
-      unstable.swayosd # osd for volume changes
+      swayosd # osd for volume changes
     ];
 
     ###########################################

@@ -1,7 +1,7 @@
 # terminal
 args@{ config, lib, pkgs, variables, ... }:
 lib.mkModule "alacritty" config {
-  environment.systemPackages = [ pkgs.unstable.alacritty ];
+  environment.systemPackages = [ pkgs.alacritty ];
 
   # make some stuff in alacritty look better...? probably subjective
   fonts.fontconfig = {

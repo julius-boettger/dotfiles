@@ -89,7 +89,7 @@ args@{ lib, pkgs, variables, device, ... }:
     zoxide # better cd
     nomino # file renaming
     hyperfine # benchmarking tool
-    unstable.numbat # cli calculator
+    numbat # cli calculator
     fortune # random quote
     librespeed-cli # speedtest
     nix-output-monitor # prettier output of nix commands
