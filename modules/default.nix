@@ -12,6 +12,7 @@
     ./jetbrains
     ./lamp-server
     ./minecraft-server
+    ./photoprism
     ./plymouth
     ./rofi
     ./sddm-sugar-candy

@@ -20,6 +20,7 @@ args@{ pkgs, ... }:
   local = {
     # host some stuff
     website.enable = true;
+    photoprism.enable = true;
     lamp-server.enable = true;
     minecraft-server.enable = true;
     terralux-backend.enable = true;
