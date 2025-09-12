@@ -11,6 +11,7 @@
     ./hyprland
     ./jetbrains
     ./lamp-server
+    ./lychee
     ./minecraft-server
     ./plymouth
     ./rofi

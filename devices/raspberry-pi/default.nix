@@ -19,13 +19,14 @@ args@{ pkgs, ... }:
 
   local = {
     # host some stuff
+    lychee.enable = true;
     website.enable = true;
     lamp-server.enable = true;
-    minecraft-server.enable = true;
     terralux-backend.enable = true;
     obsidian-livesync.enable = true;
     #blocky.enable = true;
     #ai-chatbot.enable = true;
+    #minecraft-server.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
