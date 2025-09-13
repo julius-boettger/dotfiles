@@ -20,7 +20,6 @@ lib.mkModule "zen-browser" config {
 
         extensions.packages = with extensions; [
           bitwarden
-          qwant-search
           languagetool
           tampermonkey
           ublock-origin
