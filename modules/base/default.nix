@@ -121,7 +121,7 @@ args@{ lib, pkgs, variables, device, ... }:
   # nix helper (prettier/better nix commands)
   programs.nh =  {
     enable = true;
-    package = (lib.getPkgs "nh").nh;
+    package = pkgs.unstable.nh;
     # automatic nix garbage collect
     clean = {
       enable = true;
