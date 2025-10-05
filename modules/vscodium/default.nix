@@ -10,12 +10,11 @@ lib.mkModule "vscodium" config {
       vscode = pkgs.unstable.vscodium;
       vscodeExtensions =
         with pkgs.vscode-marketplace;
-       #with pkgs.open-vsx; # seems to cause issues...?
         with pkgs.vscode-marketplace-release;
+        with pkgs.open-vsx;
         with pkgs.open-vsx-release; # <-- use first if available, otherwise go up
       [
         ### for syntax highlighting / language support
-        dlasagno.rasi
         eww-yuck.yuck
         jnoortheen.nix-ide
         bmalehorn.vscode-fish
