@@ -26,8 +26,10 @@ lib.mkModule "zen-browser" config {
           decentraleyes
           privacy-badger
           consent-o-matic
+          zotero-connector
           return-youtube-dislikes
-          /* HistoryBlock e.g. for search engine */
+          # and the following (that are not available here):
+          # HistoryBlock (e.g. for search engine)
         ];
 
         extraConfig = ''
