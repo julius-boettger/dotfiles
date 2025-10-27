@@ -114,6 +114,6 @@
   "update.mode": "none", // don't try to update, NixOS will do it
   "shader-validator.validate": false, // only used for syntax highlighting
   "gitlens.currentLine.enabled": false,
-  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.stickyScroll.enabled": false,
   "glasgow.path": "/home/julius/.config/VSCodium/User/globalStorage/nolanderc.glasgow/glasgow_install/bin/glasgow",
 }
