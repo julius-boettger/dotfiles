@@ -75,4 +75,6 @@ args@{ config, pkgs, variables, ... }:
     };
     wantedBy = [ "sleep.target" ];
   };
+  # currently necessary
+  nixpkgs.config.permittedInsecurePackages = [ "mbedtls-2.28.10" ];
 }

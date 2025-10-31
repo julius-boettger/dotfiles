@@ -1,7 +1,7 @@
 # discord
 args@{ config, lib, pkgs, inputs, variables, ... }:
 let
-  discord-pkgs = pkgs.unstable;
+  discord-pkgs = pkgs;
 in
 lib.mkModule "discord" config {
   # nixcord for declarative config
