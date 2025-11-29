@@ -22,15 +22,12 @@ in
       package = pkgs.unstable.jdk;
     };
 
-    # docker
-    virtualisation.docker = lib.mkIf cfg.docker.enable {
+    # rootless docker
+    # (better for security than adding user to "docker" group)
+    virtualisation.docker.rootless = lib.mkIf cfg.docker.enable {
       enable = true;
-      # better for security than adding user to "docker" group
-      rootless = {
-        enable = true;
-        # make rootless instance the default
-        setSocketVariable = true;
-      };
+      # make rootless instance the default
+      setSocketVariable = true;
     };
   };
 }

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
-  # not all modules, just the ones I currently use
-  imports = [];
+  local.devtools.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     zotero
