@@ -8,7 +8,6 @@ lib.mkModule "rofi" config {
     programs.rofi = {
       enable = true;
       theme = "transparent"; # own theme
-      package = pkgs.rofi-wayland; # wayland support
       terminal = "${pkgs.alacritty}/bin/alacritty";
     };
 

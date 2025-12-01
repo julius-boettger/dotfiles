@@ -2,8 +2,8 @@
 {
   inputs = {                 
     # main inputs for packages                update channel version here vvvvv (see variables.nix for state version)
-    nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-25.05";
-    home-manager = { url = "github:nix-community/home-manager?ref=release-25.05";
+    nixpkgs.url =                         "github:nixos/nixpkgs?ref=nixos-25.11";
+    home-manager = { url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";

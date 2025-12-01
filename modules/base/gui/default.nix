@@ -8,9 +8,6 @@ args@{ config, lib, pkgs, variables, ... }:
     # latest kernel
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-    # for secret storing stuff
-    services.gnome.gnome-keyring.enable = true;
-
     # hardware accelerated graphics drivers
     hardware.graphics = {
       enable      = true;
@@ -64,8 +61,8 @@ args@{ config, lib, pkgs, variables, ... }:
       ### cli
       alsa-utils # control volume
       lm_sensors # system temperature sensor info
-      lxde.lxmenu-data # required to discover applications
-      lxde.lxsession # just needed for lxpolkit (an authentication agent)
+      lxmenu-data # required to discover applications
+      lxsession # just needed for lxpolkit (an authentication agent)
 
       ### only used on xorg
       lxappearance # manage gtk theming stuff if homemanager fails
