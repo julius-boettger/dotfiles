@@ -60,9 +60,9 @@ args@{ config, lib, pkgs, variables, ... }:
     # suspend when closing laptop lid
     services = {
       # stop default behavior, not reliable
-      logind = {
-        lidSwitch       = "ignore";
-        lidSwitchDocked = "ignore";
+      logind.settings.Login = {
+        HandleLidSwitch       = "ignore";
+        HandleLidSwitchDocked = "ignore";
       };
       # run own script
       acpid = {

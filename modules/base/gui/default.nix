@@ -107,10 +107,10 @@ args@{ config, lib, pkgs, variables, ... }:
     programs.dconf.enable = true;
 
     # what to do when pressing power button
-    services.logind = {
-      powerKeyLongPress = "poweroff";
+    services.logind.settings.Login = {
+      HandlePowerKeyLongPress = "poweroff";
       # do nothing :) suspend manually if you want
-      powerKey = "ignore";
+      HandlePowerKey = "ignore";
     };
 
     # qt theming (based on gtk theming)
