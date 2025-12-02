@@ -14,7 +14,7 @@
     ./minecraft-server
     ./plymouth
     ./rofi
-    ./sddm-sugar-candy
+    ./sddm
     ./starship
     ./swaylock-effects
     ./vim

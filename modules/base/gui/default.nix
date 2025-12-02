@@ -93,7 +93,7 @@ args@{ config, lib, pkgs, variables, ... }:
       copyq.enable = true;
       eww.enable = true;
       rofi.enable = true;
-      sddm-sugar-candy.enable = true;
+      sddm.enable = true;
       swaylock-effects.enable = true;
       swaync.enable = true;
       zen-browser.enable = true;
@@ -102,8 +102,6 @@ args@{ config, lib, pkgs, variables, ... }:
       bluetooth.enable = true;
       discord.enable = true;
     };
-
-    services.displayManager.sddm.enable = true;
 
     # configure various app settings
     programs.dconf.enable = true;
