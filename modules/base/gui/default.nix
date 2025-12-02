@@ -70,6 +70,7 @@ args@{ config, lib, pkgs, variables, ... }:
       pick-colour-picker
 
       ### only used on wayland
+      hyprshot # temporary screenshots
       swww # wallpaper switching with animations
       nwg-look # manage gtk theming stuff if homemanager fails
       hyprpicker # color picker
