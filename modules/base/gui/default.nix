@@ -76,7 +76,6 @@ args@{ config, lib, pkgs, variables, ... }:
       hyprpicker # color picker
       wev ydotool # find out / send keycodes
       wl-clipboard # interact with clipboard 
-      swayosd # osd for volume changes
     ];
 
     ###########################################
@@ -171,6 +170,12 @@ args@{ config, lib, pkgs, variables, ... }:
         automount = true;
         tray = "never"; # necessary when not having a tray
         notify = true;
+      };
+
+      # osd for volume/brightness changes
+      services.swayosd = {
+        enable = true;
+        topMargin = 0.9;
       };
 
       # flameshot (screenshot tool)
