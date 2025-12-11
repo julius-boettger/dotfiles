@@ -14,6 +14,11 @@
   :initial '{"total":0,"used":0,"used_percent":0}'
   "~/.config/eww/scripts/ram-usage.sh") 
 
+(defpoll sound :interval "1s"
+  ; in percent
+  :initial 0
+  "~/.config/eww/scripts/sound.sh") 
+
 (defpoll logarithmic-cpu :interval "1s"
   ; in percent
   :initial 0
@@ -56,6 +61,7 @@
     :orientation "v"
     :space-evenly false
     :spacing -10
+    (sound-bar)
     (box
       :space-evenly false
       :spacing 15
@@ -106,6 +112,11 @@
             :style "padding-right: 0.25em"
             :text {workspaces[monitor][i] == "true"  ? "󰟒" :
                    workspaces[monitor][i] == "false" ? "󰝥" : "󰄰"})))))) ; nerdfont characters
+
+(defwidget sound-bar []
+  (progress
+    :orientation "h"
+    :value sound))
 
 (defwidget circular-cpu []
   (circular-progress-fancy

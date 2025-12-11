@@ -27,3 +27,7 @@ window {
 .outer-circle {
     background: rgba(255, 255, 255, 0.2);
 }
+
+progress {
+    background: #F7F1FF;
+}
