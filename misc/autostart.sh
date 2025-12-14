@@ -35,7 +35,7 @@ openrgb --profile default > /dev/null &
 NOISETORCH_MIC="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7BVH9Y0B69B0A-00.HiFi__Mic1__source"
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id
-  id=$(wpctl status | sed '/Sources:/,$ { /Streams:/q; p }' | grep -m 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
+  id=$(wpctl status | sed -n '/Sources:/,/Filters:/{/Sources:/d;/Filters:/d;p}' | grep -Fm 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
   if [ -z "$id" ]; then
     echo "couldnt get id for microphone '$1'"
     return

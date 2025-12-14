@@ -2,7 +2,7 @@
 
 set_sink() {
   # set $1 as default sink with 100% volume using wireplumber id
-  id=$(wpctl status | sed '/Sources:/,$ { /Streams:/q; p }' | grep -m 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
+  id=$(wpctl status | sed -n '/Sinks:/,/Sources:/{/Sinks:/d;/Sources:/d;p}' | grep -Fm 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
   if [ -z "$id" ]; then
     echo "couldnt get id for sink '$1'"
     return
@@ -12,7 +12,7 @@ set_sink() {
 }
 
 # use TV speakers
-set_sink "Rembrandt Radeon High Definition Audio Controller Digital Stereo" &
+set_sink "Radeon High Definition Audio Controller [Rembrandt/Strix] HDMI / DisplayPort 2 Output" &
 
 # reduce integrated monitor brightness
 brightnessctl s 5%
