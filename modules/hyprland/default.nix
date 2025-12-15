@@ -55,13 +55,19 @@ lib.mkModule "hyprland" config {
       systemd.variables = [ "--all" ];
     };
 
-    # lock before/after entering sleep with swaylock-effects
+    programs.hyprlock = {
+      enable = true;
+      package = pkgs.unstable.hyprlock;
+      extraConfig = "source = /etc/dotfiles/modules/hyprland/hyprlock.conf";
+    };
+
+    # lock before/after entering sleep with hyprlock
     services.hypridle = {
       enable = true;
       settings = {
         general = {
           # set command for loginctl
-          lock_cmd = "swaylock-effects";
+          lock_cmd = "hyprlock";
         } // (if device.internalName == "laptop" then {
           # for laptops: lock before going to sleep, which shows the lockscreen
           #              shortly, but you dont see it if you close the laptop lid

@@ -92,7 +92,6 @@ args@{ config, lib, pkgs, variables, ... }:
       eww.enable = true;
       rofi.enable = true;
       sddm.enable = true;
-      swaylock-effects.enable = true;
       swaync.enable = true;
       zen-browser.enable = true;
       gitnuro.enable = true;
