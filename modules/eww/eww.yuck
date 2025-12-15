@@ -19,10 +19,10 @@
   :initial 0
   "~/.config/eww/scripts/sound.sh") 
 
-(defpoll logarithmic-cpu :interval "1s"
+(defpoll cpu :interval "1s"
   ; in percent
   :initial 0
-  "~/.config/eww/scripts/logarithmic-cpu.sh") 
+  "~/.config/eww/scripts/cpu-usage.sh") 
 
 (defpoll battery :interval "5s"
   ; charge in percent
@@ -66,7 +66,7 @@
       :space-evenly false
       :spacing 15
       (eventbox
-        :onscroll 'eww update is-laptop=${!is-laptop}'
+        :onclick 'eww update is-laptop=${!is-laptop}'
         (box
           :space-evenly false
           :spacing 25
@@ -114,15 +114,20 @@
                    workspaces[monitor][i] == "false" ? "󰝥" : "󰄰"})))))) ; nerdfont characters
 
 (defwidget sound-bar []
-  (progress
-    :orientation "h"
-    :value sound))
+  (box
+    :orientation "v"
+    (progress
+      :valign "start"
+      :orientation "h"
+      :value sound)
+    ; spacing below bar
+    (box :height 10)))
 
 (defwidget circular-cpu []
   (circular-progress-fancy
     :visible {!is-laptop}
-    :tooltip '${round(EWW_CPU.avg, 2)}%'
-    :value logarithmic-cpu
+    :tooltip '${round(EWW_CPU.avg, 1)}%'
+    :value cpu
     :text "" :style "padding-right: 0.35em" ; cpu nerdfont character
     :condition       {EWW_CPU.avg < 10}
     :condition-text '${round(EWW_CPU.avg, 1)}'))

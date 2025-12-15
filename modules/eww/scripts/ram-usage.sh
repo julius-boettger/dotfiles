@@ -14,8 +14,10 @@ buffers=$(echo $nums | awk '{print $3}' | { read kb; echo $((kb / 1000)); })
 
 used=$(($total - $free - $buffers - $cached - $srec))
 
+used_percent=$(( used * 100 / total ))
+
 # percent value between 0 and 100, logarithmic scale with base 10
-offset=250 # subtract from used and total as both values never go below this
-used_percent=$(python -c "import math; print(round(math.log10((($used-$offset)/(($total-$offset)/9)+1))*100))")
+#offset=250 # subtract from used and total as both values never go below this
+#used_percent=$(python -c "import math; print(round(math.log10((($used-$offset)/(($total-$offset)/9)+1))*100))")
 
 echo "{\"total\":$total,\"used\":$used,\"used_percent\":$used_percent}"
