@@ -26,6 +26,10 @@ lib.mkModule "vscodium" config {
         nolanderc.glasgow # wgsl language support, but without syntax highlighting
         antaalt.shader-validator # wgsl syntax highlighting
 
+        # haskell
+        haskell.haskell
+        justusadam.language-haskell
+
         # c/c++
         #ms-vscode.cpptools
         #mesonbuild.mesonbuild

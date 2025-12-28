@@ -111,6 +111,7 @@
   "terminal.integrated.fontSize": 18,
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', monospace",
 
+  "haskell.manageHLS": "PATH", // don't try to manage HLS automatically
   "update.mode": "none", // don't try to update, NixOS will do it
   "shader-validator.validate": false, // only used for syntax highlighting
   "gitlens.currentLine.enabled": false,
