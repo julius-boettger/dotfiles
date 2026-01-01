@@ -35,7 +35,7 @@ openrgb --profile default > /dev/null &
 NOISETORCH_MIC="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7BVH9Y0B69B0A-00.HiFi__Mic1__source"
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id
-  id=$(wpctl status | sed -n '/Sources:/,/Filters:/{/Sources:/d;/Filters:/d;p}' | grep -Fm 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
+  id=$(wpctl status | sed -n '/Sources:/,/Streams:/{/Sources:/d;/Streams:/d;p}' | grep -Fm 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
   if [ -z "$id" ]; then
     echo "couldnt get id for microphone '$1'"
     return
@@ -47,14 +47,12 @@ set_mic() {
 if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
   # wait for mics to be detected correctly
   sleep 1
-  # default mic (source) to apply noise reduction to
-  set_mic $NOISETORCH_MIC
-  # init noisetorch for default mic
-  noisetorch -i
+  # init noisetorch for given source device id
+  noisetorch -i -s $NOISETORCH_MIC
   if [[ $? == 0 ]]; then
     echo "noisetorch activated"
   else
-    echo "noisetorch couldnt be activated"
+    echo "noisetorch couldnt be activated, check if noisetorch -l lists $NOISETORCH_MIC"
   fi
   # set noisetorch mic as default
   set_mic "NoiseTorch Microphone"
