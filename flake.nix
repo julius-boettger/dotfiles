@@ -18,9 +18,9 @@
     # host minecraft server
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # hyprland (to manage version independently of other packages)
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.52.2";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.53.1";
     # hyprland plugin for better multi-monitor workspaces, matching hyprland version: ^v^v^v^
-    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.52.2";
+    hyprsplit = { url =                                  "github:shezdy/hyprsplit?ref=v0.53.1";
       inputs.hyprland.follows = "hyprland"; };
     # nix user repository (more packages)
     nur = { url = "github:nix-community/NUR";
