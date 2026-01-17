@@ -56,7 +56,7 @@ args@{ config, lib, pkgs, variables, ... }:
       gnome-themes-extra # just having this installed avoids warnings in some apps
       # icon themes
       adwaita-icon-theme # just having this installed fixes issues in some apps
-      (papirus-icon-theme.override { /*folder-*/color = "black"; })
+      ((papirus-icon-theme.override { /*folder-*/color = "black"; }).overrideAttrs { dontFixup = true; })
 
       ### cli
       alsa-utils # control volume
