@@ -6,6 +6,9 @@ lib.mkModule "steam" config {
     package = pkgs.steam;
   };
 
+  # reduce synchronization overhead in proton/wine
+  boot.kernelModules = [ "ntsync" ];
+
   # easy ge-proton setup for steam
   environment.systemPackages = [ pkgs.protonup-qt ];
 }
