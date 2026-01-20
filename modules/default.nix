@@ -28,6 +28,7 @@
     ./discord.nix
     ./distributed-builds.nix
     ./fastfetch.nix
+    ./immich.nix
     ./nautilus.nix
     ./nvidia.nix
     ./obsidian-livesync.nix

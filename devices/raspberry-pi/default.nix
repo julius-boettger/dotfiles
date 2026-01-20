@@ -18,14 +18,19 @@ args@{ pkgs, ... }:
   };
 
   local = {
-    # host some stuff
+    ### host some stuff
     website.enable = true;
+
+    # has subdomain
+    immich.enable = true;
     lamp-server.enable = true;
-    minecraft-server.enable = true;
-    terralux-backend.enable = true;
     obsidian-livesync.enable = true;
-    #blocky.enable = true;
     #ai-chatbot.enable = true;
+
+    # other
+    terralux-backend.enable = true;
+    #blocky.enable = true;
+    #minecraft-server.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
