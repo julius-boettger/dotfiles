@@ -1133,11 +1133,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1769027504,
-        "narHash": "sha256-/L3SgdL7uVLeWC4KSZizjud+YpiJ/sBjRpQ7eafRVUk=",
+        "lastModified": 1770498729,
+        "narHash": "sha256-53HFtVK57vvXxzUcf2Fq6CX0DiFWKcccFkg3ufFbP8g=",
         "owner": "julius-boettger",
         "repo": "website",
-        "rev": "fbb3a292a12cc17047bccba888ce33e2cd8367bc",
+        "rev": "b7b985be9d1171514cdc41d67ea6ac611e4c207a",
         "type": "github"
       },
       "original": {
