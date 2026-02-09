@@ -7,7 +7,10 @@ in
 lib.mkModule "vscodium" config {
   environment.systemPackages = [
     (pkgs.vscode-with-extensions.override {
-      vscode = pkgs.unstable.vscodium;
+      vscode = pkgs.unstable.vscodium.override {
+        # attempt to fix crashing background processes
+        commandLineArgs = "--disable-gpu-sandbox";
+      };
       vscodeExtensions =
         with pkgs.vscode-marketplace;
         with pkgs.vscode-marketplace-release;
