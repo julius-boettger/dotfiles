@@ -26,8 +26,12 @@ args@{ config, lib, pkgs, ... }:
   system.stateVersion = config.stateVersion;
 
   nix.settings = {
-    warn-dirty = false; # if anything in the flake git repo is uncommitted
     experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+    # if anything in the flake git repo is uncommitted
+    warn-dirty = false;
+    # use all the hardware to speed up rebuilds
+    cores = 0;
+    max-jobs = "auto";
   };
 
   boot.loader = {
@@ -119,6 +123,9 @@ args@{ config, lib, pkgs, ... }:
     devtools.python.enable = true;
     distributed-builds.enable = true;
   };
+
+  # dont generate man page caches to speed up rebuilds
+  documentation.man.generateCaches = false;
 
   # load dev environment from directory
   programs.direnv.enable = true;
