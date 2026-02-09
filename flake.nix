@@ -9,7 +9,7 @@
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs to avoid expensive cache misses of couchdb and dependencies on aarch64
-    couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=eb0e0f21f15c559d2ac7633dc81d079d1caf5f5f";
+    couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=a1bab9e494f5f4939442a57a58d0449a109593fe";
 
     ### other
     # hyprland (to manage version independently of other packages)
