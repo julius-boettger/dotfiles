@@ -134,7 +134,7 @@ function flake-rebuild-remote
     end
 
     # rebuild with hostname, --impure (if set), other given args and nom (for prettier output)
-    nixos-rebuild switch --sudo \
+    nixos-rebuild switch --sudo --no-reexec \
         --flake /etc/dotfiles\#$argv[1] \
         --target-host $argv[1] \
          --build-host $argv[1] \
