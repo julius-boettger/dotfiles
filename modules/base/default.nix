@@ -24,7 +24,11 @@ args@{ config, lib, pkgs, ... }:
   time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = config.stateVersion;
-  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+
+  nix.settings = {
+    warn-dirty = false; # if anything in the flake git repo is uncommitted
+    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+  };
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
