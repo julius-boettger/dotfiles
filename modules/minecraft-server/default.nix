@@ -1,8 +1,5 @@
 # host minecraft server
-args@{ config, lib, inputs, device, ... }:
-let
-  server-pkgs = inputs.nix-minecraft.legacyPackages.${device.system}.minecraftServers;
-in
+args@{ config, lib, inputs, pkgs, ... }:
 {
   options.local.minecraft-server.enable = lib.mkEnableOption "whether to enable minecraft-server";
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
@@ -17,7 +14,7 @@ in
       servers.default = {
         enable = true;
         files."server-icon.png" = ./server-icon.png;
-        package = server-pkgs.fabric-1_21_5;
+        package = pkgs.minecraftServers.fabric-1_21_5;
 
         serverProperties = {
           white-list = true;

@@ -1,5 +1,5 @@
 # bluetooth support including gui for configuration
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 lib.mkModule "bluetooth" config {
   hardware.bluetooth = {
     enable = true;
@@ -11,7 +11,7 @@ lib.mkModule "bluetooth" config {
 
   # bluetooth gui
   services.blueman.enable = true;
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     # disable notifications when a device (dis)connects
     dconf.settings."org/blueman/general".plugin-list = [ "!ConnectionNotifier" ];
   };

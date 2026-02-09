@@ -1,12 +1,12 @@
 # discord
-args@{ config, lib, pkgs, inputs, variables, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 let
   discord-pkgs = pkgs;
 in
 lib.mkModule "discord" config {
   # nixcord for declarative config
   home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     programs.nixcord = {
       enable = true;
       # disable discord (enabled by default)

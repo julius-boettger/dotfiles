@@ -1,5 +1,5 @@
 # terminal
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "alacritty" config {
   environment.systemPackages = [ pkgs.alacritty ];
 
@@ -10,7 +10,7 @@ lib.mkModule "alacritty" config {
   };
 
   # symlink config to ~/.config
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     xdg.configFile."alacritty/alacritty.toml".source =
       config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/alacritty/alacritty.toml";
   };

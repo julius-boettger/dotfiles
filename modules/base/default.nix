@@ -1,11 +1,20 @@
-args@{ lib, pkgs, variables, device, ... }:
+args@{ config, lib, pkgs, ... }:
 {
   # other base modules can be enabled if desired
   imports = [
     ./gui
     ./gui/full.nix
     ./laptop.nix
+    # raspberry-pi.nix is not imported here on purpose, read why there
   ];
+
+  options.username = with lib; mkOption {
+    type = types.str;
+    default = "julius";
+    description = "the username of the only user";
+  };
+
+  config = { # below not indented to keep old git blame
 
   #########################################################
   ### most basic configuration every device should have ###
@@ -14,7 +23,7 @@ args@{ lib, pkgs, variables, device, ... }:
   # self-explaining one-liners
   time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = variables.version;
+  system.stateVersion = config.stateVersion;
   nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
 
   boot.loader = {
@@ -37,7 +46,7 @@ args@{ lib, pkgs, variables, device, ... }:
   };
 
   networking = {
-    hostName = device.hostName;
+    hostName = lib.mkDefault "nixos";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -65,13 +74,13 @@ args@{ lib, pkgs, variables, device, ... }:
 
   ### user account and groups
   # create new group with username
-  users.groups.${variables.username} = {};
+  users.groups.${config.username} = {};
   # create user
-  users.users.${variables.username} = {
+  users.users.${config.username} = {
     isNormalUser = true;
-    description = variables.username;
+    description = config.username;
     extraGroups = [ # add user to groups (if they exist)
-      variables.username
+      config.username
       "users"
       "wheel"
       "networkmanager"
@@ -159,18 +168,19 @@ args@{ lib, pkgs, variables, device, ... }:
     MANPAGER = "sh -c 'col -bx | bat --language man --plain'";
     MANROFFOPT = "-c";
     # current device to use for flake-rebuild
-    NIX_FLAKE_CURRENT_DEVICE = device.internalName;
-    # use --impure for flake-rebuild by default (if configured)
-    NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = lib.mkIf variables.allowImpureByDefault 1;
+    NIX_FLAKE_CURRENT_DEVICE = config.name;
+    # use --impure for flake-rebuild by default
+    #NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = 1;
   };
 
   ### manage stuff in /home/$USER/
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "hm-bak";
-  home-manager.users.${variables.username} = { config, ... }:
-  {
-    home.stateVersion = variables.version;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "hm-bak";
+  };
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
+    home.stateVersion = sysconfig.stateVersion;
 
     # i dont know what this does?
     programs.home-manager.enable = true;
@@ -182,10 +192,11 @@ args@{ lib, pkgs, variables, device, ... }:
         fetch.prune = true; # remove deleted remote branches locally
         pull.rebase = true; # rebase merge
         user = {
-          name = variables.git.name;
-          email = variables.git.email;
+          name = lib.mkDefault "julius-boettger";
+          email = lib.mkDefault "julius.btg@proton.me";
         };
       };
     };
   };
-}
+};
+} # above not indented to keep old git blame

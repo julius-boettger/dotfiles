@@ -1,5 +1,5 @@
 # secret management with sops
-args@{ config, lib, pkgs, inputs, variables, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 {
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
@@ -13,6 +13,6 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
 
     # should contain private key generated with
     # ssh-to-age -private-key -i ~/.ssh/id_ed25519 -o ~/.config/sops/age/keys.txt
-    sops.age.keyFile = "/home/${variables.username}/.config/sops/age/keys.txt";
+    sops.age.keyFile = "/home/${config.username}/.config/sops/age/keys.txt";
   };
 }

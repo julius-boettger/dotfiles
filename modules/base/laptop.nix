@@ -1,5 +1,5 @@
 # useful config for laptops
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 {
   options.local.base.laptop.enable = lib.mkEnableOption "whether to enable laptop config";
 
@@ -35,7 +35,7 @@ args@{ config, lib, pkgs, variables, ... }:
 
     # autologin hyprland
     services.displayManager.sddm.settings.Autologin = {
-      User = variables.username;
+      User = config.username;
       Session = "hyprland.desktop";
     };
 
@@ -77,7 +77,7 @@ args@{ config, lib, pkgs, variables, ... }:
     };
 
     # notifications for low battery
-    home-manager.users.${variables.username} = { config, ... }: {
+    home-manager.users.${config.username} = { config, sysconfig, ... }: {
       services.batsignal.enable = true;
     };
   };

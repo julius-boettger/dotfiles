@@ -1,10 +1,10 @@
 # application launcher
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "rofi" config {
   # emoji picker for rofi
   environment.systemPackages = [ pkgs.rofimoji ];
 
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     programs.rofi = {
       enable = true;
       theme = "transparent"; # own theme

@@ -1,11 +1,11 @@
 # nix builds on remote machines
 # https://wiki.nixos.org/wiki/Distributed_build
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 lib.mkModule "distributed-builds" config {
   nix = {
     distributedBuilds = true;
     settings = {
-      trusted-users = [ variables.username ];
+      trusted-users = [ config.username ];
       # useful when remote has faster internet than local machine
       builders-use-substitutes = true;
     };
@@ -24,6 +24,6 @@ lib.mkModule "distributed-builds" config {
   programs.ssh.extraConfig = ''
     Host raspberry-pi
       Hostname 192.168.178.254
-      User ${variables.username}
+      User ${config.username}
   '';
 }

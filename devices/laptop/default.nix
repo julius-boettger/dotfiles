@@ -1,12 +1,10 @@
-args@{ pkgs, inputs, device, ... }:
+args@{ pkgs, inputs, ... }:
 let 
   mesa-pkgs = 
     pkgs;
-    #inputs.hyprland.inputs.nixpkgs.legacyPackages.${device.system};
+    #inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in
 {
-  imports = [ ../../modules/studies ];
-
   local = {
     base.gui.full.enable = true;
     base.laptop.enable = true;

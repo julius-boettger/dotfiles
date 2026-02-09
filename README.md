@@ -22,12 +22,12 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 </p>
 
 # About this repo
-- This repo contains configuration files I daily drive on multiple machines, including Windows ones through [WSL](https://learn.microsoft.com/en-us/windows/wsl/). Its purpose is:
+- This repo contains configuration files I daily drive on multiple machines (desktops, laptops, servers), including Windows ones through [WSL](https://learn.microsoft.com/en-us/windows/wsl/). Its purpose is:
     - providing version control for my config files
     - serving as documentation and inspiration for customizing your system
 - With this repo you get a [Flake](https://nixos.wiki/wiki/Flakes)-based [NixOS](https://nixos.org) configuration that includes...
   - two fully functional desktop sessions:
-    - [Awesome](https://github.com/awesomeWM/awesome) (on Xorg)
+    - [Awesome](https://github.com/awesomeWM/awesome) (on Xorg, somewhat unmaintained now, but should still work)
     - [Hyprland](https://hyprland.org/) (on Wayland)
     - => See [Installation (Desktop)](#installation-desktop)
   - a nice [WSL](https://learn.microsoft.com/en-us/windows/wsl/) setup
@@ -50,7 +50,6 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | File | Description |
 |------|-------------|
 | `devices/[DEVICE]/fastfetch/` | Device-specific [fastfetch](https://github.com/fastfetch-cli/fastfetch) configurations |
-| `misc/update/` | Scripts to automatically update and clean up [NixOS](https://nixos.org) after a prompt every saturday |
 | `misc/autostart.sh` | Shell script that [Awesome](https://github.com/awesomeWM/awesome) and [Hyprland](https://hyprland.org/) run on startup |
 | `misc/notification.wav` | Notification sound |
 | `modules/alacritty/alacritty.toml` | [Alacritty](https://github.com/alacritty/alacritty) configuration |
@@ -60,12 +59,10 @@ https://github.com/julius-boettger/dotfiles/assets/85450899/4f33b2a8-80b3-47ff-8
 | `modules/firefox/firefox.css` | `userChrome.css` for [Firefox](https://www.mozilla.org/en-US/firefox/new/) |
 | `modules/fish/init.fish` | `config.fish` for [Fish](https://github.com/fish-shell/fish-shell) |
 | `modules/gitnuro/gitnuro.json` | [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme |
-| `modules/hyprland/hyprland.conf` | [Hyprland](https://hyprland.org/) configuration |
+| `modules/hyprland/` | [Hyprland](https://hyprland.org/) and [hyprlock](https://github.com/hyprwm/hyprlock/) configuration |
 | `modules/jetbrains/.ideavimrc` | Like `.vimrc`, but for [IntelliJ IDEA](https://github.com/JetBrains/intellij-community) using [IdeaVim](https://github.com/JetBrains/ideavim) |
 | `modules/rofi/` | [Rofi](https://github.com/lbonn/rofi) (Wayland fork) themes |
-| `modules/sddm-sugar-candy/sddm-sugar-candy.conf` | [sddm-sugar-candy](https://github.com/Kangie/sddm-sugar-candy) configuration |
 | `modules/starship/starship.toml` | [Starship](https://github.com/starship/starship) configuration |
-| `modules/swaylock-effects/swaylock-effects.sh` | Shell script to call [Swaylock-effects](https://github.com/jirutka/swaylock-effects) with custom options |
 | `modules/swaync/` | [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter) configuration with custom theme |
 | `modules/vim/.vimrc` | [Vim](https://github.com/vim/vim) configuration |
 | `modules/vscodium/vscodium.json` | `settings.json` for [VSCodium](https://github.com/VSCodium/vscodium) |
@@ -153,17 +150,16 @@ cp -f /etc/nixos/disk-config.nix /etc/dotfiles/devices/desktop/
 
 > Paths like `devices/desktop/default.nix` are referencing the content of this repo, which should now be in `/etc/dotfiles/`, so the full path in this case would be `/etc/dotfiles/devices/desktop/default.nix`.
 
-There are some files you now should take a look at and adjust them to your liking:
-- `variables.nix` (should explain itself)
-- `default.nix` and `hyprland.conf` in `devices/desktop/` contain some device- / hardware-specific configuration like setting the resolution, mounting a partition, ... You may pick and choose what seems useful to you, or just delete it.
-- Of course you may also want to look at and change every other file ;)
+Take a look at the contents of `devices/desktop/`, they contain some device- / hardware-specific configuration like setting the resolution, mounting a partition, ... You may pick and choose what seems useful to you, or just delete it.
+
+Of course you may also want to look at and change every other file ;)
 
 ```shell
 # make sure the nix flake can see all your files
 cd /etc/dotfiles
 git add .
 
-# rebuild the system
+# rebuild the system (--impure might not be necessary, but just to be sure)
 # after you've done this once, `flake-rebuild` should be available as a shorthand that serves the same purpose.
 nixos-rebuild switch --flake /etc/dotfiles#desktop --impure
 
@@ -177,8 +173,6 @@ chown -R <USER>:root /etc/dotfiles
 Next: `reboot` for good measure.
 
 ~~Set [Gitnuro](https://github.com/JetpackDuba/Gitnuro) theme: Run Gitnuro, open the settings and click the "Open file" button next to "Custom theme". Select `modules/gitnuro/gitnuro.json` and click on "Accept".~~ (My theme is currently broken)
-
-To set a wallpaper for [SDDM](https://github.com/sddm/sddm) (the display manager) either put a `login.jpg` in `wallpapers/` or adjust the path to the wallpaper at the top of `modules/sddm-sugar-candy/sddm-sugar-candy.conf`.
 
 By default, both the Awesome and the Hyprland session use a random wallpaper out of `wallpapers/nixos/` on every reload. But there's an easy way to set up your own wallpapers on Hyprland: Put just one (or multiple!)  in `wallpapers/misc/`. A random one will be selected on each reload if you have multiple. You can also configure corresponding accent colors for each wallpaper that will be used e.g. for the client border color. To do this, ajdust `modules/hyprland/wallpaper.py`. You will figure it out.
 

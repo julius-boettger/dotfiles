@@ -1,4 +1,4 @@
-args@{ lib, pkgs, inputs, variables, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -7,17 +7,20 @@ args@{ lib, pkgs, inputs, variables, ... }:
 
   wsl = {
     enable = true;
-    defaultUser = variables.username;
+    defaultUser = config.username;
   };
+
+  networking.hostName = "wsl";
 
   # usually enabled in modules/base/default.nix, doesnt work here
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
-  # for issues with company network/vpn
-  local.wsl-vpnkit.enable = true;
-
-  # git gui (yes, that works with wsl!)
-  local.gitnuro.enable = true;
+  local = {
+    # for issues with company network/vpn
+    wsl-vpnkit.enable = true;
+    # git gui (yes, that works with wsl!)
+    gitnuro.enable = true;
+  };
 
   # automatic nix garbage collect
   programs.nh.clean.dates = "daily";
@@ -27,5 +30,13 @@ args@{ lib, pkgs, inputs, variables, ... }:
   services.vscode-server = {
     enable = true;
     nodejsPackage = pkgs.nodePackages_latest.nodejs;
+  };
+
+  # override git user
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
+    programs.git.settings.user = {
+        name = "";
+        email = "";
+    };
   };
 }

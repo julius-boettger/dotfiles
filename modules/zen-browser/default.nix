@@ -1,10 +1,10 @@
 # internet browser
-args@{ config, lib, pkgs, inputs, variables, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 let
   extensions = pkgs.nur.repos.rycee.firefox-addons;
 in
 lib.mkModule "zen-browser" config {
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     imports = [ inputs.zenix.homeModules.default ];
 
     programs.zenix = {

@@ -1,5 +1,5 @@
 # build custom widgets
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "eww" config {
   environment.systemPackages = with pkgs; [
     eww
@@ -10,7 +10,7 @@ lib.mkModule "eww" config {
   ];
 
   # symlink config to ~/.config
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     xdg.configFile."eww" = {
       source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/eww";
       recursive = true;

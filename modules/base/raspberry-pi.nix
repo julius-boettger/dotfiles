@@ -4,7 +4,7 @@
 # nix build /etc/dotfiles#nixosConfigurations.DEVICE.config.system.build.sdImage --store ssh-ng://USER@IP
 # then copy the built image from the remote pi to your local machine with scp. see more at
 # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Using_the_Pi_5_as_a_remote_builder_to_build_native_ARM_packages_for_the_Pi_5
-args@{ config, lib, pkgs, inputs, variables, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 {
   # import hardware-specific fixes
   imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-5 ];
@@ -20,7 +20,7 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
   # avoid password prompts when remote rebuilding
   # https://github.com/NixOS/nixpkgs/issues/118655#issuecomment-1537131599
   security.sudo.extraRules = [ {
-    users = [ variables.username ];
+    users = [ config.username ];
     commands = [
       { command = "/run/current-system/sw/bin/env";         options = [ "NOPASSWD" ]; }
       { command = "/run/current-system/sw/bin/nix-env";     options = [ "NOPASSWD" ]; }
@@ -43,7 +43,7 @@ args@{ config, lib, pkgs, inputs, variables, ... }:
 
   # set initial passwords of users to their names (dont forget to change!)
   users.users = {
-    ${variables.username}.initialPassword = variables.username;
+    ${config.username}.initialPassword = config.username;
                      root.initialPassword = "root";
   };
 

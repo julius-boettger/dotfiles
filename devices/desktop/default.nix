@@ -1,7 +1,5 @@
-args@{ config, pkgs, variables, ... }:
+args@{ config, pkgs, ... }:
 {
-  imports = [ ../../modules/studies ];
-
   local = {
     base.gui.full.enable = true;
     nvidia.enable = true;
@@ -24,14 +22,13 @@ args@{ config, pkgs, variables, ... }:
     # to mount encrypted data partition
     zenity # password prompt
     cryptsetup # unlock luks
-    dunst # send notifications
   ];
 
   # remove background noise from mic
   programs.noisetorch.enable = true;
 
   # symlink to home folder
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     home.file."Library".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Library";
   };
 
@@ -67,7 +64,7 @@ args@{ config, pkgs, variables, ... }:
       StopWhenUnneeded = "yes";
     };
     serviceConfig = {
-      User = variables.username;
+      User = config.username;
       Type = "oneshot";
       RemainAfterExit = "yes";
       ExecStart = "-${pkgs.openrgb}/bin/openrgb -p off";

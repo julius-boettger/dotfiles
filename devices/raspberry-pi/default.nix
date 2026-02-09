@@ -4,6 +4,7 @@ args@{ pkgs, ... }:
 
   # static ipv4 address over ethernet
   networking = {
+    hostName = "nixos-pi";
     interfaces.end0.ipv4.addresses = [ {
       address = "192.168.178.254";
       prefixLength = 24;

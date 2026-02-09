@@ -1,7 +1,7 @@
 # browser
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 lib.mkModule "firefox" config {
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     programs.firefox = {
       enable = true;
       # allow custom css

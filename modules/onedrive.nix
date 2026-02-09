@@ -1,10 +1,10 @@
 # onedrive
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 lib.mkModule "onedrive" config {
   services.onedrive.enable = true;
 
   # create config file in ~/.config
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     xdg.configFile."onedrive/config".text = ''
       # try to download changes from onedrive every x seconds
       monitor_interval = "6"

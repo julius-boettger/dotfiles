@@ -1,5 +1,5 @@
 # jetbrains ide's
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "jetbrains" config {
   environment.systemPackages = with pkgs.jetbrains; [
     pycharm-community
@@ -9,7 +9,7 @@ lib.mkModule "jetbrains" config {
   ];
 
   # symlink ideavim config to ~
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     home.file.".ideavimrc".source =
       config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/jetbrains/.ideavimrc";
   };

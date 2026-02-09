@@ -1,5 +1,5 @@
 # server to control smart plug for reptile terrarium lamp
-args@{ config, lib, variables, device, ... }:
+args@{ config, lib, ... }:
 let
   port = 5000; # currently hard-coded in server
   terralux-backend-pkg = (lib.getPkgs "terralux-backend").terralux-backend;
@@ -13,7 +13,7 @@ lib.mkModule "terralux-backend" config {
     enable = true;
     description = "server to control smart plug for reptile terrarium lamp";
     serviceConfig = {
-      User = variables.username;
+      User = config.username;
       ExecStart = "${terralux-backend-pkg}/bin/terralux-backend";
     };
     wantedBy = [ "multi-user.target" ];

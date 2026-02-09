@@ -8,6 +8,7 @@ args@{ config, lib, pkgs, ... }:
     local = {
       base.gui.enable = true;
       steam.enable = true;
+      studies.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -18,6 +19,8 @@ args@{ config, lib, pkgs, ... }:
       inkscape-with-extensions # vector graphic editor
       veracrypt # disk encryption
       freefilesync # file backup
+      localsend # send files over local network
+      #gparted # partition manager, use with sudo -E gparted
       #(prismlauncher.override { jdks = [ jdk ]; }) # minecraft
       #foliate # ebook reader
       #bottles # run windows software easily

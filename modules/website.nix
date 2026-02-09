@@ -1,5 +1,5 @@
 # host own website
-args@{ config, lib, variables, device, ... }:
+args@{ config, lib, ... }:
 let
   cfg = config.local.website;
 in

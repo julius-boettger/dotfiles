@@ -1,6 +1,6 @@
 # obsidian synchronization server using couchdb
 # https://github.com/vrtmrz/obsidian-livesync
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 let
   port = 5984; # couchdb default
   couchdb-pkg = (lib.getNixpkgs "couchdb-aarch64-nixpkgs").couchdb3;

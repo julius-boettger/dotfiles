@@ -1,46 +1,8 @@
 {
-  imports = [
-    ./alacritty
-    ./awesome
-    ./base
-    ./copyq
-    ./eww
-    ./firefox
-    ./fish
-    ./gitnuro
-    ./hyprland
-    ./jetbrains
-    ./lamp-server
-    ./minecraft-server
-    ./plymouth
-    ./rofi
-    ./sddm
-    ./starship
-    ./swaylock-effects
-    ./vim
-    ./swaync
-    ./vscodium
-    ./zen-browser
-    ./ai-chatbot.nix
-    ./blocky.nix
-    ./bluetooth.nix
-    ./devtools.nix
-    ./discord.nix
-    ./distributed-builds.nix
-    ./fastfetch.nix
-    ./immich.nix
-    ./nautilus.nix
-    ./nvidia.nix
-    ./obsidian-livesync.nix
-    ./onedrive.nix
-    ./piper.nix
-    ./playerctl.nix
-    ./sops.nix
-    ./steam.nix
-    ./terralux-backend.nix
-    ./virt-manager.nix
-    ./virtualbox.nix
-    ./website.nix
-    ./wsl-vpnkit.nix
-  ];
+  # import everything in this directory top-level
+  imports =
+    builtins.readDir ./.
+    |> builtins.attrNames
+    |> builtins.filter (name: name != "default.nix") # ignore this file
+    |> map (name: ./${name});
 }

@@ -1,18 +1,13 @@
 # hyprland (tiling wayland compositor)
-args@{ config, lib, pkgs, variables, device, ... }:
+args@{ config, lib, pkgs, ... }:
 let
-  hypr-pkgs = (lib.getPkgs "hyprland");
   plugins = [
     # better multi-monitor workspaces
     (lib.getPkgs "hyprsplit").hyprsplit
   ];
 in
 lib.mkModule "hyprland" config {
-  programs.hyprland = {
-    enable = true;
-          package = hypr-pkgs.hyprland;
-    portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
-  };
+  programs.hyprland.enable = true;
   services.displayManager.defaultSession = "hyprland";
 
   # make chromium / electron apps use wayland
@@ -40,14 +35,13 @@ lib.mkModule "hyprland" config {
   };
 
   # home manager module
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = hypr-pkgs.hyprland;
       inherit plugins;
       # write config file that imports real config
       extraConfig = ''
-        source = /etc/dotfiles/devices/${device.internalName}/hyprland.conf
+        source = /etc/dotfiles/devices/${sysconfig.name}/hyprland.conf
         source = /etc/dotfiles/modules/hyprland/hyprland.conf
       '';
       # tell systemd to import environment by default
@@ -68,7 +62,7 @@ lib.mkModule "hyprland" config {
         general = {
           # set command for loginctl
           lock_cmd = "hyprlock";
-        } // (if device.internalName == "laptop" then {
+        } // (if sysconfig.name == "laptop" then {
           # for laptops: lock before going to sleep, which shows the lockscreen
           #              shortly, but you dont see it if you close the laptop lid
           before_sleep_cmd = "loginctl lock-session";
@@ -83,7 +77,7 @@ lib.mkModule "hyprland" config {
           after_sleep_cmd = "loginctl lock-session; hyprctl dispatch submap reset";
         });
 
-        listener = (if device.internalName == "laptop" then {
+        listener = (if sysconfig.name == "laptop" then {
           # turn off monitor when discharging and inactive
           timeout = 120; # seconds
           on-timeout = "cat /sys/class/power_supply/BAT0/status | grep Discharging && hyprctl dispatch dpms off";

@@ -1,5 +1,5 @@
 # photo management
-args@{ config, lib, variables, ... }:
+args@{ config, lib, ... }:
 let
   port = 2283; # default immich port
   ppport = 3000; # default public proxy port

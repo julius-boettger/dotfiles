@@ -1,5 +1,5 @@
 # basic gui config (without unrelated programs)
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 {
   options.local.base.gui.enable = lib.mkEnableOption "whether to enable basic gui config";
 
@@ -37,9 +37,7 @@ args@{ config, lib, pkgs, variables, ... }:
 
     environment.systemPackages = with pkgs; [
       ### gui
-      gparted # partition manager, use with sudo -E gparted
       resources # system monitor (best overall)
-      #monitor # system monitor (best process view) (broken)
       vlc # video player
       qview # image viewer
       audacious # audio player
@@ -137,7 +135,7 @@ args@{ config, lib, pkgs, variables, ... }:
     ############### HOME-MANAGER ###############
     ############################################
     ############################################
-    home-manager.users.${variables.username} = { config, ... }: {
+    home-manager.users.${config.username} = { config, sysconfig, ... }: {
       ### theming
       gtk.enable = true;
       # gtk dark mode

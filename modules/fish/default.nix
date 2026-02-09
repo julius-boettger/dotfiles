@@ -1,5 +1,5 @@
 # 
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 lib.mkModule "fish" config {
   # fish shell
   users.defaultUserShell = pkgs.fish;
@@ -13,7 +13,7 @@ lib.mkModule "fish" config {
   };
 
   # symlink startup script to ~/.config
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     xdg.configFile."fish/config.fish".source =
       config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/fish/init.fish";
   };

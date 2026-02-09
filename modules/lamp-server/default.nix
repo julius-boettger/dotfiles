@@ -1,5 +1,5 @@
 # server to control govee rgb lamp
-args@{ config, lib, variables, device, ... }:
+args@{ config, lib, ... }:
 let
   port = 9000; # currently hard-coded in server
   lamp-server-pkg = (lib.getPkgs "lamp-server").lamp-server;
@@ -13,7 +13,7 @@ lib.mkModule "lamp-server" config {
     enable = true;
     description = "server to control govee rgb lamp";
     serviceConfig = {
-      User = variables.username;
+      User = config.username;
       ExecStart = "${lamp-server-pkg}/bin/lamp-server";
     };
     wantedBy = [ "multi-user.target" ];
@@ -35,8 +35,8 @@ lib.mkModule "lamp-server" config {
     };
     # write config file for with secrets
     templates."lamp-server.yaml" = {
-      path = "/home/${variables.username}/.config/lamp-server.yaml";
-      owner = variables.username;
+      path = "/home/${config.username}/.config/lamp-server.yaml";
+      owner = config.username;
       content = ''
         govee_api_key: "${config.sops.placeholder.govee_api_key}"
         govee_device: "${config.sops.placeholder.govee_device}"

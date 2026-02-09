@@ -1,5 +1,10 @@
-# build local packages
+# build local packages (in this directory)
 { pkgs, ... }:
-{
-  jetbrains-gitclient = pkgs.callPackage ./jetbrains-gitclient.nix {};
-}
+builtins.readDir ./.
+|> builtins.attrNames
+|> builtins.filter (name: name != "default.nix") # ignore this file
+|> map (name: {
+  name = pkgs.lib.strings.removeSuffix ".nix" name;
+  value = pkgs.callPackage ./${name} {};
+})
+|> builtins.listToAttrs

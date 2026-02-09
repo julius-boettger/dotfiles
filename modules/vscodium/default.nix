@@ -1,5 +1,5 @@
 # vscodium with extensions (text editor)
-args@{ config, lib, pkgs, variables, ... }:
+args@{ config, lib, pkgs, ... }:
 let
   # extensions directly from nixpkgs
   nixpkgs-exts = pkgs.unstable.vscode-extensions;
@@ -53,7 +53,7 @@ lib.mkModule "vscodium" config {
   ];
 
   # symlink config to ~/.config
-  home-manager.users.${variables.username} = { config, ... }: {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
     xdg.configFile."VSCodium/User/settings.json".source =
       config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/vscodium/vscodium.json";
   };
