@@ -100,7 +100,6 @@
 }
 
 .widget-mpris-player {
-  padding: 8px;
   box-shadow: none;
   background: @mpris-player-bg;
 }

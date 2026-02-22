@@ -1,8 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/73521f530b19d5c5fa043cdbdaeb2691f856f92e/src/configSchema.json",
+  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/f26aeae20d3bc6d3fae352bc7b5641f78098ea3a/src/configSchema.json",
 
   "cssPriority": "user",
-  "image-visibility": "when-available",
+  "text-empty": "All caught up :)",
 
   "positionX": "center",
   "positionY": "top",
@@ -16,9 +16,9 @@
   "hide-on-clear": true,
   "hide-on-action": false,
 
-  "timeout-critical": 10,
-  "timeout": 5,
-  "timeout-low": 2,
+  "timeout-critical": 5,
+  "timeout": 3,
+  "timeout-low": 1,
 
   "script-fail-notify": false,
   "scripts": {
@@ -31,11 +31,15 @@
   "widgets": [
     "title",
     "mpris",
+    "dnd",
     "notifications"
   ],
   "widget-config": {
     "title": {
       "button-text": "Clear"
+    },
+    "dnd": {
+      "text": "Do not disturb"
     },
     "mpris": {
       "show-album-art": "when-available"
