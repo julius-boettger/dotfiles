@@ -13,6 +13,8 @@ args@{ config, lib, pkgs, inputs, ... }:
 
     # should contain private key generated with
     # ssh-to-age -private-key -i ~/.ssh/id_ed25519 -o ~/.config/sops/age/keys.txt
+    # (may need to run mkdir -p ~/.config/sops/age before)
+    # also don't forget to put the public key in dotfiles/.sops.yaml !
     sops.age.keyFile = "/home/${config.username}/.config/sops/age/keys.txt";
   };
 }

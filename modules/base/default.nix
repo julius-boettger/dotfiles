@@ -184,6 +184,18 @@ args@{ config, lib, pkgs, ... }:
     #NIX_FLAKE_ALLOW_IMPURE_BY_DEFAULT = 1;
   };
 
+  # configure secrets
+  sops = {
+    # write user nix.conf with personal github access token to avoid hitting
+    # github rate limits with nix stuff (like `nix flake update`)
+    secrets.github-access-token.sopsFile = ./secrets.yaml;
+    templates."nix.conf" = {
+      path = "/home/${config.username}/.config/nix/nix.conf";
+      owner = config.username;
+      content = "access-tokens = github.com=${config.sops.placeholder.github-access-token}";
+    };
+  };
+
   ### manage stuff in /home/$USER/
   home-manager = {
     useGlobalPkgs = true;

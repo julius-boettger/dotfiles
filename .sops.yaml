@@ -2,6 +2,6 @@
 creation_rules:
   - key_groups:
     - age: # public keys generated with ssh-to-age -i ~/.ssh/id_ed25519.pub
-      - age12zlz6lvcdk6eqaewfylg35w0syh58sm7gh53q5vvn7hd7c6nngyseftjxl # desktop
+      - age1t32ytalkzjh5jnsx99psh9hfrlmr9kk2axkdv4rm7v0dvpgy9p0q26h2tj # desktop
       - age1tm5qy7jvkhaen6s4mzf0wfmhm60w47h6mgnhl49zkettc2uye4kse0f2kj # laptop
       - age1qwj962m2mkzhk64t6fztw3hhh94wn82ayh9xl5u4vhajzpqa9ekqxthuaa # raspberry-pi
