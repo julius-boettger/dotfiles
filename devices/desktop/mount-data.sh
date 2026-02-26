@@ -6,7 +6,7 @@ partition="disk/by-uuid/4a4090eb-701d-4eb3-bb9f-d417091c872f"
 # exit early if already unlocked and mounted
 mount | grep "/dev/mapper/data on /mnt/data"
 if [[ $? == 0 ]]; then
-    dunstify "already mounted" "encrypted data partition"
+    dunstify "✅ already mounted" "encrypted data partition"
     exit
 fi
 
@@ -22,7 +22,7 @@ if [[ $? != 0 ]]; then exit; fi
 # test if password is correct
 echo -n $password | sudo -S true
 if [[ $? != 0 ]]; then
-    dunstify "mount failed" "password incorrect"
+    dunstify "❌ mount failed" "password incorrect"
     exit
 fi
 # sudo should now just work for some time,
@@ -31,14 +31,14 @@ fi
 # try to unlock partition
 echo -n $passphrase | sudo cryptsetup luksOpen /dev/$partition data
 if [[ $? != 0 ]]; then
-    dunstify "mount failed" "passphrase of encrypted data partition incorrect"
+    dunstify "❌ mount failed" "passphrase of encrypted data partition incorrect"
     exit
 fi
 
 # try to mount partition
 sudo mount /dev/mapper/data /mnt/data
 if [[ $? != 0 ]]; then
-    dunstify "mount failed" "at actual mount of unlocked partition"
+    dunstify "⁉️ mount failed" "at actual mount of unlocked partition"
 fi
 
-dunstify "mount successful" "of encrypted data partition"
+dunstify "✅ mount successful" "of encrypted data partition"
