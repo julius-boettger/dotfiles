@@ -1,5 +1,8 @@
 args@{ config, pkgs, ... }:
 {
+  # because of suspend/wakeup issues on 6.19(.3)
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
   local = {
     base.gui.full.enable = true;
     nvidia.enable = true;
