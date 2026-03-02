@@ -10,6 +10,18 @@ args@{ config, pkgs, ... }:
     playerctl.enable = true;
   };
 
+  # install extra kernel modules
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    nct6687d # for my msi b550 mainboard, found in coolercontrol docs
+    #liquidtux # for liquidctl, but not necessary?
+  ];
+  # load/enable kernel modules
+  boot.kernelModules = [
+    "nct6687" # for my msi b550 mainboard, found in coolercontrol docs
+    #"liquidtux" # for liquidctl, but not necessary?
+    # `sudo sensors-detect` of lm_sensors told me i need some stuff that i dont need
+  ];
+
   # more swap, couldnt figure out how to change it using disko/btrfs
   swapDevices = [{
     device = "/.swapfile2";
@@ -29,6 +41,9 @@ args@{ config, pkgs, ... }:
 
   # remove background noise from mic
   programs.noisetorch.enable = true;
+
+  # monitor and control cooling stuff (e.g. case fans)
+  programs.coolercontrol.enable = true;
 
   # symlink to home folder
   home-manager.users.${config.username} = { config, sysconfig, ... }: {
