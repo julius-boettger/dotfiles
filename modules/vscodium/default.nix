@@ -15,19 +15,23 @@ lib.mkModule "vscodium" config {
         with pkgs.vscode-marketplace;
         with pkgs.vscode-marketplace-release;
         with pkgs.open-vsx;
-        with pkgs.open-vsx-release; # <-- use first if available, otherwise go up
+        with pkgs.open-vsx-release;
+        # ^^^ use first if available, otherwise go up
       [
         ### for syntax highlighting / language support
         eww-yuck.yuck
         jnoortheen.nix-ide
+        diku.futhark-vscode
         bmalehorn.vscode-fish
 
         # rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         nixpkgs-exts.vadimcn.vscode-lldb # debugger
-        nolanderc.glasgow # wgsl language support, but without syntax highlighting
-        antaalt.shader-validator # wgsl syntax highlighting
+
+        # wgsl
+        nolanderc.glasgow # language support, but without syntax highlighting
+        antaalt.shader-validator # syntax highlighting
 
         # haskell
         haskell.haskell
