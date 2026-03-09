@@ -13,10 +13,16 @@ in
   # monitor config with xrandr command
   services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP --mode 1920x1200 --rate 120";
 
-  # amd gpu
-  hardware.amdgpu.initrd.enable = true;
-  hardware.graphics = {
-    package   = mesa-pkgs              .mesa;
-    package32 = mesa-pkgs.pkgsi686Linux.mesa;
+  ### amd gpu
+  hardware = {
+    amdgpu = {
+      opencl.enable = true;
+      # load drivers early in boot process
+      initrd.enable = true;
+    };
+    graphics = {
+      package   = mesa-pkgs              .mesa;
+      package32 = mesa-pkgs.pkgsi686Linux.mesa;
+    };
   };
 }
