@@ -129,6 +129,7 @@ args@{ config, lib, pkgs, ... }:
 
   # load dev environment from directory
   programs.direnv.enable = true;
+  environment.variables.DIRENV_WARN_TIMEOUT = 0;
 
   # run dynamically-linked binaries not meant for NixOS
   programs.nix-ld.enable = true;
