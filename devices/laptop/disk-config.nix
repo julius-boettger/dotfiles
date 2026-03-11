@@ -30,7 +30,6 @@
               subvolumes = {
                 "/main" = {
                   mountpoint = "/";
-                  swap.".swapfile".size = "4G";
                 };
                 "/home" = {
                   mountpoint = "/home";

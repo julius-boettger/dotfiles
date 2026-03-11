@@ -10,6 +10,11 @@ in
     base.laptop.enable = true;
   };
 
+  swapDevices = [ {
+    device = "/.swapfile";
+    size = 4000; # 4 GB
+  } ];
+
   # monitor config with xrandr command
   services.xserver.displayManager.setupCommands = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP --mode 1920x1200 --rate 120";
 
