@@ -74,12 +74,6 @@ args@{ config, lib, pkgs, ... }:
     LC_NAME           = "de_DE.UTF-8";
   };
 
-  # database for command-not-found in a declarative way without channels
-  # https://blog.nobbz.dev/2023-02-27-nixos-flakes-command-not-found/
-  environment.etc."programs.sqlite".source =
-    (lib.getPkgs "programs-sqlite").programs-sqlite;
-  programs.command-not-found.dbPath = "/etc/programs.sqlite";
-
   ### user account and groups
   # create new group with username
   users.groups.${config.username} = {};
@@ -127,9 +121,9 @@ args@{ config, lib, pkgs, ... }:
   # dont generate man page caches to speed up rebuilds
   documentation.man.generateCaches = false;
 
-  # load dev environment from directory
-  programs.direnv.enable = true;
-  environment.variables.DIRENV_WARN_TIMEOUT = 0;
+  # enable comma as shorthand for nix run, e.g.
+  # `, usbimager` => `nix run nixpkgs#usbimager`
+  programs.nix-index-database.comma.enable = true;
 
   # run dynamically-linked binaries not meant for NixOS
   programs.nix-ld.enable = true;
@@ -138,6 +132,10 @@ args@{ config, lib, pkgs, ... }:
   # #!/bin/bash script shebangs working
   system.activationScripts.binbash.text =
     "ln -sf /run/current-system/sw/bin/bash /bin/bash";
+
+  # load dev environment from directory
+  programs.direnv.enable = true;
+  environment.variables.DIRENV_WARN_TIMEOUT = 0;
 
   # nix helper (prettier/better nix commands)
   programs.nh =  {

@@ -21,9 +21,6 @@
     # secret management with sops
     sops-nix = { url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs"; };
-    # declarative database for command-not-found
-    programs-sqlite = { url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -41,6 +38,9 @@
     # declarative disk management
     disko = { url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs"; };
+    # nix-index/locate + database
+    nix-index-database = { url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # nix user repository (more packages)
     nur = { url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -129,6 +129,10 @@
             inputs.disko.nixosModules.disko # disk management
             inputs.nur.modules.nixos.default # NUR package overlay
             inputs.home-manager.nixosModules.home-manager
+
+            # install nix-locate (to locate which nixpkg contains a given file)
+            # and use it as command-not-found script
+            inputs.nix-index-database.nixosModules.default
 
             # inline-module with options/config that need to be here
             ({ config, ... }: {
