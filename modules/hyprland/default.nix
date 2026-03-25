@@ -5,9 +5,16 @@ let
     # better multi-monitor workspaces
     (lib.getPkgs "hyprsplit").hyprsplit
   ];
+  # even though i have the hyprland overlays imported in flake.nix,
+  # this seems to be necessary to avoid build failures, i don't know why
+  hypr-pkgs = (lib.getPkgs "hyprland");
 in
 lib.mkModule "hyprland" config {
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+          package = hypr-pkgs.hyprland;
+    portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
+  };
   services.displayManager.defaultSession = "hyprland";
 
   # make chromium / electron apps use wayland
@@ -39,6 +46,7 @@ lib.mkModule "hyprland" config {
     wayland.windowManager.hyprland = {
       enable = true;
       inherit plugins;
+      package = hypr-pkgs.hyprland;
       # write config file that imports real config
       extraConfig = ''
         source = /etc/dotfiles/devices/${sysconfig.name}/hyprland.conf
