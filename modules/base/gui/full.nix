@@ -11,6 +11,12 @@ args@{ config, lib, pkgs, ... }:
       studies.enable = true;
     };
 
+    # to authenticate with german eID
+    programs.ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
+
     environment.systemPackages = with pkgs; [
       ### gui
       onlyoffice-desktopeditors # office suite
