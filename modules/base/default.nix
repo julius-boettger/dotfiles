@@ -187,13 +187,12 @@ args@{ config, lib, pkgs, ... }:
   sops = {
     # write user nix.conf with personal github access token to avoid hitting
     # github rate limits with nix stuff (like `nix flake update`)
-    /*secrets.github-access-token.sopsFile = ./secrets.yaml;
+    secrets.github-access-token.sopsFile = ./secrets.yaml;
     templates."nix.conf" = {
       path = "/home/${config.username}/.config/nix/nix.conf";
       owner = config.username;
       content = "access-tokens = github.com=${config.sops.placeholder.github-access-token}";
-    };*/
-    # ^^^ commented out because it gave "401 bad credentials"
+    };
   };
 
   ### manage stuff in /home/$USER/
