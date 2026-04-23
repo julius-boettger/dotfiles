@@ -856,11 +856,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1750506804,
-        "narHash": "sha256-VLFNc4egNjovYVxDGyBYTrvVCgDYgENp5bVi9fPTDYc=",
+        "lastModified": 1776548001,
+        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4206c4cb56751df534751b058295ea61357bbbaa",
+        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
         "type": "github"
       },
       "original": {
@@ -1054,15 +1054,15 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1751868512,
-        "narHash": "sha256-KsBbxqRO8AfuJMYDS/MMh3CK3/4Ol45NddP2HC9+fVo=",
-        "owner": "solid-stack-solutions",
+        "lastModified": 1776944476,
+        "narHash": "sha256-0rOFJj8/VyOhEISIG4Kx41zFKE8vrcagMtmqoPD0BrM=",
+        "owner": "julius-boettger",
         "repo": "terralux-backend",
-        "rev": "54718ef1a5025e85ade9266322a81005f47dabb0",
+        "rev": "6244aadaaf11811798aead41034c1dbb9d86757a",
         "type": "github"
       },
       "original": {
-        "owner": "solid-stack-solutions",
+        "owner": "julius-boettger",
         "repo": "terralux-backend",
         "type": "github"
       }

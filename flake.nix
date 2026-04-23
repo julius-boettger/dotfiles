@@ -58,7 +58,7 @@
     # control govee rgb lamp
     lamp-server.url = "github:julius-boettger/lamp-server-rust";
     # control smart plug for reptile terrarium lamp
-    terralux-backend.url = "github:solid-stack-solutions/terralux-backend";
+    terralux-backend.url = "github:julius-boettger/terralux-backend";
     # host own website
     website = { url = "github:julius-boettger/website";
       inputs.nixpkgs.follows = "nixpkgs"; };
