@@ -172,9 +172,12 @@
 
                   # from inputs
                   inputs.zenix.overlays.default
-                  inputs.hyprland.overlays.default
                   inputs.nix-minecraft.overlays.default
                   inputs.nix-vscode-extensions.overlays.default
+                  # see https://wiki.hypr.land/Nix/#overlays
+                  #inputs.hyprland.overlays.default
+                  inputs.hyprland.overlays.hyprland-extras
+                  inputs.hyprland.overlays.hyprland-packages
                 ];
               };
             })
