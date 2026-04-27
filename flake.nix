@@ -13,10 +13,10 @@
 
     ### other
     # hyprland (to manage version independently of other packages)
-    hyprland.url =      "github:hyprwm/Hyprland/v0.54.3";
+    hyprland.url =      "github:hyprwm/Hyprland/v0.53.1";
     # hyprland plugin with matching version     |||||||
     # for better multi-monitor workspaces       |||||||
-    hyprsplit = { url ="github:shezdy/hyprsplit/v0.54.3";
+    hyprsplit = { url ="github:shezdy/hyprsplit/v0.53.1";
       inputs.hyprland.follows = "hyprland";  };
     # secret management with sops
     sops-nix = { url = "github:Mic92/sops-nix";
