@@ -39,7 +39,7 @@ args@{ config, lib, pkgs, ... }:
       ### gui
       resources # system monitor (best overall)
       vlc # video player
-      qview # image viewer
+      qimgv # image viewer
       audacious # audio player
       snapshot # camera
       signal-desktop # messenger
