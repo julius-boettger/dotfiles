@@ -4,6 +4,6 @@ lib.mkModule "studies" config {
   #local.devtools.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
-    #zotero
+    zotero
   ];
 }

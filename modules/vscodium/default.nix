@@ -43,6 +43,7 @@ lib.mkModule "vscodium" config {
 
         # python
         ms-python.python
+        ms-python.debugpy
         ms-toolsai.jupyter
         detachhead.basedpyright # pylance alternative, works in jupyter notebooks
 
