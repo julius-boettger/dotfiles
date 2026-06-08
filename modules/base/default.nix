@@ -119,7 +119,7 @@ args@{ config, lib, pkgs, ... }:
   };
 
   # dont generate man page caches to speed up rebuilds
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 
   # enable comma as shorthand for nix run, e.g.
   # `, usbimager` => `nix run nixpkgs#usbimager`
@@ -157,11 +157,11 @@ args@{ config, lib, pkgs, ... }:
   };
 
   # disable hibernation
-  systemd.sleep.extraConfig = ''
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
 
   # for git authentication with ssh keys
   programs.ssh = {

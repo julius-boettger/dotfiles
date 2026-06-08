@@ -3,8 +3,8 @@
   inputs = {                 
     ### main package and option sources (also see stateVersion below in this file)
     #                                     update channel version here vvvvv 
-    nixpkgs.url =                         "github:nixos/nixpkgs/nixos-25.11";
-    home-manager = { url = "github:nix-community/home-manager/release-25.11";
+    nixpkgs.url =                         "github:nixos/nixpkgs/nixos-26.05";
+    home-manager = { url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -150,7 +150,7 @@
 
                 stateVersion = mkOption {
                   type = types.str;
-                  default = "25.11"; # also see channel version at the top of this file!
+                  default = "26.05"; # also see channel version at the top of this file!
                   description = "nixos and home-manager state version";
                   readOnly = true;
                 };

@@ -47,6 +47,7 @@ lib.mkModule "hyprland" config {
       enable = true;
       inherit plugins;
       package = hypr-pkgs.hyprland;
+      configType = "hyprlang"; # needed for pre-v0.55.0 hyprland
       # write config file that imports real config
       extraConfig = ''
         source = /etc/dotfiles/devices/${sysconfig.name}/hyprland.conf

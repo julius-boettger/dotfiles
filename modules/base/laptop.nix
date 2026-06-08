@@ -27,8 +27,8 @@ args@{ config, lib, pkgs, ... }:
         # clear nwg-displays config
         > ~/.config/hypr/monitors.conf
         # fix wallpaper and window borders
-        pkill swww
-        swww-daemon & disown
+        pkill awww
+        awww-daemon & disown
         python /etc/dotfiles/modules/hyprland/wallpaper.py &
       '')
     ];
