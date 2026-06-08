@@ -89,7 +89,10 @@
               |> builtins.head;
 
           # config to use for all nixpkgs
-          pkgs-config = { inherit system; };
+          pkgs-config = {
+            inherit system;
+            config.allowUnfree = true;
+          };
 
           pkgs          = import inputs.nixpkgs          pkgs-config;
           pkgs-unstable = import inputs.nixpkgs-unstable pkgs-config;
