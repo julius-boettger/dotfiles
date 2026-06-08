@@ -49,11 +49,9 @@ args@{ config, lib, pkgs, ... }:
       gnome-disk-utility
       obsidian # PROPRIETARY notes
       spotify # PROPRIETARY
-      # gtk theme
-      (orchis-theme.override { border-radius = 10; })
       gnome-themes-extra # just having this installed avoids warnings in some apps
-      # icon themes
       adwaita-icon-theme # just having this installed fixes issues in some apps
+      # icon theme
       ((papirus-icon-theme.override { /*folder-*/color = "black"; }).overrideAttrs { dontFixup = true; })
 
       ### cli
@@ -111,7 +109,7 @@ args@{ config, lib, pkgs, ... }:
     # qt theming (based on gtk theming)
     qt = {
       enable = true;
-      style = "gtk2";
+      style = "adwaita-dark";
       platformTheme = "gtk2";
     };
 
@@ -141,7 +139,7 @@ args@{ config, lib, pkgs, ... }:
       # gtk dark mode
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       # gtk theme
-      gtk.theme.name = "Orchis-Dark";
+      gtk.theme.name = "Adwaita-dark";
       # icon theme
       gtk.iconTheme.name = "Papirus-Dark";
       # font config
