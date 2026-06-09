@@ -12,12 +12,8 @@
     couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=a1bab9e494f5f4939442a57a58d0449a109593fe";
 
     ### other
-    # hyprland (to manage version independently of other packages)
-    hyprland.url =      "github:hyprwm/Hyprland/v0.53.1";
-    # hyprland plugin with matching version     |||||||
-    # for better multi-monitor workspaces       |||||||
-    hyprsplit = { url ="github:shezdy/hyprsplit/v0.53.1";
-      inputs.hyprland.follows = "hyprland";  };
+    # hyprland plugin for better multi-monitor workspaces
+    hyprsplit.url ="github:shezdy/hyprsplit";
     # secret management with sops
     sops-nix = { url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -177,10 +173,6 @@
                   inputs.zenix.overlays.default
                   inputs.nix-minecraft.overlays.default
                   inputs.nix-vscode-extensions.overlays.default
-                  # see https://wiki.hypr.land/Nix/#overlays
-                  #inputs.hyprland.overlays.default
-                  inputs.hyprland.overlays.hyprland-extras
-                  inputs.hyprland.overlays.hyprland-packages
                 ];
               };
             })

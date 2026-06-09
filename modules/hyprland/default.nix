@@ -3,11 +3,9 @@ args@{ config, lib, pkgs, ... }:
 let
   plugins = [
     # better multi-monitor workspaces
-    (lib.getPkgs "hyprsplit").hyprsplit
+    #(lib.getPkgs "hyprsplit").hyprsplit
   ];
-  # even though i have the hyprland overlays imported in flake.nix,
-  # this seems to be necessary to avoid build failures, i don't know why
-  hypr-pkgs = (lib.getPkgs "hyprland");
+  hypr-pkgs = pkgs.unstable;
 in
 lib.mkModule "hyprland" config {
   programs.hyprland = {
