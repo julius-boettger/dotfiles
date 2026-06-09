@@ -47,11 +47,11 @@ lib.mkModule "hyprland" config {
       enable = true;
       inherit plugins;
       package = hypr-pkgs.hyprland;
-      configType = "hyprlang"; # needed for pre-v0.55.0 hyprland
+      configType = "lua";
       # write config file that imports real config
       extraConfig = ''
-        source = /etc/dotfiles/devices/${sysconfig.name}/hyprland.conf
-        source = /etc/dotfiles/modules/hyprland/hyprland.conf
+        require("/etc/dotfiles/devices/${sysconfig.name}/hyprland.lua")
+        require("/etc/dotfiles/modules/hyprland/hyprland.lua")
       '';
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
