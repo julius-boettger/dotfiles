@@ -1,0 +1,6 @@
+{
+  // completions for hyprland lua files on nixos
+  "workspace.library": [
+    "/run/current-system/sw/share/hypr/stubs"
+  ]
+}

@@ -19,6 +19,7 @@ lib.mkModule "vscodium" config {
         # ^^^ use first if available, otherwise go up
       [
         ### for syntax highlighting / language support
+        sumneko.lua
         eww-yuck.yuck
         jnoortheen.nix-ide
         diku.futhark-vscode
