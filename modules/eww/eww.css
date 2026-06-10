@@ -28,6 +28,18 @@ window {
     background: rgba(255, 255, 255, 0.2);
 }
 
-progress {
-    background: #F7F1FF;
+/* background of sound bar */
+progressbar trough {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
+  min-height: 7px;
+}
+
+/* active part of sound bar */
+progressbar progress {
+  background-color: #F7F1FF;
+  border: none;
+  border-radius: 10px;
+  min-height: 7px;
 }
