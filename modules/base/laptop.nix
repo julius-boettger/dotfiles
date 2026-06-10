@@ -21,11 +21,11 @@ args@{ config, lib, pkgs, ... }:
 
     environment.systemPackages = with pkgs; [
       acpi # get battery info like remaining time to (dis)charge
-      nwg-displays # control (external) display configuration
+      unstable.nwg-displays # control (external) display configuration
       brightnessctl # control display brightness
       (lib.writeScript "reset-monitors" ''
         # clear nwg-displays config
-        > ~/.config/hypr/monitors.conf
+        > ~/.config/hypr/monitors.lua
         # fix wallpaper and window borders
         pkill awww
         awww-daemon & disown

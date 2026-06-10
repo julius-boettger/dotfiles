@@ -113,4 +113,4 @@ subprocess.run(["awww", "img", wallpaper_path])
 # wait a bit
 time.sleep(2.5)
 # set active border color to gradient between color1 and color2
-subprocess.run(["hyprctl", "keyword", "general:col.active_border", color1, color2, "45deg"])
+subprocess.run(["hyprctl", "eval", 'hl.config({ general = { col = { active_border = { colors = {"' + color1 + '", "' + color2 + '"}, angle = 45 }}}})'])

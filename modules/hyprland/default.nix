@@ -1,10 +1,6 @@
 # hyprland (tiling wayland compositor)
 args@{ config, lib, pkgs, ... }:
 let
-  plugins = [
-    # better multi-monitor workspaces
-    #(lib.getPkgs "hyprsplit").hyprsplit
-  ];
   hypr-pkgs = pkgs.unstable;
 in
 lib.mkModule "hyprland" config {
@@ -43,17 +39,25 @@ lib.mkModule "hyprland" config {
   home-manager.users.${config.username} = { config, sysconfig, ... }: {
     wayland.windowManager.hyprland = {
       enable = true;
-      inherit plugins;
       package = hypr-pkgs.hyprland;
       configType = "lua";
       # write config file that imports real config
       extraConfig = ''
-        require("/etc/dotfiles/devices/${sysconfig.name}/hyprland.lua")
-        require("/etc/dotfiles/modules/hyprland/hyprland.lua")
+        require("device")
+        require("base")
       '';
       # tell systemd to import environment by default
       # this e.g. can fix screenshare by making sure hyprland desktop portal gets its required variables
       systemd.variables = [ "--all" ];
+    };
+
+    xdg.configFile = {
+      "hypr/base.lua".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/hyprland/hyprland.lua";
+      "hypr/device.lua".source = config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/devices/${sysconfig.name}/hyprland.lua";
+      "hypr/hyprsplit" = {
+        source = "${(lib.getPkgs "hyprsplit").hyprsplitlua}/share/hyprsplit";
+        recursive = true;
+      };
     };
 
     programs.hyprlock = {
@@ -80,8 +84,8 @@ lib.mkModule "hyprland" config {
           # after resuming, there is split second of time before
           # after_sleep_cmd is run. to secure this, inhibit input
           # with a hyprland keybind submap for this time
-          before_sleep_cmd = "hyprctl dispatch submap inhibit-input";
-          after_sleep_cmd = "loginctl lock-session; hyprctl dispatch submap reset";
+          before_sleep_cmd = "hyprctl dispatch 'hl.dsp.submap(\"inhibit-input\")'";
+          after_sleep_cmd = "loginctl lock-session; hyprctl dispatch 'hl.dsp.submap(\"reset\")'";
         });
 
         listener = (if sysconfig.name == "laptop" then {
