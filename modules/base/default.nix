@@ -140,7 +140,6 @@ args@{ config, lib, pkgs, ... }:
   # nix helper (prettier/better nix commands)
   programs.nh =  {
     enable = true;
-    package = pkgs.unstable.nh;
     # automatic nix garbage collect
     clean = {
       enable = true;

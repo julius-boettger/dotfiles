@@ -9,7 +9,7 @@ lib.mkModule "ai-chatbot" config {
   services.ollama = {
     enable = true;
     port = backendPort;
-    package = pkgs.unstable.ollama;
+    package = pkgs.ollama;
     loadModels = [
       "deepseek-r1:8b"
           "qwen2.5:7b"
@@ -30,7 +30,7 @@ lib.mkModule "ai-chatbot" config {
   services.open-webui = {
     enable = true;
     port = frontendPort;
-    package = pkgs.unstable.open-webui;
+    package = pkgs.open-webui;
     environment = {
       OLLAMA_BASE_URL = "http://127.0.0.1:${toString backendPort}";
       TASK_MODEL = "qwen2.5:0.5b"; # model for generating chat titles, ...

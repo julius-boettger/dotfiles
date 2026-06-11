@@ -1,7 +1,7 @@
 # hyprland (tiling wayland compositor)
 args@{ config, lib, pkgs, ... }:
 let
-  hypr-pkgs = pkgs.unstable;
+  hypr-pkgs = pkgs;
 in
 lib.mkModule "hyprland" config {
   programs.hyprland = {
@@ -62,7 +62,6 @@ lib.mkModule "hyprland" config {
 
     programs.hyprlock = {
       enable = true;
-      package = pkgs.unstable.hyprlock;
       extraConfig = "source = /etc/dotfiles/modules/hyprland/hyprlock.conf";
     };
 

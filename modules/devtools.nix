@@ -19,7 +19,7 @@ in
     # java
     programs.java = lib.mkIf cfg.java.enable {
       enable = true;
-      package = pkgs.unstable.jdk;
+      package = pkgs.jdk;
     };
 
     # rootless docker
