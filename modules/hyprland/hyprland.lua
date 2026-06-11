@@ -135,9 +135,7 @@ hl.config({
     cursor = {
         inactive_timeout = 3, -- seconds
     },
-    ecosystem = {
-        no_update_news = true,
-    },
+    --ecosystem = { no_update_news = true, },
 })
 
 ---- animations
