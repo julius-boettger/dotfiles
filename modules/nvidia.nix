@@ -5,8 +5,10 @@ lib.mkModule "nvidia" config {
   hardware.nvidia = {
     open = true;
     nvidiaSettings = false;
+
     # https://mynixos.com/nixpkgs/option/hardware.nvidia.branch
-    branch = "latest";
+    #branch = "latest";
+
     # pin driver version https://www.nvidia.com/en-us/drivers/unix/
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
     #package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
