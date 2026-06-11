@@ -37,7 +37,7 @@ hl.window_rule({ match = { initial_title = "^Obsidian - Obsidian.*" }, opacity =
 hl.window_rule({ match = { class = "org.gnome.Nautilus" },             opacity = 0.8 })
 hl.window_rule({ match = { class = "gcr-prompter" },                   opacity = 0.8 })
 hl.window_rule({ match = { class = "Lxpolkit" },                       opacity = 0.8 })
-hl.window_rule({ match = { class = "spotify" },                        opacity = 0.8 })
+hl.window_rule({ match = { class = "Spotify" },                        opacity = 0.8 })
 
 -- flameshot (https://github.com/flameshot-org/flameshot/issues/2978)
 -- TODO: fix, also see device-specific config
