@@ -32,14 +32,14 @@ end)
 
 ---- window rules
 -- for steam games
-hl.window_rule({
-    match = {
-        xdg_tag = "proton-game",
-    },
-    monitor = 1,
-    fullscreen = true,
-    immediate = true,
-})
+for _, match in ipairs({{ xdg_tag = "proton-game" }, { initial_class = "steam_app_.*" }}) do
+    hl.window_rule({
+        match = match,
+        monitor = 1,
+        fullscreen = true,
+        immediate = true,
+    })
+end
 
 -- fix flameshot
 hl.window_rule({
