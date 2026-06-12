@@ -21,6 +21,7 @@ lib.mkModule "vscodium" config {
         ### for syntax highlighting / language support
         sumneko.lua
         eww-yuck.yuck
+        leanprover.lean4
         jnoortheen.nix-ide
         diku.futhark-vscode
         bmalehorn.vscode-fish

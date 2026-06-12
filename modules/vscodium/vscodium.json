@@ -117,4 +117,5 @@
   "gitlens.currentLine.enabled": false,
   "terminal.integrated.stickyScroll.enabled": false,
   "glasgow.path": "/home/julius/.config/VSCodium/User/globalStorage/nolanderc.glasgow/glasgow_install/bin/glasgow",
+  "lean4.alwaysAskBeforeInstallingLeanVersions": true,
 }
