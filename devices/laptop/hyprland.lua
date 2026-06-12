@@ -51,15 +51,15 @@ hl.bind("SUPER + CTRL + SHIFT + P", hl.dsp.exec_cmd("sh -c '[ -s ~/.config/hypr/
 hl.window_rule({
     match = {
         initial_class = "qimgv",
-        initial_title = ".*copilot\\..*",
+        initial_title = ".*copilot.*",
     },
     fullscreen = true,
     no_anim = true,
     float = true,
 })
 -- show fullscreen image only holding button 
-hl.bind(       "SUPER + SHIFT + code:201", hl.dsp.exec_cmd("qimgv /etc/dotfiles/devices/laptop/copilot.jpg"))
-hl.bind("CTRL + SUPER + SHIFT + code:201", hl.dsp.exec_cmd("qimgv /etc/dotfiles/devices/laptop/copilot.jpeg"))
-hl.bind(       "SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill qimgv"), { repeating = true })
-hl.bind("CTRL + SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill qimgv"), { repeating = true })
+hl.bind(       "SUPER + SHIFT + code:201", hl.dsp.exec_cmd("qimgv /etc/dotfiles/devices/laptop/copilot_considered.jpg"))
+hl.bind("CTRL + SUPER + SHIFT + code:201", hl.dsp.exec_cmd("qimgv /etc/dotfiles/devices/laptop/copilot_mop.jpeg"))
+hl.bind(       "SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill qimgv"), { release = true })
+hl.bind("CTRL + SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill qimgv"), { release = true })
 -- open fullscreen video: vlc --fullscreen --loop --no-video-title-show /etc/dotfiles/devices/laptop/copilot.mp4
