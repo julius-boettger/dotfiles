@@ -22,6 +22,7 @@ lib.mkModule "vscodium" config {
         sumneko.lua
         eww-yuck.yuck
         leanprover.lean4
+        rwth-moves.caesar
         jnoortheen.nix-ide
         diku.futhark-vscode
         bmalehorn.vscode-fish
