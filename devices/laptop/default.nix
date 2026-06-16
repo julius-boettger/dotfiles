@@ -1,4 +1,4 @@
-args@{ pkgs, inputs, ... }:
+args@{ config, pkgs, inputs, ... }:
 let 
   mesa-pkgs = 
     pkgs;
@@ -29,5 +29,23 @@ in
       package   = mesa-pkgs              .mesa;
       package32 = mesa-pkgs.pkgsi686Linux.mesa;
     };
+  };
+
+  ### set up eduroam wifi
+  # this is the .p12 file from the easyroam website encrypted using `sops encrypt -i`
+  # NEVER OPEN THE ENRYPTED FILE! it might break it, causing easyroam-cert-setup to fail
+  sops.secrets.easyroam = {
+    sopsFile = ./easyroam.p12;
+    key = "data";
+    # recommended by nix-easyroam
+    restartUnits = [ "easyroam-network-manager-setup.service" ];
+  }; 
+  # to reconfigure, run `sudo systemctl restart easyroam-network-manager-setup`
+  # if connection doesnt work, check permissions and user/group of /run/easyroam/*,
+  # and possible change them using the corresponding services.easyroam settings
+  services.easyroam = {
+    enable = true;
+    networkmanager.enable = true;
+    pkcsFile = config.sops.secrets.easyroam.path;
   };
 }

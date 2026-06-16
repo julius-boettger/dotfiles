@@ -26,7 +26,8 @@
       inputs.home-manager.follows = "home-manager"; };
     # host minecraft server
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-
+    # declarative easyroam (eduroam) wifi configuration
+    nix-easyroam.url = "github:0x5a4/nix-easyroam";
 
     ### other nix-community stuff
     # has nixos config for raspberry pi
@@ -127,6 +128,7 @@
             # make some options available
             inputs.disko.nixosModules.disko # disk management
             inputs.nur.modules.nixos.default # NUR package overlay
+            inputs.nix-easyroam.nixosModules.nix-easyroam
             inputs.home-manager.nixosModules.home-manager
 
             # install nix-locate (to locate which nixpkg contains a given file)
