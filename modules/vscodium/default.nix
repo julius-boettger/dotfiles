@@ -24,6 +24,7 @@ lib.mkModule "vscodium" config {
         leanprover.lean4
         rwth-moves.caesar
         jnoortheen.nix-ide
+        oracle.oracle-java
         diku.futhark-vscode
         bmalehorn.vscode-fish
 
