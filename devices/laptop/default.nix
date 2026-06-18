@@ -39,7 +39,7 @@ in
     key = "data";
     # recommended by nix-easyroam
     restartUnits = [ "easyroam-network-manager-setup.service" ];
-  }; 
+  };
   # to reconfigure, run `sudo systemctl restart easyroam-network-manager-setup`
   # if connection doesnt work, check permissions and user/group of /run/easyroam/*,
   # and possible change them using the corresponding services.easyroam settings
