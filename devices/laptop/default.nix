@@ -42,10 +42,12 @@ in
   };
   # to reconfigure, run `sudo systemctl restart easyroam-network-manager-setup`
   # if connection doesnt work, check permissions and user/group of /run/easyroam/*,
-  # and possible change them using the corresponding services.easyroam settings
+  # and possibly change them using the corresponding services.easyroam settings
   services.easyroam = {
     enable = true;
     networkmanager.enable = true;
     pkcsFile = config.sops.secrets.easyroam.path;
+    # necessary for some reason
+    owner = "wpa_supplicant";
   };
 }
