@@ -15,6 +15,9 @@ args@{ config, lib, pkgs, inputs, ... }:
     systemd-boot.enable = lib.mkForce false;
   };
 
+  # weird fix for build failure
+  boot.initrd.availableKernelModules."tpm-crb" = lib.mkForce false;
+
   # avoid password prompts when remote rebuilding
   # https://github.com/NixOS/nixpkgs/issues/118655#issuecomment-1537131599
   security.sudo.extraRules = [ {
