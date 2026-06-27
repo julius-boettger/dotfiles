@@ -27,7 +27,6 @@ lib.mkModule "discord" config {
 
       config.plugins = {
         fakeNitro.enable = true;
-        friendsSince.enable = true;
         crashHandler.enable = true;
         volumeBooster.enable = true;
         notificationVolume.enable = true;
