@@ -6,10 +6,8 @@
 # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Using_the_Pi_5_as_a_remote_builder_to_build_native_ARM_packages_for_the_Pi_5
 args@{ config, lib, pkgs, inputs, ... }:
 {
-  # import hardware-specific fixes
+  # import hardware-specific fixes (also sets kernel)
   imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-5 ];
-  # compatible kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
   # compatible boot loader
   boot.loader = {
     generic-extlinux-compatible.enable = true;
