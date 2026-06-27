@@ -1,19 +1,28 @@
-### useful config for raspberry pi (5)
-# not a toggleable module because raspberry-pi-nix should not be imported for all devices as it can cause a lot of conflicts.
-# build an sd card image on the pi (running any os with nix) as a remote builder for the first installation with a command like
-# nix build /etc/dotfiles#nixosConfigurations.DEVICE.config.system.build.sdImage --store ssh-ng://USER@IP
-# then copy the built image from the remote pi to your local machine with scp. see more at
-# https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Using_the_Pi_5_as_a_remote_builder_to_build_native_ARM_packages_for_the_Pi_5
+# useful config for raspberry pi (5)
 args@{ config, lib, pkgs, inputs, ... }:
 {
-  # import hardware-specific fixes (also sets kernel)
-  imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-5 ];
-  # compatible boot loader
-  boot.loader = {
-    generic-extlinux-compatible.enable = true;
-    # usually enabled by default config
-    systemd-boot.enable = lib.mkForce false;
+  # import hardware-specific stuff
+  imports = with inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5; [
+    base
+    page-size-16k # recommended
+    display-vc4 # for connecting monitors
+  ];
+
+  nix.settings = {
+    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
+    extra-trusted-public-keys = [ "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI=" ];
   };
+
+  # newer bootloader that supports multiple nixos generations
+  boot.loader.raspberry-pi.bootloader = "kernel";
+  # usually enabled by default config
+  #boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  # add bootloader name and kernel version to nixos generation names
+  system.nixos.tags = with config.boot; [
+    loader.raspberry-pi.bootloader
+    kernelPackages.kernel.version
+  ];
 
   # avoid password prompts when remote rebuilding
   # https://github.com/NixOS/nixpkgs/issues/118655#issuecomment-1537131599
@@ -42,7 +51,7 @@ args@{ config, lib, pkgs, inputs, ... }:
   # set initial passwords of users to their names (dont forget to change!)
   users.users = {
     ${config.username}.initialPassword = config.username;
-                     root.initialPassword = "root";
+    root.initialPassword = "root";
   };
 
   # dont install networkmanager plugins because of

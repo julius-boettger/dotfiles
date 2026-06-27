@@ -28,10 +28,10 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # declarative easyroam (eduroam) wifi configuration
     nix-easyroam.url = "github:0x5a4/nix-easyroam";
+    # nixos on raspberry pi (5)
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     ### other nix-community stuff
-    # has nixos config for raspberry pi
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     # declarative disk management
     disko = { url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs"; };
@@ -111,8 +111,13 @@
 
           # attributes of this set can be taken as function arguments in modules like modules/base/default.nix
           specialArgs = { inherit inputs lib; };
+
+          nixosSystemFunction = if name == "raspberry-pi" then
+            inputs.nixos-raspberrypi.lib.nixosSystem
+          else
+            lib.nixosSystem;
         in
-        lib.nixosSystem {
+        nixosSystemFunction {
           # make specialArgs available for nixos system
           inherit system specialArgs;
           # include nix config
