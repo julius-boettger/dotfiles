@@ -48,4 +48,22 @@ args@{ config, lib, pkgs, inputs, ... }:
   # dont install networkmanager plugins because of
   # build failures and expensive cache misses
   networking.networkmanager.plugins = lib.mkForce [];
+
+  systemd.services.unattended-nixos-rebuild = {
+    description = "Weekly NixOS rebuild";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake /etc/nixos#${config.name}";
+    };
+  };
+  systemd.timers.unattended-nixos-rebuild = {
+    description = "Run NixOS rebuild weekly";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Sat 03:00";
+      Persistent = true; # catch up if host was off
+    };
+  };
 }
