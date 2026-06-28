@@ -1,4 +1,7 @@
-# useful config for raspberry pi (5)
+### useful config for raspberry pi (5)
+# first build and flash initial sd-card image using
+# `nix --accept-flake-config build "github:nvmd/nixos-raspberrypi/main#installerImages.rpi5"`
+# (if building on x86, first put `boot.binfmt.emulatedSystems = [ "aarch64-linux" ];` in your config)
 args@{ config, lib, pkgs, inputs, ... }:
 {
   # import hardware-specific stuff

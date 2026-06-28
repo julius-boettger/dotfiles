@@ -112,8 +112,9 @@
           # attributes of this set can be taken as function arguments in modules like modules/base/default.nix
           specialArgs = { inherit inputs lib; };
 
+          # nixos-raspberrypi uses own nixosSystem function that additionally needs nixpkgs supplied
           nixosSystemFunction = if name == "raspberry-pi" then
-            inputs.nixos-raspberrypi.lib.nixosSystem
+            arg: inputs.nixos-raspberrypi.lib.nixosSystem (arg // { nixpkgs = inputs.nixpkgs; })
           else
             lib.nixosSystem;
         in
