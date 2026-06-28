@@ -15,7 +15,7 @@ args@{ config, lib, pkgs, inputs, ... }:
   # newer bootloader that supports multiple nixos generations
   boot.loader.raspberry-pi.bootloader = "kernel";
   # usually enabled by default config
-  #boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
 
   # add bootloader name and kernel version to nixos generation names
   system.nixos.tags = with config.boot; [
