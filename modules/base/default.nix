@@ -96,16 +96,16 @@ args@{ config, lib, pkgs, ... }:
     lsd # better ls
     bat # better cat
     fzf # fast fuzzy finder
-    tldr # summarize man pages
     zoxide # better cd
-    nomino # file renaming
     hyperfine # benchmarking tool
     numbat # cli calculator
     fortune # random quote
     librespeed-cli # speedtest
     nix-output-monitor # prettier output of nix commands
-    cbonsai # ascii art bonsai
-    asciiquarium-transparent # ascii art aquarium
+    #tldr # summarize man pages
+    #nomino # file renaming
+    #cbonsai # ascii art bonsai
+    #asciiquarium-transparent # ascii art aquarium
   ];
 
   local = {

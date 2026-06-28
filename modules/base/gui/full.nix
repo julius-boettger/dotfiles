@@ -39,6 +39,8 @@ args@{ config, lib, pkgs, ... }:
       ### cli
       dunst # for better notify-send with dunstify
       gphoto2fs # mount camera
+      cbonsai # ascii art bonsai
+      asciiquarium-transparent # ascii art aquarium
     ];
   };
 }
