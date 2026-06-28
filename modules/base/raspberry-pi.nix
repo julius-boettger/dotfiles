@@ -4,17 +4,13 @@
 # (if building on x86, first put `boot.binfmt.emulatedSystems = [ "aarch64-linux" ];` in your config)
 args@{ config, lib, pkgs, inputs, ... }:
 {
-  # import hardware-specific stuff
-  imports = with inputs.nixos-raspberrypi.nixosModules.raspberry-pi-5; [
-    base
-    page-size-16k # recommended
-    display-vc4 # for connecting monitors
+  imports = with inputs.nixos-raspberrypi.nixosModules; [
+    trusted-nix-caches
+    raspberry-pi-5.base
+    raspberry-pi-5.display-vc4 # for connecting monitors
+    raspberry-pi-5.page-size-16k # recommended
+    #raspberry-pi-5.bluetooth
   ];
-
-  nix.settings = {
-    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
-    extra-trusted-public-keys = [ "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI=" ];
-  };
 
   # newer bootloader that supports multiple nixos generations
   boot.loader.raspberry-pi.bootloader = "kernel";
