@@ -115,7 +115,6 @@ args@{ config, lib, pkgs, ... }:
     starship.enable = true;
     fastfetch.enable = true;
     devtools.python.enable = true;
-    distributed-builds.enable = true;
   };
 
   # dont generate man page caches to speed up rebuilds

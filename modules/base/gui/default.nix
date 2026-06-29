@@ -94,6 +94,7 @@ args@{ config, lib, pkgs, ... }:
       nautilus.enable = true;
       bluetooth.enable = true;
       discord.enable = true;
+      distributed-builds.enable = true;
     };
 
     # configure various app settings

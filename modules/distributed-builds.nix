@@ -1,23 +1,8 @@
 # nix builds on remote machines
-# https://wiki.nixos.org/wiki/Distributed_build
 args@{ config, lib, ... }:
 lib.mkModule "distributed-builds" config {
-  nix = {
-    distributedBuilds = true;
-    settings = {
-      trusted-users = [ config.username ];
-      # useful when remote has faster internet than local machine
-      builders-use-substitutes = true;
-    };
-    buildMachines = [
-      {
-        hostName = "raspberry-pi";
-        system = "aarch64-linux";
-        protocol = "ssh-ng"; # nix' custom ssh variant
-        supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      }
-    ];
-  };
+  # enable cross-compilation to aarch64 (on x86_64)
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # convenient ssh hostnames
   # dont forget `ssh-copy-id HOST`!
