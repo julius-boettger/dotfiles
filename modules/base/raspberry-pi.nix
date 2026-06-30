@@ -1,11 +1,14 @@
 ### useful config for raspberry pi (5)
-# first build and flash initial sd-card image using
-# `nix --accept-flake-config build "github:nvmd/nixos-raspberrypi/main#installerImages.rpi5"`
-# (if building on x86, first put `boot.binfmt.emulatedSystems = [ "aarch64-linux" ];` in your config)
+# first build and flash initial sd-card image using:
+# nix build /etc/dotfiles#nixosConfigurations.raspberry-pi.config.system.build.sdImage
+# then lookup sd-card block device name using `lsblk` (e.g. sda) and write the built image to it:
+# zstd -dc result/sd-image/*.img.zst | sudo dd of=/dev/sdX bs=4M status=progress conv=fsync
 args@{ config, lib, pkgs, inputs, ... }:
 {
   imports = with inputs.nixos-raspberrypi.nixosModules; [
+    sd-image # enable building sd-card image
     trusted-nix-caches
+
     raspberry-pi-5.base
     raspberry-pi-5.display-vc4 # for connecting monitors
     raspberry-pi-5.page-size-16k # recommended
