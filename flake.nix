@@ -114,7 +114,8 @@
 
           # nixos-raspberrypi uses own nixosSystem function that additionally needs nixpkgs supplied
           nixosSystemFunction = if name == "raspberry-pi" then
-            arg: inputs.nixos-raspberrypi.lib.nixosSystem (arg // { nixpkgs = inputs.nixpkgs; })
+            # temporarily use nixos-raspberrypi shipped nixpkgs
+            arg: inputs.nixos-raspberrypi.lib.nixosSystem (arg /*// { nixpkgs = inputs.nixpkgs; }*/)
           else
             lib.nixosSystem;
         in
