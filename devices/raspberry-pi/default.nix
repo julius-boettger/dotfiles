@@ -24,12 +24,12 @@ args@{ pkgs, ... }:
 
     # has subdomain
     immich.enable = true;
-    lamp-server.enable = true;
-    obsidian-livesync.enable = true;
+    #lamp-server.enable = true;
+    #obsidian-livesync.enable = true;
     #ai-chatbot.enable = true;
 
     # other
-    terralux-backend.enable = true;
+    #terralux-backend.enable = true;
     #blocky.enable = true;
     #minecraft-server.enable = true;
   };
