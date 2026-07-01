@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs"; };
     # for occasional unstable packages
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs for raspberry pi (probably still on 25.11)
+    nixpkgs-pi.follows = "nixos-raspberrypi/nixpkgs";
     # nixpkgs to avoid expensive cache misses of couchdb and dependencies on aarch64
     couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=a1bab9e494f5f4939442a57a58d0449a109593fe";
 
@@ -115,7 +117,7 @@
           # nixos-raspberrypi uses own nixosSystem function that additionally needs nixpkgs supplied
           nixosSystemFunction = if name == "raspberry-pi" then
             # temporarily use nixos-raspberrypi shipped nixpkgs
-            arg: inputs.nixos-raspberrypi.lib.nixosSystem (arg /*// { nixpkgs = inputs.nixpkgs; }*/)
+            arg: inputs.nixos-raspberrypi.lib.nixosSystem (arg // { nixpkgs = inputs.nixpkgs-pi; })
           else
             lib.nixosSystem;
         in

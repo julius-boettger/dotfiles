@@ -1094,6 +1094,10 @@
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs-pi": [
+          "nixos-raspberrypi",
+          "nixpkgs"
+        ],
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "sops-nix": "sops-nix",
