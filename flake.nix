@@ -171,7 +171,6 @@
                   (final: prev: {
                     /*pkgs.*/unstable = pkgs-unstable;
                     /*pkgs.*/local    = pkgs-local;
-                    redis = prev.redis.overrideAttrs { doCheck = false; };
                   })
 
                   # for specific device

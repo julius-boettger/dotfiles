@@ -15,9 +15,6 @@ args@{ config, lib, pkgs, inputs, ... }:
     #raspberry-pi-5.bluetooth
   ];
 
-  # speedups for initial build
-  programs.fish.vendor.completions.enable = false;
-
   # newer bootloader that supports multiple nixos generations
   boot.loader.raspberry-pi.bootloader = "kernel";
   # usually enabled by default config
