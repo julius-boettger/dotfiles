@@ -77,9 +77,9 @@
           # determine system arch from hardware config
           system =
             let path = ./devices/${name}/hardware-configuration.nix; in
-            # default if there's no hardware config
             if !builtins.pathExists path then
-              "x86_64-linux"
+              # if there is no hardware config, require a platform.nix with the hostPlatform string
+              import ./devices/${name}/platform.nix
             else
               builtins.readFile path
               |> builtins.match ''^.*hostPlatform.*=.*"(.*)".*;.*$''
