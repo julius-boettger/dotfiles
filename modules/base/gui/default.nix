@@ -66,7 +66,7 @@ args@{ config, lib, pkgs, ... }:
       pick-colour-picker
 
       ### only used on wayland
-      #swww # wallpaper switching with animations
+      awww # wallpaper switching with animations
       nwg-look # manage gtk theming stuff if homemanager fails
       hyprpicker # color picker
       wev ydotool # find out / send keycodes
