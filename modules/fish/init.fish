@@ -133,11 +133,22 @@ function flake-rebuild-remote
         set impure "--impure"
     end
 
-    # rebuild with hostname, --impure (if set), other given args and nom (for prettier output)
-    nixos-rebuild switch --sudo --no-reexec \
+    # allow overriding `nh os` command used below with env var
+    if test "x$NIX_FLAKE_NH_OS_COMMAND" = "x"
+        set NIX_FLAKE_NH_OS_COMMAND "switch"
+    end
+
+    # build locally with nice output
+    nh os build -H $argv[1] -d always /etc/dotfiles -- $impure $argv
+    # exit on fail
+    if test $status -ne 0
+        return $status
+    end
+
+    # push build to target host
+    nixos-rebuild $NIX_FLAKE_NH_OS_COMMAND \
         --flake /etc/dotfiles\#$argv[1] \
         --target-host $argv[1] \
-         --build-host $argv[1] \
         $impure $argv[2..-1] \
         &| nom
     return $status
