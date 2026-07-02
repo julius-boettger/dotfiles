@@ -35,6 +35,7 @@ args@{ pkgs, ... }:
   };
 
   environment.systemPackages = with pkgs; [
+    tmux
     htop # process viewer
     # monitor networking
     bmon

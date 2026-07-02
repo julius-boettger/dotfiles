@@ -12,5 +12,6 @@ lib.mkModule "studies" config {
 
   environment.systemPackages = with pkgs; [
     zotero
+    pympress
   ];
 }
