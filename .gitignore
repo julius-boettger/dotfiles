@@ -1,9 +1,9 @@
-misc/update/last-run-date
+/result*
 
-wallpapers/login.*
-wallpapers/misc
+/wallpapers/login.*
+/wallpapers/misc
 
 # other awesome themes
-awesome/themes/*/
-!awesome/themes/mytheme
-!awesome/themes/mytheme/*
+/awesome/themes/*/
+!/awesome/themes/mytheme
+!/awesome/themes/mytheme/*
