@@ -139,7 +139,11 @@ function flake-rebuild-remote
     end
 
     # build locally with nice output
-    nh os build -H $argv[1] -d always /etc/dotfiles -- $impure $argv
+    nh os build -H $argv[1] \
+        -d always \
+        -o /etc/dotfiles/result-$argv[1] \
+        /etc/dotfiles \
+        -- $impure $argv[2..-1]
     # exit on fail
     if test $status -ne 0
         return $status
