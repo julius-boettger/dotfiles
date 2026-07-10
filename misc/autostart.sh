@@ -31,8 +31,7 @@ copyq --start-server hide &> /dev/null &
 # set default rgb profile (nothing happens if the command is not found)
 openrgb --profile default > /dev/null &
 
-### set up virtual microphone with noise reduction
-NOISETORCH_MIC="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7BVH9Y0B69B0A-00.HiFi__Mic1__source"
+### set default mic to easyeffects
 set_mic() {
   # set $1 as default mic with 100% volume using wireplumber id
   id=$(wpctl status | sed -n '/Sources:/,/Streams:/{/Sources:/d;/Streams:/d;p}' | grep -Fm 1 "$1" | sed "s/[^0-9]*\([0-9]\{2,\}\).*/\1/")
@@ -42,20 +41,6 @@ set_mic() {
   fi
   wpctl set-default $id
   wpctl set-volume $id 100%
+  echo "set mic to $1"
 }
-# only execute if noisetorch is not yet active (grep finds <= 1 results)
-if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
-  # wait for mics to be detected correctly
-  sleep 1
-  # init noisetorch for given source device id
-  noisetorch -i -s $NOISETORCH_MIC
-  if [[ $? == 0 ]]; then
-    echo "noisetorch activated"
-  else
-    echo "noisetorch couldnt be activated, check if noisetorch -l lists $NOISETORCH_MIC"
-  fi
-  # set noisetorch mic as default
-  set_mic "NoiseTorch Microphone"
-else
-  echo "noisetorch already active"
-fi
+set_mic "Easy Effects Source"

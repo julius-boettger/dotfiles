@@ -5,6 +5,7 @@ args@{ config, pkgs, ... }:
     nvidia.enable = true;
     piper.enable = true;
     playerctl.enable = true;
+    easyeffects.enable = true;
   };
 
   swapDevices = [ {
@@ -34,9 +35,6 @@ args@{ config, pkgs, ... }:
     zenity # password prompt
     cryptsetup # unlock luks
   ];
-
-  # remove background noise from mic
-  programs.noisetorch.enable = true;
 
   # monitor and control cooling stuff (e.g. case fans)
   programs.coolercontrol.enable = true;
