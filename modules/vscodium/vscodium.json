@@ -95,6 +95,13 @@
     "reportAssignmentType": "hint", // make it easier to force types onto variables
   },
 
+  "julia.enableTelemetry": false,
+  "julia.symbolCacheDownload": true,
+  "julia.juliaup.install.hint": false,
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
+
   "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
   "workbench.iconTheme": "material-icon-theme",
 
