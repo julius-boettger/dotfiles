@@ -50,8 +50,7 @@
     nix-vscode-extensions = { url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     # to connect vscode on windows with nixos wsl
-    vscode-server = { url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs"; };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     ### self-written stuff to self-host
     # control govee rgb lamp
