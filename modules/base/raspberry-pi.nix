@@ -64,10 +64,24 @@ args@{ config, lib, pkgs, inputs, ... }:
     description = "Weekly NixOS rebuild";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake /etc/nixos#${config.name}";
-    };
+    serviceConfig.Type = "oneshot";
+    path = with pkgs; [
+      nixos-rebuild
+      git
+    ];
+    script = ''
+      cd /etc/dotfiles || exit 1
+
+      if [ -n "$(git status --porcelain)" ]; then
+        echo "There are uncommitted changes, exiting..."
+        exit 1
+      fi
+
+      git pull
+      echo "Rebuilding on branch $(git branch --show-current), commit $(git rev-parse --short HEAD) \"$(git log -1 --pretty=%s)\""
+
+      exec nixos-rebuild switch --flake .#${config.name}
+    '';
   };
   systemd.timers.unattended-nixos-rebuild = {
     description = "Run NixOS rebuild weekly";
