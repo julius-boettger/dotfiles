@@ -1,4 +1,4 @@
-args@{ config, pkgs, inputs, ... }:
+args@{ config, lib, pkgs, inputs, ... }:
 let 
   mesa-pkgs = 
     pkgs;
@@ -50,4 +50,9 @@ in
     # necessary for some reason
     owner = "wpa_supplicant";
   };
+  # as the usual sops age key file (required to unlock secrets at boot)
+  # lives on the /home subvolume (that is only mounted later on this device),
+  # move it to the main subvolume instead (fixes issue of secrets not available after reboot).
+  # see sops.nix module on how to create this file.
+  sops.age.keyFile = lib.mkForce "/var/lib/sops/age/keys.txt";
 }
