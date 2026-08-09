@@ -1105,6 +1105,7 @@
         "terralux-backend": "terralux-backend",
         "vscode-server": "vscode-server",
         "website": "website",
+        "zen-browser": "zen-browser",
         "zenix": "zenix"
       }
     },
@@ -1332,16 +1333,15 @@
     "zen-browser": {
       "inputs": {
         "nixpkgs": [
-          "zenix",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1753676490,
-        "narHash": "sha256-XeifEftxYGP/gzp6O1yO1S1W+MEx4Xvrgeu84ryRPNQ=",
+        "lastModified": 1786164819,
+        "narHash": "sha256-tvBlGAYyzHYdLwn035bRCrB1mcMjvNNavcNZ293AIIA=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "77024f4557204bb4d526893d42db2e6f50727fab",
+        "rev": "f9af5f7017cea1c159e17922288fb38ff94d28cd",
         "type": "github"
       },
       "original": {
@@ -1359,7 +1359,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "zen-browser": "zen-browser"
+        "zen-browser": [
+          "zen-browser"
+        ]
       },
       "locked": {
         "lastModified": 1764603872,

@@ -22,9 +22,12 @@
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs"; };
-    # zen browser (lock version as upgrade requires theming adjustments)
+    # zen browser
+    zen-browser = { url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs"; };
     zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.zen-browser.follows = "zen-browser";
       inputs.home-manager.follows = "home-manager"; };
     # host minecraft server
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
