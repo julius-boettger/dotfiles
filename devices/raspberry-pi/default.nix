@@ -33,12 +33,4 @@ args@{ pkgs, ... }:
     #blocky.enable = true;
     #minecraft-server.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    tmux
-    htop # process viewer
-    # monitor networking
-    bmon
-    nload
-  ];
 }

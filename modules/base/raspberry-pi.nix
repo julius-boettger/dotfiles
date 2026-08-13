@@ -26,17 +26,6 @@ args@{ config, lib, pkgs, inputs, ... }:
     kernelPackages.kernel.version
   ];
 
-  # avoid password prompts when remote rebuilding
-  # https://github.com/NixOS/nixpkgs/issues/118655#issuecomment-1537131599
-  security.sudo.extraRules = [ {
-    users = [ config.username ];
-    commands = [
-      { command = "/run/current-system/sw/bin/env";         options = [ "NOPASSWD" ]; }
-      { command = "/run/current-system/sw/bin/nix-env";     options = [ "NOPASSWD" ]; }
-      { command = "/run/current-system/sw/bin/systemd-run"; options = [ "NOPASSWD" ]; }
-    ];
-  } ];
-
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
@@ -60,35 +49,12 @@ args@{ config, lib, pkgs, inputs, ... }:
   # build failures and expensive cache misses
   networking.networkmanager.plugins = lib.mkForce [];
 
-  systemd.services.unattended-nixos-rebuild = {
-    description = "Weekly NixOS rebuild";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    serviceConfig.Type = "oneshot";
-    path = with pkgs; [
-      nixos-rebuild
-      git
-    ];
-    script = ''
-      cd /etc/dotfiles || exit 1
-
-      if [ -n "$(git status --porcelain)" ]; then
-        echo "There are uncommitted changes, exiting..."
-        exit 1
-      fi
-
-      git pull
-      echo "Rebuilding on branch $(git branch --show-current), commit $(git rev-parse --short HEAD) \"$(git log -1 --pretty=%s)\""
-
-      exec nixos-rebuild switch --flake .#${config.name}
-    '';
-  };
-  systemd.timers.unattended-nixos-rebuild = {
-    description = "Run NixOS rebuild weekly";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "Sat 03:00";
-      Persistent = true; # catch up if host was off
-    };
-  };
+  local.unattended-rebuild.enable = true;
+  environment.systemPackages = with pkgs; [
+    tmux
+    htop # process viewer
+    # monitor networking
+    bmon
+    nload
+  ];
 }
