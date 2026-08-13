@@ -57,4 +57,7 @@ args@{ config, lib, pkgs, inputs, ... }:
     bmon
     nload
   ];
+
+  # avoid warning
+  boot.zfs.forceImportRoot = false;
 }

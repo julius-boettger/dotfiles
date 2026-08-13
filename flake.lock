@@ -804,8 +804,8 @@
       },
       "original": {
         "owner": "nvmd",
+        "ref": "main",
         "repo": "nixos-raspberrypi",
-        "rev": "7e39508bcf9c1da82cf11c1e22f74f9d9fd0fe10",
         "type": "github"
       }
     },
