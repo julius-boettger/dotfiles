@@ -6,10 +6,9 @@ lib.mkModule "unattended-rebuild" config {
     users = [ config.username ];
     commands = [
       { options = [ "NOPASSWD" ]; command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild"; }
-      # as identified with
-      # `nixos-rebuild switch --flake /etc/dotfiles#raspberry-pi --target-host raspberry-pi --sudo -vvvv`,
-      # this is sadly necessary for activating new configurations without authentication when remote rebuilding
-      { options = [ "NOPASSWD" ]; command = "/bin/sh"; }
+      # needed for flake-rebuild-remote 
+      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nix-env"; }
+      { options = [ "NOPASSWD" ]; command = "/nix/store/*-nixos-system-nixos-*/bin/switch-to-configuration"; }
     ];
   } ];
 

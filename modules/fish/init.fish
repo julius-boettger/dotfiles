@@ -122,9 +122,19 @@ function flake-rebuild-remote
     # exit with error message if hostname wasnt given as first arg
     if test "x$argv[1]" = "x"
         set_color red
-        echo -n "error: "
+        echo -n "Error: "
         set_color normal
         echo "no hostname given!"
+        return 1
+    end
+
+    sudo timeout 5s ssh $argv[1] echo test &> /dev/null
+    if test $status -ne 0
+        set_color red
+        echo -n "Error: "
+        set_color normal
+        echo "connecting to $argv[1] from root failed, make sure that works!"
+        echo "also see comment in distributed-builds.nix"
         return 1
     end
 
@@ -138,10 +148,12 @@ function flake-rebuild-remote
         set NIX_FLAKE_NH_OS_COMMAND "switch"
     end
 
+    set configPath "/etc/dotfiles/result-$argv[1]"
+
     # build locally with nice output
     nh os build -H $argv[1] \
         -d always \
-        -o /etc/dotfiles/result-$argv[1] \
+        -o $configPath \
         --target-host $argv[1] \
         /etc/dotfiles \
         -- $impure $argv[2..-1]
@@ -150,13 +162,18 @@ function flake-rebuild-remote
         return $status
     end
 
-    # push build to target host
-    nixos-rebuild $NIX_FLAKE_NH_OS_COMMAND \
-        --flake /etc/dotfiles\#$argv[1] \
-        --target-host $argv[1] \
-        --sudo \
-        $impure $argv[2..-1] \
-        &| nom
+    # instead of another nixos-rebuild switch --target-host --sudo,
+    # which takes forever and needs /bin/sh NOPASSWD,
+    # do the important steps manually
+
+    echo "Copying built configuration..."
+    nix copy --to "ssh-ng://$argv[1]" $configPath
+
+    echo "Setting it as the target's system profile..."
+    ssh $argv[1] sudo nix-env -p /nix/var/nix/profiles/system --set $(readlink -f $configPath)
+
+    echo "Activating it..."
+    ssh $argv[1] sudo $(readlink -f $configPath)/bin/switch-to-configuration switch
     return $status
 end
 
