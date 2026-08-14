@@ -29,6 +29,11 @@ args@{ config, lib, pkgs, inputs, ... }:
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
+    # increase max allowed concurrent sessions for remote rebuilds
+    settings = {
+      MaxStartups = "100:30:200";
+      MaxSessions = 100;
+    };
   };
 
   # disable sound

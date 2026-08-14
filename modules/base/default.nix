@@ -27,6 +27,8 @@ args@{ config, lib, pkgs, ... }:
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+    # for remote builds using the user over ssh
+    trusted-users = [ config.username ];
     # if anything in the flake git repo is uncommitted
     warn-dirty = false;
     # use all the hardware to speed up rebuilds

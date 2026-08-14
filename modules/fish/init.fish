@@ -142,6 +142,7 @@ function flake-rebuild-remote
     nh os build -H $argv[1] \
         -d always \
         -o /etc/dotfiles/result-$argv[1] \
+        --target-host $argv[1] \
         /etc/dotfiles \
         -- $impure $argv[2..-1]
     # exit on fail
@@ -153,6 +154,7 @@ function flake-rebuild-remote
     nixos-rebuild $NIX_FLAKE_NH_OS_COMMAND \
         --flake /etc/dotfiles\#$argv[1] \
         --target-host $argv[1] \
+        --sudo \
         $impure $argv[2..-1] \
         &| nom
     return $status
