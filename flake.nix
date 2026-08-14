@@ -10,8 +10,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs for raspberry pi (just follow the given one or get problems)
     nixpkgs-pi.follows = "nixos-raspberrypi/nixpkgs";
-    # nixpkgs to avoid expensive cache misses of couchdb and dependencies on aarch64
-    couchdb-aarch64-nixpkgs.url = "github:nixos/nixpkgs?rev=a1bab9e494f5f4939442a57a58d0449a109593fe";
 
     ### other
     # hyprland plugin for better multi-monitor workspaces

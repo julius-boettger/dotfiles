@@ -3,7 +3,6 @@
 args@{ config, lib, ... }:
 let
   port = 5984; # couchdb default
-  couchdb-pkg = (lib.getNixpkgs "couchdb-aarch64-nixpkgs").couchdb3;
 in
 lib.mkModule "obsidian-livesync" config {
 
@@ -22,7 +21,6 @@ lib.mkModule "obsidian-livesync" config {
   services.couchdb = {
     enable = true;
     inherit port;
-    package = couchdb-pkg;
     # to avoid shell setup script
     # https://github.com/vrtmrz/obsidian-livesync/blob/main/utils/couchdb/couchdb-init.sh
     extraConfig = {
