@@ -23,15 +23,16 @@ args@{ pkgs, ... }:
     website.enable = true;
 
     # has subdomain
-    ntfy.enable = true;
-    immich.enable = true;
-    lamp-server.enable = true;
-    obsidian-livesync.enable = true;
-    #ai-chatbot.enable = true;
+    ntfy = { enable = true;              port = 8523; };
+    immich = { enable = true;            port = 2283;
+                                       ppport = 3000; };
+    lamp-server.enable = true;         # port = 9000 hard-coded
+    obsidian-livesync = { enable = true; port = 5984; };
+    #ai-chatbot.enable = true; # configure port on next use
 
     # other
-    terralux-backend.enable = true;
-    #blocky.enable = true;
-    #minecraft-server.enable = true;
+    terralux-backend.enable = true;  # port =  5000 hard-coded
+    #blocky.enable = true;           # port =    53 dns
+    #minecraft-server.enable = true; # port = 25565 default
   };
 }
