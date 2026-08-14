@@ -10,7 +10,6 @@ lib.mkModule "distributed-builds" config {
   # already done there
   nix.settings = {
     substituters = [ "ssh-ng://raspberry-pi" ];
-    require-sigs = false;
   };
 
   # enable cross-compilation to aarch64 (on x86_64)

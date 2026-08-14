@@ -34,6 +34,11 @@ args@{ config, lib, pkgs, ... }:
     # use all the hardware to speed up rebuilds
     cores = 0;
     max-jobs = "auto";
+    # more cache
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    # don't require signatures for substituters to simplify nix store copying
+    require-sigs = false;
   };
 
   boot.loader = {
@@ -148,12 +153,6 @@ args@{ config, lib, pkgs, ... }:
       # always keep 2 generations
       extraArgs = "--keep 2";
     };
-  };
-
-  # more nix cache
-  nix.settings = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
   # disable hibernation
