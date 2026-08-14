@@ -23,6 +23,7 @@ args@{ pkgs, ... }:
     website.enable = true;
 
     # has subdomain
+    ntfy.enable = true;
     immich.enable = true;
     lamp-server.enable = true;
     obsidian-livesync.enable = true;

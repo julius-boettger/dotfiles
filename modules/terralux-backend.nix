@@ -17,5 +17,6 @@ lib.mkModule "terralux-backend" config {
       ExecStart = "${terralux-backend-pkg}/bin/terralux-backend";
     };
     wantedBy = [ "multi-user.target" ];
+    onFailure = [ "notify-failure@%n.service" ]; # send ntfy push notification
   };
 }

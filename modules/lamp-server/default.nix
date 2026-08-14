@@ -17,6 +17,7 @@ lib.mkModule "lamp-server" config {
       ExecStart = "${lamp-server-pkg}/bin/lamp-server";
     };
     wantedBy = [ "multi-user.target" ];
+    onFailure = [ "notify-failure@%n.service" ]; # send ntfy push notification
   };
 
   local.website.extraConfig = ''

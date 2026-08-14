@@ -16,6 +16,7 @@ lib.mkModule "unattended-rebuild" config {
     description = "Weekly NixOS rebuild";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    onFailure = [ "notify-failure@%n.service" ]; # send ntfy push notification
     serviceConfig = {
       Type = "oneshot";
       User = config.username;
