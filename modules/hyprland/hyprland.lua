@@ -32,12 +32,12 @@ end)
 hl.window_rule({ match = { class = "com.github.hluk.copyq" }, float = true })
 -- opacity
 hl.window_rule({ match = { class = "codium" }, opacity = 0.9 })
-hl.window_rule({ match = { class = "com-jetpackduba-gitnuro-MainKt" }, opacity = 0.85 })
-hl.window_rule({ match = { initial_title = "^Obsidian - Obsidian.*" }, opacity = 0.8 })
-hl.window_rule({ match = { class = "org.gnome.Nautilus" },             opacity = 0.8 })
-hl.window_rule({ match = { class = "gcr-prompter" },                   opacity = 0.8 })
-hl.window_rule({ match = { class = "Lxpolkit" },                       opacity = 0.8 })
-hl.window_rule({ match = { class = "spotify" },                        opacity = 0.8 })
+hl.window_rule({ match = { initial_title = "Gitnuro.*" }, opacity = 0.85 })
+hl.window_rule({ match = { initial_title = "Obsidian - Obsidian.*" }, opacity = 0.8 })
+hl.window_rule({ match = { class = "org.gnome.Nautilus" },            opacity = 0.8 })
+hl.window_rule({ match = { class = "gcr-prompter" },                  opacity = 0.8 })
+hl.window_rule({ match = { class = "Lxpolkit" },                      opacity = 0.8 })
+hl.window_rule({ match = { class = "spotify" },                       opacity = 0.8 })
 
 -- flameshot (https://github.com/flameshot-org/flameshot/issues/2978)
 -- TODO: fix, also see device-specific config
