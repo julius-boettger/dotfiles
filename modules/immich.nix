@@ -24,7 +24,6 @@ in
     services.immich-public-proxy = {
       enable = true;
       port = cfg.ppport;
-      openFirewall = true;
       immichUrl = "http://localhost:${toString cfg.port}";
       settings.ipp = {
         showGalleryTitle = true;
