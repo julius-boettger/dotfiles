@@ -631,11 +631,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1777026461,
-        "narHash": "sha256-JSZS7gpCusCMkVMxPYMtVz6wSK0UQ+YKiMK8B6E/0Gk=",
+        "lastModified": 1787255049,
+        "narHash": "sha256-eHr/o8j3810ptj+2BcsbBKbcFORctq6lEiRbz00MIyc=",
         "owner": "julius-boettger",
         "repo": "lamp-server-rust",
-        "rev": "c763991738a75f09fd6f5489acb00829f17d35bf",
+        "rev": "f8cf6ce8f849cb1fc095cdc41d02a83877bb2f9e",
         "type": "github"
       },
       "original": {

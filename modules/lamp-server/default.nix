@@ -20,11 +20,11 @@ lib.mkModule "lamp-server" config {
     onFailure = [ "notify-failure@%n.service" ]; # send ntfy push notification
   };
 
-  local.website.extraConfig = ''
-    lamp.juliusboettger.com {
-      reverse_proxy :${toString port}
-    }
-  '';
+  #local.website.extraConfig = ''
+  #  lamp.juliusboettger.com {
+  #    reverse_proxy :${toString port}
+  #  }
+  #'';
 
   # configure secrets
   sops = {
