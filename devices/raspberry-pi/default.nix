@@ -24,8 +24,8 @@ args@{ pkgs, ... }:
 
     # has subdomain
     ntfy = { enable = true;              port = 8523; };
-    immich = { enable = true;            port = 2283;
-                                       ppport = 3000; };
+    immich = { enable = true;            port = 3000;
+                                       ppport = 2135; };
     lamp-server.enable = true;         # port = 9000 hard-coded
     obsidian-livesync = { enable = true; port = 5984; };
     #ai-chatbot.enable = true; # configure port on next use
