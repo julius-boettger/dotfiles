@@ -22,4 +22,6 @@ lib.mkModule "distributed-builds" config {
       Hostname 192.168.178.254
       User ${config.username}
   '';
+
+  networking.hosts."192.168.178.254" = [ "raspberry-pi.local" ];
 }
