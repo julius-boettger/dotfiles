@@ -216,6 +216,10 @@ args@{ config, lib, pkgs, ... }:
           name = lib.mkDefault "julius-boettger";
           email = lib.mkDefault "julius.btg@proton.me";
         };
+        # ssh commit signing
+        gpg.format = "ssh";
+        commit.gpgsign = true;
+        user.signingkey = "/home/${sysconfig.username}/.ssh/id_ed25519";
       };
     };
   };
