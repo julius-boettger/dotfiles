@@ -13,14 +13,16 @@ args@{ config, pkgs, ... }:
     size = 16000; # 16 GB
   } ];
 
+  # nct6687d currently causes build to fail
+
   # install extra kernel modules
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    nct6687d # for my msi b550 mainboard, found in coolercontrol docs
+    #nct6687d # for my msi b550 mainboard, found in coolercontrol docs
     #liquidtux # for liquidctl, but not necessary?
   ];
   # load/enable kernel modules
   boot.kernelModules = [
-    "nct6687" # for my msi b550 mainboard, found in coolercontrol docs
+    #"nct6687" # for my msi b550 mainboard, found in coolercontrol docs
     #"liquidtux" # for liquidctl, but not necessary?
     # `sudo sensors-detect` of lm_sensors told me i need some stuff that i dont need
   ];
