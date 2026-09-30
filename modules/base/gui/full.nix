@@ -19,7 +19,7 @@ args@{ config, lib, pkgs, ... }:
 
     environment.systemPackages = with pkgs; [
       ### gui
-      onlyoffice-desktopeditors # office suite
+      collabora-desktop # office suite
       gimp-with-plugins # image editor
       darktable # photo editor and raw developer
       inkscape-with-extensions # vector graphic editor
