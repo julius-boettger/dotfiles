@@ -8,4 +8,9 @@ lib.mkModule "studies" config {
     zotero
     pympress
   ];
+
+  # for viper (install manually)
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
+    programs.vscodium.mutableExtensionsDir = lib.mkForce true;
+  };
 }

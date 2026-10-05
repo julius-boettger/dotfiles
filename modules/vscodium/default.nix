@@ -5,13 +5,22 @@ let
   nixpkgs-exts = pkgs.unstable.vscode-extensions;
 in
 lib.mkModule "vscodium" config {
-  environment.systemPackages = [
-    (pkgs.vscode-with-extensions.override {
-      vscode = pkgs.unstable.vscodium.override {
+  home-manager.users.${config.username} = { config, sysconfig, ... }: {
+    programs.vscodium = {
+      enable = true;
+
+      # allows manually installing/updating extensions
+      # useful for some that don't like living in the read-only nix store
+      mutableExtensionsDir = false;
+
+      argvSettings = {
         # attempt to fix crashing background processes
-        commandLineArgs = "--disable-gpu-sandbox";
+        enable-crash-reporter = false;
+        # automatic recommendtation
+        password-store = "basic";
       };
-      vscodeExtensions =
+
+      profiles.default.extensions =
         with pkgs.vscode-marketplace;
         with pkgs.vscode-marketplace-release;
         with pkgs.open-vsx;
@@ -27,6 +36,8 @@ lib.mkModule "vscodium" config {
         diku.futhark-vscode
         bmalehorn.vscode-fish
         julialang.language-julia
+        # needs manual installation and mutableExtensionsDir = true
+        #viper-admin.viper
 
         # rust
         rust-lang.rust-analyzer
@@ -61,11 +72,9 @@ lib.mkModule "vscodium" config {
         monokai.theme-monokai-pro-vscode # color theme
         christian-kohler.path-intellisense # auto complete paths
       ];
-    })
-  ];
+    };
 
-  # symlink config to ~/.config
-  home-manager.users.${config.username} = { config, sysconfig, ... }: {
+    # symlink config to ~/.config
     xdg.configFile."VSCodium/User/settings.json".source =
       config.lib.file.mkOutOfStoreSymlink "/etc/dotfiles/modules/vscodium/vscodium.json";
   };
