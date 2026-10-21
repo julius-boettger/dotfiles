@@ -143,20 +143,21 @@ function flake-rebuild-remote
         set impure "--impure"
     end
 
-    # allow overriding `nh os` command used below with env var
-    if test "x$NIX_FLAKE_NH_OS_COMMAND" = "x"
-        set NIX_FLAKE_NH_OS_COMMAND "switch"
-    end
-
     set configPath "/etc/dotfiles/result-$argv[1]"
 
     # build locally with nice output
+    # use target host as extra substituter to copy from
+    # its nix store instead of rebuilding what it already has
+    # `--option require-sigs false` might be necessary as target hosts nix store is not signed
     nh os build -H $argv[1] \
         -d always \
         -o $configPath \
         --target-host $argv[1] \
         /etc/dotfiles \
-        -- $impure $argv[2..-1]
+        -- \
+        --option extra-substituters "ssh-ng://$argv[1]" \
+        $impure \
+        $argv[2..-1]
     # exit on fail
     if test $status -ne 0
         return $status
@@ -167,6 +168,7 @@ function flake-rebuild-remote
     # do the important steps manually
 
     echo "Copying built configuration..."
+    # might also need the `--option`'s from above?
     nix copy --to "ssh-ng://$argv[1]" $configPath
 
     echo "Setting it as the target's system profile..."

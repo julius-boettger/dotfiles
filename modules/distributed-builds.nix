@@ -5,13 +5,6 @@ lib.mkModule "distributed-builds" config {
   # e.g. `sudo ssh raspberry-pi echo test` has to work without
   # password prompt (e.g. by `sudo cp ~/.ssh/id* /root/.ssh/`)
 
-  # use nix store of raspberry pi as cache for builds
-  # to avoid locally repeating large builds that were
-  # already done there
-  nix.settings = {
-    substituters = [ "ssh-ng://raspberry-pi" ];
-  };
-
   # enable cross-compilation to aarch64 (on x86_64)
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

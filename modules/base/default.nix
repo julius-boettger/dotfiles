@@ -37,8 +37,6 @@ args@{ config, lib, pkgs, ... }:
     # more cache
     extra-substituters = [ "https://nix-community.cachix.org" ];
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-    # don't require signatures for substituters to simplify nix store copying
-    require-sigs = false;
   };
 
   boot.loader = {
