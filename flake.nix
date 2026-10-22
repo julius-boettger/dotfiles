@@ -20,8 +20,8 @@
     # declarative discord config
     nixcord = { url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs"; };
-    # zen browser (pinned to last building rev)
-    zen-browser = { url = "github:youwen5/zen-browser-flake?rev=4036109214cf20632000558935bd823b901fa886";
+    # zen browser (pinned to last building rev, see https://github.com/youwen5/zen-browser-flake/issues/24)
+    zen-browser = { url = "github:youwen5/zen-browser-flake?rev=458cd16116c362a5e92d5db6bdc3599e4e8b1f4a";
       inputs.nixpkgs.follows = "nixpkgs"; };
     zenix = { url = "github:anders130/zenix";
       inputs.nixpkgs.follows = "nixpkgs";
