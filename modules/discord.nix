@@ -1,8 +1,5 @@
 # discord
 args@{ config, lib, pkgs, inputs, ... }:
-let
-  discord-pkgs = pkgs;
-in
 lib.mkModule "discord" config {
   # nixcord for declarative config
   home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
@@ -16,13 +13,15 @@ lib.mkModule "discord" config {
         vencord = {
           enable = false;
           # still relevant for vesktop even if not enabled here
-          package = discord-pkgs.vencord;
+          package = pkgs.local.vencord;
+          # !!! ^ currently using local version
+          # newer than unstable or vesktop doesnt even start
         };
       };
       # use vesktop instead (wayland optimized discord client)
       vesktop = {
         enable = true;
-        package = discord-pkgs.vesktop;
+        package = pkgs.unstable.vesktop;
       };
 
       config.plugins = {
