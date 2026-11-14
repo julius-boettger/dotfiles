@@ -1,5 +1,5 @@
 # photo management
-args@{ config, lib, ... }:
+args@{ config, lib, pkgs, ... }:
 let
   cfg = config.local.immich;
 in
@@ -16,6 +16,7 @@ in
       port = cfg.port;
       host = "0.0.0.0";
       openFirewall = true;
+      package = pkgs.unstable.immich; # because stable was insecure 
       machine-learning.enable = false;
       accelerationDevices = null; # all available devices
       settings.server.externalDomain = "https://photos.juliusboettger.com";
